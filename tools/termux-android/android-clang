@@ -1,0 +1,49 @@
+#!/usr/bin/env python3
+import os
+import shlex
+import subprocess
+import sys
+
+ndk = "/opt/android-sdk/ndk/27.0.12077973"
+bin_dir = ndk + "/toolchains/llvm/prebuilt/linux-x86_64/bin"
+prefix = ["qemu-x86_64", "-L", "/usr/x86_64-linux-gnu"]
+
+env = os.environ.copy()
+libdir = "/opt/amd64-libs/usr/lib/x86_64-linux-gnu"
+env["LD_LIBRARY_PATH"] = (
+    libdir + ":" + env.get("LD_LIBRARY_PATH", "")
+)
+
+args = [
+    bin_dir + "/clang",
+    "--target=aarch64-linux-android26",
+    *sys.argv[1:],
+]
+
+result = subprocess.run(
+    prefix + args + ["-###"],
+    text=True,
+    capture_output=True,
+    env=env,
+)
+
+if result.returncode:
+    sys.stderr.write(result.stderr)
+    sys.exit(result.returncode)
+
+commands = [
+    line.strip()
+    for line in result.stderr.splitlines()
+    if "ld.lld" in line and line.lstrip().startswith('"')
+]
+
+if not commands:
+    sys.stderr.write(result.stderr)
+    sys.exit("No ld.lld command found")
+
+link_args = shlex.split(commands[-1])
+
+sys.exit(subprocess.run(
+    prefix + link_args,
+    env=env,
+).returncode)

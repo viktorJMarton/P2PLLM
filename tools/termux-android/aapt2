@@ -1,0 +1,5 @@
+#!/bin/bash
+export LD_LIBRARY_PATH=/opt/amd64-libs/usr/lib/x86_64-linux-gnu
+exec qemu-x86_64 \
+  -L /usr/x86_64-linux-gnu \
+  /opt/android-sdk/build-tools/35.0.0/aapt2 "$@"
