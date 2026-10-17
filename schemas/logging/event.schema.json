@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "time",
+    "work_id",
+    "run_id",
+    "role",
+    "event",
+    "summary",
+    "evidence"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "time": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "work_id": {
+      "type": "string",
+      "pattern": "^(WORK-[0-9]{4}|PACKAGE)$"
+    },
+    "run_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "role": {
+      "type": "string",
+      "minLength": 1
+    },
+    "event": {
+      "enum": [
+        "started",
+        "decision_proposed",
+        "decision_accepted",
+        "changed",
+        "verification_passed",
+        "verification_failed",
+        "handoff",
+        "blocked",
+        "completed"
+      ]
+    },
+    "summary": {
+      "type": "string",
+      "maxLength": 1500
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "commit": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  }
+}

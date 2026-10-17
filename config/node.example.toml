@@ -1,0 +1,15 @@
+# Example only; limits are conservative lab configuration, not measured optimal defaults.
+schema_version = 1
+[privacy]
+require_private_remote = true
+allow_plaintext_remote = false
+approved_profiles = [] # No approved backend yet: remote personal-data AI fails closed.
+[roles]
+personal_inference = true
+compute_contribution = false
+shared_learning = false
+[resources]
+max_concurrent_tasks = 1
+max_memory_mib = 1024
+max_network_mib_per_day = 0 # No remote work until configured and approved.
+background_enabled = false # First lab foreground; background support remains a requirement.

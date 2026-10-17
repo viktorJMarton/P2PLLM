@@ -1,0 +1,20 @@
+@startuml
+participant "Requesting node" as A
+participant "Peer / participants" as B
+participant "Local policy + backend" as P
+A <-> B : authenticated transport
+A <-> B : HELLO / CAPABILITIES
+A -> P : validate composition + privacy assumptions
+alt approved profile and available resources
+ P --> A : admissible execution plan
+ A -> B : TASK_OFFER
+ B --> A : TASK_ACCEPT
+ loop approved bounded compute steps
+  A <-> B : protected protocol messages
+ end
+ A -> P : validate / finish result
+ A -> B : TASK_END
+else unavailable or incompatible
+ P --> A : reject / local fallback only
+end
+@enduml

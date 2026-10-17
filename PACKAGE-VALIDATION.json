@@ -1,0 +1,1042 @@
+{
+  "status": "passed",
+  "checked_at_utc": "2026-10-17T22:09:12.580512+00:00",
+  "checks": [
+    {
+      "check": "JSON parses: PACKAGE-VALIDATION.json",
+      "passed": true
+    },
+    {
+      "check": "JSON parses: MANIFEST.json",
+      "passed": true
+    },
+    {
+      "check": "JSON parses: schemas/logging/event.schema.json",
+      "passed": true
+    },
+    {
+      "check": "JSON parses: schemas/configuration/node.schema.json",
+      "passed": true
+    },
+    {
+      "check": "example config matches supported schema subset",
+      "passed": true
+    },
+    {
+      "check": "negative configuration rejected: plaintext",
+      "passed": true
+    },
+    {
+      "check": "negative configuration rejected: privacy_disabled",
+      "passed": true
+    },
+    {
+      "check": "negative configuration rejected: bad_limit",
+      "passed": true
+    },
+    {
+      "check": "negative configuration rejected: unknown",
+      "passed": true
+    },
+    {
+      "check": "event schema fixture accepted",
+      "passed": true
+    },
+    {
+      "check": "unknown event rejected",
+      "passed": true
+    },
+    {
+      "check": "unknown event payload field rejected",
+      "passed": true
+    },
+    {
+      "check": "relative link README.md -> PRODUCT.md",
+      "passed": true
+    },
+    {
+      "check": "relative link README.md -> AGENTS.md",
+      "passed": true
+    },
+    {
+      "check": "relative link README.md -> TECHNOLOGY.md",
+      "passed": true
+    },
+    {
+      "check": "relative link README.md -> docs/decisions/INDEX.md",
+      "passed": true
+    },
+    {
+      "check": "relative link README.md -> work/INDEX.md",
+      "passed": true
+    },
+    {
+      "check": "relative link README.md -> docs/security/threat-model.md",
+      "passed": true
+    },
+    {
+      "check": "relative link README.md -> BUILD.md",
+      "passed": true
+    },
+    {
+      "check": "relative link README.md -> GOVERNANCE.md",
+      "passed": true
+    },
+    {
+      "check": "relative link README.md -> docs/design-provenance.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work/INDEX.md -> WORK-0001-project-bootstrap/brief.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work/INDEX.md -> WORK-0002-model-accelerator-baseline/brief.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work/INDEX.md -> WORK-0003-privacy-primitive-selection/brief.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work/INDEX.md -> WORK-0004-session-conformance/brief.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work/INDEX.md -> WORK-0005-private-shared-compute/brief.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work/INDEX.md -> WORK-0006-private-shared-learning/brief.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work/INDEX.md -> WORK-0007-android-operator-mode/brief.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work/INDEX.md -> WORK-0008-release-integration/brief.md",
+      "passed": true
+    },
+    {
+      "check": "relative link docs/decisions/INDEX.md -> ADR-001-ecosystem-scope.md",
+      "passed": true
+    },
+    {
+      "check": "relative link docs/decisions/INDEX.md -> ADR-002-pytorch-executorch.md",
+      "passed": true
+    },
+    {
+      "check": "relative link docs/decisions/INDEX.md -> ADR-003-privacy-gate.md",
+      "passed": true
+    },
+    {
+      "check": "relative link docs/decisions/INDEX.md -> ADR-004-open-groups.md",
+      "passed": true
+    },
+    {
+      "check": "relative link docs/decisions/INDEX.md -> ADR-005-versioned-learning.md",
+      "passed": true
+    },
+    {
+      "check": "relative link docs/decisions/INDEX.md -> ADR-006-shared-core.md",
+      "passed": true
+    },
+    {
+      "check": "relative link docs/decisions/INDEX.md -> ADR-007-traceable-agents.md",
+      "passed": true
+    },
+    {
+      "check": "relative link docs/decisions/INDEX.md -> ADR-008-accelerators.md",
+      "passed": true
+    },
+    {
+      "check": "relative link docs/decisions/INDEX.md -> ADR-009-drive-artifacts.md",
+      "passed": true
+    },
+    {
+      "check": "relative link docs/decisions/ADR-009-drive-artifacts.md -> ../../docs/operations/drive-workflow.md",
+      "passed": true
+    },
+    {
+      "check": "relative link docs/decisions/ADR-008-accelerators.md -> ../../TECHNOLOGY.md",
+      "passed": true
+    },
+    {
+      "check": "relative link docs/decisions/ADR-007-traceable-agents.md -> ../../docs/traceability.md",
+      "passed": true
+    },
+    {
+      "check": "relative link docs/decisions/ADR-006-shared-core.md -> ../../docs/architecture/overview.md",
+      "passed": true
+    },
+    {
+      "check": "relative link docs/decisions/ADR-005-versioned-learning.md -> ../../docs/models/update-lifecycle.md",
+      "passed": true
+    },
+    {
+      "check": "relative link docs/decisions/ADR-004-open-groups.md -> ../../docs/security/threat-model.md",
+      "passed": true
+    },
+    {
+      "check": "relative link docs/decisions/ADR-003-privacy-gate.md -> ../../docs/security/threat-model.md",
+      "passed": true
+    },
+    {
+      "check": "relative link docs/decisions/ADR-002-pytorch-executorch.md -> ../../TECHNOLOGY.md",
+      "passed": true
+    },
+    {
+      "check": "relative link docs/decisions/ADR-001-ecosystem-scope.md -> ../../PRODUCT.md",
+      "passed": true
+    },
+    {
+      "check": "role exists: architecture",
+      "passed": true
+    },
+    {
+      "check": "role exists: research",
+      "passed": true
+    },
+    {
+      "check": "role exists: brainstorming",
+      "passed": true
+    },
+    {
+      "check": "role exists: protocol",
+      "passed": true
+    },
+    {
+      "check": "role exists: android",
+      "passed": true
+    },
+    {
+      "check": "role exists: desktop-node",
+      "passed": true
+    },
+    {
+      "check": "role exists: learning",
+      "passed": true
+    },
+    {
+      "check": "role exists: security",
+      "passed": true
+    },
+    {
+      "check": "role exists: testing",
+      "passed": true
+    },
+    {
+      "check": "role exists: mathematical-modeling",
+      "passed": true
+    },
+    {
+      "check": "role exists: pair-programming",
+      "passed": true
+    },
+    {
+      "check": "role exists: pr-review",
+      "passed": true
+    },
+    {
+      "check": "role exists: qwen-research-deputy",
+      "passed": true
+    },
+    {
+      "check": "role exists: orchestrator",
+      "passed": true
+    },
+    {
+      "check": "implementation not falsely started: WORK-0008-release-integration",
+      "passed": true
+    },
+    {
+      "check": "dependency resolves WORK-0008",
+      "passed": true
+    },
+    {
+      "check": "dependency resolves WORK-0006",
+      "passed": true
+    },
+    {
+      "check": "dependency resolves WORK-0007",
+      "passed": true
+    },
+    {
+      "check": "dependency resolves WORK-0005",
+      "passed": true
+    },
+    {
+      "check": "implementation not falsely started: WORK-0007-android-operator-mode",
+      "passed": true
+    },
+    {
+      "check": "dependency resolves WORK-0001",
+      "passed": true
+    },
+    {
+      "check": "dependency resolves WORK-0007",
+      "passed": true
+    },
+    {
+      "check": "dependency resolves WORK-0004",
+      "passed": true
+    },
+    {
+      "check": "implementation not falsely started: WORK-0006-private-shared-learning",
+      "passed": true
+    },
+    {
+      "check": "dependency resolves WORK-0006",
+      "passed": true
+    },
+    {
+      "check": "dependency resolves WORK-0003",
+      "passed": true
+    },
+    {
+      "check": "dependency resolves WORK-0004",
+      "passed": true
+    },
+    {
+      "check": "dependency resolves WORK-0002",
+      "passed": true
+    },
+    {
+      "check": "implementation not falsely started: WORK-0005-private-shared-compute",
+      "passed": true
+    },
+    {
+      "check": "dependency resolves WORK-0004",
+      "passed": true
+    },
+    {
+      "check": "dependency resolves WORK-0003",
+      "passed": true
+    },
+    {
+      "check": "dependency resolves WORK-0005",
+      "passed": true
+    },
+    {
+      "check": "dependency resolves WORK-0002",
+      "passed": true
+    },
+    {
+      "check": "implementation not falsely started: WORK-0004-session-conformance",
+      "passed": true
+    },
+    {
+      "check": "dependency resolves WORK-0001",
+      "passed": true
+    },
+    {
+      "check": "dependency resolves WORK-0004",
+      "passed": true
+    },
+    {
+      "check": "implementation not falsely started: WORK-0003-privacy-primitive-selection",
+      "passed": true
+    },
+    {
+      "check": "dependency resolves WORK-0001",
+      "passed": true
+    },
+    {
+      "check": "dependency resolves WORK-0003",
+      "passed": true
+    },
+    {
+      "check": "implementation not falsely started: WORK-0002-model-accelerator-baseline",
+      "passed": true
+    },
+    {
+      "check": "dependency resolves WORK-0001",
+      "passed": true
+    },
+    {
+      "check": "dependency resolves WORK-0002",
+      "passed": true
+    },
+    {
+      "check": "implementation not falsely started: WORK-0001-project-bootstrap",
+      "passed": true
+    },
+    {
+      "check": "dependency resolves WORK-0001",
+      "passed": true
+    },
+    {
+      "check": "PlantUML delimiters: session.puml",
+      "passed": true
+    },
+    {
+      "check": "PlantUML delimiters: learning.puml",
+      "passed": true
+    },
+    {
+      "check": "PlantUML delimiters: components.puml",
+      "passed": true
+    },
+    {
+      "check": "BPMN unique IDs",
+      "passed": true
+    },
+    {
+      "check": "BPMN flow reference F1",
+      "passed": true
+    },
+    {
+      "check": "BPMN flow reference F1",
+      "passed": true
+    },
+    {
+      "check": "BPMN flow reference F2",
+      "passed": true
+    },
+    {
+      "check": "BPMN flow reference F2",
+      "passed": true
+    },
+    {
+      "check": "BPMN flow reference FAccept",
+      "passed": true
+    },
+    {
+      "check": "BPMN flow reference FReject",
+      "passed": true
+    },
+    {
+      "check": "BPMN flow reference FAccept",
+      "passed": true
+    },
+    {
+      "check": "BPMN flow reference F3",
+      "passed": true
+    },
+    {
+      "check": "BPMN flow reference F3",
+      "passed": true
+    },
+    {
+      "check": "BPMN flow reference F4",
+      "passed": true
+    },
+    {
+      "check": "BPMN flow reference F4",
+      "passed": true
+    },
+    {
+      "check": "BPMN flow reference FReject",
+      "passed": true
+    },
+    {
+      "check": "BPMN reference Execute",
+      "passed": true
+    },
+    {
+      "check": "BPMN flow reference FAbort",
+      "passed": true
+    },
+    {
+      "check": "BPMN flow reference FAbort",
+      "passed": true
+    },
+    {
+      "check": "BPMN flow reference F5",
+      "passed": true
+    },
+    {
+      "check": "BPMN flow reference F5",
+      "passed": true
+    },
+    {
+      "check": "BPMN reference Start",
+      "passed": true
+    },
+    {
+      "check": "BPMN reference Validate",
+      "passed": true
+    },
+    {
+      "check": "BPMN reference Validate",
+      "passed": true
+    },
+    {
+      "check": "BPMN reference Allowed",
+      "passed": true
+    },
+    {
+      "check": "BPMN reference Allowed",
+      "passed": true
+    },
+    {
+      "check": "BPMN reference Execute",
+      "passed": true
+    },
+    {
+      "check": "BPMN reference Allowed",
+      "passed": true
+    },
+    {
+      "check": "BPMN reference Reject",
+      "passed": true
+    },
+    {
+      "check": "BPMN reference Execute",
+      "passed": true
+    },
+    {
+      "check": "BPMN reference Check",
+      "passed": true
+    },
+    {
+      "check": "BPMN reference Check",
+      "passed": true
+    },
+    {
+      "check": "BPMN reference Done",
+      "passed": true
+    },
+    {
+      "check": "BPMN reference Abort",
+      "passed": true
+    },
+    {
+      "check": "BPMN reference Cleanup",
+      "passed": true
+    },
+    {
+      "check": "BPMN reference Cleanup",
+      "passed": true
+    },
+    {
+      "check": "BPMN reference Failed",
+      "passed": true
+    },
+    {
+      "check": "BPMN reference Process_Task",
+      "passed": true
+    },
+    {
+      "check": "BPMN reference Start",
+      "passed": true
+    },
+    {
+      "check": "BPMN reference Validate",
+      "passed": true
+    },
+    {
+      "check": "BPMN reference Allowed",
+      "passed": true
+    },
+    {
+      "check": "BPMN reference Execute",
+      "passed": true
+    },
+    {
+      "check": "BPMN reference Check",
+      "passed": true
+    },
+    {
+      "check": "BPMN reference Done",
+      "passed": true
+    },
+    {
+      "check": "BPMN reference Reject",
+      "passed": true
+    },
+    {
+      "check": "BPMN reference Abort",
+      "passed": true
+    },
+    {
+      "check": "BPMN reference Cleanup",
+      "passed": true
+    },
+    {
+      "check": "BPMN reference Failed",
+      "passed": true
+    },
+    {
+      "check": "BPMN reference F1",
+      "passed": true
+    },
+    {
+      "check": "BPMN reference F2",
+      "passed": true
+    },
+    {
+      "check": "BPMN reference FAccept",
+      "passed": true
+    },
+    {
+      "check": "BPMN reference FReject",
+      "passed": true
+    },
+    {
+      "check": "BPMN reference F3",
+      "passed": true
+    },
+    {
+      "check": "BPMN reference F4",
+      "passed": true
+    },
+    {
+      "check": "BPMN reference FAbort",
+      "passed": true
+    },
+    {
+      "check": "BPMN reference F5",
+      "passed": true
+    },
+    {
+      "check": "BPMN contains editor layout",
+      "passed": true
+    },
+    {
+      "check": "proto draft brace balance (not protoc validation)",
+      "passed": true
+    },
+    {
+      "check": "manifest AGENTS.md",
+      "passed": true
+    },
+    {
+      "check": "manifest BUILD.md",
+      "passed": true
+    },
+    {
+      "check": "manifest GOVERNANCE.md",
+      "passed": true
+    },
+    {
+      "check": "manifest PRODUCT.md",
+      "passed": true
+    },
+    {
+      "check": "manifest PROJECT-OVERVIEW-HU.md",
+      "passed": true
+    },
+    {
+      "check": "manifest README.md",
+      "passed": true
+    },
+    {
+      "check": "manifest TECHNOLOGY.md",
+      "passed": true
+    },
+    {
+      "check": "manifest agents/android.md",
+      "passed": true
+    },
+    {
+      "check": "manifest agents/architecture.md",
+      "passed": true
+    },
+    {
+      "check": "manifest agents/brainstorming.md",
+      "passed": true
+    },
+    {
+      "check": "manifest agents/desktop-node.md",
+      "passed": true
+    },
+    {
+      "check": "manifest agents/learning.md",
+      "passed": true
+    },
+    {
+      "check": "manifest agents/mathematical-modeling.md",
+      "passed": true
+    },
+    {
+      "check": "manifest agents/orchestrator.md",
+      "passed": true
+    },
+    {
+      "check": "manifest agents/pair-programming.md",
+      "passed": true
+    },
+    {
+      "check": "manifest agents/pr-review.md",
+      "passed": true
+    },
+    {
+      "check": "manifest agents/protocol.md",
+      "passed": true
+    },
+    {
+      "check": "manifest agents/qwen-research-deputy.md",
+      "passed": true
+    },
+    {
+      "check": "manifest agents/research.md",
+      "passed": true
+    },
+    {
+      "check": "manifest agents/security.md",
+      "passed": true
+    },
+    {
+      "check": "manifest agents/testing.md",
+      "passed": true
+    },
+    {
+      "check": "manifest android/README.md",
+      "passed": true
+    },
+    {
+      "check": "manifest config/node.example.toml",
+      "passed": true
+    },
+    {
+      "check": "manifest crates/README.md",
+      "passed": true
+    },
+    {
+      "check": "manifest docs/architecture/diagrams/README.md",
+      "passed": true
+    },
+    {
+      "check": "manifest docs/architecture/diagrams/components.puml",
+      "passed": true
+    },
+    {
+      "check": "manifest docs/architecture/diagrams/learning.puml",
+      "passed": true
+    },
+    {
+      "check": "manifest docs/architecture/diagrams/session.puml",
+      "passed": true
+    },
+    {
+      "check": "manifest docs/architecture/diagrams/task-lifecycle.bpmn",
+      "passed": true
+    },
+    {
+      "check": "manifest docs/architecture/interfaces.md",
+      "passed": true
+    },
+    {
+      "check": "manifest docs/architecture/overview.md",
+      "passed": true
+    },
+    {
+      "check": "manifest docs/architecture/scheduling.md",
+      "passed": true
+    },
+    {
+      "check": "manifest docs/decisions/ADR-001-ecosystem-scope.md",
+      "passed": true
+    },
+    {
+      "check": "manifest docs/decisions/ADR-002-pytorch-executorch.md",
+      "passed": true
+    },
+    {
+      "check": "manifest docs/decisions/ADR-003-privacy-gate.md",
+      "passed": true
+    },
+    {
+      "check": "manifest docs/decisions/ADR-004-open-groups.md",
+      "passed": true
+    },
+    {
+      "check": "manifest docs/decisions/ADR-005-versioned-learning.md",
+      "passed": true
+    },
+    {
+      "check": "manifest docs/decisions/ADR-006-shared-core.md",
+      "passed": true
+    },
+    {
+      "check": "manifest docs/decisions/ADR-007-traceable-agents.md",
+      "passed": true
+    },
+    {
+      "check": "manifest docs/decisions/ADR-008-accelerators.md",
+      "passed": true
+    },
+    {
+      "check": "manifest docs/decisions/ADR-009-drive-artifacts.md",
+      "passed": true
+    },
+    {
+      "check": "manifest docs/decisions/INDEX.md",
+      "passed": true
+    },
+    {
+      "check": "manifest docs/design-provenance.md",
+      "passed": true
+    },
+    {
+      "check": "manifest docs/glossary.md",
+      "passed": true
+    },
+    {
+      "check": "manifest docs/models/qwen-baseline.md",
+      "passed": true
+    },
+    {
+      "check": "manifest docs/models/update-lifecycle.md",
+      "passed": true
+    },
+    {
+      "check": "manifest docs/operations/ci-review.md",
+      "passed": true
+    },
+    {
+      "check": "manifest docs/operations/drive-workflow.md",
+      "passed": true
+    },
+    {
+      "check": "manifest docs/research/sources.md",
+      "passed": true
+    },
+    {
+      "check": "manifest docs/research/upstream-watch.md",
+      "passed": true
+    },
+    {
+      "check": "manifest docs/rfcs/RFC-0001-session.md",
+      "passed": true
+    },
+    {
+      "check": "manifest docs/rfcs/RFC-0002-compute.md",
+      "passed": true
+    },
+    {
+      "check": "manifest docs/rfcs/RFC-0003-learning.md",
+      "passed": true
+    },
+    {
+      "check": "manifest docs/security/privacy-profile-registry.md",
+      "passed": true
+    },
+    {
+      "check": "manifest docs/security/threat-model.md",
+      "passed": true
+    },
+    {
+      "check": "manifest docs/traceability.md",
+      "passed": true
+    },
+    {
+      "check": "manifest justfile",
+      "passed": true
+    },
+    {
+      "check": "manifest learning/README.md",
+      "passed": true
+    },
+    {
+      "check": "manifest native/README.md",
+      "passed": true
+    },
+    {
+      "check": "manifest privacy-backends/README.md",
+      "passed": true
+    },
+    {
+      "check": "manifest research/M1-private-compute.md",
+      "passed": true
+    },
+    {
+      "check": "manifest research/M2-private-learning.md",
+      "passed": true
+    },
+    {
+      "check": "manifest research/mathematical-model.md",
+      "passed": true
+    },
+    {
+      "check": "manifest schemas/configuration/node.schema.json",
+      "passed": true
+    },
+    {
+      "check": "manifest schemas/logging/event.schema.json",
+      "passed": true
+    },
+    {
+      "check": "manifest schemas/protocol/v1/session.proto",
+      "passed": true
+    },
+    {
+      "check": "manifest templates/handoff.md",
+      "passed": true
+    },
+    {
+      "check": "manifest templates/pull-request.md",
+      "passed": true
+    },
+    {
+      "check": "manifest templates/review.md",
+      "passed": true
+    },
+    {
+      "check": "manifest templates/upstream-report.md",
+      "passed": true
+    },
+    {
+      "check": "manifest tests/conformance-matrix.md",
+      "passed": true
+    },
+    {
+      "check": "manifest tools/drive/README.md",
+      "passed": true
+    },
+    {
+      "check": "manifest tools/validate_package.py",
+      "passed": true
+    },
+    {
+      "check": "manifest work/INDEX.md",
+      "passed": true
+    },
+    {
+      "check": "manifest work/PACKAGE-BUILD.md",
+      "passed": true
+    },
+    {
+      "check": "manifest work/WORK-0001-project-bootstrap/brief.md",
+      "passed": true
+    },
+    {
+      "check": "manifest work/WORK-0001-project-bootstrap/events.jsonl",
+      "passed": true
+    },
+    {
+      "check": "manifest work/WORK-0001-project-bootstrap/evidence.md",
+      "passed": true
+    },
+    {
+      "check": "manifest work/WORK-0001-project-bootstrap/journal.md",
+      "passed": true
+    },
+    {
+      "check": "manifest work/WORK-0002-model-accelerator-baseline/brief.md",
+      "passed": true
+    },
+    {
+      "check": "manifest work/WORK-0002-model-accelerator-baseline/events.jsonl",
+      "passed": true
+    },
+    {
+      "check": "manifest work/WORK-0002-model-accelerator-baseline/evidence.md",
+      "passed": true
+    },
+    {
+      "check": "manifest work/WORK-0002-model-accelerator-baseline/journal.md",
+      "passed": true
+    },
+    {
+      "check": "manifest work/WORK-0003-privacy-primitive-selection/brief.md",
+      "passed": true
+    },
+    {
+      "check": "manifest work/WORK-0003-privacy-primitive-selection/events.jsonl",
+      "passed": true
+    },
+    {
+      "check": "manifest work/WORK-0003-privacy-primitive-selection/evidence.md",
+      "passed": true
+    },
+    {
+      "check": "manifest work/WORK-0003-privacy-primitive-selection/journal.md",
+      "passed": true
+    },
+    {
+      "check": "manifest work/WORK-0004-session-conformance/brief.md",
+      "passed": true
+    },
+    {
+      "check": "manifest work/WORK-0004-session-conformance/events.jsonl",
+      "passed": true
+    },
+    {
+      "check": "manifest work/WORK-0004-session-conformance/evidence.md",
+      "passed": true
+    },
+    {
+      "check": "manifest work/WORK-0004-session-conformance/journal.md",
+      "passed": true
+    },
+    {
+      "check": "manifest work/WORK-0005-private-shared-compute/brief.md",
+      "passed": true
+    },
+    {
+      "check": "manifest work/WORK-0005-private-shared-compute/events.jsonl",
+      "passed": true
+    },
+    {
+      "check": "manifest work/WORK-0005-private-shared-compute/evidence.md",
+      "passed": true
+    },
+    {
+      "check": "manifest work/WORK-0005-private-shared-compute/journal.md",
+      "passed": true
+    },
+    {
+      "check": "manifest work/WORK-0006-private-shared-learning/brief.md",
+      "passed": true
+    },
+    {
+      "check": "manifest work/WORK-0006-private-shared-learning/events.jsonl",
+      "passed": true
+    },
+    {
+      "check": "manifest work/WORK-0006-private-shared-learning/evidence.md",
+      "passed": true
+    },
+    {
+      "check": "manifest work/WORK-0006-private-shared-learning/journal.md",
+      "passed": true
+    },
+    {
+      "check": "manifest work/WORK-0007-android-operator-mode/brief.md",
+      "passed": true
+    },
+    {
+      "check": "manifest work/WORK-0007-android-operator-mode/events.jsonl",
+      "passed": true
+    },
+    {
+      "check": "manifest work/WORK-0007-android-operator-mode/evidence.md",
+      "passed": true
+    },
+    {
+      "check": "manifest work/WORK-0007-android-operator-mode/journal.md",
+      "passed": true
+    },
+    {
+      "check": "manifest work/WORK-0008-release-integration/brief.md",
+      "passed": true
+    },
+    {
+      "check": "manifest work/WORK-0008-release-integration/events.jsonl",
+      "passed": true
+    },
+    {
+      "check": "manifest work/WORK-0008-release-integration/evidence.md",
+      "passed": true
+    },
+    {
+      "check": "manifest work/WORK-0008-release-integration/journal.md",
+      "passed": true
+    },
+    {
+      "check": "manifest completeness",
+      "passed": true
+    }
+  ],
+  "limits": [
+    "No product build or runtime tests executed",
+    "No ML benchmark or cryptographic security proof",
+    "PlantUML source delimiter checks only, not rendered",
+    "BPMN XML/reference/layout checks, not full XSD validation",
+    "Proto structural sketch check, not protoc compilation",
+    "Schema validator covers only keywords used in this package"
+  ]
+}

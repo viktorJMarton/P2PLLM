@@ -1,0 +1,21 @@
+@startuml
+start
+:Pin model, adapter and privacy profile;
+if (Approved profile?) then (yes)
+ :Enroll under local policy;
+ :Train locally;
+ :Protected aggregation;
+ :Create immutable candidate;
+ :Evaluate held-out quality and regressions;
+ if (Local approval?) then (yes)
+  :Stage and verify artifact;
+  :Crash-safe composition activation;
+  :Retain rollback reference;
+ else (no)
+  :Reject or retain inactive candidate;
+ endif
+else (no)
+ :Fail closed;
+endif
+stop
+@enduml

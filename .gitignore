@@ -1,0 +1,37 @@
+# Local secrets and credentials
+.env
+.env.*
+!.env.example
+**/secrets/**
+**/credentials/**
+*.pem
+*.key
+local.properties
+
+# Model weights and downloaded datasets
+*.safetensors
+*.gguf
+*.pt
+*.pth
+*.onnx
+*.pte
+datasets/
+models/downloaded/
+
+# Build products and local toolchains
+target/
+.gradle/
+**/build/
+.idea/
+.cxx/
+.venv/
+venv/
+__pycache__/
+*.pyc
+android/sdk/
+android/ndk/
+
+# Source handoff archive
+p2p-ai-project-v0.1.zip
+*.apk
+*.aab

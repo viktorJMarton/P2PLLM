@@ -1,0 +1,31 @@
+@startuml
+skinparam componentStyle rectangle
+package "Android" {
+ [Kotlin UI / lifecycle] as UI
+ [UniFFI bridge] as Bridge
+}
+package "Shared Rust runtime" {
+ [Node core / scheduler] as Core
+ [Privacy policy gate] as Gate
+ [SQLite adapter] as DB
+ [libp2p adapter] as Net
+}
+[ExecuTorch local backend] as ET
+[Approved private backend
+NOT SELECTED] as PB
+[Desktop CLI] as CLI
+[Remote nodes] as Peer
+UI --> Bridge
+Bridge --> Core
+CLI --> Core
+Core --> DB
+Core --> ET
+Core --> Gate
+Gate --> PB : only approved profiles
+PB --> Net : protocol adapter required
+Net <--> Peer
+note bottom of Gate
+No approved profile => reject remote private AI.
+Secure transport alone is insufficient.
+end note
+@enduml
