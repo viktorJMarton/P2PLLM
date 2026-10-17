@@ -6,6 +6,12 @@
 **/credentials/**
 *.pem
 *.key
+*.jks
+*.keystore
+*.p12
+*.pfx
+.npmrc
+.pypirc
 local.properties
 
 # Model weights and downloaded datasets
@@ -30,6 +36,7 @@ __pycache__/
 *.pyc
 android/sdk/
 android/ndk/
+android/app/src/main/jniLibs/
 
 # Source handoff archive
 p2p-ai-project-v0.1.zip

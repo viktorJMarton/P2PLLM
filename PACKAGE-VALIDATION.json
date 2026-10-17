@@ -1,21 +1,21 @@
 {
   "status": "passed",
-  "checked_at_utc": "2026-10-17T22:09:12.580512+00:00",
+  "checked_at_utc": "2026-10-17T22:30:05.032790+00:00",
   "checks": [
-    {
-      "check": "JSON parses: PACKAGE-VALIDATION.json",
-      "passed": true
-    },
     {
       "check": "JSON parses: MANIFEST.json",
       "passed": true
     },
     {
-      "check": "JSON parses: schemas/logging/event.schema.json",
+      "check": "JSON parses: PACKAGE-VALIDATION.json",
       "passed": true
     },
     {
       "check": "JSON parses: schemas/configuration/node.schema.json",
+      "passed": true
+    },
+    {
+      "check": "JSON parses: schemas/logging/event.schema.json",
       "passed": true
     },
     {
@@ -48,6 +48,26 @@
     },
     {
       "check": "unknown event payload field rejected",
+      "passed": true
+    },
+    {
+      "check": "event record: work/WORK-0001-project-bootstrap/events.jsonl",
+      "passed": true
+    },
+    {
+      "check": "event record: work/WORK-0001-project-bootstrap/events.jsonl",
+      "passed": true
+    },
+    {
+      "check": "event record: work/WORK-0001-project-bootstrap/events.jsonl",
+      "passed": true
+    },
+    {
+      "check": "event record: work/WORK-0001-project-bootstrap/events.jsonl",
+      "passed": true
+    },
+    {
+      "check": "event record: work/WORK-0001-project-bootstrap/events.jsonl",
       "passed": true
     },
     {
@@ -87,35 +107,39 @@
       "passed": true
     },
     {
-      "check": "relative link work/INDEX.md -> WORK-0001-project-bootstrap/brief.md",
+      "check": "relative link docs/decisions/ADR-001-ecosystem-scope.md -> ../../PRODUCT.md",
       "passed": true
     },
     {
-      "check": "relative link work/INDEX.md -> WORK-0002-model-accelerator-baseline/brief.md",
+      "check": "relative link docs/decisions/ADR-002-pytorch-executorch.md -> ../../TECHNOLOGY.md",
       "passed": true
     },
     {
-      "check": "relative link work/INDEX.md -> WORK-0003-privacy-primitive-selection/brief.md",
+      "check": "relative link docs/decisions/ADR-003-privacy-gate.md -> ../../docs/security/threat-model.md",
       "passed": true
     },
     {
-      "check": "relative link work/INDEX.md -> WORK-0004-session-conformance/brief.md",
+      "check": "relative link docs/decisions/ADR-004-open-groups.md -> ../../docs/security/threat-model.md",
       "passed": true
     },
     {
-      "check": "relative link work/INDEX.md -> WORK-0005-private-shared-compute/brief.md",
+      "check": "relative link docs/decisions/ADR-005-versioned-learning.md -> ../../docs/models/update-lifecycle.md",
       "passed": true
     },
     {
-      "check": "relative link work/INDEX.md -> WORK-0006-private-shared-learning/brief.md",
+      "check": "relative link docs/decisions/ADR-006-shared-core.md -> ../../docs/architecture/overview.md",
       "passed": true
     },
     {
-      "check": "relative link work/INDEX.md -> WORK-0007-android-operator-mode/brief.md",
+      "check": "relative link docs/decisions/ADR-007-traceable-agents.md -> ../../docs/traceability.md",
       "passed": true
     },
     {
-      "check": "relative link work/INDEX.md -> WORK-0008-release-integration/brief.md",
+      "check": "relative link docs/decisions/ADR-008-accelerators.md -> ../../TECHNOLOGY.md",
+      "passed": true
+    },
+    {
+      "check": "relative link docs/decisions/ADR-009-drive-artifacts.md -> ../../docs/operations/drive-workflow.md",
       "passed": true
     },
     {
@@ -155,39 +179,35 @@
       "passed": true
     },
     {
-      "check": "relative link docs/decisions/ADR-009-drive-artifacts.md -> ../../docs/operations/drive-workflow.md",
+      "check": "relative link work/INDEX.md -> WORK-0001-project-bootstrap/brief.md",
       "passed": true
     },
     {
-      "check": "relative link docs/decisions/ADR-008-accelerators.md -> ../../TECHNOLOGY.md",
+      "check": "relative link work/INDEX.md -> WORK-0002-model-accelerator-baseline/brief.md",
       "passed": true
     },
     {
-      "check": "relative link docs/decisions/ADR-007-traceable-agents.md -> ../../docs/traceability.md",
+      "check": "relative link work/INDEX.md -> WORK-0003-privacy-primitive-selection/brief.md",
       "passed": true
     },
     {
-      "check": "relative link docs/decisions/ADR-006-shared-core.md -> ../../docs/architecture/overview.md",
+      "check": "relative link work/INDEX.md -> WORK-0004-session-conformance/brief.md",
       "passed": true
     },
     {
-      "check": "relative link docs/decisions/ADR-005-versioned-learning.md -> ../../docs/models/update-lifecycle.md",
+      "check": "relative link work/INDEX.md -> WORK-0005-private-shared-compute/brief.md",
       "passed": true
     },
     {
-      "check": "relative link docs/decisions/ADR-004-open-groups.md -> ../../docs/security/threat-model.md",
+      "check": "relative link work/INDEX.md -> WORK-0006-private-shared-learning/brief.md",
       "passed": true
     },
     {
-      "check": "relative link docs/decisions/ADR-003-privacy-gate.md -> ../../docs/security/threat-model.md",
+      "check": "relative link work/INDEX.md -> WORK-0007-android-operator-mode/brief.md",
       "passed": true
     },
     {
-      "check": "relative link docs/decisions/ADR-002-pytorch-executorch.md -> ../../TECHNOLOGY.md",
-      "passed": true
-    },
-    {
-      "check": "relative link docs/decisions/ADR-001-ecosystem-scope.md -> ../../PRODUCT.md",
+      "check": "relative link work/INDEX.md -> WORK-0008-release-integration/brief.md",
       "passed": true
     },
     {
@@ -247,7 +267,7 @@
       "passed": true
     },
     {
-      "check": "implementation not falsely started: WORK-0008-release-integration",
+      "check": "valid work status: WORK-0008-release-integration",
       "passed": true
     },
     {
@@ -255,6 +275,10 @@
       "passed": true
     },
     {
+      "check": "dependency resolves WORK-0005",
+      "passed": true
+    },
+    {
       "check": "dependency resolves WORK-0006",
       "passed": true
     },
@@ -263,15 +287,7 @@
       "passed": true
     },
     {
-      "check": "dependency resolves WORK-0005",
-      "passed": true
-    },
-    {
-      "check": "implementation not falsely started: WORK-0007-android-operator-mode",
-      "passed": true
-    },
-    {
-      "check": "dependency resolves WORK-0001",
+      "check": "valid work status: WORK-0007-android-operator-mode",
       "passed": true
     },
     {
@@ -283,7 +299,19 @@
       "passed": true
     },
     {
-      "check": "implementation not falsely started: WORK-0006-private-shared-learning",
+      "check": "dependency resolves WORK-0001",
+      "passed": true
+    },
+    {
+      "check": "valid work status: WORK-0006-private-shared-learning",
+      "passed": true
+    },
+    {
+      "check": "dependency resolves WORK-0002",
+      "passed": true
+    },
+    {
+      "check": "dependency resolves WORK-0004",
       "passed": true
     },
     {
@@ -295,23 +323,11 @@
       "passed": true
     },
     {
-      "check": "dependency resolves WORK-0004",
+      "check": "valid work status: WORK-0005-private-shared-compute",
       "passed": true
     },
     {
       "check": "dependency resolves WORK-0002",
-      "passed": true
-    },
-    {
-      "check": "implementation not falsely started: WORK-0005-private-shared-compute",
-      "passed": true
-    },
-    {
-      "check": "dependency resolves WORK-0004",
-      "passed": true
-    },
-    {
-      "check": "dependency resolves WORK-0003",
       "passed": true
     },
     {
@@ -319,15 +335,15 @@
       "passed": true
     },
     {
-      "check": "dependency resolves WORK-0002",
+      "check": "dependency resolves WORK-0004",
       "passed": true
     },
     {
-      "check": "implementation not falsely started: WORK-0004-session-conformance",
+      "check": "dependency resolves WORK-0003",
       "passed": true
     },
     {
-      "check": "dependency resolves WORK-0001",
+      "check": "valid work status: WORK-0004-session-conformance",
       "passed": true
     },
     {
@@ -335,7 +351,11 @@
       "passed": true
     },
     {
-      "check": "implementation not falsely started: WORK-0003-privacy-primitive-selection",
+      "check": "dependency resolves WORK-0001",
+      "passed": true
+    },
+    {
+      "check": "valid work status: WORK-0003-privacy-primitive-selection",
       "passed": true
     },
     {
@@ -347,11 +367,7 @@
       "passed": true
     },
     {
-      "check": "implementation not falsely started: WORK-0002-model-accelerator-baseline",
-      "passed": true
-    },
-    {
-      "check": "dependency resolves WORK-0001",
+      "check": "valid work status: WORK-0002-model-accelerator-baseline",
       "passed": true
     },
     {
@@ -359,7 +375,11 @@
       "passed": true
     },
     {
-      "check": "implementation not falsely started: WORK-0001-project-bootstrap",
+      "check": "dependency resolves WORK-0001",
+      "passed": true
+    },
+    {
+      "check": "valid work status: WORK-0001-project-bootstrap",
       "passed": true
     },
     {
@@ -367,7 +387,7 @@
       "passed": true
     },
     {
-      "check": "PlantUML delimiters: session.puml",
+      "check": "PlantUML delimiters: components.puml",
       "passed": true
     },
     {
@@ -375,7 +395,7 @@
       "passed": true
     },
     {
-      "check": "PlantUML delimiters: components.puml",
+      "check": "PlantUML delimiters: session.puml",
       "passed": true
     },
     {
@@ -599,6 +619,14 @@
       "passed": true
     },
     {
+      "check": "manifest .github/workflows/ci.yml",
+      "passed": true
+    },
+    {
+      "check": "manifest .gitignore",
+      "passed": true
+    },
+    {
       "check": "manifest AGENTS.md",
       "passed": true
     },
@@ -607,7 +635,19 @@
       "passed": true
     },
     {
+      "check": "manifest Cargo.lock",
+      "passed": true
+    },
+    {
+      "check": "manifest Cargo.toml",
+      "passed": true
+    },
+    {
       "check": "manifest GOVERNANCE.md",
+      "passed": true
+    },
+    {
+      "check": "manifest PORTING.md",
       "passed": true
     },
     {
@@ -687,11 +727,87 @@
       "passed": true
     },
     {
+      "check": "manifest android/app/build.gradle.kts",
+      "passed": true
+    },
+    {
+      "check": "manifest android/app/gradle.lockfile",
+      "passed": true
+    },
+    {
+      "check": "manifest android/app/src/main/AndroidManifest.xml",
+      "passed": true
+    },
+    {
+      "check": "manifest android/app/src/main/java/org/p2pai/app/MainActivity.kt",
+      "passed": true
+    },
+    {
+      "check": "manifest android/app/src/main/java/uniffi/p2p_android_bridge/p2p_android_bridge.kt",
+      "passed": true
+    },
+    {
+      "check": "manifest android/build.gradle.kts",
+      "passed": true
+    },
+    {
+      "check": "manifest android/gradle.properties",
+      "passed": true
+    },
+    {
+      "check": "manifest android/gradle/wrapper/gradle-wrapper.jar",
+      "passed": true
+    },
+    {
+      "check": "manifest android/gradle/wrapper/gradle-wrapper.properties",
+      "passed": true
+    },
+    {
+      "check": "manifest android/gradlew",
+      "passed": true
+    },
+    {
+      "check": "manifest android/gradlew.bat",
+      "passed": true
+    },
+    {
+      "check": "manifest android/settings.gradle.kts",
+      "passed": true
+    },
+    {
       "check": "manifest config/node.example.toml",
       "passed": true
     },
     {
       "check": "manifest crates/README.md",
+      "passed": true
+    },
+    {
+      "check": "manifest crates/android-bridge/Cargo.toml",
+      "passed": true
+    },
+    {
+      "check": "manifest crates/android-bridge/src/bin/uniffi-bindgen.rs",
+      "passed": true
+    },
+    {
+      "check": "manifest crates/android-bridge/src/lib.rs",
+      "passed": true
+    },
+    {
+      "check": "manifest crates/node-cli/Cargo.toml",
+      "passed": true
+    },
+    {
+      "check": "manifest crates/node-cli/src/main.rs",
+      "passed": true
+    },
+    {
+      "check": "manifest crates/node-core/Cargo.toml",
+      "passed": true
+    },
+    {
+      "check": "manifest crates/node-core/src/lib.rs",
       "passed": true
     },
     {
@@ -851,6 +967,10 @@
       "passed": true
     },
     {
+      "check": "manifest rust-toolchain.toml",
+      "passed": true
+    },
+    {
       "check": "manifest schemas/configuration/node.schema.json",
       "passed": true
     },
@@ -883,7 +1003,19 @@
       "passed": true
     },
     {
+      "check": "manifest tools/build-android.sh",
+      "passed": true
+    },
+    {
       "check": "manifest tools/drive/README.md",
+      "passed": true
+    },
+    {
+      "check": "manifest tools/regenerate-android-bindings.sh",
+      "passed": true
+    },
+    {
+      "check": "manifest tools/update_manifest.py",
       "passed": true
     },
     {
@@ -1032,7 +1164,7 @@
     }
   ],
   "limits": [
-    "No product build or runtime tests executed",
+    "This command does not build or test product code",
     "No ML benchmark or cryptographic security proof",
     "PlantUML source delimiter checks only, not rendered",
     "BPMN XML/reference/layout checks, not full XSD validation",

@@ -1,0 +1,8 @@
+[package]
+name = "p2p-node-core"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+
+[lib]
+name = "p2p_node_core"

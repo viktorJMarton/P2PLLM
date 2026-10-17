@@ -1,6 +1,6 @@
 # WORK-0001 — Buildable repository and CI foundation
 
-Status: not_started
+Status: in_progress
 Requirements: REQ-001, REQ-007, REQ-009
 Roles: architecture, android, desktop-node, testing
 Dependencies: none

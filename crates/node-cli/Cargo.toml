@@ -1,0 +1,12 @@
+[package]
+name = "p2p-node-cli"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+
+[[bin]]
+name = "p2p-node"
+path = "src/main.rs"
+
+[dependencies]
+p2p-node-core = { path = "../node-core" }
