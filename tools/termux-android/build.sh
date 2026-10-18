@@ -39,7 +39,7 @@ echo "Assembling Android debug APK..."
   2>&1 | tee "$LOG_DIR/gradle-android.log"
 APK="$ROOT/android/app/build/outputs/apk/debug/app-debug.apk"
 [[ -s "$APK" ]] || die "APK not found."
-echo "SUCCESS: $APK"
+python3 "$ROOT/tools/termux-android/archive-apk.py" --apk "$APK" --allow-existing\necho "SUCCESS: $APK"
 ls -lh "$APK"
 if [[ "${COPY_TO_DOWNLOADS:-0}" == "1" ]]; then
   [[ -d /sdcard/Download && -w /sdcard/Download ]] || die "/sdcard/Download is not writable in this proot."
