@@ -35,8 +35,11 @@ def main() -> None:
     if patch != 0:
         fail("This archival flow is restricted to minor versions X.Y.0")
     branch = subprocess.check_output(["git", "-C", str(ROOT), "branch", "--show-current"], text=True).strip()
-    if branch != "build/termux-android-arm64":
-        fail(f"Refusing to create archive on branch {branch!r}")
+    expected_branch = "build/termux-android-arm64"
+    is_ci = __import__("os").environ.get("GITHUB_ACTIONS") == "true"
+    ci_branch = __import__("os").environ.get("GITHUB_REF_NAME", "")
+    if branch != expected_branch and not (is_ci and ci_branch == expected_branch):
+        fail(f"Refusing archive outside {expected_branch}: local={branch!r}, CI={ci_branch!r}")
     commit = subprocess.check_output(["git", "-C", str(ROOT), "rev-parse", "HEAD"], text=True).strip()
     target_dir = ROOT / "releases/android" / f"v{version}" / "debug"
     destination = target_dir / f"P2PLLM-v{version}-debug.apk"
