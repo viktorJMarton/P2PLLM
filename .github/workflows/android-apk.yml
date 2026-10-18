@@ -4,11 +4,12 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - work/WORK-0001-bootstrap
+      - build/termux-android-arm64
     paths:
       - 'android/**'
       - 'crates/**'
       - 'tools/build-android.sh'
+      - 'tools/termux-android/**'
       - 'Cargo.toml'
       - 'Cargo.lock'
       - '.github/workflows/android-apk.yml'
@@ -50,9 +51,12 @@ jobs:
       - name: Build APK
         run: bash tools/build-android.sh
 
+      - name: Archive versioned debug APK
+        run: python3 tools/termux-android/archive-apk.py --apk android/app/build/outputs/apk/debug/app-debug.apk
+
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: P2PLLM-debug-apk
-          path: android/app/build/outputs/apk/debug/*.apk
+          name: P2PLLM-versioned-debug-apk
+          path: releases/android/v*/debug/*
           if-no-files-found: error
