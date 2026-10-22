@@ -25,3 +25,10 @@ Official source/code/paper first; Reddit is a lead or experience report, not tec
 
 ## Definition of done
 Applicable checks pass; acceptance criteria have linked evidence; independent review applies to the latest commit; logs and contracts are current. Missing hardware, backend or credentials must be named as blockers, not bypassed.
+
+## Department workflow
+Use docs/operations/department-workflow.md and config/check-profiles.json for
+common local/CI checks and bounded evidence packaging. Run applicable profiles
+through tools/run_checks.py; use templates/department-handoff.md for parallel
+department handoffs. Unavailable profiles are blockers for their capabilities,
+not waived checks. Evidence packaging never authorizes merge or publication.

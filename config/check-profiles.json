@@ -1,0 +1,179 @@
+{
+  "schema_version": 1,
+  "profiles": {
+    "docs": {
+      "description": "Specification/schema/source inventory only; no product execution evidence.",
+      "commands": [
+        {
+          "id": "package",
+          "argv": [
+            "{python}",
+            "tools/validate_package.py"
+          ],
+          "timeout_seconds": 120
+        }
+      ],
+      "artifacts": []
+    },
+    "workflow": {
+      "description": "Behavioral tests for the department check runner and evidence packaging.",
+      "commands": [
+        {
+          "id": "runner-tests",
+          "argv": [
+            "{python}",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tests",
+            "-p",
+            "test_*.py",
+            "-v"
+          ],
+          "timeout_seconds": 120
+        }
+      ],
+      "artifacts": []
+    },
+    "rust": {
+      "description": "Host Rust scaffold checks and desktop CLI build; no model/network/privacy certification.",
+      "commands": [
+        {
+          "id": "format",
+          "argv": [
+            "rustup",
+            "run",
+            "1.88.0",
+            "cargo",
+            "fmt",
+            "--all",
+            "--",
+            "--check"
+          ],
+          "timeout_seconds": 120
+        },
+        {
+          "id": "clippy",
+          "argv": [
+            "rustup",
+            "run",
+            "1.88.0",
+            "cargo",
+            "clippy",
+            "--workspace",
+            "--all-targets",
+            "--locked",
+            "--",
+            "-D",
+            "warnings"
+          ],
+          "timeout_seconds": 600
+        },
+        {
+          "id": "unit-tests",
+          "argv": [
+            "rustup",
+            "run",
+            "1.88.0",
+            "cargo",
+            "test",
+            "--workspace",
+            "--locked"
+          ],
+          "timeout_seconds": 600
+        },
+        {
+          "id": "desktop-build",
+          "argv": [
+            "rustup",
+            "run",
+            "1.88.0",
+            "cargo",
+            "build",
+            "--locked",
+            "-p",
+            "p2p-node-cli"
+          ],
+          "timeout_seconds": 600
+        }
+      ],
+      "artifacts": [
+        "target/debug/p2p-node{exe_suffix}"
+      ]
+    },
+    "android": {
+      "description": "Android lint/JVM tasks and debug APK build on a provisioned SDK host; not an on-device bridge test. Termux-specific policy remains separate.",
+      "commands": [
+        {
+          "id": "rust-toolchain",
+          "argv": [
+            "rustup",
+            "run",
+            "1.88.0",
+            "rustc",
+            "--version"
+          ],
+          "timeout_seconds": 30
+        },
+        {
+          "id": "lint",
+          "argv": [
+            "{gradlew}",
+            "-p",
+            "android",
+            "--no-daemon",
+            ":app:lintDebug"
+          ],
+          "timeout_seconds": 900
+        },
+        {
+          "id": "jvm-tests",
+          "argv": [
+            "{gradlew}",
+            "-p",
+            "android",
+            "--no-daemon",
+            ":app:testDebugUnitTest"
+          ],
+          "timeout_seconds": 900
+        },
+        {
+          "id": "apk-build",
+          "argv": [
+            "bash",
+            "tools/build-android.sh"
+          ],
+          "timeout_seconds": 1800
+        }
+      ],
+      "artifacts": [
+        "android/app/build/outputs/apk/debug/app-debug.apk"
+      ]
+    },
+    "storage": {
+      "description": "Future transaction department acceptance gate.",
+      "commands": [],
+      "artifacts": [],
+      "unavailable_reason": "Storage implementation, migrations and transaction/crash-recovery acceptance tests have not been delivered. Rust unit tests alone do not satisfy this gate."
+    },
+    "interop": {
+      "description": "Future independent protocol interoperability gate.",
+      "commands": [],
+      "artifacts": [],
+      "unavailable_reason": "WORK-0004 independent peer and protocol conformance tests are not implemented."
+    },
+    "device": {
+      "description": "Future physical Android device acceptance gate.",
+      "commands": [],
+      "artifacts": [],
+      "unavailable_reason": "A designated physical-device harness and recorded bridge/resource/thermal checks are required; an APK build cannot satisfy this profile."
+    },
+    "privacy": {
+      "description": "Future independently reviewed privacy-profile acceptance gate.",
+      "commands": [],
+      "artifacts": [],
+      "unavailable_reason": "WORK-0003 has no approved backend/profile or qualified-review evidence. Passing transport/unit tests does not prove private computation."
+    }
+  }
+}

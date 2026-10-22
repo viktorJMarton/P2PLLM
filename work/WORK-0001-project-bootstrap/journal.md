@@ -49,3 +49,37 @@ Android cross-build, device behavior, AI inference, and privacy properties are
 not verified. Independent code review is pending latest diff. Next: finish
 Android scaffold validation, refresh manifest, run local checks, review,
 then commit.
+
+## run-20261022-assessment-01 — repository and branch assessment
+
+Owner: primary agent; role read: brainstorming. Scope: assess current source,
+branches and planning evidence for an owner discussion; no implementation work.
+This entry records the assessment retrospectively; no run entry preceded reads.
+
+- Inspected PRODUCT.md, TECHNOLOGY.md, work/INDEX.md, WORK briefs/evidence,
+  architecture, security profile registry, research milestones, bootstrap source
+  and CI definitions. WORK-0001 remains in_progress; WORK-0002–0008 have no
+  implementation evidence. PROJECT-OVERVIEW-HU.md and work/INDEX.md contain
+  stale implementation-status wording. Prior evidence predates committed code.
+- Starting worktree was clean on work/WORK-0001-bootstrap at 3dc5d2b.
+  GitHub connector confirmed exactly two branches and default branch
+  work/WORK-0001-bootstrap. build/termux-android-arm64 at 3fd08d7 is 11
+  commits ahead, zero behind; 13 files differ. No PRs returned by search.
+  The additional branch changes build tooling/artifact handling, not AI code.
+- Windows PowerShell environment. Git required a command-local safe.directory
+  override because repository and process owners differ; no global setting
+  changed. git ls-remote --heads origin failed (exit 128, network unavailable);
+  connected GitHub tools supplied live branch/comparison metadata instead.
+- git diff --check passed (exit 0) before this journal entry. python --version
+  failed to launch the WindowsApps alias. rustup toolchain list returned only
+  stable, not pinned 1.88.0. No Rust/Python/Android product checks ran here.
+  Prior logged Linux results were read, not reproduced. Combined-status API
+  returned empty lists for both branch tips; this does not establish Actions
+  success or failure. No APK/device execution was verified.
+- Suggested discussion: finish reviewed bootstrap/Android build evidence, then
+  prioritize WORK-0003 feasibility alongside the pinned local model baseline
+  and authenticated synthetic peer work. No scope or accepted ADR changed.
+  Registry still has no approved privacy profile; no private AI claim made.
+- Only this journal was changed, uncommitted; no merge, checkout, publication
+  or toolchain installation. MANIFEST.json and PACKAGE-VALIDATION.json were
+  not refreshed; the historical package report does not validate this state.

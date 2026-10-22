@@ -42,3 +42,6 @@ android/app/src/main/jniLibs/
 p2p-ai-project-v0.1.zip
 *.apk
 *.aab
+
+# Local department check reports and explicitly packaged build outputs
+.artifacts/

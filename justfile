@@ -3,6 +3,9 @@ set shell := ["bash", "-eu", "-o", "pipefail", "-c"]
 validate-package:
     python3 tools/validate_package.py
 
+department-check profile work_id run_id:
+    python3 tools/run_checks.py --profile '{{profile}}' --work-id '{{work_id}}' --run-id '{{run_id}}' --bundle
+
 check:
     python3 tools/validate_package.py
     cargo fmt --all -- --check

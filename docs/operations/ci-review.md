@@ -1,5 +1,11 @@
 # CI and review gates
 
+Use the [department workflow](department-workflow.md) for shared invocation,
+evidence and integration gates. The `workflow` CI job exercises the Python
+runner; package and Rust jobs invoke their matching profiles. These job
+definitions do not establish that a remote run has passed. Android-specific
+workflow and release policy remain owned by the Android build work.
+
 Planned GitHub Actions jobs: docs/schema; Rust format/Clippy/locked tests; Android build/lint/JVM tests; emulator bridge; selected protocol conformance; storage recovery; security path tests. Physical-device accelerator/thermal/energy tests run on designated hardware and carry environment/provenance. Do not treat emulator results as phone NPU results.
 
 Pin actions by full commit SHA and toolchains/dependencies. Untrusted forks run without release secrets; never check out and execute untrusted PR code in privileged pull_request_target jobs. Run public-contribution jobs away from signing credentials/personal devices. Draft bot review cannot grant repository permissions by itself.
