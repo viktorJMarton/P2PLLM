@@ -255,3 +255,37 @@ Added standing authorization, procedure, CI/handoff gates and LSN-007 across MDs
 These documentation-only edits supersede tested snapshot; executable source is
 unchanged. Refresh manifest/docs, commit, obtain final review, push and verify
 remote SHA. Closure pending actual outcome; next meeting due by iteration8.
+
+## Iteration 7 — Verified source push and requested APK delivery
+
+WORK-0013 closure/run push-delivery-001. Independent product_review bound its
+no-blocking finding to22977bb998da6617d1511069903b7e653450d17b; its review/journal
+append is metadata only. committed-001/docs614+policy passed on clean22977bb.
+`git push -u origin work/local-storage-android-shell` exited0. `git ls-remote
+--heads origin refs/heads/work/local-storage-android-shell` exited0 and returned
+exactly22977bb998da6617d1511069903b7e653450d17b. Source push verified; no merge.
+
+Owner explicitly requested built APKs in Drive folder1WJOZ6KhFsSS7ZvLpR8HGO3QVcwSbrypb.
+Used google-drive skill for upload; only one current standalone APK exists.
+Created Android-APK/work-local-storage-android-shell/
+2026-10-22_v0.1.0_c22977bb_debug_arm64-v8a. Uploaded debug APK with versionCode1,
+SHA256SUMS.txt and BUILD-INFO.json; readback lists all3files and APK9329531 bytes
+in intended parent. No remote SHA256 field exposed; checksum is local exact bytes.
+Build folder https://drive.google.com/drive/folders/1fO36q91Cl1xuiJO3zDuMEMJZnI6vCDZR.
+APK https://drive.google.com/file/d/1gSHQxgSplKozI4DpI6fVuYsOco5xGLfb/view.
+Buildinfo says debug signing, JVMNO-SOURCE, device runtime untested; earlier
+mixed-ABI artifact superseded and not available as a standalone APK.
+
+Actual responses to reviewer's meeting6 questions (read that journal now):
+- PR3-Q1: final follow-up contains only review/journal/evidence MD and generated
+  manifest/validation; executable source preserved. Compare changed paths.
+- PR3-Q2: initial source push matches remote22977bb as observed above. Final
+  metadata push also needs remote check; never infer success from local commit.
+- PR3-Q3: Drive APK/buildinfo explicitly debug/ARM64, no JVM coverage/device claim.
+- PR3-Q4: future UI/runtime integration needs a new WORK/versioned contract;
+  exclusive recovery ownership remains and Activity must not invoke recovery.
+- PR3-Q5: preserve earlier profile snapshot identities; refresh metadata/docs
+  only, no assertion full profiles ran on subsequent MD bytes.
+
+Next: metadata-only commit/push and final remote SHA verification. This is
+closure bookkeeping, no new implementation scope. Next meeting due by iteration8.

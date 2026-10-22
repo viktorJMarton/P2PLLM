@@ -1,6 +1,6 @@
 {
   "status": "passed",
-  "checked_at_utc": "2026-10-22T17:43:42.240786+00:00",
+  "checked_at_utc": "2026-10-22T17:48:30.155902+00:00",
   "checks": [
     {
       "check": "JSON parses: MANIFEST.json",
@@ -1259,11 +1259,11 @@
       "passed": true
     },
     {
-      "check": "dependency resolves WORK-0002",
+      "check": "dependency resolves WORK-0001",
       "passed": true
     },
     {
-      "check": "dependency resolves WORK-0001",
+      "check": "dependency resolves WORK-0002",
       "passed": true
     },
     {
@@ -1295,19 +1295,19 @@
       "passed": true
     },
     {
-      "check": "dependency resolves WORK-0004",
-      "passed": true
-    },
-    {
-      "check": "dependency resolves WORK-0003",
-      "passed": true
-    },
-    {
       "check": "dependency resolves WORK-0002",
       "passed": true
     },
     {
+      "check": "dependency resolves WORK-0004",
+      "passed": true
+    },
+    {
       "check": "dependency resolves WORK-0005",
+      "passed": true
+    },
+    {
+      "check": "dependency resolves WORK-0003",
       "passed": true
     },
     {
@@ -1319,10 +1319,6 @@
       "passed": true
     },
     {
-      "check": "dependency resolves WORK-0006",
-      "passed": true
-    },
-    {
       "check": "dependency resolves WORK-0002",
       "passed": true
     },
@@ -1331,11 +1327,11 @@
       "passed": true
     },
     {
-      "check": "valid work status: WORK-0007-android-operator-mode",
+      "check": "dependency resolves WORK-0006",
       "passed": true
     },
     {
-      "check": "dependency resolves WORK-0007",
+      "check": "valid work status: WORK-0007-android-operator-mode",
       "passed": true
     },
     {
@@ -1347,7 +1343,19 @@
       "passed": true
     },
     {
+      "check": "dependency resolves WORK-0007",
+      "passed": true
+    },
+    {
       "check": "valid work status: WORK-0008-release-integration",
+      "passed": true
+    },
+    {
+      "check": "dependency resolves WORK-0008",
+      "passed": true
+    },
+    {
+      "check": "dependency resolves WORK-0005",
       "passed": true
     },
     {
@@ -1359,23 +1367,15 @@
       "passed": true
     },
     {
-      "check": "dependency resolves WORK-0005",
-      "passed": true
-    },
-    {
-      "check": "dependency resolves WORK-0008",
-      "passed": true
-    },
-    {
       "check": "valid work status: WORK-0009-department-workflows",
       "passed": true
     },
     {
-      "check": "dependency resolves WORK-0001",
+      "check": "dependency resolves WORK-0012",
       "passed": true
     },
     {
-      "check": "dependency resolves WORK-0012",
+      "check": "dependency resolves WORK-0001",
       "passed": true
     },
     {
@@ -1387,6 +1387,10 @@
       "passed": true
     },
     {
+      "check": "dependency resolves WORK-0010",
+      "passed": true
+    },
+    {
       "check": "dependency resolves WORK-0001",
       "passed": true
     },
@@ -1395,19 +1399,15 @@
       "passed": true
     },
     {
-      "check": "dependency resolves WORK-0010",
-      "passed": true
-    },
-    {
       "check": "valid work status: WORK-0011-android-local-shell",
       "passed": true
     },
     {
-      "check": "dependency resolves WORK-0011",
+      "check": "dependency resolves WORK-0001",
       "passed": true
     },
     {
-      "check": "dependency resolves WORK-0001",
+      "check": "dependency resolves WORK-0011",
       "passed": true
     },
     {
@@ -1419,7 +1419,7 @@
       "passed": true
     },
     {
-      "check": "dependency resolves WORK-0011",
+      "check": "dependency resolves WORK-0010",
       "passed": true
     },
     {
@@ -1427,7 +1427,7 @@
       "passed": true
     },
     {
-      "check": "dependency resolves WORK-0010",
+      "check": "dependency resolves WORK-0011",
       "passed": true
     },
     {
@@ -1439,15 +1439,15 @@
       "passed": true
     },
     {
-      "check": "dependency resolves WORK-0013",
-      "passed": true
-    },
-    {
       "check": "dependency resolves WORK-0010",
       "passed": true
     },
     {
       "check": "dependency resolves WORK-0009",
+      "passed": true
+    },
+    {
+      "check": "dependency resolves WORK-0013",
       "passed": true
     },
     {

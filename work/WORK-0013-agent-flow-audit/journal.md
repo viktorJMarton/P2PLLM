@@ -48,3 +48,19 @@ change before current push. Recorded policy in root authority, workflow/CI,
 handoff templates and memory. Intended branch work/local-storage-android-shell;
 closure pending exact commit review, push and remote SHA match. No force-push,
 default-branch merge or release authorized by this standing instruction.
+
+### Observed source push and Drive delivery
+
+Independent review confirmed22977bb998da6617d1511069903b7e653450d17b has no
+blocking checkpoint issue. committed-001/docs passed614+policy on clean commit.
+Git push -u origin work/local-storage-android-shell exit0; ls-remote exit0
+returned that exact SHA. Upstream tracking configured. Default branch untouched.
+
+User requested built APK upload to their Drive folder. Created
+Android-APK/work-local-storage-android-shell/2026-10-22_v0.1.0_c22977bb_debug_arm64-v8a;
+uploaded current APK, SHA256SUMS.txt and BUILD-INFO.json. List/metadata readback
+verified all3 files, intended parent and APK9329531 bytes. Local SHA256 matches
+build evidence; remote checksum field unavailable. Build is debug, not release.
+Folder: https://drive.google.com/drive/folders/1fO36q91Cl1xuiJO3zDuMEMJZnI6vCDZR.
+Only one current standalone APK exists; prior artifact superseded. Final
+metadata-only commit/push records this observed result and reviewer appendices.

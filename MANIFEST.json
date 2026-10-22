@@ -878,8 +878,8 @@
     },
     {
       "path": "work/WORK-0010-local-task-storage/review.md",
-      "bytes": 4691,
-      "sha256": "d3222d230e6bd6243a81d91c044d09c85eae8b4f2233219bc5b1c37bc3f062ef"
+      "bytes": 5259,
+      "sha256": "deee165db089421cad24d41f05196a1609518531af7ce82afba480270ebdeb7b"
     },
     {
       "path": "work/WORK-0011-android-local-shell/brief.md",
@@ -903,8 +903,8 @@
     },
     {
       "path": "work/WORK-0011-android-local-shell/review.md",
-      "bytes": 3161,
-      "sha256": "616ab28a002cf992637f1dc00bec2fa127ff5559c26162896294ed3235e54e6b"
+      "bytes": 4277,
+      "sha256": "0461a986511d1fd4541752567333ba7a54cfae0e97e229400f60401cc6ccadae"
     },
     {
       "path": "work/WORK-0012-development-environment/brief.md",
@@ -928,13 +928,13 @@
     },
     {
       "path": "work/WORK-0013-agent-flow-audit/evidence.md",
-      "bytes": 2405,
-      "sha256": "094a500e1c02557e7cf7b0b384409f2f8fdc1efd014983aae0a594a3921e34d2"
+      "bytes": 3602,
+      "sha256": "d1ba32b77a43d8603af96745cd88cfed026578925f2562afe6b00bbe56cd52eb"
     },
     {
       "path": "work/WORK-0013-agent-flow-audit/journal.md",
-      "bytes": 3156,
-      "sha256": "ed21f7aba8d1f7b7897b8027b943b8ef3552fdead0de63aad0e681217d93eddc"
+      "bytes": 4143,
+      "sha256": "4c8ca79b4e4f4bcd1e9174d5917198f1f061ea88cdac12ece10ec733e3c03ee5"
     },
     {
       "path": "work/WORK-0013-agent-flow-audit/markdown-audit.md",
@@ -943,8 +943,8 @@
     },
     {
       "path": "work/WORK-0013-agent-flow-audit/review.md",
-      "bytes": 5539,
-      "sha256": "c6f18cbfb6891764e859463bda72c333d1e260a49feaad05253b40aa592692ef"
+      "bytes": 6583,
+      "sha256": "f702c61e25a0c34b03137c82cca430e62a613abfd97a72cedab1fe01ca70fca4"
     },
     {
       "path": "work/agent-journals/android-shell.md",
@@ -953,13 +953,13 @@
     },
     {
       "path": "work/agent-journals/primary.md",
-      "bytes": 19598,
-      "sha256": "d47651449d654f6162d7f4ca0b3facbf79c7ed12991864bae1a80d1dd3608c9a"
+      "bytes": 21848,
+      "sha256": "eeebb97f7b0ef306286f54da2fbcb500557bd922952c2719f30ea3e6eaa6760c"
     },
     {
       "path": "work/agent-journals/product-review.md",
-      "bytes": 17099,
-      "sha256": "cfd262ef98c9d7e2216b673b5c6b8b8144d3f9a318014f759b9d76ad51bf2202"
+      "bytes": 20611,
+      "sha256": "daba9f69436e211e6bf76bc02002920aa4c3890dd31f7e2d400ce60ee541f948"
     },
     {
       "path": "work/agent-journals/sqlite-layer.md",

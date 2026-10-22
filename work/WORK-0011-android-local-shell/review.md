@@ -50,3 +50,22 @@ Primary subsequently reports ARM64 release bridge build (2m08s) and assembleDebu
 (1m51s), exit0. At this review read the durable WORK-0012 evidence still ended at
 Kotlin compilation; APK hash/packaging provenance inspection is pending. These
 attributed results are not reviewer-run builds or device/native-load observations.
+
+## Commit-bound confirmation and actual APK inspection
+
+Commit **22977bb998da6617d1511069903b7e653450d17b**, initially clean worktree:
+both Kotlin hashes still match exactly. Reviewed arm64-only ABI filter, batch
+echo suppression and tools/build_android.py host dispatcher; no blocking finding.
+Additional exact-byte hashes: build.gradle.kts
+7A4E0581353B70A60D1B911339EA3E7FD50BB3B5FC78EEFBC5E61611487AD2DD;
+gradlew.bat 1B1F04C513C9E9D0E1E16F297879594986E7D2E64A6EF7E6FAEAE20C4A4C827D;
+tools/build_android.py 0CE8A9376A23C13F8BDE91B6420A0FBA37CB9336BAE47036468E7C9412DE5B8B.
+
+Read push-final-002/android/report.json: lint/JVM task/native APK command all
+exit0, stable source. JVM NO-SOURCE supplies no behavioral test coverage.
+Reviewer directly inspected APK ZIP: only arm64-v8a graphics/JNA/Rust bridge
+libraries. APK SHA256 independently matches
+e81af76449eda49a75229472128b3a310be11eacd734fd4227f287943b629bc1.
+This resolves source/debug packaging review for the development checkpoint;
+emulator/device, native load and lifecycle behavior remain unobserved. No release
+or private-runtime acceptance is granted.

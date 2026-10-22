@@ -39,3 +39,22 @@ and GOVERNANCE, department workflow/CI procedure, both handoff templates and
 LSN-007. Later edits affect documentation only; refresh manifest/docs validation.
 Commit/push/remote SHA evidence follows; local success does not claim remote CI,
 device/privacy acceptance or a completed push.
+
+## Observed commit and GitHub synchronization
+
+Independent reviewer confirmed source commit22977bb998da6617d1511069903b7e653450d17b,
+no blocking checkpoint finding; actual reports under each WORK review.md.
+committed-001/docs passed614+policy on this clean commit, exit0.
+`git push -u origin work/local-storage-android-shell` exit0, followed by
+`git ls-remote --heads origin refs/heads/work/local-storage-android-shell`
+exit0 returning22977bb998da6617d1511069903b7e653450d17b. Source push verified.
+Later review/delivery MD and generated inventory follow as a metadata-only commit;
+final remote head is separately verified before the user-facing closure report.
+
+APK delivery explicitly authorized by user: Drive build folder
+https://drive.google.com/drive/folders/1fO36q91Cl1xuiJO3zDuMEMJZnI6vCDZR
+contains p2pllm_v0.1.0_code1_c22977bb_debug_arm64-v8a.apk, SHA256SUMS.txt,
+BUILD-INFO.json. Successful upload and folder/metadata readback confirm names,
+parent and9329531-byte APK. Local exact SHA256 is recorded in WORK-0011 evidence;
+connector did not expose remote checksum, so no remote hash verification claimed.
+Scope: one available current debug APK; no device acceptance or release claim.

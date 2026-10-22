@@ -197,3 +197,47 @@ an implementer independent of their earlier patch. Current iteration remains 3.
   profile execution, artifact provenance and commit/push; reviewer owns source
   comparison. User's git-push authorization is attributed to primary's explicit
   latest assignment; reviewer does not perform merge/release or publication.
+
+## Iteration 6: commit-bound checkpoint review
+
+- HEAD22977bb998da6617d1511069903b7e653450d17b, initially clean worktree;
+  all18 earlier implementation/tooling/config hashes match exactly. Also read
+  ABI-filter/batch deltas and build_android.py dispatcher. Three own review
+  reports appended with final commit-bound findings; no production edit.
+- Read final docs/workflow/Rust/storage-local and Android report JSONs. Actual
+  committed-001/docs passed at this HEAD dirty=false, stable fingerprint.
+  Android lint/JVMtask/nativeAPK all exit0; JVMNO-SOURCE is not test coverage.
+- Direct APK SHA256 and archive inspection confirm only ARM64 graphics/JNA/bridge,
+  hash e81af76449eda49a75229472128b3a310be11eacd734fd4227f287943b629bc1.
+  Initial Python inline ZIP command quoting failed; native PowerShell ZIP read
+  corrected it, exit0. No device/runtime inference made.
+- FINAL-Q1/Q2/Q3/Q5 answered: exact tooling hashes match, version/layout defects
+  resolved, ARM64 artifact verified, persona/counters/independence preserved;
+  source checkpoint has no blocking review finding. FINAL-Q4 bounded answer:
+  inspected history/policy samples preserve failures/current gates; root owns
+  full128MD semantic audit, reviewer does not claim exhaustive MD reread.
+- Owner closure policy is explicit/appropriately bounded; primary must actually
+  push and verify remoteSHA before reporting closure. No push performed by reviewer.
+
+## Meeting after iteration 6
+
+Actual peer contents/continuations read via --read-peers and targeted tails;
+canonical receipts on 2026-10-22 identify those unchanged read prefixes.
+
+- Read: work/agent-journals/android-shell.md | bytes: 18195 | sha256: 730bd6cd356c039a017316c272d5f6879ea9edc8dc468d1c473e44bed6659a7d
+- Read: work/agent-journals/primary.md | bytes: 19598 | sha256: d47651449d654f6162d7f4ca0b3facbf79c7ed12991864bae1a80d1dd3608c9a
+- Read: work/agent-journals/sqlite-layer.md | bytes: 17478 | sha256: 03870a876079c2a4db8e1ceb3782279cb5ce4487458f516a66fc8b7871723163
+
+| Question ID | Logged change / WORK | Question and proposed next action | Respondent | Status / actual answer reference |
+| --- | --- | --- | --- | --- |
+| PR3-Q1 | WORK-0013 reviewed checkpoint | Will the final metadata commit preserve all reviewed executable bytes? Compare its changed paths before push. | primary | open |
+| PR3-Q2 | WORK-0013 sprint closure | Does the actual origin branch SHA match the pushed local commit? Record ls-remote and outcome before closure. | primary | open |
+| PR3-Q3 | WORK-0011 debug packaging | Will delivery label the APK debug/ARM64 and preserve JVM NO-SOURCE plus untested device/native-load limits? Cite actual evidence. | primary | open |
+| PR3-Q4 | WORK-0010 diagnostic-only gate | Will next runtime/UI contract retain exclusive recovery ownership and avoid direct Activity recovery? Record future WORK before integration. | primary | open |
+| PR3-Q5 | WORK-0013 source evidence | Will final metadata-only closure refresh required inventory/docs checks without mislabelling earlier full profiles as run on new MD bytes? Preserve report identities. | primary | open |
+
+New questions concern coordinator closure/future integration and do not block
+the already reviewed source-only development push. No silence-as-consent. Remote
+verification and next API acceptance remain held until actual evidence. Next
+independent action: metadata commit path check by message; next required meeting
+after at most iteration9 before10. No production review authority changes.
