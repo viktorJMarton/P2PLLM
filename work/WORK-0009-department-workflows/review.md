@@ -85,3 +85,16 @@ commit-bound review is pending until the parent creates and supplies a commit.
   "work/WORK-0009-department-workflows/brief.md": "b86c297bdbc47a7a42d52f1293b108d1c5cfb5ac4c35ba2018296f153ba83a8b"
 }
 ```
+
+## Exact implementation commit confirmation
+
+Independent verification after commit creation: implementation commit
+3590c89bee31651a60e258124857d6c8019bdaf1 on work/WORK-0009-workflows.
+All 17 raw source hashes above matched unchanged working files. Git status was
+empty; working and staged git diff --exit-code both returned 0. The independent
+implementation review therefore applies to this exact commit. Earlier pending
+statements describe the pre-commit review stage.
+
+This confirmation adds no Linux, Rust/Android build, physical-device, remote-CI
+or privacy proof. Missing platform/backend capabilities retain the boundaries
+recorded above. Subsequent completion-only metadata still requires final review.

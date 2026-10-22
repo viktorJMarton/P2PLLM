@@ -27,3 +27,25 @@ Only sanitized reports and explicitly configured artifacts are packaged.
 Independent findings, resolutions and reviewed hashes: [review.md](review.md).
 Runner and documentation handoffs are alongside this file. No Linux CI, Android
 build/device, storage implementation or privacy capability was verified.
+
+## Committed implementation verification
+
+Implementation commit: `3590c89bee31651a60e258124857d6c8019bdaf1`, local branch
+`work/WORK-0009-workflows`. Independent reviewer confirmed all 17 reviewed
+source file hashes unchanged and both staged/unstaged diffs empty at this commit.
+
+| Command | Exit | Observation |
+| --- | ---: | --- |
+| `python tools/update_manifest.py` | 0 | 149 source files, canonical source hash mode |
+| `python tools/validate_package.py --write-report` | 0 | 319 checks passed; PACKAGE-VALIDATION.json is package evidence only |
+| `python tools/run_checks.py --profile docs --work-id WORK-0009 --run-id commit-3590c89 --bundle` | 0 | 319 checks, clean committed source, stable fingerprint |
+| `python tools/run_checks.py --profile workflow --work-id WORK-0009 --run-id commit-3590c89 --bundle` | 0 | 20 tests / one documented skip; clean committed source, stable fingerprint |
+| Standard-library ZIP/manifest verification of both committed-run bundles | 0 | Every archived entry size/SHA-256 matched; report HEAD=3590c89 and dirty=false |
+| `git diff --check` | 0 | No whitespace errors |
+
+Committed-run packages live at
+`.artifacts/checks/WORK-0009/commit-3590c89/{docs,workflow}/bundle.zip`.
+These are local evidence packages, not uploaded releases. Completion metadata
+and refreshed inventory follow in a separate documentation commit; implementation
+source remains unchanged. Physical hardware/backend and Linux execution limits
+above remain open outside this tooling work item.

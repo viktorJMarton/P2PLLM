@@ -1,6 +1,6 @@
 # WORK-0009 — Reproducible department checks and evidence packages
 
-Status: in_progress
+Status: verified
 Requirements: REQ-009, REQ-007
 Roles: orchestrator, testing, pr-review
 Dependencies: WORK-0001 (existing scaffold only; Android completion not claimed)

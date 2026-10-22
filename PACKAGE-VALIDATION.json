@@ -1,6 +1,6 @@
 {
   "status": "passed",
-  "checked_at_utc": "2026-10-22T09:50:58.481164+00:00",
+  "checked_at_utc": "2026-10-22T09:52:59.497573+00:00",
   "checks": [
     {
       "check": "JSON parses: MANIFEST.json",
@@ -335,11 +335,11 @@
       "passed": true
     },
     {
-      "check": "dependency resolves WORK-0001",
+      "check": "dependency resolves WORK-0003",
       "passed": true
     },
     {
-      "check": "dependency resolves WORK-0003",
+      "check": "dependency resolves WORK-0001",
       "passed": true
     },
     {
@@ -367,11 +367,11 @@
       "passed": true
     },
     {
-      "check": "dependency resolves WORK-0002",
+      "check": "dependency resolves WORK-0005",
       "passed": true
     },
     {
-      "check": "dependency resolves WORK-0005",
+      "check": "dependency resolves WORK-0002",
       "passed": true
     },
     {
@@ -387,11 +387,11 @@
       "passed": true
     },
     {
-      "check": "dependency resolves WORK-0002",
+      "check": "dependency resolves WORK-0004",
       "passed": true
     },
     {
-      "check": "dependency resolves WORK-0004",
+      "check": "dependency resolves WORK-0002",
       "passed": true
     },
     {
@@ -403,11 +403,11 @@
       "passed": true
     },
     {
-      "check": "dependency resolves WORK-0007",
+      "check": "dependency resolves WORK-0004",
       "passed": true
     },
     {
-      "check": "dependency resolves WORK-0004",
+      "check": "dependency resolves WORK-0007",
       "passed": true
     },
     {
@@ -415,19 +415,19 @@
       "passed": true
     },
     {
-      "check": "dependency resolves WORK-0008",
-      "passed": true
-    },
-    {
       "check": "dependency resolves WORK-0006",
       "passed": true
     },
     {
-      "check": "dependency resolves WORK-0007",
+      "check": "dependency resolves WORK-0005",
       "passed": true
     },
     {
-      "check": "dependency resolves WORK-0005",
+      "check": "dependency resolves WORK-0008",
+      "passed": true
+    },
+    {
+      "check": "dependency resolves WORK-0007",
       "passed": true
     },
     {

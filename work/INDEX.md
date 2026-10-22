@@ -1,7 +1,8 @@
 # Work queue
 
 WORK-0001 is **in_progress**; WORK-0002–0008 remain **not_started** according to
-their briefs. Workflow infrastructure is tracked separately in WORK-0009.
+their briefs. WORK-0009 workflow infrastructure is **verified locally**; Linux
+CI and Android/device execution remain unobserved in this work item.
 Package preparation is recorded in work/PACKAGE-BUILD.md.
 
 - [WORK-0001: Buildable repository and CI foundation](WORK-0001-project-bootstrap/brief.md) — dependencies: none

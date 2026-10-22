@@ -553,8 +553,8 @@
     },
     {
       "path": "work/INDEX.md",
-      "bytes": 1713,
-      "sha256": "e565e3d50349728c2dd20c0192a66aa2a1c2c6a50f5001c527416038765c5332"
+      "bytes": 1787,
+      "sha256": "0f6116b501cdb6b037ba7ea02b98e637d04d1e55577f9b328ccc43f7ba278d84"
     },
     {
       "path": "work/PACKAGE-BUILD.md",
@@ -723,13 +723,13 @@
     },
     {
       "path": "work/WORK-0009-department-workflows/brief.md",
-      "bytes": 1700,
-      "sha256": "b86c297bdbc47a7a42d52f1293b108d1c5cfb5ac4c35ba2018296f153ba83a8b"
+      "bytes": 1697,
+      "sha256": "845d5662eaf6763b0205dd6e1b949eb1e418a88b9e3d360596b93f29b4dbcb15"
     },
     {
       "path": "work/WORK-0009-department-workflows/evidence.md",
-      "bytes": 2232,
-      "sha256": "4efa07d4d4e1f7267745ca00f4d243b5247537cd1742323795752d652faad79f"
+      "bytes": 3738,
+      "sha256": "09c7d8f980b002455a0bb3aa11556a730fd8ca5af1f87fd30649444640c05de0"
     },
     {
       "path": "work/WORK-0009-department-workflows/handoff-docs.md",
@@ -743,13 +743,13 @@
     },
     {
       "path": "work/WORK-0009-department-workflows/journal.md",
-      "bytes": 3854,
-      "sha256": "39280bd9bdf5c9f533ec8560e51fbf0b03fc577fde7e3acce366563cb3444ee6"
+      "bytes": 4794,
+      "sha256": "8293c5acc76b06ee0dcd5d5ad6fafa47a3dac521a48848432846ade9206467e3"
     },
     {
       "path": "work/WORK-0009-department-workflows/review.md",
-      "bytes": 5623,
-      "sha256": "eb5ee77590ba03867f194c92bd8f97d42d8ca0fc3392406dde99084b31507bb5"
+      "bytes": 6335,
+      "sha256": "644ae960a361e596d36bd07ac9f058f71c240447746eb83a380621049bfe12fc"
     }
   ],
   "excluded_from_hashes": [
