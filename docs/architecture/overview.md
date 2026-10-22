@@ -1,5 +1,10 @@
 # Architecture
 
+Implemented slice: node-core status/task port, diagnostic CLI, UniFFI status and
+SQLite diagnostic adapter. Runtime composition/transport/inference modules below
+describe the planned architecture, not existing implementations. WORK-0010
+keeps core independent of SQLite; the CLI composes this synchronous local slice.
+
 Kotlin UI calls a UniFFI bridge; the Rust runtime composes domain/core ports, storage, transport and backend adapters. CLI uses the same runtime. Core owns state and authorization, platform owns Android lifecycle/permissions and secure key integration. All remote compute paths cross the privacy gate. A gateway/relay forwards protocol traffic but is not trusted with computation plaintext.
 
 Core depends on abstract ports, never concrete libp2p/SQLite/native inference. The runtime is the composition root. Backend interfaces describe supported operation graphs and privacy profiles, not a promise that an entire Qwen graph is supported. Private backend internal multi-party communication must be explicitly adapted/isolated; do not assume a stock MPC library shares the outer connection without integration work.

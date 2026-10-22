@@ -1,5 +1,10 @@
 # Build and verification status
 
+Current host setup: [reproducible developer environment](docs/operations/development-environment.md).
+WORK-0012 records JDK/SDK provisioning, successful Kotlin compilation and ARM64
+debug APK assembly on Windows. Historical proot failures below remain scoped to
+that old environment. Device behavior and qualified privacy review are separate.
+
 ## Available now
 Department check profiles and evidence packaging are described in
 [the common workflow](docs/operations/department-workflow.md). Python 3.11+
@@ -26,6 +31,12 @@ updates its own expected inventory. Both scripts read/write UTF-8 explicitly.
 With Python >=3.11, `python3 tools/validate_package.py` checks the documentation package, identifiers, manifests, example config/schema (the validator implements only the schema keywords used here), event schema, relative links and BPMN structure. It does not compile product code or render PlantUML.
 
 ## WORK-0001 implementation in progress
+Local diagnostic persistence now has a separate Rust adapter and CLI commands;
+see [local diagnostics](docs/operations/local-diagnostics.md). Its narrower
+`storage-local` profile does not complete the full storage/model-activation gate.
+Windows x86_64 development results are recorded in WORK-0010; the Linux reference
+platform and Android device must still receive their own execution evidence.
+
 `just check`, `just test`, `just build-desktop` and
 `just build-android` are defined. The latter requires an external Android
 SDK/NDK and toolchain. `just test-interop` and `just benchmark` explicitly

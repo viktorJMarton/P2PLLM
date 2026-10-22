@@ -1,5 +1,10 @@
 # Interface contract — draft
 
+Current implemented subset is the existing UniFFI status call and the separate
+synchronous core TaskStore for local diagnostic metadata (ADR-010). The async
+commands/events/backend ports below remain draft. Ledger events do not yet
+implement timestamps, task subscriptions or the full runtime event contract.
+
 UI/CLI -> core asynchronous commands: start_node, stop_node, set_network_enabled, set_contribution_policy, load_model, submit_inference, cancel_task, evaluate_update, activate_update, rollback_update. Accepted commands return operation/task ID, not completion. get_snapshot returns versioned state; subscribe_events supports bounded buffering and resync after a gap.
 
 Events: TaskStarted/Progress/Completed/Failed, NetworkStateChanged, ResourceLimitReached, UpdateEvaluationCompleted. Every event has event/run/task correlation where relevant, timestamp and monotonically increasing local sequence. Never embed sensitive payloads in audit events.

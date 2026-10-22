@@ -10,4 +10,8 @@
 - [ADR-008: Discover and measure available mobile accelerators](ADR-008-accelerators.md)
 - [ADR-009: Drive snapshots complement Git](ADR-009-drive-artifacts.md)
 
-All are accepted design directions, not claims of implementation. Open choices remain in PRODUCT.md and work/INDEX.md.
+- [ADR-010: Local diagnostic ledger and exclusive CLI ownership](ADR-010-local-diagnostic-ledger.md)
+- [ADR-011: Agent personas, memory and bounded journal meetings](ADR-011-agent-journal-coordination.md)
+
+Accepted decisions define direction; implementation evidence is recorded per
+WORK. Open choices remain in PRODUCT.md and work/INDEX.md.

@@ -1,5 +1,5 @@
 [workspace]
-members = ["crates/node-core", "crates/node-cli", "crates/android-bridge"]
+members = ["crates/node-core", "crates/node-cli", "crates/android-bridge", "crates/storage-sqlite"]
 resolver = "2"
 
 [workspace.package]

@@ -24,4 +24,10 @@
 | TEST-020 | NPU unsupported op | Explicit fallback/error with measured placement |
 | TEST-021 | Sensitive logging | No prompt/tensor/gradient/key in development/runtime telemetry |
 
-Only package validation is implemented now. These product tests are planned, not passing results. For numerical tests compare full logits/operation outputs as applicable, not only one sampled text string. Performance tests specify sample size, warm/cold, units, device/power/network state and uncertainty.
+The listed full-product conformance cases remain acceptance targets, not a
+blanket passing result. Current executable coverage includes package/workflow
+checks, fail-closed scaffold tests and WORK-0010's local diagnostic ledger tests.
+The SQLite process-exit test does not satisfy TEST-013 model-file activation.
+Use WORK evidence for actual coverage. For numerical tests compare full logits
+or operation outputs, not only a sampled string. Performance tests specify
+sample size, warm/cold state, units, device/power/network state and uncertainty.

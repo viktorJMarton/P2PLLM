@@ -1,6 +1,9 @@
 # Privacy profile registry
 
-Initial approved profiles: **none**. This means privacy-required peer AI operations fail with PRIVACY_PROFILE_UNAVAILABLE. Local inference is still available. Experimental primitive work may run only isolated synthetic fixtures.
+Initial approved profiles: **none**. This means privacy-required peer AI
+operations fail with PRIVACY_PROFILE_UNAVAILABLE. Local inference is permitted
+by that policy, but model execution is not yet implemented in this repository.
+Experimental primitive work may run only isolated synthetic fixtures.
 
 A registry entry needs: profile_id, version, backend revision, protocol family, operation coverage, participant/collusion assumptions, setup trust, output/metadata leakage, parameters, evidence links, reviewer, approval state and withdrawal reason. Registry is controlled by local release policy, never peer-provided proof labels. References must resolve to evidence, not marketing statements.
 

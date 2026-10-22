@@ -3,6 +3,7 @@
 - work_id:
 - run_id:
 - department / role:
+- primary persona / role document:
 - journal_owner:
 - integration_owner / recipient:
 - status: proposed / in_progress / blocked / verified
@@ -48,6 +49,22 @@ that require renewed review/checks.
 
 ## Integration and next action
 
+Sprint closure / GitHub synchronization (mandatory for successful closure):
+- intended remote / development branch:
+- final local commit / independent review reference:
+- push command / exit code / outcome:
+- remote branch SHA / verification command / match:
+- closure: pending / pushed and verified; concrete blocker if pending:
+
 Dependency readiness, shared API coordination, combined-revision checks still
 required, open risks/blockers, next owner and concrete next action. Only the
 journal owner consolidates this handoff into the work journal.
+
+## Journal meeting and lesson references
+Own agent journal / last iteration / last meeting revision:
+Peer journals actually read / unanswered question IDs / respondents:
+At least 5 concrete meeting questions, actual response/decision references:
+Applicable agents/MEMORY.md lessons / new evidence-backed lesson proposed:
+Independent next work / shared work blocked / next responsible agent:
+Apply [the 3-iteration meeting contract](../docs/operations/agent-meetings.md).
+Do not infer meeting, review or owner approval from silence.

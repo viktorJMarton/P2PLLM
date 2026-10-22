@@ -17,3 +17,7 @@ Package preparation is recorded in work/PACKAGE-BUILD.md.
 Use briefs for scope, journals/events for observed execution, evidence for reproducibility. WORK-0002–0004 can overlap once dependencies and safe worktrees permit; privacy gate cannot be skipped.
 
 - [WORK-0009: Reproducible department checks and evidence packages](WORK-0009-department-workflows/brief.md) — dependency: existing WORK-0001 scaffold; does not close Android/product gates
+- [WORK-0010: Durable local diagnostic task ledger](WORK-0010-local-task-storage/brief.md) — in_progress; local SQL/core/CLI slice, final independent review pending
+- [WORK-0011: Android operator navigation and actual status](WORK-0011-android-local-shell/brief.md) — in_progress; Kotlin/native debug APK build observed in WORK-0012; device and final commit review pending
+- [WORK-0012: Provisioned development environment](WORK-0012-development-environment/brief.md) — in_progress; pinned Windows tools/doctor and native APK build observed
+- [WORK-0013: Full Markdown audit and agent coordination](WORK-0013-agent-flow-audit/brief.md) — in_progress; personas, memory,3-iteration meetings and5-question peer feedback

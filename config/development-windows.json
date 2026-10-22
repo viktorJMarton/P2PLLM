@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "jdk": {
+    "version": "17.0.20.1",
+    "url": "https://aka.ms/download-jdk/microsoft-jdk-17.0.20.1-windows-x64.zip",
+    "sha256": "3d9006956fc8af5601cd24ffc4f468bef48279c7ebd8171b9bdf90d0aabfbf1f"
+  },
+  "android": {
+    "cmdline-tools;16.0": {
+      "url": "https://dl.google.com/android/repository/commandlinetools-win-12266719_latest.zip",
+      "sha1": "32787c10f55911fd109848906b1275723e79f659",
+      "size": 143481958,
+      "license": "android-sdk-license",
+      "sha256": "f9088c04a44f1f37a8a3a228a7663e11ae9445fa07529c96cef38acb985a88f3"
+    },
+    "platforms;android-35": {
+      "url": "https://dl.google.com/android/repository/platform-35_r02.zip",
+      "sha1": "0bb560a90a7a2cbd0dd8348224d518b638fe7949",
+      "size": 64273788,
+      "license": "android-sdk-license",
+      "sha256": "0988cacad01b38a18a47bac14a0695f246bc76c1b06c0eeb8eb0dc825ab0c8e0"
+    },
+    "build-tools;35.0.0": {
+      "url": "https://dl.google.com/android/repository/build-tools_r35_windows.zip",
+      "sha1": "af059bb67cf7786f45ee0db85e2d24985df1b4b6",
+      "size": 59878107,
+      "license": "android-sdk-license",
+      "sha256": "5753c679a1b90bcf6fbc9945a2ce39dfb9e74f1df0831a1e1866ae5b594326f0"
+    },
+    "ndk;27.0.12077973": {
+      "url": "https://dl.google.com/android/repository/android-ndk-r27-windows.zip",
+      "sha1": "0ea2756e6815356831bda3af358cce4cdb6a981e",
+      "size": 781482169,
+      "license": "android-sdk-license",
+      "sha256": "342ceafd7581ae26a0bd650a5e0bbcd0aa2ee15eadfd7508b3dedeb1372d7596"
+    }
+  },
+  "android_license": {
+    "id": "android-sdk-license",
+    "sha256": "00eceefbf21af958ba76722fdf3330143d7176e4626f341c3d8925a6e40726ea",
+    "metadata_url": "https://dl.google.com/android/repository/repository2-1.xml",
+    "owner_approval": "2026-10-22 user approved exactly listed packages"
+  },
+  "tools": {
+    "rust": "1.88.0",
+    "cargo_ndk": "3.5.4",
+    "android_target": "aarch64-linux-android",
+    "gradle": "8.11.1"
+  }
+}

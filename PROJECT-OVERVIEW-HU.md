@@ -16,7 +16,13 @@ Nyílt forrású, decentralizált P2P AI-ökoszisztémát, amelyben önálló no
 - Clean Code, DRY és helyi tranzakciós ACID kötelező. Nincs globális ACID-ígéret.
 
 ## Mi készült el ténylegesen?
-Ez a specifikációs csomag: agentutasítások, döntések, munkatételek, sémavázlatok, PlantUML/BPMN források és csomagellenőrző. Termékkód és működő CI még nincs. A dokumentumokban szereplő célparancsok közül csak a csomagvalidátor futtatható most.
+A specifikáció mellett már van Rust mag, CLI, UniFFI státuszhíd és Android
+képernyőkód. A WORK-0009 egységes ellenőrzési és bizonyítékcsomagolási eszközt
+adott. A WORK-0010 a helyi diagnosztikai feladatok SQLite-tárolását és CLI-jét,
+a WORK-0011 az Android navigációt fejleszti; pontos állapot és tényleges
+teszteredmények a munkatételek alatt vannak. Modellfuttatás, P2P AI-munkavégzés,
+privát közös számítás és tanulás még nincs implementálva. A CI-definíció létezése
+nem bizonyít sikeres távoli CI-futást vagy telefonon működő APK-t.
 
 ## Fő nyitott akadály
 Nyílt, ismeretlen telefonok közötti privát LLM-művelet hatékonysága és adatvédelmi feltételei. Dokumentáció vagy Reddit-vélemény önmagában nem oldja ezt meg. Az MP-SPDZ kutatási referenciajelölt, nem kiválasztott éles mobilbackend.

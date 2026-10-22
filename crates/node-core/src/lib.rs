@@ -1,6 +1,8 @@
 //! Local node state. Remote AI operations remain unavailable until an approved
 //! privacy backend and protocol implementation exist (ADR-003, WORK-0001).
 
+pub mod tasks;
+
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum Capability {
     Unavailable,

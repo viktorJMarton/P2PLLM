@@ -11,6 +11,14 @@
             "tools/validate_package.py"
           ],
           "timeout_seconds": 120
+        },
+        {
+          "id": "agent-meeting-policy",
+          "argv": [
+            "{python}",
+            "tools/validate_agent_flow.py"
+          ],
+          "timeout_seconds": 120
         }
       ],
       "artifacts": []
@@ -141,8 +149,8 @@
         {
           "id": "apk-build",
           "argv": [
-            "bash",
-            "tools/build-android.sh"
+            "{python}",
+            "tools/build_android.py"
           ],
           "timeout_seconds": 1800
         }
@@ -155,7 +163,7 @@
       "description": "Future transaction department acceptance gate.",
       "commands": [],
       "artifacts": [],
-      "unavailable_reason": "Storage implementation, migrations and transaction/crash-recovery acceptance tests have not been delivered. Rust unit tests alone do not satisfy this gate."
+      "unavailable_reason": "Full model/filesystem activation protocol and its crash-recovery acceptance tests are not implemented; storage-local separately tests the delivered diagnostic metadata ledger."
     },
     "interop": {
       "description": "Future independent protocol interoperability gate.",
@@ -174,6 +182,46 @@
       "commands": [],
       "artifacts": [],
       "unavailable_reason": "WORK-0003 has no approved backend/profile or qualified-review evidence. Passing transport/unit tests does not prove private computation."
+    },
+    "storage-local": {
+      "description": "Local diagnostic SQLite ledger, CLI ownership and restart tests only; no model activation, distributed ACID or private AI certification.",
+      "commands": [
+        {
+          "id": "local-storage-tests",
+          "argv": [
+            "rustup",
+            "run",
+            "1.88.0",
+            "cargo",
+            "test",
+            "--locked",
+            "-p",
+            "p2p-node-core",
+            "-p",
+            "p2p-storage-sqlite",
+            "-p",
+            "p2p-node-cli"
+          ],
+          "timeout_seconds": 300
+        },
+        {
+          "id": "desktop-build",
+          "argv": [
+            "rustup",
+            "run",
+            "1.88.0",
+            "cargo",
+            "build",
+            "--locked",
+            "-p",
+            "p2p-node-cli"
+          ],
+          "timeout_seconds": 300
+        }
+      ],
+      "artifacts": [
+        "target/debug/p2p-node{exe_suffix}"
+      ]
     }
   }
 }

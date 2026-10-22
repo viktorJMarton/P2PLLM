@@ -16,6 +16,11 @@ SDK-t, titkokat és a Drive-átadási ZIP-et nem tartalmazza.
 
 ## Android
 
+Az új, rögzített Windows környezet [telepítése és használata](docs/operations/development-environment.md)
+a `tools/dev_env.py` eszközzel történik. Ne állj meg pusztán a hiányzó Java
+jelzésénél: az engedélyezett függőségeket állítsd fel és ellenőrizd. A korábbi
+proot-megfigyelések az alábbiakban történeti, platformhoz kötött eredmények.
+
 A Kotlin/UniFFI projekt az `android/` mappában van. Az Android buildhez
 asztali Linux/macOS/Windows gépen JDK, Android SDK 35, NDK és az Android
 Gradle wrapper szükséges. Az első APK-buildet x86_64 Linuxon vagy más,
@@ -35,4 +40,14 @@ meg. A `MANIFEST.json` az aktuális forrásfájlokat ellenőrzi; szándékos
 módosítás után `python3 tools/update_manifest.py`, majd
 `python3 tools/validate_package.py` futtatandó. A munkanapló és a
 következő lépés a `work/WORK-0001-project-bootstrap/` alatt van.
-Git remote nincs beállítva; a későbbi push célját a tulajdonos adja meg.
+A remote és az aktív branch állapotát `git remote -v`, `git branch -avv` és
+`git status` alapján ellenőrizd; a korábbi „nincs remote” állítás történeti.
+A mostani helyi fejlesztés nem jelent automatikus GitHub-feltöltést.
+
+## Agentek folytatása
+
+Olvasd az [agentmemóriát](agents/MEMORY.md), a saját naplót és a többiek
+naplóit. Legfeljebb 3 iteráció után kötelező az [egyeztetés](docs/operations/agent-meetings.md),
+legalább 5 érdemi kérdéssel, felelőssel és tényleges válaszhivatkozásokkal.
+Rutinszerű helyi fejlesztéshez ne kérj újra már megadott engedélyt. Nyitott közös
+döntés mellett a független feladatok folytathatók, jóváhagyás nem található ki.

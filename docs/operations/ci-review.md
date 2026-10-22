@@ -1,10 +1,22 @@
 # CI and review gates
 
+Successful sprint closure also requires the owner-authorized development-branch
+commit and GitHub push, followed by remote SHA verification. Follow
+[the closure procedure](department-workflow.md#mandatory-sprint-closure-commit-and-github-push).
+Review/CI success or a local commit alone cannot stand in for a successful push;
+log failures as pending closure. This does not authorize default-branch merges
+or releases, and does not claim remote CI success before it is observed.
+
 Use the [department workflow](department-workflow.md) for shared invocation,
 evidence and integration gates. The `workflow` CI job exercises the Python
 runner; package and Rust jobs invoke their matching profiles. These job
 definitions do not establish that a remote run has passed. Android-specific
 workflow and release policy remain owned by the Android build work.
+
+Review the [agent meeting records](agent-meetings.md): at most 3 iterations,
+at least 5 substantive questions, actual peer-journal receipts and responses.
+A workflow-policy failure blocks handoff approval. It does not prove product
+security. Source checks must be run after journal writers freeze the snapshot.
 
 Planned GitHub Actions jobs: docs/schema; Rust format/Clippy/locked tests; Android build/lint/JVM tests; emulator bridge; selected protocol conformance; storage recovery; security path tests. Physical-device accelerator/thermal/energy tests run on designated hardware and carry environment/provenance. Do not treat emulator results as phone NPU results.
 

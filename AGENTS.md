@@ -26,9 +26,48 @@ Official source/code/paper first; Reddit is a lead or experience report, not tec
 ## Definition of done
 Applicable checks pass; acceptance criteria have linked evidence; independent review applies to the latest commit; logs and contracts are current. Missing hardware, backend or credentials must be named as blockers, not bypassed.
 
+## Mandatory sprint closure and GitHub push (owner decision, 2026-10-22)
+Every successful sprint closure includes committing its intended source/docs and
+pushing to the appropriate existing GitHub development branch. This standing
+owner authorization does not require repeated confirmation. Follow
+docs/operations/department-workflow.md: inspect branch and diff, pass applicable
+checks, obtain required review, commit, push, and verify the remote branch SHA.
+Record branch, commit, push outcome and remote verification in the work log and
+handoff. A local commit alone is not a closed sprint; a failed push leaves
+closure pending with the actual blocker. Preserve other contributors' changes;
+never force-push, merge into the default branch, or publish a release under this
+authorization. Sprint closure does not complete capabilities with missing gates.
+
 ## Department workflow
 Use docs/operations/department-workflow.md and config/check-profiles.json for
 common local/CI checks and bounded evidence packaging. Run applicable profiles
 through tools/run_checks.py; use templates/department-handoff.md for parallel
 department handoffs. Unavailable profiles are blockers for their capabilities,
 not waived checks. Evidence packaging never authorizes merge or publication.
+
+## Mandatory agent journal meetings (owner decision, 2026-10-22)
+Every agent declares one primary professional persona from agents/PERSONAS.md
+and the selected role's Persona section. Record it in its own journal and
+handoff; apply that role's evidence, decision and communication style. A persona
+change never resets meeting counters or grants independent reviewer status to
+an implementer. Persona is not a claim of human credentials or agent execution.
+
+Every working agent owns a separate Markdown journal. After at most **3
+development iterations**, before starting iteration 4, refresh that journal,
+read the other agents' journals, and record an asynchronous meeting. A bounded
+change plus its verification is one iteration; failures count. Tool calls alone
+are not iterations. Do not reset the counter by changing WORK, branch or run.
+
+Each meeting must contain at least **5 concrete questions** about the logged
+changes, with question owner, affected WORK/contract, answer/decision status and
+next action. Record which peer journal revision was read. Shared decisions need
+actual peer responses; silence, elapsed time and unavailable agents are not
+consent. Continue independent reversible work while shared decisions remain open.
+Never invent a meeting, peer answer or approval. See
+docs/operations/agent-meetings.md and templates/agent-journal.md.
+
+Routine implementation, tests, dependency setup and recovery within accepted
+scope proceed autonomously. Escalate only actual owner decisions or missing
+authorization, with evidence and a recommended concrete resolution. Handoff
+must identify outstanding peer questions and the next responsible agent. Before
+resuming, read applicable entries in agents/MEMORY.md and apply their checks.

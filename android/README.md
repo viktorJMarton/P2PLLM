@@ -2,12 +2,18 @@
 
 This is a Kotlin/Compose status screen wired to the generated UniFFI
 `nodeStatus()` function. It does not run inference or connect to peers.
-The checked-in Kotlin binding was generated from the host Rust bridge using
-UniFFI 0.28.3. A matching Android arm64 shared library is still required
-for an APK. No Android build or device run has been verified.
+The checked-in Kotlin binding uses UniFFI0.28.3. WORK-0012 now records a compiled
+Android ARM64 bridge, successful Kotlin compile and assembled debug APK on
+Windows. Device/native-call execution is not verified. The shell has five
+destinations and actual base-status refresh; no model or peer runtime exists.
 The application dependency graph is pinned in `app/gradle.lockfile`.
 
 ## Desktop build prerequisites
+
+Windows users can use the [pinned developer environment](../docs/operations/development-environment.md):
+`python tools/dev_env.py install --accept-sdk-license`, then `doctor` and
+`android-build`. The existing Linux build script and colleague's Termux policy
+remain separate routes; do not infer one host's result for all platforms.
 
 - JDK 17, Android SDK platform 35, build tools 35.0.0 and NDK
   27.0.12077973 (the documented default for AGP 8.9.0).

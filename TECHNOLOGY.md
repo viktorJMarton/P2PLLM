@@ -2,6 +2,12 @@
 
 Statuses: ACCEPTED = design direction, not installed/verified; CANDIDATE = requires decision; DEFERRED = outside initial implementation.
 
+IMPLEMENTED SLICE means bounded code with platform-specific WORK evidence,
+not full product support. Current toolchain lock/setup is documented in
+docs/operations/development-environment.md; Windows JDK17.0.20.1 and Android
+build results do not establish Linux/device/privacy behavior. Tokio, transport
+and inference adapters remain design choices until their code/evidence exists.
+
 | Component | Choice | Status |
 |---|---|---|
 | Android UI/platform | Kotlin, Jetpack Compose, Android SDK/NDK, Gradle wrapper | ACCEPTED |
@@ -12,6 +18,7 @@ Statuses: ACCEPTED = design direction, not installed/verified; CANDIDATE = requi
 | Mobile inference | ExecuTorch, supported export/backend path | ACCEPTED, each model/device requires validation |
 | Models | Qwen3-0.6B diagnostic; Qwen3-1.7B useful mobile candidate | ACCEPTED baseline / candidate, pin revisions before code |
 | Local persistence | SQLite owned by node core, migrations | ACCEPTED |
+| Local diagnostic storage adapter | rusqlite =0.32.1 with bundled libsqlite3-sys 0.30.1; CLI lifecycle lock fs2 =0.4.3 | IMPLEMENTED slice, Windows tests in WORK-0010; final review pending |
 | Wire control schema | protobuf; Rust prost proposed | ACCEPTED schema direction, crate version pin pending |
 | Configuration | TOML typed/validated, no embedded secrets | ACCEPTED |
 | CI | GitHub Actions; actions pinned by SHA | ACCEPTED when a repository exists |

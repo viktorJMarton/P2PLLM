@@ -30,6 +30,13 @@ Parallel agents write distinct handoffs using the
 owner consolidates material events, failures and completion serially. Role
 documents describe responsibilities; they do not prove that an agent is running.
 
+Every agent also maintains its own MD journal. The [mandatory meeting contract](agent-meetings.md)
+requires reading peers and at least 5 concrete questions after at most 3
+iterations. Actual replies and decision owners are recorded; unanswered shared
+decisions remain open while independent work continues. Read [project memory](../../agents/MEMORY.md)
+on start/resume and link applied lessons from handoffs. This remains mandatory
+when a department switches WORK or run IDs.
+
 ## Local entry point
 
 Run from the repository root, selecting only profiles applicable to the patch:
@@ -65,7 +72,7 @@ required work-specific checks to implement, not claims of existing test coverage
 
 | Department | Local profiles / available purpose | Additional acceptance before its capability is claimed |
 | --- | --- | --- |
-| Transaction core | `docs`, `rust`; `storage` explicitly unavailable | Migration compatibility, local ACID invariants, concurrent transitions, rollback, and injected crash/restart recovery. Filesystem plus DB activation requires its own tested recovery protocol. Assign a dedicated storage WORK before implementation. |
+| Transaction core | `docs`, `rust`, `storage-local` for WORK-0010 diagnostic metadata; full `storage` gate explicitly unavailable | Local ledger tests cover migrations, state/event atomicity, competing writers and process-exit rollback. Filesystem plus model DB activation still requires its own tested recovery protocol; final independent WORK-0010 review remains pending. |
 | Android UI | `docs`, `android`: lintDebug, JVM unit test task, existing Android build script and declared APK output | Verify navigation, lifecycle, error/empty/loading states and actual bridge results. Separate emulator evidence from physical-device evidence; `device` is unavailable until implemented. Follow WORK-0007 scope and dependencies. |
 | Protocol / sessions | `docs`, `rust`; `interop` explicitly unavailable | WORK-0004 version compatibility, independent test peer, authentication, malformed input, idempotence and reconnect/recovery cases; security review. Local ACID does not establish distributed atomicity. |
 | ML / privacy | `docs`, relevant host build profile; `privacy` explicitly unavailable | WORK-0002/0003 pinned model/toolchain inventory and measured primitive feasibility, threat-model evidence, local approved privacy registry, backend denial paths and qualified privacy review. No privacy pass from transport encryption or simulated peers alone. |
@@ -109,6 +116,36 @@ integrated; consult [BUILD.md](../../BUILD.md) and that branch's release documen
 This common evidence contract does not replace those packaging policies.
 
 ## Handoff, integration and release gates
+
+### Mandatory sprint closure: commit and GitHub push
+
+Owner decision, 2026-10-22: every successful sprint closure must include a commit
+and push to the appropriate GitHub development branch, without asking again.
+The integration owner coordinates one closure; individual departments push their
+own assigned branches and never include another contributor's unrelated work.
+
+1. Read the WORK brief, inspect current branch, upstream, diff and worktree.
+   Use the assigned department/integration branch; create a development branch
+   when needed. Preserve collaborators' commits and local changes.
+2. Finish applicable checks and independent/security review for the intended
+   scope. Log observed results, unresolved capability gates and source identity.
+   Review the final commit; metadata-only follow-ups need scoped rechecking.
+3. Commit intended source, contracts and MD evidence. Exclude secrets, toolchain
+   caches and ignored binaries. Push to the intended origin development branch
+   (`git push -u origin <branch>` for its first push, then the verified upstream).
+4. Verify with `git ls-remote --heads origin refs/heads/<branch>` that the remote
+   SHA equals the intended local commit. Record branch, commit, push exit code,
+   remote SHA/check outcome and remaining blockers in the journal/handoff.
+5. Report closure only after successful push and remote verification. On auth,
+   network, rejected/non-fast-forward or protection errors, keep closure pending,
+   record the concrete error, preserve local commits and resolve safely. Never
+   force-push or overwrite peer work to manufacture success.
+
+This standing authorization covers development-source synchronization, with no
+automatic default-branch merge or release. A bounded sprint can close while
+explicitly deferred device/privacy capabilities remain incomplete; it cannot
+claim their acceptance. The check runner does not execute this Git procedure;
+the responsible agent must perform and log it.
 
 The department hands over acceptance-to-evidence links, source identity, changed
 paths/contracts, exact commands and outcomes, artifact hashes, blockers and the

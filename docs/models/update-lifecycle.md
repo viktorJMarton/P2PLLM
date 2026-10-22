@@ -1,5 +1,9 @@
 # Model and learning update lifecycle
 
+Status: planned contract; model activation is not implemented by WORK-0010's
+SQLite-only diagnostic ledger. Filesystem+DB crash-recovery evidence remains a
+separate acceptance gate.
+
 Base model/tokenizer immutable by revision. Personal adapters/knowledge stay local by default; shared updates require enrollment under an approved privacy profile and retention policy. Do not automatically learn from arbitrary peer output or private chat.
 
 Composition ID binds base revision, tokenizer hash, quantization/export config, adapter revisions and runtime compatibility. A session pins the composition. Different peers may keep different versions, but cannot combine incompatible states in one execution. No mandatory global synchronized model or blockchain consensus.

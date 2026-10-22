@@ -1,6 +1,9 @@
 # WORK-0009 — Reproducible department checks and evidence packages
 
 Status: verified
+Verification scope: original local WORK-0009 implementation and review at341be68.
+Later policy/tooling edits are tracked and rechecked under WORK-0012/0013;
+this historical status does not preapprove future changes or invent meetings.
 Requirements: REQ-009, REQ-007
 Roles: orchestrator, testing, pr-review
 Dependencies: WORK-0001 (existing scaffold only; Android completion not claimed)
@@ -29,3 +32,11 @@ does not provision toolchains/SDKs, sign, upload, merge or install a background
 service. Build tools may restore pinned dependencies/Gradle distributions on a
 provisioned host; this workflow is not an offline-build guarantee.
 Each department receives a separate WORK/branch/worktree before product changes.
+
+## Coordination and autonomous continuation
+Use the [agent meeting contract](../../docs/operations/agent-meetings.md): your
+own MD journal, at most 3 iterations between peer-journal meetings, at least 5
+concrete questions with respondents and real response references. Routine
+reversible implementation/research within this brief is autonomous. Missing
+hardware/review blocks only acceptance and dependent capabilities; keep useful
+independent work moving. Do not infer approval from unavailable peers.

@@ -1,6 +1,6 @@
 {
   "status": "passed",
-  "checked_at_utc": "2026-10-22T09:52:59.497573+00:00",
+  "checked_at_utc": "2026-10-22T17:43:42.240786+00:00",
   "checks": [
     {
       "check": "JSON parses: MANIFEST.json",
@@ -12,6 +12,10 @@
     },
     {
       "check": "JSON parses: config\\check-profiles.json",
+      "passed": true
+    },
+    {
+      "check": "JSON parses: config\\development-windows.json",
       "passed": true
     },
     {
@@ -75,7 +79,31 @@
       "passed": true
     },
     {
+      "check": "relative link BUILD.md -> docs/operations/development-environment.md",
+      "passed": true
+    },
+    {
       "check": "relative link BUILD.md -> docs/operations/department-workflow.md",
+      "passed": true
+    },
+    {
+      "check": "relative link BUILD.md -> docs/operations/local-diagnostics.md",
+      "passed": true
+    },
+    {
+      "check": "relative link GOVERNANCE.md -> docs/operations/agent-meetings.md",
+      "passed": true
+    },
+    {
+      "check": "relative link PORTING.md -> docs/operations/development-environment.md",
+      "passed": true
+    },
+    {
+      "check": "relative link PORTING.md -> agents/MEMORY.md",
+      "passed": true
+    },
+    {
+      "check": "relative link PORTING.md -> docs/operations/agent-meetings.md",
       "passed": true
     },
     {
@@ -107,11 +135,195 @@
       "passed": true
     },
     {
+      "check": "relative link README.md -> docs/operations/development-environment.md",
+      "passed": true
+    },
+    {
+      "check": "relative link README.md -> work/INDEX.md",
+      "passed": true
+    },
+    {
+      "check": "relative link README.md -> agents/PERSONAS.md",
+      "passed": true
+    },
+    {
+      "check": "relative link README.md -> agents/MEMORY.md",
+      "passed": true
+    },
+    {
+      "check": "relative link README.md -> docs/operations/agent-meetings.md",
+      "passed": true
+    },
+    {
       "check": "relative link README.md -> GOVERNANCE.md",
       "passed": true
     },
     {
       "check": "relative link README.md -> docs/design-provenance.md",
+      "passed": true
+    },
+    {
+      "check": "relative link agents\\MEMORY.md -> ../docs/operations/agent-meetings.md",
+      "passed": true
+    },
+    {
+      "check": "relative link agents\\MEMORY.md -> ../work/WORK-0011-android-local-shell/evidence.md",
+      "passed": true
+    },
+    {
+      "check": "relative link agents\\MEMORY.md -> ../work/WORK-0012-development-environment/brief.md",
+      "passed": true
+    },
+    {
+      "check": "relative link agents\\MEMORY.md -> ../work/WORK-0009-department-workflows/journal.md",
+      "passed": true
+    },
+    {
+      "check": "relative link agents\\MEMORY.md -> ../work/WORK-0009-department-workflows/review.md",
+      "passed": true
+    },
+    {
+      "check": "relative link agents\\MEMORY.md -> ../work/WORK-0009-department-workflows/evidence.md",
+      "passed": true
+    },
+    {
+      "check": "relative link agents\\MEMORY.md -> ../work/WORK-0010-local-task-storage/evidence.md",
+      "passed": true
+    },
+    {
+      "check": "relative link agents\\MEMORY.md -> ../work/WORK-0011-android-local-shell/evidence.md",
+      "passed": true
+    },
+    {
+      "check": "relative link agents\\PERSONAS.md -> MEMORY.md",
+      "passed": true
+    },
+    {
+      "check": "relative link agents\\PERSONAS.md -> ../docs/operations/agent-meetings.md",
+      "passed": true
+    },
+    {
+      "check": "relative link agents\\android.md -> MEMORY.md",
+      "passed": true
+    },
+    {
+      "check": "relative link agents\\android.md -> ../docs/operations/agent-meetings.md",
+      "passed": true
+    },
+    {
+      "check": "relative link agents\\architecture.md -> MEMORY.md",
+      "passed": true
+    },
+    {
+      "check": "relative link agents\\architecture.md -> ../docs/operations/agent-meetings.md",
+      "passed": true
+    },
+    {
+      "check": "relative link agents\\brainstorming.md -> MEMORY.md",
+      "passed": true
+    },
+    {
+      "check": "relative link agents\\brainstorming.md -> ../docs/operations/agent-meetings.md",
+      "passed": true
+    },
+    {
+      "check": "relative link agents\\desktop-node.md -> MEMORY.md",
+      "passed": true
+    },
+    {
+      "check": "relative link agents\\desktop-node.md -> ../docs/operations/agent-meetings.md",
+      "passed": true
+    },
+    {
+      "check": "relative link agents\\learning.md -> MEMORY.md",
+      "passed": true
+    },
+    {
+      "check": "relative link agents\\learning.md -> ../docs/operations/agent-meetings.md",
+      "passed": true
+    },
+    {
+      "check": "relative link agents\\mathematical-modeling.md -> MEMORY.md",
+      "passed": true
+    },
+    {
+      "check": "relative link agents\\mathematical-modeling.md -> ../docs/operations/agent-meetings.md",
+      "passed": true
+    },
+    {
+      "check": "relative link agents\\orchestrator.md -> MEMORY.md",
+      "passed": true
+    },
+    {
+      "check": "relative link agents\\orchestrator.md -> ../docs/operations/agent-meetings.md",
+      "passed": true
+    },
+    {
+      "check": "relative link agents\\pair-programming.md -> MEMORY.md",
+      "passed": true
+    },
+    {
+      "check": "relative link agents\\pair-programming.md -> ../docs/operations/agent-meetings.md",
+      "passed": true
+    },
+    {
+      "check": "relative link agents\\pr-review.md -> MEMORY.md",
+      "passed": true
+    },
+    {
+      "check": "relative link agents\\pr-review.md -> ../docs/operations/agent-meetings.md",
+      "passed": true
+    },
+    {
+      "check": "relative link agents\\protocol.md -> MEMORY.md",
+      "passed": true
+    },
+    {
+      "check": "relative link agents\\protocol.md -> ../docs/operations/agent-meetings.md",
+      "passed": true
+    },
+    {
+      "check": "relative link agents\\qwen-research-deputy.md -> MEMORY.md",
+      "passed": true
+    },
+    {
+      "check": "relative link agents\\qwen-research-deputy.md -> ../docs/operations/agent-meetings.md",
+      "passed": true
+    },
+    {
+      "check": "relative link agents\\research.md -> MEMORY.md",
+      "passed": true
+    },
+    {
+      "check": "relative link agents\\research.md -> ../docs/operations/agent-meetings.md",
+      "passed": true
+    },
+    {
+      "check": "relative link agents\\security.md -> MEMORY.md",
+      "passed": true
+    },
+    {
+      "check": "relative link agents\\security.md -> ../docs/operations/agent-meetings.md",
+      "passed": true
+    },
+    {
+      "check": "relative link agents\\testing.md -> MEMORY.md",
+      "passed": true
+    },
+    {
+      "check": "relative link agents\\testing.md -> ../docs/operations/agent-meetings.md",
+      "passed": true
+    },
+    {
+      "check": "relative link android\\README.md -> ../docs/operations/development-environment.md",
+      "passed": true
+    },
+    {
+      "check": "relative link crates\\README.md -> ../docs/architecture/overview.md",
+      "passed": true
+    },
+    {
+      "check": "relative link crates\\README.md -> ../work/INDEX.md",
       "passed": true
     },
     {
@@ -151,6 +363,10 @@
       "passed": true
     },
     {
+      "check": "relative link docs\\decisions\\ADR-011-agent-journal-coordination.md -> ../operations/agent-meetings.md",
+      "passed": true
+    },
+    {
       "check": "relative link docs\\decisions\\INDEX.md -> ADR-001-ecosystem-scope.md",
       "passed": true
     },
@@ -187,7 +403,39 @@
       "passed": true
     },
     {
+      "check": "relative link docs\\decisions\\INDEX.md -> ADR-010-local-diagnostic-ledger.md",
+      "passed": true
+    },
+    {
+      "check": "relative link docs\\decisions\\INDEX.md -> ADR-011-agent-journal-coordination.md",
+      "passed": true
+    },
+    {
+      "check": "relative link docs\\operations\\agent-meetings.md -> ../../AGENTS.md",
+      "passed": true
+    },
+    {
+      "check": "relative link docs\\operations\\agent-meetings.md -> ../../templates/agent-journal.md",
+      "passed": true
+    },
+    {
+      "check": "relative link docs\\operations\\agent-meetings.md -> ../../agents/PERSONAS.md",
+      "passed": true
+    },
+    {
+      "check": "relative link docs\\operations\\agent-meetings.md -> ../../agents/MEMORY.md",
+      "passed": true
+    },
+    {
+      "check": "relative link docs\\operations\\ci-review.md -> department-workflow.md#mandatory-sprint-closure-commit-and-github-push",
+      "passed": true
+    },
+    {
       "check": "relative link docs\\operations\\ci-review.md -> department-workflow.md",
+      "passed": true
+    },
+    {
+      "check": "relative link docs\\operations\\ci-review.md -> agent-meetings.md",
       "passed": true
     },
     {
@@ -211,7 +459,63 @@
       "passed": true
     },
     {
+      "check": "relative link docs\\operations\\department-workflow.md -> agent-meetings.md",
+      "passed": true
+    },
+    {
+      "check": "relative link docs\\operations\\department-workflow.md -> ../../agents/MEMORY.md",
+      "passed": true
+    },
+    {
       "check": "relative link docs\\operations\\department-workflow.md -> ../../BUILD.md",
+      "passed": true
+    },
+    {
+      "check": "relative link docs\\operations\\development-environment.md -> ../../config/development-windows.json",
+      "passed": true
+    },
+    {
+      "check": "relative link docs\\operations\\development-environment.md -> department-workflow.md",
+      "passed": true
+    },
+    {
+      "check": "relative link docs\\traceability.md -> operations/agent-meetings.md",
+      "passed": true
+    },
+    {
+      "check": "relative link docs\\traceability.md -> ../templates/agent-journal.md",
+      "passed": true
+    },
+    {
+      "check": "relative link docs\\traceability.md -> ../agents/MEMORY.md",
+      "passed": true
+    },
+    {
+      "check": "relative link templates\\agent-journal.md -> ../docs/operations/agent-meetings.md",
+      "passed": true
+    },
+    {
+      "check": "relative link templates\\agent-journal.md -> ../agents/MEMORY.md",
+      "passed": true
+    },
+    {
+      "check": "relative link templates\\department-handoff.md -> ../docs/operations/agent-meetings.md",
+      "passed": true
+    },
+    {
+      "check": "relative link templates\\handoff.md -> ../docs/operations/agent-meetings.md",
+      "passed": true
+    },
+    {
+      "check": "relative link templates\\pull-request.md -> ../docs/operations/agent-meetings.md",
+      "passed": true
+    },
+    {
+      "check": "relative link templates\\review.md -> ../docs/operations/agent-meetings.md",
+      "passed": true
+    },
+    {
+      "check": "relative link templates\\upstream-report.md -> ../docs/operations/agent-meetings.md",
       "passed": true
     },
     {
@@ -251,7 +555,639 @@
       "passed": true
     },
     {
+      "check": "relative link work\\INDEX.md -> WORK-0010-local-task-storage/brief.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\INDEX.md -> WORK-0011-android-local-shell/brief.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\INDEX.md -> WORK-0012-development-environment/brief.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\INDEX.md -> WORK-0013-agent-flow-audit/brief.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\PACKAGE-BUILD.md -> INDEX.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0001-project-bootstrap\\brief.md -> ../../docs/operations/agent-meetings.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0002-model-accelerator-baseline\\brief.md -> ../../docs/operations/agent-meetings.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0003-privacy-primitive-selection\\brief.md -> ../../docs/operations/agent-meetings.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0004-session-conformance\\brief.md -> ../../docs/operations/agent-meetings.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0005-private-shared-compute\\brief.md -> ../../docs/operations/agent-meetings.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0006-private-shared-learning\\brief.md -> ../../docs/operations/agent-meetings.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0007-android-operator-mode\\brief.md -> ../../docs/operations/agent-meetings.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0008-release-integration\\brief.md -> ../../docs/operations/agent-meetings.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0009-department-workflows\\brief.md -> ../../docs/operations/agent-meetings.md",
+      "passed": true
+    },
+    {
       "check": "relative link work\\WORK-0009-department-workflows\\evidence.md -> review.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0010-local-task-storage\\brief.md -> ../../docs/operations/agent-meetings.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0011-android-local-shell\\brief.md -> ../../docs/operations/agent-meetings.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0011-android-local-shell\\handoff-ui.md -> brief.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0012-development-environment\\brief.md -> ../../docs/operations/agent-meetings.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\brief.md -> ../../docs/operations/agent-meetings.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\evidence.md -> markdown-audit.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../AGENTS.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../BUILD.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../GOVERNANCE.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../PORTING.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../PRODUCT.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../PROJECT-OVERVIEW-HU.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../README.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../TECHNOLOGY.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../agents/MEMORY.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../agents/PERSONAS.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../agents/android.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../agents/architecture.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../agents/brainstorming.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../agents/desktop-node.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../agents/learning.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../agents/mathematical-modeling.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../agents/orchestrator.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../agents/pair-programming.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../agents/pr-review.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../agents/protocol.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../agents/qwen-research-deputy.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../agents/research.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../agents/security.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../agents/testing.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../android/README.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../crates/README.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../docs/architecture/diagrams/README.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../docs/architecture/interfaces.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../docs/architecture/overview.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../docs/architecture/scheduling.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../docs/decisions/ADR-001-ecosystem-scope.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../docs/decisions/ADR-002-pytorch-executorch.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../docs/decisions/ADR-003-privacy-gate.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../docs/decisions/ADR-004-open-groups.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../docs/decisions/ADR-005-versioned-learning.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../docs/decisions/ADR-006-shared-core.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../docs/decisions/ADR-007-traceable-agents.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../docs/decisions/ADR-008-accelerators.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../docs/decisions/ADR-009-drive-artifacts.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../docs/decisions/ADR-010-local-diagnostic-ledger.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../docs/decisions/ADR-011-agent-journal-coordination.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../docs/decisions/INDEX.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../docs/design-provenance.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../docs/glossary.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../docs/models/qwen-baseline.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../docs/models/update-lifecycle.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../docs/operations/agent-meetings.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../docs/operations/ci-review.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../docs/operations/department-workflow.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../docs/operations/development-environment.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../docs/operations/drive-workflow.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../docs/operations/local-diagnostics.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../docs/research/sources.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../docs/research/upstream-watch.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../docs/rfcs/RFC-0001-session.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../docs/rfcs/RFC-0002-compute.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../docs/rfcs/RFC-0003-learning.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../docs/security/privacy-profile-registry.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../docs/security/threat-model.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../docs/traceability.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../learning/README.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../native/README.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../privacy-backends/README.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../research/M1-private-compute.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../research/M2-private-learning.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../research/mathematical-model.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../templates/agent-journal.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../templates/department-handoff.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../templates/handoff.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../templates/pull-request.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../templates/review.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../templates/upstream-report.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../tests/conformance-matrix.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../tools/drive/README.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../work/INDEX.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../work/PACKAGE-BUILD.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../work/WORK-0001-project-bootstrap/brief.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../work/WORK-0001-project-bootstrap/evidence.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../work/WORK-0001-project-bootstrap/journal.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../work/WORK-0002-model-accelerator-baseline/brief.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../work/WORK-0002-model-accelerator-baseline/evidence.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../work/WORK-0002-model-accelerator-baseline/journal.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../work/WORK-0003-privacy-primitive-selection/brief.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../work/WORK-0003-privacy-primitive-selection/evidence.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../work/WORK-0003-privacy-primitive-selection/journal.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../work/WORK-0004-session-conformance/brief.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../work/WORK-0004-session-conformance/evidence.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../work/WORK-0004-session-conformance/journal.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../work/WORK-0005-private-shared-compute/brief.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../work/WORK-0005-private-shared-compute/evidence.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../work/WORK-0005-private-shared-compute/journal.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../work/WORK-0006-private-shared-learning/brief.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../work/WORK-0006-private-shared-learning/evidence.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../work/WORK-0006-private-shared-learning/journal.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../work/WORK-0007-android-operator-mode/brief.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../work/WORK-0007-android-operator-mode/evidence.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../work/WORK-0007-android-operator-mode/journal.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../work/WORK-0008-release-integration/brief.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../work/WORK-0008-release-integration/evidence.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../work/WORK-0008-release-integration/journal.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../work/WORK-0009-department-workflows/brief.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../work/WORK-0009-department-workflows/evidence.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../work/WORK-0009-department-workflows/handoff-docs.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../work/WORK-0009-department-workflows/handoff-runner.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../work/WORK-0009-department-workflows/journal.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../work/WORK-0009-department-workflows/review.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../work/WORK-0010-local-task-storage/brief.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../work/WORK-0010-local-task-storage/evidence.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../work/WORK-0010-local-task-storage/handoff-storage.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../work/WORK-0010-local-task-storage/journal.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../work/WORK-0010-local-task-storage/review.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../work/WORK-0011-android-local-shell/brief.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../work/WORK-0011-android-local-shell/evidence.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../work/WORK-0011-android-local-shell/handoff-ui.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../work/WORK-0011-android-local-shell/journal.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../work/WORK-0011-android-local-shell/review.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../work/WORK-0012-development-environment/brief.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../work/WORK-0012-development-environment/evidence.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../work/WORK-0012-development-environment/journal.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../work/WORK-0013-agent-flow-audit/brief.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../work/WORK-0013-agent-flow-audit/evidence.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../work/WORK-0013-agent-flow-audit/journal.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../work/WORK-0013-agent-flow-audit/markdown-audit.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../work/WORK-0013-agent-flow-audit/review.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../work/agent-journals/android-shell.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../work/agent-journals/primary.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../work/agent-journals/product-review.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0013-agent-flow-audit\\markdown-audit.md -> ../../work/agent-journals/sqlite-layer.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\agent-journals\\android-shell.md -> ../../docs/operations/agent-meetings.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\agent-journals\\android-shell.md -> ../../agents/MEMORY.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\agent-journals\\android-shell.md -> ../WORK-0011-android-local-shell/handoff-ui.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\agent-journals\\android-shell.md -> sqlite-layer.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\agent-journals\\sqlite-layer.md -> ../../docs/operations/agent-meetings.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\agent-journals\\sqlite-layer.md -> ../../agents/MEMORY.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\agent-journals\\sqlite-layer.md -> ../WORK-0010-local-task-storage/evidence.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\agent-journals\\sqlite-layer.md -> ../WORK-0010-local-task-storage/handoff-storage.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\agent-journals\\sqlite-layer.md -> ../../agents/desktop-node.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\agent-journals\\sqlite-layer.md -> ../../agents/PERSONAS.md",
       "passed": true
     },
     {
@@ -323,11 +1259,11 @@
       "passed": true
     },
     {
-      "check": "dependency resolves WORK-0001",
+      "check": "dependency resolves WORK-0002",
       "passed": true
     },
     {
-      "check": "dependency resolves WORK-0002",
+      "check": "dependency resolves WORK-0001",
       "passed": true
     },
     {
@@ -335,11 +1271,11 @@
       "passed": true
     },
     {
-      "check": "dependency resolves WORK-0003",
+      "check": "dependency resolves WORK-0001",
       "passed": true
     },
     {
-      "check": "dependency resolves WORK-0001",
+      "check": "dependency resolves WORK-0003",
       "passed": true
     },
     {
@@ -347,11 +1283,11 @@
       "passed": true
     },
     {
-      "check": "dependency resolves WORK-0001",
+      "check": "dependency resolves WORK-0004",
       "passed": true
     },
     {
-      "check": "dependency resolves WORK-0004",
+      "check": "dependency resolves WORK-0001",
       "passed": true
     },
     {
@@ -359,11 +1295,15 @@
       "passed": true
     },
     {
+      "check": "dependency resolves WORK-0004",
+      "passed": true
+    },
+    {
       "check": "dependency resolves WORK-0003",
       "passed": true
     },
     {
-      "check": "dependency resolves WORK-0004",
+      "check": "dependency resolves WORK-0002",
       "passed": true
     },
     {
@@ -371,19 +1311,7 @@
       "passed": true
     },
     {
-      "check": "dependency resolves WORK-0002",
-      "passed": true
-    },
-    {
       "check": "valid work status: WORK-0006-private-shared-learning",
-      "passed": true
-    },
-    {
-      "check": "dependency resolves WORK-0003",
-      "passed": true
-    },
-    {
-      "check": "dependency resolves WORK-0006",
       "passed": true
     },
     {
@@ -391,11 +1319,23 @@
       "passed": true
     },
     {
+      "check": "dependency resolves WORK-0006",
+      "passed": true
+    },
+    {
       "check": "dependency resolves WORK-0002",
       "passed": true
     },
     {
+      "check": "dependency resolves WORK-0003",
+      "passed": true
+    },
+    {
       "check": "valid work status: WORK-0007-android-operator-mode",
+      "passed": true
+    },
+    {
+      "check": "dependency resolves WORK-0007",
       "passed": true
     },
     {
@@ -407,11 +1347,11 @@
       "passed": true
     },
     {
-      "check": "dependency resolves WORK-0007",
+      "check": "valid work status: WORK-0008-release-integration",
       "passed": true
     },
     {
-      "check": "valid work status: WORK-0008-release-integration",
+      "check": "dependency resolves WORK-0007",
       "passed": true
     },
     {
@@ -427,15 +1367,83 @@
       "passed": true
     },
     {
-      "check": "dependency resolves WORK-0007",
-      "passed": true
-    },
-    {
       "check": "valid work status: WORK-0009-department-workflows",
       "passed": true
     },
     {
       "check": "dependency resolves WORK-0001",
+      "passed": true
+    },
+    {
+      "check": "dependency resolves WORK-0012",
+      "passed": true
+    },
+    {
+      "check": "dependency resolves WORK-0009",
+      "passed": true
+    },
+    {
+      "check": "valid work status: WORK-0010-local-task-storage",
+      "passed": true
+    },
+    {
+      "check": "dependency resolves WORK-0001",
+      "passed": true
+    },
+    {
+      "check": "dependency resolves WORK-0009",
+      "passed": true
+    },
+    {
+      "check": "dependency resolves WORK-0010",
+      "passed": true
+    },
+    {
+      "check": "valid work status: WORK-0011-android-local-shell",
+      "passed": true
+    },
+    {
+      "check": "dependency resolves WORK-0011",
+      "passed": true
+    },
+    {
+      "check": "dependency resolves WORK-0001",
+      "passed": true
+    },
+    {
+      "check": "dependency resolves WORK-0009",
+      "passed": true
+    },
+    {
+      "check": "valid work status: WORK-0012-development-environment",
+      "passed": true
+    },
+    {
+      "check": "dependency resolves WORK-0011",
+      "passed": true
+    },
+    {
+      "check": "dependency resolves WORK-0012",
+      "passed": true
+    },
+    {
+      "check": "dependency resolves WORK-0010",
+      "passed": true
+    },
+    {
+      "check": "dependency resolves WORK-0009",
+      "passed": true
+    },
+    {
+      "check": "valid work status: WORK-0013-agent-flow-audit",
+      "passed": true
+    },
+    {
+      "check": "dependency resolves WORK-0013",
+      "passed": true
+    },
+    {
+      "check": "dependency resolves WORK-0010",
       "passed": true
     },
     {
@@ -731,6 +1739,14 @@
       "passed": true
     },
     {
+      "check": "manifest agents/MEMORY.md",
+      "passed": true
+    },
+    {
+      "check": "manifest agents/PERSONAS.md",
+      "passed": true
+    },
+    {
       "check": "manifest agents/android.md",
       "passed": true
     },
@@ -807,6 +1823,10 @@
       "passed": true
     },
     {
+      "check": "manifest android/app/src/main/java/org/p2pai/app/OperatorShell.kt",
+      "passed": true
+    },
+    {
       "check": "manifest android/app/src/main/java/uniffi/p2p_android_bridge/p2p_android_bridge.kt",
       "passed": true
     },
@@ -843,6 +1863,10 @@
       "passed": true
     },
     {
+      "check": "manifest config/development-windows.json",
+      "passed": true
+    },
+    {
       "check": "manifest config/node.example.toml",
       "passed": true
     },
@@ -867,7 +1891,19 @@
       "passed": true
     },
     {
+      "check": "manifest crates/node-cli/src/diagnostics.rs",
+      "passed": true
+    },
+    {
+      "check": "manifest crates/node-cli/src/lease.rs",
+      "passed": true
+    },
+    {
       "check": "manifest crates/node-cli/src/main.rs",
+      "passed": true
+    },
+    {
+      "check": "manifest crates/node-cli/tests/cli.rs",
       "passed": true
     },
     {
@@ -876,6 +1912,18 @@
     },
     {
       "check": "manifest crates/node-core/src/lib.rs",
+      "passed": true
+    },
+    {
+      "check": "manifest crates/node-core/src/tasks.rs",
+      "passed": true
+    },
+    {
+      "check": "manifest crates/storage-sqlite/Cargo.toml",
+      "passed": true
+    },
+    {
+      "check": "manifest crates/storage-sqlite/src/lib.rs",
       "passed": true
     },
     {
@@ -947,6 +1995,14 @@
       "passed": true
     },
     {
+      "check": "manifest docs/decisions/ADR-010-local-diagnostic-ledger.md",
+      "passed": true
+    },
+    {
+      "check": "manifest docs/decisions/ADR-011-agent-journal-coordination.md",
+      "passed": true
+    },
+    {
       "check": "manifest docs/decisions/INDEX.md",
       "passed": true
     },
@@ -967,6 +2023,10 @@
       "passed": true
     },
     {
+      "check": "manifest docs/operations/agent-meetings.md",
+      "passed": true
+    },
+    {
       "check": "manifest docs/operations/ci-review.md",
       "passed": true
     },
@@ -975,7 +2035,15 @@
       "passed": true
     },
     {
+      "check": "manifest docs/operations/development-environment.md",
+      "passed": true
+    },
+    {
       "check": "manifest docs/operations/drive-workflow.md",
+      "passed": true
+    },
+    {
+      "check": "manifest docs/operations/local-diagnostics.md",
       "passed": true
     },
     {
@@ -1055,6 +2123,10 @@
       "passed": true
     },
     {
+      "check": "manifest templates/agent-journal.md",
+      "passed": true
+    },
+    {
       "check": "manifest templates/department-handoff.md",
       "passed": true
     },
@@ -1079,6 +2151,14 @@
       "passed": true
     },
     {
+      "check": "manifest tests/test_agent_flow.py",
+      "passed": true
+    },
+    {
+      "check": "manifest tests/test_dev_env.py",
+      "passed": true
+    },
+    {
       "check": "manifest tests/test_run_checks.py",
       "passed": true
     },
@@ -1088,6 +2168,14 @@
     },
     {
       "check": "manifest tools/build-android.sh",
+      "passed": true
+    },
+    {
+      "check": "manifest tools/build_android.py",
+      "passed": true
+    },
+    {
+      "check": "manifest tools/dev_env.py",
       "passed": true
     },
     {
@@ -1108,6 +2196,10 @@
     },
     {
       "check": "manifest tools/update_manifest.py",
+      "passed": true
+    },
+    {
+      "check": "manifest tools/validate_agent_flow.py",
       "passed": true
     },
     {
@@ -1272,6 +2364,94 @@
     },
     {
       "check": "manifest work/WORK-0009-department-workflows/review.md",
+      "passed": true
+    },
+    {
+      "check": "manifest work/WORK-0010-local-task-storage/brief.md",
+      "passed": true
+    },
+    {
+      "check": "manifest work/WORK-0010-local-task-storage/evidence.md",
+      "passed": true
+    },
+    {
+      "check": "manifest work/WORK-0010-local-task-storage/handoff-storage.md",
+      "passed": true
+    },
+    {
+      "check": "manifest work/WORK-0010-local-task-storage/journal.md",
+      "passed": true
+    },
+    {
+      "check": "manifest work/WORK-0010-local-task-storage/review.md",
+      "passed": true
+    },
+    {
+      "check": "manifest work/WORK-0011-android-local-shell/brief.md",
+      "passed": true
+    },
+    {
+      "check": "manifest work/WORK-0011-android-local-shell/evidence.md",
+      "passed": true
+    },
+    {
+      "check": "manifest work/WORK-0011-android-local-shell/handoff-ui.md",
+      "passed": true
+    },
+    {
+      "check": "manifest work/WORK-0011-android-local-shell/journal.md",
+      "passed": true
+    },
+    {
+      "check": "manifest work/WORK-0011-android-local-shell/review.md",
+      "passed": true
+    },
+    {
+      "check": "manifest work/WORK-0012-development-environment/brief.md",
+      "passed": true
+    },
+    {
+      "check": "manifest work/WORK-0012-development-environment/evidence.md",
+      "passed": true
+    },
+    {
+      "check": "manifest work/WORK-0012-development-environment/journal.md",
+      "passed": true
+    },
+    {
+      "check": "manifest work/WORK-0013-agent-flow-audit/brief.md",
+      "passed": true
+    },
+    {
+      "check": "manifest work/WORK-0013-agent-flow-audit/evidence.md",
+      "passed": true
+    },
+    {
+      "check": "manifest work/WORK-0013-agent-flow-audit/journal.md",
+      "passed": true
+    },
+    {
+      "check": "manifest work/WORK-0013-agent-flow-audit/markdown-audit.md",
+      "passed": true
+    },
+    {
+      "check": "manifest work/WORK-0013-agent-flow-audit/review.md",
+      "passed": true
+    },
+    {
+      "check": "manifest work/agent-journals/android-shell.md",
+      "passed": true
+    },
+    {
+      "check": "manifest work/agent-journals/primary.md",
+      "passed": true
+    },
+    {
+      "check": "manifest work/agent-journals/product-review.md",
+      "passed": true
+    },
+    {
+      "check": "manifest work/agent-journals/sqlite-layer.md",
       "passed": true
     },
     {

@@ -1,5 +1,11 @@
 # Provenance and reconciliation
 
+This file records the original design baseline. Current implementation status is
+in WORK evidence; historical unknowns below are not a substitute for that state.
+The owner added durable role personas, project memory and3-iteration/5-question
+journal meetings on2026-10-22; see ADR-011 and WORK-0013. SDK license approval
+in this session is scoped in GOVERNANCE.md/WORK-0012, not inferred from baseline.
+
 Source: Hungarian design conversation dated 2026-10-17 Europe/Budapest. User is project owner. No conversation permalink supplied. Initial Drive folder: https://drive.google.com/drive/folders/1WJOZ6KhFsSS7ZvLpR8HGO3QVcwSbrypb . Its original NFT title reflects the starting topic, not a blockchain requirement.
 
 ## Accepted owner decisions

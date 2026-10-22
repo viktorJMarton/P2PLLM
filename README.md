@@ -2,7 +2,12 @@
 
 Open-source, decentralized cooperative AI: shared inference AND shared learning, with privacy as an MVP requirement. Android is the first mobile node; a desktop CLI is the first development partner. The protocol remains implementation-independent.
 
-**Package status: specification and development handoff, not a running AI ecosystem.** No benchmark, private Qwen execution, native Android build, or security audit has been completed. The privacy backend and concrete collusion bound remain release blockers.
+**Status: development scaffold with a local diagnostic ledger and Android
+operator shell; no running cooperative AI ecosystem.** Host Rust tests, Kotlin
+compilation and an ARM64 debug APK build have observed Windows results in
+WORK-0010/0012. Phone runtime behavior, model benchmarks, private Qwen execution
+and qualified privacy review remain unverified. The privacy backend and
+collusion assumptions remain release blockers.
 
 ## Start here
 1. [Project definition](PRODUCT.md)
@@ -13,7 +18,11 @@ Open-source, decentralized cooperative AI: shared inference AND shared learning,
 6. [Privacy requirements](docs/security/threat-model.md)
 7. [Validation and build status](BUILD.md)
 
-Run `python3 tools/validate_package.py` to validate this handoff package. This does not build or validate the future product. Agent development entry: `work/WORK-0001-project-bootstrap/brief.md`.
+Use [environment setup](docs/operations/development-environment.md), the
+[work queue](work/INDEX.md) and the selected brief for actual development.
+`python tools/validate_package.py` checks source/docs, not runtime behavior.
+Agents read [personas](agents/PERSONAS.md), [memory](agents/MEMORY.md) and
+[journal meeting rules](docs/operations/agent-meetings.md) before starting.
 
 ## Deliverables
 Android app, desktop node CLI, protocol specification, backend interfaces, conformance suite, independent test peer, private cooperative computation and learning demonstrations, and reproducible evidence. Public release requires all privacy gates.
