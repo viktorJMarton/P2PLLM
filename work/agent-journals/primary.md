@@ -289,3 +289,281 @@ Actual responses to reviewer's meeting6 questions (read that journal now):
 
 Next: metadata-only commit/push and final remote SHA verification. This is
 closure bookkeeping, no new implementation scope. Next meeting due by iteration8.
+
+## Iteration 8 — Phone sprint scope and prerequisite observation
+
+WORK-0002/0003, run-20261022-phone-baseline-01, baselineba6b116. Prior metadata
+push and ls-remote matched ba6b116; previous delivery worktree was clean.
+Owner accepted WORK0002-first capacity, actual minimum metrics/repetitions and
+privacy preregistration distinction. New branch work/WORK-0002-phone-baseline.
+Owner changed target Honor400Pro to SamsungGalaxyA72; exact device properties
+unknown until connection. Platform-Tools license extension explicitly approved.
+Pinned/installed37.0.1 from Google metadata, SHA1/size and SHA256 verified;
+adbversion/device-list exit0, zero connected devices, no serials logged.
+See WORK0002journal/sprint-plan; no model/phone or privacy result claimed.
+
+Delegation: android-shell model pins/ExecuTorch source research; sqlite-layer
+security persona privacy experiment preregistration; product-review independent
+measurement/collector review. Ownership separate, no integration scope now.
+Reviewer actual5questions received: use process HWM vs sampledPSS distinction;
+fresh process not coldcache; TTFT excludes load; device serial excluded; backend
+requires placement proof. Root adopts these constraints for collector design.
+
+## Meeting after iteration 8
+
+Read current peer journals including prior completed work and final review;
+new sprint findings also arrived as actual messages and will be journalled by
+their owners. Canonical prefixes read (not assertions of future appended text):
+- Read: work/agent-journals/android-shell.md | bytes: 18195 | sha256: 730bd6cd356c039a017316c272d5f6879ea9edc8dc468d1c473e44bed6659a7d
+- Read: work/agent-journals/sqlite-layer.md | bytes: 17478 | sha256: 03870a876079c2a4db8e1ceb3782279cb5ce4487458f516a66fc8b7871723163
+- Read: work/agent-journals/product-review.md | bytes: 20611 | sha256: daba9f69436e211e6bf76bc02002920aa4c3890dd31f7e2d400ce60ee541f948
+
+| Question ID | Logged change / WORK | Question and proposed next action | Respondent | Status / actual answer reference |
+| --- | --- | --- | --- | --- |
+| PHONE-Q1 | WORK-0002 runner metrics research | Which pinned observer fields define load/TTFT/decode and what does generated_tokens include? Bind parser to source. | android-shell | open; actual CLI source reply received, exact count semantics to confirm |
+| PHONE-Q2 | WORK-0002 memory provenance review | Can kernel waited-child high-water RSS satisfy peak metric while sampled PSS is labelled separately? Review native instrumentation if needed. | product-review | open; risklist distinguishes metrics |
+| PHONE-Q3 | WORK-0002 backend proof | What runtime/export evidence establishes actual CPU/delegation coverage rather than requested backend? Keep unverified data incomplete. | android-shell and product-review | open |
+| PHONE-Q4 | WORK-0003 preregistered secure operation | Does the plan distinguish public-weight Qwen projection from secret-weight stress test and count owner correction/total cost? | sqlite-layer | open; actual research message proposed this separation |
+| PHONE-Q5 | WORK-0002 device/export priority | What supported export/build path can produce a pinned0.6B Android runner without silently upgrading the accepted stack? State blockers. | android-shell | open |
+
+Independent collector/tooling may proceed; actual backend/export/model-equivalence
+acceptance waits for concrete evidence. No silence or plan is a privacy result.
+Next meeting after at most iteration11, before12. Routine question replies may
+append without manufacturing extra implementation iterations.
+
+## Iteration 9 — Phone collector and kernel RSS launcher
+
+WORK-0002/run-20261022-phone-baseline-01, uncommitted onba6b116. Implemented
+tools/phone_benchmark.py, tools/android/bench_exec.c, tests/test_phone_benchmark.py
+and docs/operations/phone-benchmark.md. Collector uses allowlisted numeric
+PyTorchObserver fields, versioned recipe/artifact hashes, fresh repeated child
+processes, no raw prompt/output/ADBserial persistence, explicit incomplete
+backend acceptance. C launcher wait4 HWM/monotonic elapsed and ownedgroup timeout.
+Initial10 then11 host tests passed, native compile initially sandbox permission
+denied then elevated NDK27/API26 crosscompile passed. No inference evidence.
+Researcher corrected generated_tokens excludes prefill-first token and upstream
+clock is CLOCK_REALTIME, not monotonic; documentation/metrics preserve those.
+Policy validation passed. Independent reviewer identified cleanup/durability
+and numeric-edge defects; held acceptance for scoped fixes rather than claiming
+success from test counts. No UI integration work displaced model preparation.
+
+## Iteration 10 — Review fixes and actual A72 inventory
+
+Applied reviewer findings: hostfinally child cleanup on CtrlC, native HUP/PIPE
+handling, initialized failure envelope with atomic JSON checkpoints and huge-int
+bound before isfinite.16 targeted host tests passed, including actual host child
+interrupt/output flood/reaping, atomic replacement failure, invalid observer,
+serial suppression and unknown thermal state. These are tooling fixtures only.
+Native helper rebuild passed all warnings-as-errors, SHA256
+63b3df8b508321e3c611842672b0222547f117bc0f18fe5d5558aa886a5bd3be.
+
+Owner physically connected/enabled debugging. Actual ADBinventory device-probe003
+observed SM-A725F, Android14/API34, a72q/QTI SM7125, ARM64. MemTotal initially
+null from CRLF parsing; corrected regex plus regression, probe004 observed
+5625888KiB OS-visible RAM, battery32.5C/USBpowered/thermalstatus0. This is not
+physical marketed RAM nor model memory. Earlier no-device/offline reports kept.
+dev_env install --accept-sdk-license exited0 for new approved5package scope;
+no repeat authorization requested. Probe captures no permanent device serial.
+
+Reviewer and researcher responses adopted: no coldcache claim; HWM is waited
+child highwater, not total process-tree/GPUmemory; requested CPU backend stays
+unverified until export map+runtime placement evidence; exactTTFTbeforedecode
+and63loopcountvs64cap semantics. Export path safe-loader blocker remains;
+researcher implementing reviewed safetensors-only adapter, no pickle fallback.
+
+Actual answers to peer questions read in their journals:
+- MODEL-Q2: metric payload/doc now preserve decode-loop count and CLOCK_REALTIME;
+  launcher wall separately monotonic. Add64cap/63count fixture in next check.
+- MODEL-Q3: NDK27crosscompile of our helper observed; that is not ExecuTorch build
+  compatibility. NoClangCL/CMake/Ninja/exportdependency compatibility yet claimed.
+- MODEL-Q5: backend promotion needs artifact-bound graph/delegate map and runtime
+  placement trace/coverage, independently reviewed; unverified staysincomplete.
+- SEC-Q1: public-W primary, secret-W separatestress variant; nooffload benefit
+  until measured total owner+peer+network cost versus local projection.
+- SEC-Q4:120s/1GiB/256MiB+5sabort are accepted proposed synthetic lab stop limits,
+  not product promises; commit exact preregistration before secure trial.
+- SEC-Q5: currentcollector run_kind device_inventory/phone_inference only; no
+  oracle/simulation can become either. Native helper validation separately
+  tagged native_helper_validation_not_model_benchmark. Privacycollector later
+  must use its own realbackend/oracle taxonomy; nologprompts/tensors/shares/keys.
+
+## Iteration 11 — Physical-device helper validation
+
+WORK-0002/helper-device-001 on actual SM-A725F Android14. Pushed only our compiled
+helper to /data/local/tmp/p2pllm-benchmark/bench_exec, chmod700, deviceSHA256
+matched local63b3df...d3be. Executed /system/bin/true, ownedchild timeout sleep10
+with1sdeadline, and explicit helperHUP during ownedchild sleep10. All3passed:
+normalexit0/RSS4752KiB; timeoutexit124/wall1042.679ms/RSS4616KiB;
+HUPexit130/wall238.366ms/RSS4724KiB. No unrelated device process killed.
+Evidence .artifacts/phone-benchmark/helper-device-001/report.json, run_kind
+native_helper_validation_not_model_benchmark. This verifies launcher execution
+and timeout/HUP paths, not inference, kernel power-loss, fullUSB-loss cleanup,
+GPU/NPU or privacy. Actualmodel benchmark remains unavailable pending safe export,
+matching runner and backend proof. Independent fix recheck requested.
+Three iterations since meeting8; recording actualpeermeeting beforeiteration12.
+
+## Meeting after iteration 11
+
+Resume2026-10-23. Read current peer journal continuations, including actual
+export-wrapper source delivery and prior collector/security findings. Prior
+review/model agents hit usage limits before final recheck; their earlier source
+findings remain valid but are not final approval. Model agent now resumed and
+recorded iteration7; runtime agent reassigned, response pending.
+- Read: work/agent-journals/android-shell.md | bytes: 29836 | sha256: 7186e70dc8673e61fffbf4c1c8b30b93c3d13f5435c89ce23e0902689eef53ad
+- Read: work/agent-journals/sqlite-layer.md | bytes: 22979 | sha256: b66fa86bedc05954adbc79742434a35e4049cc1d2ebb0668534ebd4008d7347c
+- Read: work/agent-journals/product-review.md | bytes: 26007 | sha256: 3317d5284b6586ff5148270b20e332fb4e503686da95bb39ae4799a7e59914ec
+
+| Question ID | Logged change / WORK | Question and proposed next action | Respondent | Status / actual answer reference |
+| --- | --- | --- | --- | --- |
+| RESUME-Q1 | WORK-0002 collector review fixes | Do host finally cleanup, atomic checkpoints, bounded numerics and native HUP/PIPE fixes resolve the4 reported defects on latest source? Recheck targeted16 tests and helper device evidence. | product-review | open; previous usage limit prevented final confirmation |
+| RESUME-Q2 | WORK-0002 safe export wrapper | Which dependency/worker/patch gap still prevents actual pinned safe export, and can isolated resolution proceed without automatic pickle or model-code loading? | android-shell | open; iteration7 lists source delivery not realexport |
+| RESUME-Q3 | WORK-0014 lifecycle ownership | Can one process-owned Rust runtime safely recover only on first exclusive initialization while Activity recreation reuses it? Agree explicit bridge contract before implementation. | sqlite-layer | open; reassignment sent |
+| RESUME-Q4 | WORK-0014 observable diagnostic | Will stable bounded list/run errors and idempotent request IDs produce a persistent local result without presenting diagnostic success as AI success? Bind tests and UI wording. | sqlite-layer | open |
+| RESUME-Q5 | WORK-0002 priority and WORK-0014 user feedback | Can visible diagnostic integration proceed in parallel while model agent retains model/export priority, with final review/build/device evidence separately required? | android-shell and sqlite-layer | open; explicit owner asks visible progress, no silent priority change |
+
+Actual root responses retained: primary10 answers MODEL-Q2/Q3/Q5 and SEC-Q1/Q4/Q5;
+reviewer8 answered wait4 and preregistration boundaries; model6 clarified clocks,
+counts and missing backend proof. No missing answer relabelled accepted.
+Independent integration planning/provisioning may proceed; shared bridge code
+waits actual runtime/UI contract agreement. Next meeting by iteration14 before15.
+
+## Iteration 12 — Observable Android diagnostic integration
+
+WORK-0014/run-20261023-android-diagnostic-01, uncommitted. Owner requests visible
+function after status-only APK. Runtime owner actually agreed typedrun/list,
+boundedpage/errors and process-owned startup recovery before coding; primary
+accepted samecontract as Kotlinconsumer. Added WORK14brief/contract/journal,
+UI real start/loading/result/history on overview/jobs, off-main app-privateDB,
+saved retry ID, no Activityrecovery and noAIclaim. Primary persona remains
+accountable orchestrator with Androidplatform lens; read Androidrole before UI.
+ExtraUIagent could notstart due hostthreadcap; primary owns Kotlin, not fictional
+agent. Modelresearcher retains WORK2priority, runtime owner separateRustpaths.
+
+Workspaceinitialcompile completed;3 Windowslease expectations failed because
+fs2 contention rawerror wasn't ErrorKindWouldBlock. Runtimeagent independently
+fixed using fs2::lock_contended_error rawcode and reran28testentries/Clippy pass;
+initialfailure retained. Rootgenerated realKotlinbindings fromhostDLL; first
+metadata attempts failed missingcachedtarget libc0.2.191, --metadata-no-deps
+generation succeeded; pinnedAndroidlibc fetched via cargo fetch --locked target.
+KotlincompileDebugKotlin exit0/1m30s, versionCode2/versionName0.2.0. No device
+acceptance: currentprobe20261023-001 blocked, owner asked to reconnect phone.
+
+## Iteration 13 — Independent UI finding repair
+
+Reviewer WORK14 sourceinspection found RecoveryRequired genericretry would loop
+on samependingID withoutprocessrestart. Added explicit process-restart/settings
+guidance, disableStart on requiresRestart, typed Busy/Storage/Invalid/Internal
+messages, terminalpendingID clear after observedhistory and record/page schema1
+checks. Previous resultcleared onnewrun. No direct recovery or fake cancellation.
+Scoped Kotlincompile afterfix exit0/28s. Runtime/bridge generated API unchanged.
+FullnativeARM64 build currentlyrunning; reviewfix recheck requested on actual
+source. PriorWORK2collector4findings now independentlyresolved with16hosttests;
+safeexportdeps60packageclosure resolved but install/export/placementstill gated.
+
+Actual responses to current runtime questions:
+- RUNTIME-Q2: actualDLLmetadata generated LocalDiagnostics/DiagnosticException/
+  unsignedrecords; consumer compiled twice. Allbridge/SQLiteoperations executor,
+  only viewstate updates via mainHandler. Wrapperdestroyqueued after nativework.
+- RUNTIME-Q3: no authorized phone today yet; no new UIrestart/deviceresult claimed.
+  Hostkilltest separate from forthcoming actual app UI start/restart observations.
+- RUNTIME-Q4: list displays boundedpages and nextpage without totalcount/snapshot
+  claim. UI says localdiagnostic, notAI. PendingID survives savedInstanceState and
+  terminalhistory confirmation clears it before another newdiagnostic request.
+Next: sourcefreeze/checks/nativeAPK and review, actualdevice onlyifavailable.
+Twoiterations since meeting11; nextmeeting no later than14 before15.
+
+## Iteration 14 — Native APK and actual Android persistence proof
+
+WORK-0014/ui-smoke-001. Fullandroidbuild exit0: RustARM64/SQLite47.54s,
+assembleDebug22s. APK11277843bytes SHA256
+f1d5de1f3d526361bdd807deaf6436af8953844697831bcc3fe86d77dd44d913.
+Owner reconnected/unlocked A72 and approveddebugging. CurrentSM-A725F/Android14/
+API34/5625888KiBRAM. adbinstall-r0.2.0/code2 success; no uninstall/data clearing.
+FirstUIAdump failed untilscreenwake; wake+compresseddump succeeded. Read only
+ownpackage text; temporaryXML removed. Actualbutton tap produced1newSucceeded/v2
+record and3events in ownapp DB (in-memory inspectiononly), visible success.
+Force-stop onlyorg.p2pai.app, freshstart, same records/events preserved and
+Feladatokhistorysuccess visible. Prior2records preserved, now3. Actualreport
+.artifacts/device/WORK-0014/ui-smoke-001/report.json passed=true.
+Notcovered: AndroidactiveRunningkill/rotationinflight, AI/model/privacy/release.
+
+Modelagent actualreported60hashlockeddependencies installed/pipcheck/closurepass,
+1503300328bytepinned0.6Bsafetensors verified, NOTloaded. Officialwheelmodule
+adapter avoids unnecessaryhostC++build, tests/reviewpending. Agentcapacityerror
+interruptedturn thenresumed; no fictitious progress. WORK2 staysprimary/open.
+
+## Meeting after iteration 14
+
+Read peerjournals through prefixes below; actualsource/build/device result sent
+to responsiblepeers, pending finalrechecks are not presumedaccepted.
+- Read: work/agent-journals/android-shell.md | bytes: 37638 | sha256: 4e17ff18e6cc5801553b0d45ba9b6be436558616414cfaa9ec105abb67a7069e
+- Read: work/agent-journals/sqlite-layer.md | bytes: 30805 | sha256: 8d80f5700dec33226190846cf12cae20f574d44052f20d71d6f2a7dac2c3a168
+- Read: work/agent-journals/product-review.md | bytes: 32589 | sha256: 27181c8f8c9bb72d0c1da68b51804e39e58d30a5a9bfe6e7296e258cc699e3ac
+
+| Question ID | Logged change / WORK | Question and proposed next action | Respondent | Status / actual answer reference |
+| --- | --- | --- | --- | --- |
+| SHIP-Q1 | WORK-0014 recovery UI repair | Do restart/settings guidance, disabledStart and terminalpendingID clear resolve reviewedretryloop? RechecklatestKotlin. | product-review | open |
+| SHIP-Q2 | WORK-0014 devicepersist proof | Does appUI/DB/force-stop prove boundeddiagnostic only, with hostkill distinct from Androidactivekill? BindAPK/reporthash. | product-review | open |
+| SHIP-Q3 | WORK-0002 wheelmoduleadapter | Do exactwheel/installed/canonicalsource hashes and60packageclosure support scopedguardedexport aftersafetyreview? Identifyremainingblocker. | android-shell and product-review | open |
+| SHIP-Q4 | WORK-0014 integration | Does regeneratedbinding match stable bridge afterWindowsleasefix with28tests andfreshcombinedchecks? Finalcommitreviewnext. | sqlite-layer and product-review | open |
+| SHIP-Q5 | WORK-0002 priority/delivery | Can ignoredartifactprovision continue while sourcewritersfreeze for appcheckpoint, with modelbenchmarkstatus stillopen? | android-shell | open |
+
+Actualanswer EXPORT2-Q4 sent: inference notattempted; futuretrialstopownapp,
+recordworkloadpolicy/USBcharging/temp/cooldown and separaterunkind. RUNTIME-Q3
+now boundedAndroidproof above, preserving uncoveredactivecrash/rotationcases.
+Independentchecks/shipping proceed; finalacceptance needsactualpeerresponses.
+Nextmeeting byiteration17 before18; no countersreset bysprint/date.
+
+## Iteration 15 - Final validation, Android compatibility and final phone proof
+
+Primary persona remains Accountable delivery coordinator. ## Final validation and compatibility repair, 2026-10-23
+
+Common runner on Windows11/Python3.12/Rust1.88/JDK17/SDK35, source uncommitted:
+- final-001/docs passed (661 checks plus agent policy); workflow exit0,
+  65 tests:64 passed,1 Windows symlink privilege skip; rust exit0,
+  fmt/Clippy/28 test entries (including2 child helpers)/desktop build passed.
+- final-001/android failed lint NewApi: generic UniFFI Cleaner required API33
+  while minSdk26. JVM/APK steps not run in that failed profile.
+- Added crates/android-bridge/uniffi.toml android=true, regenerated actualDLL
+  bindings with pinned UniFFI0.28.3 and explicit --config. Official Android
+  template selects guarded API34 cleaner or existing JNA fallback. No lint
+  suppression, minimumSDK bump or new dependency. Reviewer inspected fix and
+  reported no blocker. Generation script and Android README use same config.
+- final-002/docs passed662 checks plus agent policy; final-002/android exit0:
+  Kotlin/lint, JVM task NO-SOURCE (no JVM test coverage), ARM64 native/APK build.
+  Reports: .artifacts/checks/WORK-0014/final-001/{docs,workflow,rust,android}/report.json
+  and .artifacts/checks/WORK-0014/final-002/{docs,android}/report.json.
+
+Final APK0.2.0/code2:11319266bytes, SHA256
+ d6ac4cab5dbeaafd812dfaf9a5fbbb118f8659671e7fa4f73ce5ddcd9b963e89.
+It supersedes first f1d5de1f artifact. Actual install-r and own-app revalidation
+on SM-A725F/Android14 passed ui-smoke-003:9prior records preserved,1new terminal
+record/version2/3events, visible success; force-stop/relaunch preserved all10
+records and visible history. Report .artifacts/device/WORK-0014/ui-smoke-003/report.json.
+ui-smoke-002 failed a harness assertion expecting capitalized SQL state;
+SQLite contract stores lowercase succeeded. Corrected only ignored harness,
+retained failed report and repeated complete scenario. No product change needed.
+Android active-running kill/rotation, model inference and privacy remain outside
+this observation. Source commit/review, verified push and Drive delivery follow.
+
+WORK-0002 actual guarded export qwen-exec-20261023-001 failed:
+worker phase export_pipeline, reason export_process_failed, no PTE.
+This attempt does not establish whether weights loaded. Follow-up investigator
+sqlite-layer reproduced config-only original +base.* arguments successfully;
+removing + fails composition. Actual pinned pipeline with pre-load sentinel
+reached safetensors loader before tensor load,13 source hashes verified,
+zero forbidden serialization/network calls. Precise original failure unknown;
+no unsafe pickle/runtime/quantization fallback authorized. Next bounded actual
+retry captures sanitized traceback and keeps existing guards/timeout cleanup.
+
+Actual peer answers received after meeting14:
+SHIP-Q1 reviewer rechecked UI fix, no blocker; SHIP-Q2 reviewer inspected actual
+bounded phone report and retained uncovered active-kill/rotation/AI limits.
+SHIP-Q3 reviewer rechecked16 safe-export tests/closure/installed source guards,
+no blocker for guarded attempt, no export acceptance. SHIP-Q4 runtime owner
+passed28 entries; reviewer checked generated contract/source and compatibility
+fix. Exact commit binding next. SHIP-Q5 model owner explicitly allowed parent
+checkpoint while WORK2 remains in_progress; ignored-artifact preparation continued.
+These are actual responses/handoffs, not new owner/privacy approvals.
+Next meeting no later than iteration17 before18; sourcecheck and shipping do
+not reset counters. Logs are source evidence, not secret reasoning transcripts.

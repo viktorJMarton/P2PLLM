@@ -241,3 +241,235 @@ the already reviewed source-only development push. No silence-as-consent. Remote
 verification and next API acceptance remain held until actual evidence. Next
 independent action: metadata commit path check by message; next required meeting
 after at most iteration9 before10. No production review authority changes.
+
+## Iteration 7: phone-baseline acceptance review
+
+- WORK-0002 / RUN-20261022-PHONE-REVIEW-01. Counter continues from prior sprint;
+  persona remains pr-review with security secondary lens. Read role/memory,
+  current brief/conformance requirements and latest peer journal continuations.
+  Initial HEAD ba6b116f15567ba0469040ff1b73542e57d7f71c; coordinator assigns
+  work/WORK-0002-phone-baseline. No implementation coauthored.
+- Added own WORK-0002/review.md with prospective acceptance and collection risks.
+  No benchmark harness/device/ADB command executed. Honor400Pro/latest OS remains
+  owner-reported until actual permitted observation. PlatformTools/USB availability
+  and legal approval pending coordinator/user response, not inferred by reviewer.
+- Five concrete questions sent directly to primary; durable versions below.
+  Repetition/OOM/thermal state, immutable artifacts, unsafe Android-shell quoting,
+  subprocess cancellation and sensitive output capture are explicit review targets.
+
+| Question ID | Logged change / WORK | Question and proposed next action | Respondent | Status / actual answer reference |
+| --- | --- | --- | --- | --- |
+| PHONE-Q1 | WORK-0002 memory collector | Which required memory metric is true process peakRSS/VmHWM versus sampledPSS maximum? Preserve metric provenance and sampling limitation in schema. | primary | open |
+| PHONE-Q2 | WORK-0002 session/repetition | Will repeated cold runs use fresh process/model load and separately label warm sessions/pagecache assumptions? Record PID reuse and thermal cooldown. | primary | open |
+| PHONE-Q3 | WORK-0002 official runner parser | What exact TTFT interval and throughput denominator does runner emit? Keep load/prefill/firsttoken/decode distinctions and token counts pinned. | primary | open |
+| PHONE-Q4 | WORK-0002 device provenance | Can serial/UUID and raw prompts remain absent from report/command/error logs? Select device in memory, collect allowlisted identity fields, sanitize failures. | primary | open |
+| PHONE-Q5 | WORK-0002 backend proof | Which executed-delegate evidence proves backend rather than requested flags? Record partial CPU fallback or mark placement unavailable. | primary and android-shell | open |
+
+- All questions open; no shared decision inferred. Primary owns measurement
+  contract/parser implementation; Android owner upstream runner/model pins;
+  reviewer final independent source/security review. One iteration after meeting6;
+  next mandatory meeting after at most9 before10. Peer questions do not prevent
+  independent sanitized host tooling work; missing actual phone evidence blocks
+  phone-capacity claims. No test run or hardware measurement claimed.
+
+## Iteration 8: collector code and privacy-plan review
+
+- WORK-0002/0003 / RUN-20261022-PHONE-REVIEW-02, uncommitted sprint source.
+  Read collector, C supervisor, tests, operations doc and privacy plan/handoff.
+  Independently ran Python3.12 test_phone_benchmark.py: 11 pass, exit0.
+  No model/ADB/native helper execution by reviewer. Target now owner-selected
+  Galaxy A72 per actual primary entry, replacing earlier Honor context.
+- Four concrete collector findings sent: host KeyboardInterrupt cleanup;
+  remote HUP/PIPE supervisor death before child cleanup; truncated/missing failure
+  report on ordinary exceptions; huge-int math.isfinite overflow escaping error
+  handling. Detailed locations/impact and scoped positives in own WORK2/review.md.
+  No implementation edits. Initial review-file append patch missed its context
+  and was retried with correct existing end line; no source was lost.
+- Root PHONE-Q2 answer: wait4 child high-water RSS is an appropriate peak metric
+  with KiB/child scope explicit, not GPU/PSS/arbitrary process-tree sum. C runtime
+  correctness still needs supervisor failure-path evidence before claiming bounds.
+- MODEL-Q1 answer: reviewer will inspect safe-export wrapper's exact hash guards,
+  reachable load/save/network paths and rejection tests when source is frozen;
+  no export/loading approval from research manifest alone. MODEL-Q5 answer:
+  require exact artifact/export delegate map plus correlated runtime evidence
+  and portable CPU fallback coverage; requested backend remains unverified.
+- SEC-Q2 answer: agree exact backend/dependency/OT/MAC/field pins, full real
+  preprocessing and owner-only output after integrity finalization are secure
+  execution blockers. Plan has no blocking proposed-only issue; review does not
+  constitute qualified cryptographic approval. SEC-Q5 answer: present collector
+  distinguishes inventory/phone inference only and cannot certify secure-backend
+  runs; add separate explicit run types before reuse for oracle/simulation/real
+  MPC. No sensitive raw payloads/crypto state in any generic log bundle.
+- Consulted official MP-SPDZ designated-output API/OpenFHE security notes; links
+  and bounded conclusion in WORK2/review.md. Read current primary through8/meeting8,
+  Android through6/meeting6 and security through4 plus currentquestions. Actual
+  PHONE timing/backend source responses received, no actual device metrics.
+- Two iterations since meeting6; next mandatory meeting after9 before10.
+  Primary owns collector fixes; Android safe-loader source may proceed separately;
+  reviewer waits affected source/tests, not full-profile repetition. No silence
+  or prospective plan accepted as device/privacy evidence.
+
+## Iteration 9: collector fix verification and export safety review
+
+- RUN-20261023-PHONE-REVIEW-03 / WORK-0002, uncommitted. Primary persona pr-review
+  with security lens unchanged; counter continues across date/sprint. Updated own
+  WORK2review only; no implementation coauthored.
+- Independently reran collector16 tests/exit0, inspected revised hostfinally,
+  HUPPIPE supervisor, atomic failure checkpoints, bounded numerics. Four reported
+  collector findings resolved within scope. Historical helper-device001 report
+  cases3 pass and exact Csourcehash match; no today's phone execution inferred.
+- Read exporter wrapper/tests; synthetic9tests pass/exit0. Open full installed
+  dependency-closure lock gate and CtrlC preparedstatus defect; actual pinned
+  upstream patch compile/reachable loader review pending source cache. No model
+  loading/export approval, sandbox claim or output-equivalence claim.
+- RESUME-Q1 actual answer sent to primary: collector fixes resolved, device
+  helper evidence historical/limited. MODEL-Q1 answer remains source-safety
+  review in progress; safe host-only dependency research can continue while
+  execution gates remain open. Applied LSN-004/006 evidence and freeze scope.
+
+## Meeting after iteration 9
+
+Read current primary through11/meeting11, Android through7 and security through4
+including actual questions/answers. Read tails after previously read prefixes;
+computed canonical UTF8/LF receipts directly to avoid broad-output truncation.
+Time: 2026-10-23 client date. No missing peer answer fabricated.
+
+- Read: work/agent-journals/primary.md | bytes: 32979 | sha256: 6fa91da990615f61aab16a505950cb6e503348fb47dc64127bf39915c1ffb605
+- Read: work/agent-journals/android-shell.md | bytes: 29836 | sha256: 7186e70dc8673e61fffbf4c1c8b30b93c3d13f5435c89ce23e0902689eef53ad
+- Read: work/agent-journals/sqlite-layer.md | bytes: 22979 | sha256: b66fa86bedc05954adbc79742434a35e4049cc1d2ebb0668534ebd4008d7347c
+
+| Question ID | Logged change / WORK | Question and proposed next action | Respondent | Status / actual answer reference |
+| --- | --- | --- | --- | --- |
+| EXPORT-Q1 | WORK-0002 full export dependency lock | How will omitted installed transitives, including safetensors, be rejected before execute? Validate the full reviewed dependency closure, not only four candidates. | android-shell | open |
+| EXPORT-Q2 | WORK-0002 deterministic source patch | Where are the exact actual pinned upstream files and transformed compile results? Supply cache/hash evidence for independent loader/export reachability review. | android-shell | open |
+| EXPORT-Q3 | WORK-0002 interrupted export provenance | Will KeyboardInterrupt produce interrupted/failed rather than prepared status while partial PTE remains? Add focused worker/run failure regression. | android-shell | open |
+| EXPORT-Q4 | WORK-0002 collector historical device evidence | Will final evidence preserve helper-only historical scope and current disconnected state, with missing PTE/runner/backend placement still blocking model results? | primary | open |
+| EXPORT-Q5 | WORK-0002 offline worker safety | Are hooks documented as defense in depth on trusted pinned code, and do focused tests exercise network/pickle rejection without claiming OS sandboxing? Include sendto or constrain the stated guarantee. | android-shell | open |
+
+Current shared boundary: root/model actual replies support source-pinned metrics,
+unverified backend and no model measurements; collector fixes independently
+confirmed. Export gates/questions stay open pending actual fixes/evidence.
+Independent host dependency/visible diagnostic work may continue; no execution
+approval inferred. Next owners: Android exporter fixes/cache, primary final source
+freeze/phone evidence, reviewer affected fix recheck. Next mandatory meeting after
+at most iteration12 before13; no new agent spawned.
+
+## Iteration 10: actual upstream patch inspection
+
+- WORK-0002/RUN-20261023-PHONE-REVIEW-03. Model owner supplied actual28-file
+  sparse pinned cache. Read model.py/export_llama_lib.py, Qwen converter/YAML;
+  independently applied transformations in memory and compiled both, exit0.
+  Adapted hashes628184...fb28 andc766...4d2f recorded in own WORK2review. Source
+  hashes verified before transform; missing-weight checks and tiedembedding
+  mapping inspected. No model/dependency loaded or sourcecheckout modified.
+- Git ls-tree confirms export entrypoint exists; sparsecache lacks its content.
+  Git show attempted promisor fetch, failed network (exit1); not a successful
+  entrypoint review or download. Owner notified remaining worker/import evidence.
+- Export closure/interrupted-status findings still pending fixes, not approval.
+  Model owner reports full60package resolver result and fixes in progress;
+  this is attributed progress, no own dependency/install success inferred.
+- One iteration since meeting9; next mandatory meeting after12 before13.
+
+## Iteration 11: independent persistent-diagnostic review
+
+- WORK-0014/RUN-20261023-DIAGNOSTIC-REVIEW-01, uncommitted. Read agreed brief/API,
+  Rustcore/sharedlease/boundedSQL/CLI/bridge tests, two UI files, generatedbinding
+  and version2 metadata. Created own WORK14review.md with exact source hashes.
+  No runtime/UI code coauthored; pr-review persona remains independent.
+- Direct existingbridgebinary9 entries pass/exit0, including private childhelper;
+  exact command and binary-build limitation in review. Implementer reports28
+  testentries+Clippy success; no independent rebuilt/Android/device success claimed.
+- No blocking Rust ownership/recovery/CAS/SQL source finding. Medium UI issue
+  sent primary: RecoveryRequired currently yields generic retry instruction even
+  though same owner/pendingID cannot recover until processrestart. Nonblocking
+  suggestion clear saved pendingID if refreshed terminal record proves completion.
+- RUNTIME-Q1 answer: exact frozen registry/lease code independently reviewed,
+  strong owners/exclusive firstinit recovery/stable Busy behavior sound within
+  trustedfilesystem/canonicalalias assumptions; full source/build binding pending.
+  RUNTIME-Q5 answer: generatedbinding/API source matches methods inspected but
+  final Kotlin/native build/device acceptance and finalcommit still separate.
+- Root owns scoped UI correction and evidence. Historical helperphone proof does
+  not certify current app UI. Two iterations since meeting9; mandatory meeting
+  after12 before13. Next independent check can combine affected UI fix and final
+  exporter worker safety fixes once each source owner announces readiness.
+
+## Iteration 12: final UI/export safety snapshot recheck
+
+- WORK-0014/0002, uncommitted frozen source,2026-10-23. UIRecoveryRequired now
+  typed explicit processrestart/settings guidance+disabledStart; terminalpending
+  ID observed-clear/schema checks sound. Prior medium finding resolved; no
+  blocking UI/runtime source finding. Own WORK14review appended current2UIhashes.
+- Read actual primary A72 ui-smoke001 report: APKf1d5...d913,0.2.0/code2;
+  button->visibleSucceeded/newDBrecordv2/3events, force-stop/relaunch samehistory
+  passed. Not personally executed by reviewer; activeRunningAndroidkill/rotation,
+  inference/privateAI remain unobserved/outside this proof.
+- ExportfrozenwrapperA09EA...1DD2/testA091...3A2C exactmatches ownerdelivery.
+  Read fullclosure/lockdigest/60trustedhash config checks, isolatedwheelraw+LF
+  origin/2patch verification, installedmodule route, worker event guards and
+  interruptedstatus. Independently16targetedtests pass/exit0. Earlier closure/
+  interrupt/importroute source gaps resolved within trustedvenv scope; no
+  blocking sourcefinding for boundedguardedexportattempt, not actualimport/
+  export/logitequivalence/backend/deviceacceptance. Own WORK2review appended.
+- SHIP-Q1/Q2 actual answers: UIretryloop fixed; inspected boundeddevice report
+  supplies diagnostic persistence only, hostkill distinct. SHIP-Q3 actualanswer:
+  scopedguardedattempt supported by reviewed prerequisites; execution outcome
+  unknown. SHIP-Q4 actualanswer: sourcebindingAPI matches inspectedcontract,
+  combinedprofiles/exactcommit remain primary/finalreview work.
+- Sourcewriters now freeze after own meeting below for common profiles. No
+  implementation coauthored; persona/counters/independence unchanged.
+
+## Meeting after iteration 12
+
+Read latest peer continuations: primary through14/meeting14; Android through11
+including actualwheelprepare/closure/install facts and safetyquestions; runtime
+through6/meeting6 including exactfrozenhashhandoff and limitations. Canonical
+prefix receipts below computed after actual tail reads,2026-10-23.
+
+- Read: work/agent-journals/primary.md | bytes: 39390 | sha256: 5ef59b8eca4ade24465a37ee4e4cd6f48eb6e3972ce2d2084c8618184a76ec66
+- Read: work/agent-journals/android-shell.md | bytes: 42114 | sha256: 23a3b11b6241ff25e60525c67bcc047f8dcaef7fc6aa33b332394c2515fe0851
+- Read: work/agent-journals/sqlite-layer.md | bytes: 30805 | sha256: 8d80f5700dec33226190846cf12cae20f574d44052f20d71d6f2a7dac2c3a168
+
+| Question ID | Logged change / WORK | Question and proposed next action | Respondent | Status / actual answer reference |
+| --- | --- | --- | --- | --- |
+| CLOSE-Q1 | WORK-0014 frozen diagnostic source | Which final commit/common reports bind reviewed native/UI hashes and current APK? Announce sourcefreeze and exactcommit for message-only final review. | primary | open |
+| CLOSE-Q2 | WORK-0014 device acceptance | Will delivery preserve uncovered activeRunningAndroidcrash/rotation despite successful button/persist/restart smoke? State bounded result clearly. | primary | open |
+| CLOSE-Q3 | WORK-0002 guarded export attempt | What actual guardedimport/export outcome follows the reviewed wheel route? Keep failures/phase evidence and unverified backend without claiming benchmark completion. | android-shell | open |
+| CLOSE-Q4 | WORK-0014 source synchronization | Will final development-branch commit/push have remoteSHA verification and deliveredAPKchecksum tied to it? Record actual results, not planned closure. | primary | open |
+| CLOSE-Q5 | WORK-0002 postexport validation | Before inference acceptance, which reference equivalence and runtimeplacement checks will bind resulting PTE/tokenizer/runner hashes? Maintain separate gates. | android-shell and primary | open |
+
+Previous EXPORT-Q1/2/3/5 answered by actual owner fixes/evidence and reviewer
+tests/source recheck; no execution result inferred. Root's actualdevice report
+answers EXPORT-Q4 currentavailability, while modelmeasurement remains absent.
+Open closure questions hold their specific claims, not ordinary sourcepush or
+independent ignored-artifact work. No silence-as-consent. Next owner primary
+commonchecks/commit/delivery, modelowner actualguardedattempt, reviewer exacthead.
+No further journal/review writes during announced common-profile freeze.
+Next mandatory meeting after at mostiteration15 before16.
+
+## Iteration 13: Android compatibility fix and final readback
+
+- WORK-0014 scoped generatedcleanup delta reviewed read-only during freeze;
+  now recorded after primary allowed metadata append. android=true selects
+  API34 SystemCleaner+guarded classes and existingJNAfallback below. No suppression/
+  SDKraise/newdependency; no blocking compatibility sourcefinding.
+- Read final002 Android/docs reportJSON, stable8b219...611e95e, allcommands0;
+  docs662+policy, Androidlint/JVM/ARM64APKpass. JVMNO-SOURCE remains no testcoverage.
+  Prior final001 workflow65entries64pass1skip/Rust28inclhelpers belong earlier
+  frozen7b7e... snapshot, not relabelled as run on newmetadata/binding bytes.
+- Independently hash final11319266byteAPK d6ac4cab...963e89; read actualprimary
+  A72smoke003 pass (button/newSucceededv2/3events/9->10records/persistence/history).
+  Earlierlintfail+smoke002ignoredharnesscasefailure retained. No activeRunning
+  Androidkill/rotation/model/privacy claim. Own WORK14review appended exact
+  generatedbinding/config hashes and scoped finalverification finding.
+- SHIP-Q1/Q2/Q4 answers now actual latestfix/profile/device evidence, no blocking
+  checkpointfinding; finalcommit identity remains pending. CLOSE-Q1 answered by
+  final002reportpaths/currentAPKhash, still needs primary actualcommit; CLOSE-Q2
+  explicitly keeps uncovered lifecycle cases, not fabricated fullcoverage.
+- Primary reports actual WORK2 guardedexport failed export_pipeline/noPTE;
+  sentinel config-only probe reached loader without loading tensors. Original
+  attempt's weight-loading extent unknown. No successful export/inference claimed
+  and no unsafe serialization/network fallback approved. This is attributed
+  modelwork progress, not reviewer-run experiment.
+- One iteration since meeting12; next mandatory meeting after15 before16.
+  NO MORE FILE WRITES now: primary finaldocs/commit freeze. Await exactcommit
+  for read-only/sourcehash binding; no implementation edit or retest requested.

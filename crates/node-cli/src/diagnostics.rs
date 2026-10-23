@@ -1,7 +1,6 @@
 //! A durable local status diagnostic. No model or peer execution is performed.
 
-use p2p_node_core::tasks::{TaskError, TaskId, TaskRecord, TaskState, TaskStore};
-use p2p_node_core::NodeStatus;
+use p2p_node_core::tasks::{run_local_diagnostic, TaskError, TaskId, TaskRecord, TaskStore};
 use p2p_storage_sqlite::SqliteTaskStore;
 use std::process::ExitCode;
 
@@ -30,11 +29,12 @@ fn execute_inner(database: &str, command: Command<'_>) -> Result<String, TaskErr
         Command::Run(value) => Some(TaskId::new(value)?),
         _ => None,
     };
-    let lease = crate::lease::DatabaseLease::acquire(database)?;
+    let lease = p2p_storage_sqlite::lease::DatabaseLease::acquire(database)
+        .map_err(|error| TaskError::Storage(error.to_string()))?;
     let mut store = SqliteTaskStore::open(&lease.database)?;
     match command {
         Command::Run(_) => {
-            let record = run_diagnostic(&mut store, id.as_ref().expect("validated run ID"))?;
+            let record = run_local_diagnostic(&mut store, id.as_ref().expect("validated run ID"))?;
             Ok(record_json(&record))
         }
         Command::List => Ok(format!(
@@ -53,29 +53,6 @@ fn execute_inner(database: &str, command: Command<'_>) -> Result<String, TaskErr
     }
 }
 
-fn run_diagnostic(store: &mut impl TaskStore, id: &TaskId) -> Result<TaskRecord, TaskError> {
-    let record = store.create(id)?;
-    match record.state {
-        TaskState::Queued => {
-            let running = store.transition(id, record.version, TaskState::Running)?;
-            // The diagnostic samples actual local status. Unavailable AI is a valid
-            // status result; success here describes this diagnostic, never AI work.
-            let status = NodeStatus::default();
-            let state = if status.schema_version == 1 {
-                TaskState::Succeeded
-            } else {
-                TaskState::Failed
-            };
-            store.transition(id, running.version, state)
-        }
-        TaskState::Running => Err(TaskError::InvalidTransition {
-            from: TaskState::Running,
-            to: TaskState::Running,
-        }),
-        _ => Ok(record),
-    }
-}
-
 fn record_json(record: &TaskRecord) -> String {
     // IDs are validated ASCII without quote/backslash/control characters.
     format!(
@@ -87,13 +64,14 @@ fn record_json(record: &TaskRecord) -> String {
 #[cfg(test)]
 mod tests {
     use super::*;
+    use p2p_node_core::tasks::TaskState;
 
     #[test]
     fn repeated_diagnostic_does_not_advance_completed_task() {
         let mut store = SqliteTaskStore::open(":memory:").unwrap();
         let id = TaskId::new("diagnostic-1").unwrap();
-        let first = run_diagnostic(&mut store, &id).unwrap();
-        let repeated = run_diagnostic(&mut store, &id).unwrap();
+        let first = run_local_diagnostic(&mut store, &id).unwrap();
+        let repeated = run_local_diagnostic(&mut store, &id).unwrap();
         assert_eq!(first.state, TaskState::Succeeded);
         assert_eq!(first.version, repeated.version);
         assert_eq!(store.events(&id).unwrap().len(), 3);
@@ -107,10 +85,10 @@ mod tests {
         store
             .transition(&id, queued.version, TaskState::Running)
             .unwrap();
-        assert!(run_diagnostic(&mut store, &id).is_err());
+        assert!(run_local_diagnostic(&mut store, &id).is_err());
         assert_eq!(store.recover_interrupted().unwrap(), 1);
         assert_eq!(
-            run_diagnostic(&mut store, &id).unwrap().state,
+            run_local_diagnostic(&mut store, &id).unwrap().state,
             TaskState::Interrupted
         );
     }

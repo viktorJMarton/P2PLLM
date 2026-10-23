@@ -1,11 +1,14 @@
-# Android source bootstrap (WORK-0001)
+# Android operator app (WORK-0001/0011/0014)
 
-This is a Kotlin/Compose status screen wired to the generated UniFFI
-`nodeStatus()` function. It does not run inference or connect to peers.
-The checked-in Kotlin binding uses UniFFI0.28.3. WORK-0012 now records a compiled
-Android ARM64 bridge, successful Kotlin compile and assembled debug APK on
-Windows. Device/native-call execution is not verified. The shell has five
-destinations and actual base-status refresh; no model or peer runtime exists.
+The Kotlin/Compose app uses the generated UniFFI0.28.3 bridge for status and a
+persisted local diagnostic. Version0.2.0/code2 adds a real start button on overview
+and jobs, actual result/history, typed errors and bounded paging. Rust owns SQLite
+under Android filesDir, the process lifecycle lock and first-owner recovery;
+Activity recreation does not recover live work. All native/storage calls run
+off the main thread. It does not run inference or connect to peers.
+WORK-0014 records Kotlin/native ARM64 debug APK build on Windows. Host crash/
+ownership tests are not Android device/UI validation; device acceptance remains
+separate. WORK-0002 phone inventory/helper proof is not model inference evidence.
 The application dependency graph is pinned in `app/gradle.lockfile`.
 
 ## Desktop build prerequisites
@@ -34,6 +37,21 @@ with the pinned generator:
 ```sh
 bash tools/regenerate-android-bindings.sh
 ```
+
+Observed Windows equivalent (all UniFFI types are in this workspace; use a new
+output directory, then copy the generated Kotlin file with UTF-8/LF):
+
+```text
+cargo build --locked -p p2p-android-bridge
+cargo run --locked -p p2p-android-bridge --bin uniffi-bindgen -- generate --library target/debug/p2p_android_bridge.dll --language kotlin --config crates/android-bridge/uniffi.toml --metadata-no-deps --no-format --out-dir .artifacts/bindings/NEW
+```
+
+Generated file: uniffi/p2p_android_bridge/p2p_android_bridge.kt under that output;
+destination is app/src/main/java/uniffi/p2p_android_bridge/p2p_android_bridge.kt.
+Both native library and generated bindings must come from the same bridge API.
+The checked-in uniffi.toml selects Android-aware object cleanup: SystemCleaner
+only on API34+, existing JNA fallback below that. Do not use JVM-only Cleaner
+unconditionally or raise minSdk/suppress lint to hide an incompatible binding.
 
 The device smoke result requires a supported desktop SDK installation.
 The Gradle dependency lock was generated with `./gradlew :app:dependencies

@@ -114,6 +114,56 @@ pub trait TaskStore {
     fn recover_interrupted(&mut self) -> Result<usize, TaskError>;
 }
 
+/// Start exactly once or return an existing immutable diagnostic result.
+/// A pre-existing Running task requires lifecycle-owner recovery, not retry.
+pub fn start_local_diagnostic(
+    store: &mut impl TaskStore,
+    id: &TaskId,
+) -> Result<TaskRecord, TaskError> {
+    let record = store.create(id)?;
+    match record.state {
+        TaskState::Queued => store.transition(id, record.version, TaskState::Running),
+        TaskState::Running => Err(TaskError::InvalidTransition {
+            from: TaskState::Running,
+            to: TaskState::Running,
+        }),
+        _ => Ok(record),
+    }
+}
+
+/// Check the actual currently available local node status contract. A successful
+/// diagnostic says nothing about model execution or private compute support.
+pub fn finish_local_diagnostic(
+    store: &mut impl TaskStore,
+    running: &TaskRecord,
+) -> Result<TaskRecord, TaskError> {
+    if running.state != TaskState::Running {
+        return Err(TaskError::InvalidTransition {
+            from: running.state,
+            to: TaskState::Succeeded,
+        });
+    }
+    let status = crate::NodeStatus::default();
+    let next = if status.schema_version == 1 {
+        TaskState::Succeeded
+    } else {
+        TaskState::Failed
+    };
+    store.transition(&running.id, running.version, next)
+}
+
+pub fn run_local_diagnostic(
+    store: &mut impl TaskStore,
+    id: &TaskId,
+) -> Result<TaskRecord, TaskError> {
+    let record = start_local_diagnostic(store, id)?;
+    if record.state == TaskState::Running {
+        finish_local_diagnostic(store, &record)
+    } else {
+        Ok(record)
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;

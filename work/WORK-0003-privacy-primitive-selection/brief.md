@@ -1,6 +1,7 @@
 # WORK-0003 — Privacy threat model and primitive feasibility
 
-Status: not_started
+Status: in_progress
+Experiment preparation only; no feasibility result.
 Requirements: REQ-003, REQ-004
 Roles: security, mathematical-modeling, research, protocol
 Dependencies: WORK-0001 host Rust/toolchain scaffold; full Android acceptance is not required for independent host-only work
@@ -10,6 +11,14 @@ Compare exact malicious-secure MPC and FHE primitive profiles. Define who may co
 
 ## Acceptance
 Assumption-bound privacy profile proposal; numerical/cost measurements; Android feasibility; explicit rejection/selection ADR; qualified review before approval.
+
+## Current sprint owner decision, 2026-10-22
+Secondary to WORK-0002 phone model measurements. Produce a concrete operation,
+adversary/setup/collusion/output model, experiment procedure and preregistered
+success/failure criteria in experiment-plan.md. A plan or synthetic algebra check
+is preparation; only execution of the specified secure-backend experiment can
+supply a bounded feasibility result. No approved registry entry or private-full-
+model claim follows from this sprint's documentation.
 
 ## Verification
 Follow relevant RFCs and tests/conformance-matrix.md. Capture exact command, environment, exit status and evidence. Any unavailable device/backend is a blocker. Review binds to exact code revision. Apply root AGENTS.md.

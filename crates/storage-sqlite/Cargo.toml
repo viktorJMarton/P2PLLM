@@ -10,3 +10,4 @@ name = "p2p_storage_sqlite"
 [dependencies]
 p2p-node-core = { path = "../node-core" }
 rusqlite = { version = "=0.32.1", features = ["bundled"] }
+fs2 = "=0.4.3"

@@ -38,3 +38,17 @@ writers, process exit before commit, restart recovery and CLI integration. The
 full `storage` gate stays unavailable because model-file activation and its
 recovery protocol do not exist. `rust` additionally checks formatting/Clippy and
 the whole workspace. Physical-device and Linux evidence are recorded separately.
+
+## Android local diagnostic v1 (WORK-0014)
+
+The0.2.0 app can start the same local core diagnostic and view saved results.
+UniFFI open_local_diagnostics returns a process-owned LocalDiagnostics object;
+run uses an idempotent ID, list reads a bounded SQL page (1..50, offset<=10000).
+The database is filesDir/local-diagnostics.sqlite3, never shared external storage.
+Shared storage::lease replaces the former CLI-only lock implementation.
+First exclusive native runtime initialization recovers abandoned Running tasks;
+reopening Activity/wrapper reuses the owner and cannot recover active work.
+Stable typed errors replace raw SQL/path messages. RecoveryRequired tells the
+user to fully stop/restart the Android app, not endlessly retry the same ID.
+The UI never manually calls recovery or labels diagnostic success AI success.
+See [the exact contract](../../work/WORK-0014-android-persistent-diagnostic/contract.md).

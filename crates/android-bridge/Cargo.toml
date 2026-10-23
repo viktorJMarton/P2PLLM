@@ -14,4 +14,5 @@ path = "src/bin/uniffi-bindgen.rs"
 
 [dependencies]
 p2p-node-core = { path = "../node-core" }
+p2p-storage-sqlite = { path = "../storage-sqlite" }
 uniffi = { version = "=0.28.3", features = ["cli"] }

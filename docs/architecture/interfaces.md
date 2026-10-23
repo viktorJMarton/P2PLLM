@@ -1,7 +1,9 @@
 # Interface contract — draft
 
-Current implemented subset is the existing UniFFI status call and the separate
-synchronous core TaskStore for local diagnostic metadata (ADR-010). The async
+Current implemented subset is the UniFFI status call, synchronous core TaskStore
+and bounded Android local diagnostic run/list object (ADR-010/012, WORK-0014).
+Its version1 records/errors and process ownership are specified in the WORK-0014
+contract; diagnostic success is not inference success. The async
 commands/events/backend ports below remain draft. Ledger events do not yet
 implement timestamps, task subscriptions or the full runtime event contract.
 

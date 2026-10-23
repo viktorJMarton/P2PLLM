@@ -2,7 +2,6 @@ use p2p_node_core::{Capability, NodeStatus};
 use std::process::ExitCode;
 
 mod diagnostics;
-mod lease;
 
 fn main() -> ExitCode {
     let args: Vec<String> = std::env::args().collect();

@@ -3,6 +3,11 @@
 Status: accepted implementation direction; independent final review pending.
 Work: WORK-0010. Requirements: REQ-005, REQ-006, REQ-009.
 
+2026-10-23 supplement: ADR-012/WORK-0014 adds a bounded Android composition root
+and moves the shared lease to the storage adapter. The original initial-slice
+description below is historical; Android now depends on the adapter for local
+diagnostics only. Core remains independent and full model/network gates stayopen.
+
 ## Decision
 Keep validated task IDs, lifecycle rules and the TaskStore port in node-core.
 Implement storage in a separate p2p-storage-sqlite adapter. The CLI is the

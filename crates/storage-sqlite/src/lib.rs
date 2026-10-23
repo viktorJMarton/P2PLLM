@@ -1,12 +1,21 @@
 //! SQLite local diagnostic ledger. Recovery is explicit and requires exclusive
 //! lifecycle ownership; opening a connection never interrupts active work.
 
+pub mod lease;
+
 use std::{path::Path, time::Duration};
 
 use p2p_node_core::tasks::{TaskError, TaskId, TaskRecord, TaskState, TaskStore};
 use rusqlite::{params, Connection, OptionalExtension, TransactionBehavior};
 
 const SCHEMA_VERSION: i64 = 1;
+pub const MAX_DIAGNOSTIC_PAGE_SIZE: u32 = 50;
+pub const MAX_DIAGNOSTIC_OFFSET: u32 = 10_000;
+
+pub struct TaskPage {
+    pub records: Vec<TaskRecord>,
+    pub next_offset: Option<u32>,
+}
 
 pub struct SqliteTaskStore {
     connection: Connection,
@@ -132,6 +141,35 @@ fn change_record(
 }
 
 impl SqliteTaskStore {
+    /// ID-ordered bounded page, not a stable snapshot across separate calls.
+    /// next_offset also stops at the traversal bound, even if more rows exist.
+    pub fn list_page(&self, limit: u32, offset: u32) -> Result<TaskPage, TaskError> {
+        if !(1..=MAX_DIAGNOSTIC_PAGE_SIZE).contains(&limit) || offset > MAX_DIAGNOSTIC_OFFSET {
+            return Err(storage("invalid diagnostic page bounds"));
+        }
+        let mut statement = self
+            .connection
+            .prepare("SELECT id, state, version FROM tasks ORDER BY id LIMIT ?1 OFFSET ?2")
+            .map_err(storage)?;
+        let rows = statement
+            .query_map(params![i64::from(limit) + 1, i64::from(offset)], |row| {
+                Ok((row.get(0)?, row.get(1)?, row.get(2)?))
+            })
+            .map_err(storage)?;
+        let mut records: Vec<TaskRecord> = rows
+            .map(|row| decode_record(row.map_err(storage)?))
+            .collect::<Result<_, _>>()?;
+        let has_more = records.len() > limit as usize;
+        records.truncate(limit as usize);
+        let next_offset = offset
+            .checked_add(limit)
+            .filter(|next| has_more && *next <= MAX_DIAGNOSTIC_OFFSET);
+        Ok(TaskPage {
+            records,
+            next_offset,
+        })
+    }
+
     pub fn open(path: impl AsRef<Path>) -> Result<Self, TaskError> {
         let mut connection = Connection::open(path).map_err(storage)?;
         connection
@@ -288,6 +326,35 @@ mod tests {
 
     fn id(value: &str) -> TaskId {
         TaskId::new(value).unwrap()
+    }
+
+    #[test]
+    fn sql_pages_are_bounded_and_stop_at_explicit_traversal_limit() {
+        let mut store = SqliteTaskStore::open(":memory:").unwrap();
+        {
+            let transaction = store.connection.transaction().unwrap();
+            {
+                let mut statement = transaction
+                    .prepare("INSERT INTO tasks(id,state,version) VALUES (?1,'queued',0)")
+                    .unwrap();
+                for index in 0..10_052 {
+                    statement.execute([format!("job-{index:05}")]).unwrap();
+                }
+            }
+            transaction.commit().unwrap();
+        }
+        let first = store.list_page(50, 0).unwrap();
+        assert_eq!(first.records.len(), 50);
+        assert_eq!(first.records[0].id.as_str(), "job-00000");
+        assert_eq!(first.records[49].id.as_str(), "job-00049");
+        assert_eq!(first.next_offset, Some(50));
+        let bound = store.list_page(50, 10_000).unwrap();
+        assert_eq!(bound.records.len(), 50);
+        assert_eq!(bound.records[0].id.as_str(), "job-10000");
+        assert_eq!(bound.next_offset, None);
+        assert!(store.list_page(0, 0).is_err());
+        assert!(store.list_page(51, 0).is_err());
+        assert!(store.list_page(1, 10_001).is_err());
     }
 
     #[test]

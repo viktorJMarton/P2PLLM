@@ -12,6 +12,7 @@
 
 - [ADR-010: Local diagnostic ledger and exclusive CLI ownership](ADR-010-local-diagnostic-ledger.md)
 - [ADR-011: Agent personas, memory and bounded journal meetings](ADR-011-agent-journal-coordination.md)
+- [ADR-012: Process-owned Android local diagnostic runtime](ADR-012-android-diagnostic-runtime.md)
 
 Accepted decisions define direction; implementation evidence is recorded per
 WORK. Open choices remain in PRODUCT.md and work/INDEX.md.

@@ -1,5 +1,11 @@
 use p2p_node_core::{Capability, NodeStatus};
 
+mod diagnostics;
+pub use diagnostics::{
+    open_local_diagnostics, DiagnosticError, DiagnosticPage, DiagnosticRecord, DiagnosticState,
+    LocalDiagnostics,
+};
+
 uniffi::setup_scaffolding!();
 
 #[derive(uniffi::Record)]

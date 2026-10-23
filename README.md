@@ -3,11 +3,16 @@
 Open-source, decentralized cooperative AI: shared inference AND shared learning, with privacy as an MVP requirement. Android is the first mobile node; a desktop CLI is the first development partner. The protocol remains implementation-independent.
 
 **Status: development scaffold with a local diagnostic ledger and Android
-operator shell; no running cooperative AI ecosystem.** Host Rust tests, Kotlin
+operator shell with an actionable persistent diagnostic; no running cooperative AI ecosystem.** Host Rust tests, Kotlin
 compilation and an ARM64 debug APK build have observed Windows results in
 WORK-0010/0012. Phone runtime behavior, model benchmarks, private Qwen execution
 and qualified privacy review remain unverified. The privacy backend and
 collusion assumptions remain release blockers.
+
+WORK-0014 adds **Helyi ellenőrzés indítása** and saved local history to Android
+0.2.0. This checks the local core/storage path; it is not AI inference. Model
+export/phone benchmarking remains primary WORK-0002 work. See the actual
+[diagnostic scope and evidence](work/WORK-0014-android-persistent-diagnostic/brief.md).
 
 ## Start here
 1. [Project definition](PRODUCT.md)

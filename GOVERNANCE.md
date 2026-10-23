@@ -28,6 +28,11 @@ records the exact packages/license. This is not blanket acceptance of future
 third-party terms or a grant of a project publication license. Preserve scoped
 approvals across agent handoffs; a new scope requires a concrete owner decision.
 
+The owner additionally approved SDK Platform-Tools license acceptance on
+2026-10-22 for physical-phone benchmarking. Windows Platform-Tools37.0.1 is pinned
+in config/development-windows.json; this extends the previous four-package scope
+only by Platform-Tools and does not authorize unrelated SDK licenses/packages.
+
 The [3-iteration/5-question journal meeting rule](docs/operations/agent-meetings.md)
 is also an owner requirement. Real responses are required for shared decisions;
 waiting alone grants no authority. Local journal meetings do not change the

@@ -1,6 +1,6 @@
 {
   "status": "passed",
-  "checked_at_utc": "2026-10-22T17:48:30.155902+00:00",
+  "checked_at_utc": "2026-10-23T12:33:09.045624+00:00",
   "checks": [
     {
       "check": "JSON parses: MANIFEST.json",
@@ -16,6 +16,10 @@
     },
     {
       "check": "JSON parses: config\\development-windows.json",
+      "passed": true
+    },
+    {
+      "check": "JSON parses: config\\model-baselines.json",
       "passed": true
     },
     {
@@ -104,6 +108,10 @@
     },
     {
       "check": "relative link PORTING.md -> docs/operations/agent-meetings.md",
+      "passed": true
+    },
+    {
+      "check": "relative link README.md -> work/WORK-0014-android-persistent-diagnostic/brief.md",
       "passed": true
     },
     {
@@ -367,6 +375,10 @@
       "passed": true
     },
     {
+      "check": "relative link docs\\decisions\\ADR-012-android-diagnostic-runtime.md -> ../../work/WORK-0014-android-persistent-diagnostic/contract.md",
+      "passed": true
+    },
+    {
       "check": "relative link docs\\decisions\\INDEX.md -> ADR-001-ecosystem-scope.md",
       "passed": true
     },
@@ -408,6 +420,14 @@
     },
     {
       "check": "relative link docs\\decisions\\INDEX.md -> ADR-011-agent-journal-coordination.md",
+      "passed": true
+    },
+    {
+      "check": "relative link docs\\decisions\\INDEX.md -> ADR-012-android-diagnostic-runtime.md",
+      "passed": true
+    },
+    {
+      "check": "relative link docs\\models\\qwen-baseline.md -> ../../config/model-baselines.json",
       "passed": true
     },
     {
@@ -479,6 +499,10 @@
       "passed": true
     },
     {
+      "check": "relative link docs\\operations\\local-diagnostics.md -> ../../work/WORK-0014-android-persistent-diagnostic/contract.md",
+      "passed": true
+    },
+    {
       "check": "relative link docs\\traceability.md -> operations/agent-meetings.md",
       "passed": true
     },
@@ -516,6 +540,10 @@
     },
     {
       "check": "relative link templates\\upstream-report.md -> ../docs/operations/agent-meetings.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\INDEX.md -> WORK-0002-model-accelerator-baseline/sprint-plan.md",
       "passed": true
     },
     {
@@ -571,6 +599,10 @@
       "passed": true
     },
     {
+      "check": "relative link work\\INDEX.md -> WORK-0014-android-persistent-diagnostic/brief.md",
+      "passed": true
+    },
+    {
       "check": "relative link work\\PACKAGE-BUILD.md -> INDEX.md",
       "passed": true
     },
@@ -583,7 +615,51 @@
       "passed": true
     },
     {
+      "check": "relative link work\\WORK-0002-model-accelerator-baseline\\handoff-model-research.md -> ../../docs/models/qwen-baseline.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0002-model-accelerator-baseline\\handoff-model-research.md -> ../../config/model-baselines.json",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0002-model-accelerator-baseline\\handoff-model-research.md -> ../agent-journals/android-shell.md",
+      "passed": true
+    },
+    {
       "check": "relative link work\\WORK-0003-privacy-primitive-selection\\brief.md -> ../../docs/operations/agent-meetings.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0003-privacy-primitive-selection\\experiment-plan.md -> ../../docs/security/privacy-profile-registry.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0003-privacy-primitive-selection\\experiment-plan.md -> ../../PRODUCT.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0003-privacy-primitive-selection\\experiment-plan.md -> ../../docs/security/threat-model.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0003-privacy-primitive-selection\\experiment-plan.md -> ../../docs/decisions/ADR-003-privacy-gate.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0003-privacy-primitive-selection\\experiment-plan.md -> ../../docs/rfcs/RFC-0002-compute.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0003-privacy-primitive-selection\\handoff-privacy.md -> experiment-plan.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0003-privacy-primitive-selection\\handoff-privacy.md -> ../agent-journals/sqlite-layer.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0003-privacy-primitive-selection\\handoff-privacy.md -> ../../docs/operations/agent-meetings.md",
       "passed": true
     },
     {
@@ -1151,6 +1227,22 @@
       "passed": true
     },
     {
+      "check": "relative link work\\WORK-0014-android-persistent-diagnostic\\brief.md -> ../../docs/operations/agent-meetings.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0014-android-persistent-diagnostic\\handoff-runtime.md -> contract.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0014-android-persistent-diagnostic\\handoff-runtime.md -> ../agent-journals/sqlite-layer.md",
+      "passed": true
+    },
+    {
+      "check": "relative link work\\WORK-0014-android-persistent-diagnostic\\handoff-runtime.md -> ../../docs/operations/agent-meetings.md",
+      "passed": true
+    },
+    {
       "check": "relative link work\\agent-journals\\android-shell.md -> ../../docs/operations/agent-meetings.md",
       "passed": true
     },
@@ -1283,11 +1375,11 @@
       "passed": true
     },
     {
-      "check": "dependency resolves WORK-0004",
+      "check": "dependency resolves WORK-0001",
       "passed": true
     },
     {
-      "check": "dependency resolves WORK-0001",
+      "check": "dependency resolves WORK-0004",
       "passed": true
     },
     {
@@ -1295,11 +1387,15 @@
       "passed": true
     },
     {
-      "check": "dependency resolves WORK-0002",
+      "check": "dependency resolves WORK-0004",
       "passed": true
     },
     {
-      "check": "dependency resolves WORK-0004",
+      "check": "dependency resolves WORK-0003",
+      "passed": true
+    },
+    {
+      "check": "dependency resolves WORK-0002",
       "passed": true
     },
     {
@@ -1307,11 +1403,11 @@
       "passed": true
     },
     {
-      "check": "dependency resolves WORK-0003",
+      "check": "valid work status: WORK-0006-private-shared-learning",
       "passed": true
     },
     {
-      "check": "valid work status: WORK-0006-private-shared-learning",
+      "check": "dependency resolves WORK-0006",
       "passed": true
     },
     {
@@ -1324,10 +1420,6 @@
     },
     {
       "check": "dependency resolves WORK-0003",
-      "passed": true
-    },
-    {
-      "check": "dependency resolves WORK-0006",
       "passed": true
     },
     {
@@ -1351,11 +1443,11 @@
       "passed": true
     },
     {
-      "check": "dependency resolves WORK-0008",
+      "check": "dependency resolves WORK-0006",
       "passed": true
     },
     {
-      "check": "dependency resolves WORK-0005",
+      "check": "dependency resolves WORK-0008",
       "passed": true
     },
     {
@@ -1363,15 +1455,11 @@
       "passed": true
     },
     {
-      "check": "dependency resolves WORK-0006",
+      "check": "dependency resolves WORK-0005",
       "passed": true
     },
     {
       "check": "valid work status: WORK-0009-department-workflows",
-      "passed": true
-    },
-    {
-      "check": "dependency resolves WORK-0012",
       "passed": true
     },
     {
@@ -1380,6 +1468,10 @@
     },
     {
       "check": "dependency resolves WORK-0009",
+      "passed": true
+    },
+    {
+      "check": "dependency resolves WORK-0012",
       "passed": true
     },
     {
@@ -1391,11 +1483,11 @@
       "passed": true
     },
     {
-      "check": "dependency resolves WORK-0001",
+      "check": "dependency resolves WORK-0009",
       "passed": true
     },
     {
-      "check": "dependency resolves WORK-0009",
+      "check": "dependency resolves WORK-0001",
       "passed": true
     },
     {
@@ -1407,11 +1499,11 @@
       "passed": true
     },
     {
-      "check": "dependency resolves WORK-0011",
+      "check": "dependency resolves WORK-0009",
       "passed": true
     },
     {
-      "check": "dependency resolves WORK-0009",
+      "check": "dependency resolves WORK-0011",
       "passed": true
     },
     {
@@ -1423,15 +1515,15 @@
       "passed": true
     },
     {
+      "check": "dependency resolves WORK-0009",
+      "passed": true
+    },
+    {
       "check": "dependency resolves WORK-0012",
       "passed": true
     },
     {
       "check": "dependency resolves WORK-0011",
-      "passed": true
-    },
-    {
-      "check": "dependency resolves WORK-0009",
       "passed": true
     },
     {
@@ -1448,6 +1540,18 @@
     },
     {
       "check": "dependency resolves WORK-0013",
+      "passed": true
+    },
+    {
+      "check": "valid work status: WORK-0014-android-persistent-diagnostic",
+      "passed": true
+    },
+    {
+      "check": "dependency resolves WORK-0002",
+      "passed": true
+    },
+    {
+      "check": "dependency resolves WORK-0014",
       "passed": true
     },
     {
@@ -1867,6 +1971,10 @@
       "passed": true
     },
     {
+      "check": "manifest config/model-baselines.json",
+      "passed": true
+    },
+    {
       "check": "manifest config/node.example.toml",
       "passed": true
     },
@@ -1883,7 +1991,15 @@
       "passed": true
     },
     {
+      "check": "manifest crates/android-bridge/src/diagnostics.rs",
+      "passed": true
+    },
+    {
       "check": "manifest crates/android-bridge/src/lib.rs",
+      "passed": true
+    },
+    {
+      "check": "manifest crates/android-bridge/uniffi.toml",
       "passed": true
     },
     {
@@ -1892,10 +2008,6 @@
     },
     {
       "check": "manifest crates/node-cli/src/diagnostics.rs",
-      "passed": true
-    },
-    {
-      "check": "manifest crates/node-cli/src/lease.rs",
       "passed": true
     },
     {
@@ -1920,6 +2032,10 @@
     },
     {
       "check": "manifest crates/storage-sqlite/Cargo.toml",
+      "passed": true
+    },
+    {
+      "check": "manifest crates/storage-sqlite/src/lease.rs",
       "passed": true
     },
     {
@@ -2003,6 +2119,10 @@
       "passed": true
     },
     {
+      "check": "manifest docs/decisions/ADR-012-android-diagnostic-runtime.md",
+      "passed": true
+    },
+    {
       "check": "manifest docs/decisions/INDEX.md",
       "passed": true
     },
@@ -2044,6 +2164,10 @@
     },
     {
       "check": "manifest docs/operations/local-diagnostics.md",
+      "passed": true
+    },
+    {
+      "check": "manifest docs/operations/phone-benchmark.md",
       "passed": true
     },
     {
@@ -2159,11 +2283,23 @@
       "passed": true
     },
     {
+      "check": "manifest tests/test_export_qwen.py",
+      "passed": true
+    },
+    {
+      "check": "manifest tests/test_phone_benchmark.py",
+      "passed": true
+    },
+    {
       "check": "manifest tests/test_run_checks.py",
       "passed": true
     },
     {
       "check": "manifest tests/test_source_inventory.py",
+      "passed": true
+    },
+    {
+      "check": "manifest tools/android/bench_exec.c",
       "passed": true
     },
     {
@@ -2180,6 +2316,14 @@
     },
     {
       "check": "manifest tools/drive/README.md",
+      "passed": true
+    },
+    {
+      "check": "manifest tools/export_qwen.py",
+      "passed": true
+    },
+    {
+      "check": "manifest tools/phone_benchmark.py",
       "passed": true
     },
     {
@@ -2243,7 +2387,19 @@
       "passed": true
     },
     {
+      "check": "manifest work/WORK-0002-model-accelerator-baseline/handoff-model-research.md",
+      "passed": true
+    },
+    {
       "check": "manifest work/WORK-0002-model-accelerator-baseline/journal.md",
+      "passed": true
+    },
+    {
+      "check": "manifest work/WORK-0002-model-accelerator-baseline/review.md",
+      "passed": true
+    },
+    {
+      "check": "manifest work/WORK-0002-model-accelerator-baseline/sprint-plan.md",
       "passed": true
     },
     {
@@ -2256,6 +2412,14 @@
     },
     {
       "check": "manifest work/WORK-0003-privacy-primitive-selection/evidence.md",
+      "passed": true
+    },
+    {
+      "check": "manifest work/WORK-0003-privacy-primitive-selection/experiment-plan.md",
+      "passed": true
+    },
+    {
+      "check": "manifest work/WORK-0003-privacy-primitive-selection/handoff-privacy.md",
       "passed": true
     },
     {
@@ -2436,6 +2600,34 @@
     },
     {
       "check": "manifest work/WORK-0013-agent-flow-audit/review.md",
+      "passed": true
+    },
+    {
+      "check": "manifest work/WORK-0014-android-persistent-diagnostic/brief.md",
+      "passed": true
+    },
+    {
+      "check": "manifest work/WORK-0014-android-persistent-diagnostic/contract.md",
+      "passed": true
+    },
+    {
+      "check": "manifest work/WORK-0014-android-persistent-diagnostic/evidence.md",
+      "passed": true
+    },
+    {
+      "check": "manifest work/WORK-0014-android-persistent-diagnostic/handoff-runtime.md",
+      "passed": true
+    },
+    {
+      "check": "manifest work/WORK-0014-android-persistent-diagnostic/handoff-ui.md",
+      "passed": true
+    },
+    {
+      "check": "manifest work/WORK-0014-android-persistent-diagnostic/journal.md",
+      "passed": true
+    },
+    {
+      "check": "manifest work/WORK-0014-android-persistent-diagnostic/review.md",
       "passed": true
     },
     {

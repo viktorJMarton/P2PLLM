@@ -9,7 +9,7 @@ trap 'rm -rf "$tmp_dir"' EXIT
 cargo build --locked -p p2p-android-bridge
 cargo run --locked -p p2p-android-bridge --bin uniffi-bindgen -- \
   generate --library target/debug/libp2p_android_bridge.so \
-  --language kotlin --out-dir "$tmp_dir"
+  --language kotlin --config crates/android-bridge/uniffi.toml --out-dir "$tmp_dir"
 
 python3 - "$tmp_dir/uniffi/p2p_android_bridge/p2p_android_bridge.kt" \
   "android/app/src/main/java/uniffi/p2p_android_bridge/p2p_android_bridge.kt" <<'PY'

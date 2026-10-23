@@ -30,6 +30,9 @@ import java.nio.CharBuffer
 import java.nio.charset.CodingErrorAction
 import java.util.concurrent.atomic.AtomicLong
 import java.util.concurrent.ConcurrentHashMap
+import android.os.Build
+import androidx.annotation.RequiresApi
+import java.util.concurrent.atomic.AtomicBoolean
 
 // This is a helper for safely working with byte buffers returned from the Rust code.
 // A rust-owned buffer is represented by its capacity, its current length, and a
@@ -713,6 +716,14 @@ internal interface UniffiForeignFutureCompleteVoid : com.sun.jna.Callback {
 
 
 
+
+
+
+
+
+
+
+
 // A JNA Library to expose the extern-C FFI definitions.
 // This is an implementation detail which will be called internally by the public API.
 
@@ -726,10 +737,24 @@ internal interface UniffiLib : Library {
                 }
         }
 
+        // The Cleaner for the whole library
+        internal val CLEANER: UniffiCleaner by lazy {
+            UniffiCleaner.create()
+        }
     }
 
+    fun uniffi_p2p_android_bridge_fn_clone_localdiagnostics(`ptr`: Pointer,uniffi_out_err: UniffiRustCallStatus,
+    ): Pointer
+    fun uniffi_p2p_android_bridge_fn_free_localdiagnostics(`ptr`: Pointer,uniffi_out_err: UniffiRustCallStatus,
+    ): Unit
+    fun uniffi_p2p_android_bridge_fn_method_localdiagnostics_list(`ptr`: Pointer,`limit`: Int,`offset`: Int,uniffi_out_err: UniffiRustCallStatus,
+    ): RustBuffer.ByValue
+    fun uniffi_p2p_android_bridge_fn_method_localdiagnostics_run(`ptr`: Pointer,`requestId`: RustBuffer.ByValue,uniffi_out_err: UniffiRustCallStatus,
+    ): RustBuffer.ByValue
     fun uniffi_p2p_android_bridge_fn_func_node_status(uniffi_out_err: UniffiRustCallStatus,
     ): RustBuffer.ByValue
+    fun uniffi_p2p_android_bridge_fn_func_open_local_diagnostics(`databasePath`: RustBuffer.ByValue,uniffi_out_err: UniffiRustCallStatus,
+    ): Pointer
     fun ffi_p2p_android_bridge_rustbuffer_alloc(`size`: Long,uniffi_out_err: UniffiRustCallStatus,
     ): RustBuffer.ByValue
     fun ffi_p2p_android_bridge_rustbuffer_from_bytes(`bytes`: ForeignBytes.ByValue,uniffi_out_err: UniffiRustCallStatus,
@@ -844,6 +869,12 @@ internal interface UniffiLib : Library {
     ): Unit
     fun uniffi_p2p_android_bridge_checksum_func_node_status(
     ): Short
+    fun uniffi_p2p_android_bridge_checksum_func_open_local_diagnostics(
+    ): Short
+    fun uniffi_p2p_android_bridge_checksum_method_localdiagnostics_list(
+    ): Short
+    fun uniffi_p2p_android_bridge_checksum_method_localdiagnostics_run(
+    ): Short
     fun ffi_p2p_android_bridge_uniffi_contract_version(
     ): Int
 
@@ -862,6 +893,15 @@ private fun uniffiCheckContractApiVersion(lib: UniffiLib) {
 @Suppress("UNUSED_PARAMETER")
 private fun uniffiCheckApiChecksums(lib: UniffiLib) {
     if (lib.uniffi_p2p_android_bridge_checksum_func_node_status() != 18791.toShort()) {
+        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
+    }
+    if (lib.uniffi_p2p_android_bridge_checksum_func_open_local_diagnostics() != 11547.toShort()) {
+        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
+    }
+    if (lib.uniffi_p2p_android_bridge_checksum_method_localdiagnostics_list() != 55057.toShort()) {
+        throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
+    }
+    if (lib.uniffi_p2p_android_bridge_checksum_method_localdiagnostics_run() != 43778.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
 }
@@ -931,6 +971,29 @@ public object FfiConverterUInt: FfiConverter<UInt, Int> {
 
     override fun write(value: UInt, buf: ByteBuffer) {
         buf.putInt(value.toInt())
+    }
+}
+
+/**
+ * @suppress
+ */
+public object FfiConverterULong: FfiConverter<ULong, Long> {
+    override fun lift(value: Long): ULong {
+        return value.toULong()
+    }
+
+    override fun read(buf: ByteBuffer): ULong {
+        return lift(buf.getLong())
+    }
+
+    override fun lower(value: ULong): Long {
+        return value.toLong()
+    }
+
+    override fun allocationSize(value: ULong) = 8UL
+
+    override fun write(value: ULong, buf: ByteBuffer) {
+        buf.putLong(value.toLong())
     }
 }
 
@@ -1015,6 +1078,320 @@ public object FfiConverterString: FfiConverter<String, RustBuffer.ByValue> {
 }
 
 
+// This template implements a class for working with a Rust struct via a Pointer/Arc<T>
+// to the live Rust struct on the other side of the FFI.
+//
+// Each instance implements core operations for working with the Rust `Arc<T>` and the
+// Kotlin Pointer to work with the live Rust struct on the other side of the FFI.
+//
+// There's some subtlety here, because we have to be careful not to operate on a Rust
+// struct after it has been dropped, and because we must expose a public API for freeing
+// theq Kotlin wrapper object in lieu of reliable finalizers. The core requirements are:
+//
+//   * Each instance holds an opaque pointer to the underlying Rust struct.
+//     Method calls need to read this pointer from the object's state and pass it in to
+//     the Rust FFI.
+//
+//   * When an instance is no longer needed, its pointer should be passed to a
+//     special destructor function provided by the Rust FFI, which will drop the
+//     underlying Rust struct.
+//
+//   * Given an instance, calling code is expected to call the special
+//     `destroy` method in order to free it after use, either by calling it explicitly
+//     or by using a higher-level helper like the `use` method. Failing to do so risks
+//     leaking the underlying Rust struct.
+//
+//   * We can't assume that calling code will do the right thing, and must be prepared
+//     to handle Kotlin method calls executing concurrently with or even after a call to
+//     `destroy`, and to handle multiple (possibly concurrent!) calls to `destroy`.
+//
+//   * We must never allow Rust code to operate on the underlying Rust struct after
+//     the destructor has been called, and must never call the destructor more than once.
+//     Doing so may trigger memory unsafety.
+//
+//   * To mitigate many of the risks of leaking memory and use-after-free unsafety, a `Cleaner`
+//     is implemented to call the destructor when the Kotlin object becomes unreachable.
+//     This is done in a background thread. This is not a panacea, and client code should be aware that
+//      1. the thread may starve if some there are objects that have poorly performing
+//     `drop` methods or do significant work in their `drop` methods.
+//      2. the thread is shared across the whole library. This can be tuned by using `android_cleaner = true`,
+//         or `android = true` in the [`kotlin` section of the `uniffi.toml` file](https://mozilla.github.io/uniffi-rs/kotlin/configuration.html).
+//
+// If we try to implement this with mutual exclusion on access to the pointer, there is the
+// possibility of a race between a method call and a concurrent call to `destroy`:
+//
+//    * Thread A starts a method call, reads the value of the pointer, but is interrupted
+//      before it can pass the pointer over the FFI to Rust.
+//    * Thread B calls `destroy` and frees the underlying Rust struct.
+//    * Thread A resumes, passing the already-read pointer value to Rust and triggering
+//      a use-after-free.
+//
+// One possible solution would be to use a `ReadWriteLock`, with each method call taking
+// a read lock (and thus allowed to run concurrently) and the special `destroy` method
+// taking a write lock (and thus blocking on live method calls). However, we aim not to
+// generate methods with any hidden blocking semantics, and a `destroy` method that might
+// block if called incorrectly seems to meet that bar.
+//
+// So, we achieve our goals by giving each instance an associated `AtomicLong` counter to track
+// the number of in-flight method calls, and an `AtomicBoolean` flag to indicate whether `destroy`
+// has been called. These are updated according to the following rules:
+//
+//    * The initial value of the counter is 1, indicating a live object with no in-flight calls.
+//      The initial value for the flag is false.
+//
+//    * At the start of each method call, we atomically check the counter.
+//      If it is 0 then the underlying Rust struct has already been destroyed and the call is aborted.
+//      If it is nonzero them we atomically increment it by 1 and proceed with the method call.
+//
+//    * At the end of each method call, we atomically decrement and check the counter.
+//      If it has reached zero then we destroy the underlying Rust struct.
+//
+//    * When `destroy` is called, we atomically flip the flag from false to true.
+//      If the flag was already true we silently fail.
+//      Otherwise we atomically decrement and check the counter.
+//      If it has reached zero then we destroy the underlying Rust struct.
+//
+// Astute readers may observe that this all sounds very similar to the way that Rust's `Arc<T>` works,
+// and indeed it is, with the addition of a flag to guard against multiple calls to `destroy`.
+//
+// The overall effect is that the underlying Rust struct is destroyed only when `destroy` has been
+// called *and* all in-flight method calls have completed, avoiding violating any of the expectations
+// of the underlying Rust code.
+//
+// This makes a cleaner a better alternative to _not_ calling `destroy()` as
+// and when the object is finished with, but the abstraction is not perfect: if the Rust object's `drop`
+// method is slow, and/or there are many objects to cleanup, and it's on a low end Android device, then the cleaner
+// thread may be starved, and the app will leak memory.
+//
+// In this case, `destroy`ing manually may be a better solution.
+//
+// The cleaner can live side by side with the manual calling of `destroy`. In the order of responsiveness, uniffi objects
+// with Rust peers are reclaimed:
+//
+// 1. By calling the `destroy` method of the object, which calls `rustObject.free()`. If that doesn't happen:
+// 2. When the object becomes unreachable, AND the Cleaner thread gets to call `rustObject.free()`. If the thread is starved then:
+// 3. The memory is reclaimed when the process terminates.
+//
+// [1] https://stackoverflow.com/questions/24376768/can-java-finalize-an-object-when-it-is-still-in-scope/24380219
+//
+
+
+/**
+ * The cleaner interface for Object finalization code to run.
+ * This is the entry point to any implementation that we're using.
+ *
+ * The cleaner registers objects and returns cleanables, so now we are
+ * defining a `UniffiCleaner` with a `UniffiClenaer.Cleanable` to abstract the
+ * different implmentations available at compile time.
+ *
+ * @suppress
+ */
+interface UniffiCleaner {
+    interface Cleanable {
+        fun clean()
+    }
+
+    fun register(value: Any, cleanUpTask: Runnable): UniffiCleaner.Cleanable
+
+    companion object
+}
+
+// The fallback Jna cleaner, which is available for both Android, and the JVM.
+private class UniffiJnaCleaner : UniffiCleaner {
+    private val cleaner = com.sun.jna.internal.Cleaner.getCleaner()
+
+    override fun register(value: Any, cleanUpTask: Runnable): UniffiCleaner.Cleanable =
+        UniffiJnaCleanable(cleaner.register(value, cleanUpTask))
+}
+
+private class UniffiJnaCleanable(
+    private val cleanable: com.sun.jna.internal.Cleaner.Cleanable,
+) : UniffiCleaner.Cleanable {
+    override fun clean() = cleanable.clean()
+}
+
+// We decide at uniffi binding generation time whether we were
+// using Android or not.
+// There are further runtime checks to chose the correct implementation
+// of the cleaner.
+
+
+private fun UniffiCleaner.Companion.create(): UniffiCleaner =
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
+        AndroidSystemCleaner()
+    } else {
+        UniffiJnaCleaner()
+    }
+
+// The SystemCleaner, available from API Level 33.
+// Some API Level 33 OSes do not support using it, so we require API Level 34.
+@RequiresApi(Build.VERSION_CODES.UPSIDE_DOWN_CAKE)
+private class AndroidSystemCleaner : UniffiCleaner {
+    val cleaner = android.system.SystemCleaner.cleaner()
+
+    override fun register(value: Any, cleanUpTask: Runnable): UniffiCleaner.Cleanable =
+        AndroidSystemCleanable(cleaner.register(value, cleanUpTask))
+}
+
+@RequiresApi(Build.VERSION_CODES.UPSIDE_DOWN_CAKE)
+private class AndroidSystemCleanable(
+    private val cleanable: java.lang.ref.Cleaner.Cleanable,
+) : UniffiCleaner.Cleanable {
+    override fun clean() = cleanable.clean()
+}
+public interface LocalDiagnosticsInterface {
+
+    fun `list`(`limit`: kotlin.UInt, `offset`: kotlin.UInt): DiagnosticPage
+
+    fun `run`(`requestId`: kotlin.String): DiagnosticRecord
+
+    companion object
+}
+
+open class LocalDiagnostics: Disposable, AutoCloseable, LocalDiagnosticsInterface {
+
+    constructor(pointer: Pointer) {
+        this.pointer = pointer
+        this.cleanable = UniffiLib.CLEANER.register(this, UniffiCleanAction(pointer))
+    }
+
+    /**
+     * This constructor can be used to instantiate a fake object. Only used for tests. Any
+     * attempt to actually use an object constructed this way will fail as there is no
+     * connected Rust object.
+     */
+    @Suppress("UNUSED_PARAMETER")
+    constructor(noPointer: NoPointer) {
+        this.pointer = null
+        this.cleanable = UniffiLib.CLEANER.register(this, UniffiCleanAction(pointer))
+    }
+
+    protected val pointer: Pointer?
+    protected val cleanable: UniffiCleaner.Cleanable
+
+    private val wasDestroyed = AtomicBoolean(false)
+    private val callCounter = AtomicLong(1)
+
+    override fun destroy() {
+        // Only allow a single call to this method.
+        // TODO: maybe we should log a warning if called more than once?
+        if (this.wasDestroyed.compareAndSet(false, true)) {
+            // This decrement always matches the initial count of 1 given at creation time.
+            if (this.callCounter.decrementAndGet() == 0L) {
+                cleanable.clean()
+            }
+        }
+    }
+
+    @Synchronized
+    override fun close() {
+        this.destroy()
+    }
+
+    internal inline fun <R> callWithPointer(block: (ptr: Pointer) -> R): R {
+        // Check and increment the call counter, to keep the object alive.
+        // This needs a compare-and-set retry loop in case of concurrent updates.
+        do {
+            val c = this.callCounter.get()
+            if (c == 0L) {
+                throw IllegalStateException("${this.javaClass.simpleName} object has already been destroyed")
+            }
+            if (c == Long.MAX_VALUE) {
+                throw IllegalStateException("${this.javaClass.simpleName} call counter would overflow")
+            }
+        } while (! this.callCounter.compareAndSet(c, c + 1L))
+        // Now we can safely do the method call without the pointer being freed concurrently.
+        try {
+            return block(this.uniffiClonePointer())
+        } finally {
+            // This decrement always matches the increment we performed above.
+            if (this.callCounter.decrementAndGet() == 0L) {
+                cleanable.clean()
+            }
+        }
+    }
+
+    // Use a static inner class instead of a closure so as not to accidentally
+    // capture `this` as part of the cleanable's action.
+    private class UniffiCleanAction(private val pointer: Pointer?) : Runnable {
+        override fun run() {
+            pointer?.let { ptr ->
+                uniffiRustCall { status ->
+                    UniffiLib.INSTANCE.uniffi_p2p_android_bridge_fn_free_localdiagnostics(ptr, status)
+                }
+            }
+        }
+    }
+
+    fun uniffiClonePointer(): Pointer {
+        return uniffiRustCall() { status ->
+            UniffiLib.INSTANCE.uniffi_p2p_android_bridge_fn_clone_localdiagnostics(pointer!!, status)
+        }
+    }
+
+
+    @Throws(DiagnosticException::class)override fun `list`(`limit`: kotlin.UInt, `offset`: kotlin.UInt): DiagnosticPage {
+            return FfiConverterTypeDiagnosticPage.lift(
+    callWithPointer {
+    uniffiRustCallWithError(DiagnosticException) { _status ->
+    UniffiLib.INSTANCE.uniffi_p2p_android_bridge_fn_method_localdiagnostics_list(
+        it, FfiConverterUInt.lower(`limit`),FfiConverterUInt.lower(`offset`),_status)
+}
+    }
+    )
+    }
+
+
+
+    @Throws(DiagnosticException::class)override fun `run`(`requestId`: kotlin.String): DiagnosticRecord {
+            return FfiConverterTypeDiagnosticRecord.lift(
+    callWithPointer {
+    uniffiRustCallWithError(DiagnosticException) { _status ->
+    UniffiLib.INSTANCE.uniffi_p2p_android_bridge_fn_method_localdiagnostics_run(
+        it, FfiConverterString.lower(`requestId`),_status)
+}
+    }
+    )
+    }
+
+
+
+
+
+
+    companion object
+
+}
+
+/**
+ * @suppress
+ */
+public object FfiConverterTypeLocalDiagnostics: FfiConverter<LocalDiagnostics, Pointer> {
+
+    override fun lower(value: LocalDiagnostics): Pointer {
+        return value.uniffiClonePointer()
+    }
+
+    override fun lift(value: Pointer): LocalDiagnostics {
+        return LocalDiagnostics(value)
+    }
+
+    override fun read(buf: ByteBuffer): LocalDiagnostics {
+        // The Rust code always writes pointers as 8 bytes, and will
+        // fail to compile if they don't fit.
+        return lift(Pointer(buf.getLong()))
+    }
+
+    override fun allocationSize(value: LocalDiagnostics) = 8UL
+
+    override fun write(value: LocalDiagnostics, buf: ByteBuffer) {
+        // The Rust code always expects pointers written as 8 bytes,
+        // and will fail to compile if they don't fit.
+        buf.putLong(Pointer.nativeValue(lower(value)))
+    }
+}
+
+
 
 data class BridgeStatus (
     var `schemaVersion`: kotlin.UInt,
@@ -1052,11 +1429,308 @@ public object FfiConverterTypeBridgeStatus: FfiConverterRustBuffer<BridgeStatus>
             FfiConverterBoolean.write(value.`privateComputeAvailable`, buf)
             FfiConverterBoolean.write(value.`privateLearningAvailable`, buf)
     }
+}
+
+
+
+data class DiagnosticPage (
+    var `schemaVersion`: kotlin.UInt,
+    var `records`: List<DiagnosticRecord>,
+    var `offset`: kotlin.UInt,
+    var `nextOffset`: kotlin.UInt?
+) {
+
+    companion object
+}
+
+/**
+ * @suppress
+ */
+public object FfiConverterTypeDiagnosticPage: FfiConverterRustBuffer<DiagnosticPage> {
+    override fun read(buf: ByteBuffer): DiagnosticPage {
+        return DiagnosticPage(
+            FfiConverterUInt.read(buf),
+            FfiConverterSequenceTypeDiagnosticRecord.read(buf),
+            FfiConverterUInt.read(buf),
+            FfiConverterOptionalUInt.read(buf),
+        )
+    }
+
+    override fun allocationSize(value: DiagnosticPage) = (
+            FfiConverterUInt.allocationSize(value.`schemaVersion`) +
+            FfiConverterSequenceTypeDiagnosticRecord.allocationSize(value.`records`) +
+            FfiConverterUInt.allocationSize(value.`offset`) +
+            FfiConverterOptionalUInt.allocationSize(value.`nextOffset`)
+    )
+
+    override fun write(value: DiagnosticPage, buf: ByteBuffer) {
+            FfiConverterUInt.write(value.`schemaVersion`, buf)
+            FfiConverterSequenceTypeDiagnosticRecord.write(value.`records`, buf)
+            FfiConverterUInt.write(value.`offset`, buf)
+            FfiConverterOptionalUInt.write(value.`nextOffset`, buf)
+    }
+}
+
+
+
+data class DiagnosticRecord (
+    var `schemaVersion`: kotlin.UInt,
+    var `requestId`: kotlin.String,
+    var `state`: DiagnosticState,
+    var `version`: kotlin.ULong
+) {
+
+    companion object
+}
+
+/**
+ * @suppress
+ */
+public object FfiConverterTypeDiagnosticRecord: FfiConverterRustBuffer<DiagnosticRecord> {
+    override fun read(buf: ByteBuffer): DiagnosticRecord {
+        return DiagnosticRecord(
+            FfiConverterUInt.read(buf),
+            FfiConverterString.read(buf),
+            FfiConverterTypeDiagnosticState.read(buf),
+            FfiConverterULong.read(buf),
+        )
+    }
+
+    override fun allocationSize(value: DiagnosticRecord) = (
+            FfiConverterUInt.allocationSize(value.`schemaVersion`) +
+            FfiConverterString.allocationSize(value.`requestId`) +
+            FfiConverterTypeDiagnosticState.allocationSize(value.`state`) +
+            FfiConverterULong.allocationSize(value.`version`)
+    )
+
+    override fun write(value: DiagnosticRecord, buf: ByteBuffer) {
+            FfiConverterUInt.write(value.`schemaVersion`, buf)
+            FfiConverterString.write(value.`requestId`, buf)
+            FfiConverterTypeDiagnosticState.write(value.`state`, buf)
+            FfiConverterULong.write(value.`version`, buf)
+    }
+}
+
+
+
+
+
+sealed class DiagnosticException: kotlin.Exception() {
+
+    class InvalidRequest(
+        ) : DiagnosticException() {
+        override val message
+            get() = ""
+    }
+
+    class Busy(
+        ) : DiagnosticException() {
+        override val message
+            get() = ""
+    }
+
+    class StorageUnavailable(
+        ) : DiagnosticException() {
+        override val message
+            get() = ""
+    }
+
+    class RecoveryRequired(
+        ) : DiagnosticException() {
+        override val message
+            get() = ""
+    }
+
+    class Internal(
+        ) : DiagnosticException() {
+        override val message
+            get() = ""
+    }
+
+
+    companion object ErrorHandler : UniffiRustCallStatusErrorHandler<DiagnosticException> {
+        override fun lift(error_buf: RustBuffer.ByValue): DiagnosticException = FfiConverterTypeDiagnosticError.lift(error_buf)
+    }
+
+
+}
+
+/**
+ * @suppress
+ */
+public object FfiConverterTypeDiagnosticError : FfiConverterRustBuffer<DiagnosticException> {
+    override fun read(buf: ByteBuffer): DiagnosticException {
+
+
+        return when(buf.getInt()) {
+            1 -> DiagnosticException.InvalidRequest()
+            2 -> DiagnosticException.Busy()
+            3 -> DiagnosticException.StorageUnavailable()
+            4 -> DiagnosticException.RecoveryRequired()
+            5 -> DiagnosticException.Internal()
+            else -> throw RuntimeException("invalid error enum value, something is very wrong!!")
+        }
+    }
+
+    override fun allocationSize(value: DiagnosticException): ULong {
+        return when(value) {
+            is DiagnosticException.InvalidRequest -> (
+                // Add the size for the Int that specifies the variant plus the size needed for all fields
+                4UL
+            )
+            is DiagnosticException.Busy -> (
+                // Add the size for the Int that specifies the variant plus the size needed for all fields
+                4UL
+            )
+            is DiagnosticException.StorageUnavailable -> (
+                // Add the size for the Int that specifies the variant plus the size needed for all fields
+                4UL
+            )
+            is DiagnosticException.RecoveryRequired -> (
+                // Add the size for the Int that specifies the variant plus the size needed for all fields
+                4UL
+            )
+            is DiagnosticException.Internal -> (
+                // Add the size for the Int that specifies the variant plus the size needed for all fields
+                4UL
+            )
+        }
+    }
+
+    override fun write(value: DiagnosticException, buf: ByteBuffer) {
+        when(value) {
+            is DiagnosticException.InvalidRequest -> {
+                buf.putInt(1)
+                Unit
+            }
+            is DiagnosticException.Busy -> {
+                buf.putInt(2)
+                Unit
+            }
+            is DiagnosticException.StorageUnavailable -> {
+                buf.putInt(3)
+                Unit
+            }
+            is DiagnosticException.RecoveryRequired -> {
+                buf.putInt(4)
+                Unit
+            }
+            is DiagnosticException.Internal -> {
+                buf.putInt(5)
+                Unit
+            }
+        }.let { /* this makes the `when` an expression, which ensures it is exhaustive */ }
+    }
+
+}
+
+
+
+
+enum class DiagnosticState {
+
+    QUEUED,
+    RUNNING,
+    SUCCEEDED,
+    FAILED,
+    CANCELLED,
+    INTERRUPTED;
+    companion object
+}
+
+
+/**
+ * @suppress
+ */
+public object FfiConverterTypeDiagnosticState: FfiConverterRustBuffer<DiagnosticState> {
+    override fun read(buf: ByteBuffer) = try {
+        DiagnosticState.values()[buf.getInt() - 1]
+    } catch (e: IndexOutOfBoundsException) {
+        throw RuntimeException("invalid enum value, something is very wrong!!", e)
+    }
+
+    override fun allocationSize(value: DiagnosticState) = 4UL
+
+    override fun write(value: DiagnosticState, buf: ByteBuffer) {
+        buf.putInt(value.ordinal + 1)
+    }
+}
+
+
+
+
+
+
+/**
+ * @suppress
+ */
+public object FfiConverterOptionalUInt: FfiConverterRustBuffer<kotlin.UInt?> {
+    override fun read(buf: ByteBuffer): kotlin.UInt? {
+        if (buf.get().toInt() == 0) {
+            return null
+        }
+        return FfiConverterUInt.read(buf)
+    }
+
+    override fun allocationSize(value: kotlin.UInt?): ULong {
+        if (value == null) {
+            return 1UL
+        } else {
+            return 1UL + FfiConverterUInt.allocationSize(value)
+        }
+    }
+
+    override fun write(value: kotlin.UInt?, buf: ByteBuffer) {
+        if (value == null) {
+            buf.put(0)
+        } else {
+            buf.put(1)
+            FfiConverterUInt.write(value, buf)
+        }
+    }
+}
+
+
+
+
+/**
+ * @suppress
+ */
+public object FfiConverterSequenceTypeDiagnosticRecord: FfiConverterRustBuffer<List<DiagnosticRecord>> {
+    override fun read(buf: ByteBuffer): List<DiagnosticRecord> {
+        val len = buf.getInt()
+        return List<DiagnosticRecord>(len) {
+            FfiConverterTypeDiagnosticRecord.read(buf)
+        }
+    }
+
+    override fun allocationSize(value: List<DiagnosticRecord>): ULong {
+        val sizeForLength = 4UL
+        val sizeForItems = value.map { FfiConverterTypeDiagnosticRecord.allocationSize(it) }.sum()
+        return sizeForLength + sizeForItems
+    }
+
+    override fun write(value: List<DiagnosticRecord>, buf: ByteBuffer) {
+        buf.putInt(value.size)
+        value.iterator().forEach {
+            FfiConverterTypeDiagnosticRecord.write(it, buf)
+        }
+    }
 } fun `nodeStatus`(): BridgeStatus {
             return FfiConverterTypeBridgeStatus.lift(
     uniffiRustCall() { _status ->
     UniffiLib.INSTANCE.uniffi_p2p_android_bridge_fn_func_node_status(
         _status)
+}
+    )
+    }
+
+
+    @Throws(DiagnosticException::class) fun `openLocalDiagnostics`(`databasePath`: kotlin.String): LocalDiagnostics {
+            return FfiConverterTypeLocalDiagnostics.lift(
+    uniffiRustCallWithError(DiagnosticException) { _status ->
+    UniffiLib.INSTANCE.uniffi_p2p_android_bridge_fn_func_open_local_diagnostics(
+        FfiConverterString.lower(`databasePath`),_status)
 }
     )
     }

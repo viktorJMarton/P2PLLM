@@ -30,6 +30,26 @@ import androidx.compose.ui.semantics.role
 import androidx.compose.ui.semantics.selected
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
+import java.text.DateFormat
+import java.util.Date
+
+internal data class LocalDiagnosticItem(
+    val requestId: String,
+    val state: String,
+    val version: String,
+)
+
+internal data class LocalDiagnosticsState(
+    val loading: Boolean = true,
+    val running: Boolean = false,
+    val available: Boolean = false,
+    val records: List<LocalDiagnosticItem> = emptyList(),
+    val offset: UInt = 0u,
+    val nextOffset: UInt? = null,
+    val lastResult: LocalDiagnosticItem? = null,
+    val error: String? = null,
+    val requiresRestart: Boolean = false,
+)
 
 internal sealed interface NodeStatusState {
     data object Loading : NodeStatusState
@@ -46,13 +66,21 @@ internal sealed interface NodeStatusState {
 private enum class Destination(val label: String, val title: String) {
     OVERVIEW("Áttekintés", "Helyi csomópont"),
     SESSION("AI", "AI-munkamenet"),
-    JOBS("Feladatok", "Hálózati feladatok"),
+    JOBS("Feladatok", "Helyi ellenőrzések"),
     MODELS("Modellek", "Modellek és tanulás"),
     RESOURCES("Erőforrások", "Erőforrások és adatvédelem"),
 }
 
 @Composable
-internal fun OperatorShell(state: NodeStatusState, onRefresh: () -> Unit) {
+internal fun OperatorShell(
+    state: NodeStatusState,
+    onRefresh: () -> Unit,
+    diagnostics: LocalDiagnosticsState,
+    onRunDiagnostic: () -> Unit,
+    onRefreshDiagnostics: () -> Unit,
+    onNextDiagnostics: () -> Unit,
+    onOpenAppSettings: () -> Unit,
+) {
     var selection by rememberSaveable { mutableStateOf(Destination.OVERVIEW.name) }
     val destination = Destination.entries.firstOrNull { it.name == selection }
         ?: Destination.OVERVIEW
@@ -90,6 +118,13 @@ internal fun OperatorShell(state: NodeStatusState, onRefresh: () -> Unit) {
                     style = MaterialTheme.typography.headlineSmall,
                     modifier = Modifier.semantics { heading() },
                 )
+                if (destination == Destination.OVERVIEW || destination == Destination.JOBS) {
+                    LocalDiagnosticPanel(
+                        diagnostics, onRunDiagnostic, onRefreshDiagnostics, onNextDiagnostics,
+                        onOpenAppSettings,
+                        showHistory = destination == Destination.JOBS,
+                    )
+                }
                 StatusPanel(state, onRefresh)
                 when (destination) {
                     Destination.OVERVIEW -> Overview(state)
@@ -98,10 +133,9 @@ internal fun OperatorShell(state: NodeStatusState, onRefresh: () -> Unit) {
                             "Ez a felület jelenleg a csomópont állapotát tudja lekérni.",
                         "Munkamenet indítása",
                     )
-                    Destination.JOBS -> UnavailableFeature(
-                        "Hálózati munkavégzés", "Feladatlista és hitelesített peer-kapcsolat még " +
-                            "nem érhető el ezen a felületen. A hálózat indítása és leállítása " +
-                            "még nincs bekötve.", "Hálózat kezelése",
+                    Destination.JOBS -> Text(
+                        "Ezek a telefonon végzett helyi ellenőrzések. " +
+                            "Hálózati és AI-feladat még nem indítható.",
                     )
                     Destination.MODELS -> UnavailableFeature(
                         "Modellek és frissítések", "Nincs bekötött modellnyilvántartás. " +
@@ -113,6 +147,77 @@ internal fun OperatorShell(state: NodeStatusState, onRefresh: () -> Unit) {
             }
         }
     }
+}
+
+@Composable
+private fun LocalDiagnosticPanel(
+    state: LocalDiagnosticsState,
+    onRun: () -> Unit,
+    onRefresh: () -> Unit,
+    onNext: () -> Unit,
+    onOpenAppSettings: () -> Unit,
+    showHistory: Boolean,
+) {
+    InfoCard("Próbáld ki a helyi működést") {
+        Text("Ellenőrizd, hogy a helyi mag válaszol-e, és az eredmény menthető-e a telefonon.")
+        Button(
+            onClick = onRun,
+            enabled = state.available && !state.loading && !state.running && !state.requiresRestart,
+            modifier = Modifier.fillMaxWidth().heightIn(min = 48.dp),
+        ) {
+            Text(if (state.running) "Ellenőrzés folyamatban…" else "Helyi ellenőrzés indítása")
+        }
+        if (state.loading || state.running) {
+            CircularProgressIndicator()
+            Text(if (state.running) "Az eredmény mentése folyamatban…" else "Előzmények betöltése…")
+        }
+        state.lastResult?.let { result ->
+            Text(diagnosticLabel(result.state), style = MaterialTheme.typography.titleMedium)
+            Text("Az eredményt a telefonon tároljuk. Az előzmények újranyitás után is elérhetők.")
+        }
+        state.error?.let { Text(it, color = MaterialTheme.colorScheme.error) }
+        if (state.requiresRestart) {
+            TextButton(onClick = onOpenAppSettings) { Text("Alkalmazás beállításai") }
+        }
+        TextButton(onClick = onRefresh, enabled = !state.loading && !state.running) {
+            Text("Előzmények frissítése")
+        }
+        Text("Ez helyi működésellenőrzés; nem futtat AI-modellt.")
+    }
+    if (showHistory) {
+        InfoCard("Mentett előzmények") {
+            if (state.records.isEmpty() && !state.loading) {
+                Text(if (state.available) "Még nincs mentett ellenőrzés. Indítsd el az elsőt." else "Az előzmények jelenleg nem érhetők el.")
+            }
+            state.records.forEach { item ->
+                val millis = item.requestId.substringBefore('-').toLongOrNull()
+                Text(
+                    (millis?.let { DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.MEDIUM).format(Date(it)) }
+                        ?: "Helyi ellenőrzés") + " · " + diagnosticLabel(item.state),
+                )
+            }
+            if (state.nextOffset != null) {
+                TextButton(onClick = onNext, enabled = !state.loading && !state.running) {
+                    Text("Következő oldal")
+                }
+            }
+            if (state.offset > 0u) {
+                TextButton(onClick = onRefresh, enabled = !state.loading && !state.running) {
+                    Text("Vissza az első oldalra")
+                }
+            }
+        }
+    }
+}
+
+private fun diagnosticLabel(state: String): String = when (state) {
+    "queued" -> "Indításra vár"
+    "running" -> "Folyamatban"
+    "succeeded" -> "Az ellenőrzés sikeres"
+    "failed" -> "Az ellenőrzés hibát jelzett"
+    "cancelled" -> "Megszakítva"
+    "interrupted" -> "Az alkalmazás leállása miatt félbeszakadt"
+    else -> "Ismeretlen állapot; frissítsd az előzményeket"
 }
 
 @Composable

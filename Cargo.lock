@@ -409,6 +409,7 @@ name = "p2p-android-bridge"
 version = "0.1.0"
 dependencies = [
  "p2p-node-core",
+ "p2p-storage-sqlite",
  "uniffi",
 ]
 
@@ -416,7 +417,6 @@ dependencies = [
 name = "p2p-node-cli"
 version = "0.1.0"
 dependencies = [
- "fs2",
  "p2p-node-core",
  "p2p-storage-sqlite",
 ]
@@ -429,6 +429,7 @@ version = "0.1.0"
 name = "p2p-storage-sqlite"
 version = "0.1.0"
 dependencies = [
+ "fs2",
  "p2p-node-core",
  "rusqlite",
 ]
