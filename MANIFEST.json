@@ -748,13 +748,18 @@
     },
     {
       "path": "work/WORK-0002-model-accelerator-baseline/evidence.md",
-      "bytes": 7603,
-      "sha256": "ad5cdef8e23b756d30951487cc4349b7245b4472b5989def2f1a599b9c149c79"
+      "bytes": 8878,
+      "sha256": "e70e5e0fe6d1619e00876da64b94d7bccb39348d91d65fec2718ce7adbe53ef0"
     },
     {
       "path": "work/WORK-0002-model-accelerator-baseline/handoff-config-probes.md",
       "bytes": 8880,
       "sha256": "7462829a3c165b948918ea2021adbbc644d93bdfeb5d5bf2552e4e825c32739c"
+    },
+    {
+      "path": "work/WORK-0002-model-accelerator-baseline/handoff-integration.md",
+      "bytes": 2773,
+      "sha256": "0675d59d33767eee081c728bfd63a248792f1d232cda00fc26a1838be94f6aca"
     },
     {
       "path": "work/WORK-0002-model-accelerator-baseline/handoff-model-research.md",
@@ -763,8 +768,8 @@
     },
     {
       "path": "work/WORK-0002-model-accelerator-baseline/journal.md",
-      "bytes": 5786,
-      "sha256": "bf57913dc3be5145a6bc62b80cbefa7401aacfefc39e9429e160ae58f03ca9e2"
+      "bytes": 7061,
+      "sha256": "59c9b3335fb9b71684ef8584053d2b3f638a17b6b874c776502853d8d7b5549a"
     },
     {
       "path": "work/WORK-0002-model-accelerator-baseline/review.md",
@@ -1068,8 +1073,8 @@
     },
     {
       "path": "work/agent-journals/primary.md",
-      "bytes": 55702,
-      "sha256": "63cd510097c742c38ec08b3ed177b58daabee5df9b1e0e07ce9f61da083114e7"
+      "bytes": 56977,
+      "sha256": "a0b42fffa76b539a3b4bf3e98af99985d14024995a6e091b873417d0eeb09953"
     },
     {
       "path": "work/agent-journals/product-review.md",
