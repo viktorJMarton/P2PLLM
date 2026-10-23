@@ -567,3 +567,93 @@ checkpoint while WORK2 remains in_progress; ignored-artifact preparation continu
 These are actual responses/handoffs, not new owner/privacy approvals.
 Next meeting no later than iteration17 before18; sourcecheck and shipping do
 not reset counters. Logs are source evidence, not secret reasoning transcripts.
+
+## Iteration 16 - Reviewed source push and verified artifact delivery
+
+## Verified source checkpoint and Drive delivery, 2026-10-23
+
+Branch work/WORK-0002-phone-baseline; source commit
+05768ccbe9b9bbcb0f1c265465349e91dd3650ac. Independent product-review actually
+bound exact reviewed runtime/UI/binding/config/collector/export/test hashes to
+this clean commit and reported NO BLOCKER for development checkpoint/push.
+No implementation or pair ownership by reviewer. WORK2 export/benchmark and
+privacy acceptance remain open. Latest docs profile final-003 exit0,665checks
+plus agent policy pass after journal/handoff updates; tested code unchanged.
+
+`git push -u origin work/WORK-0002-phone-baseline` exit0. Subsequent
+`git ls-remote --heads origin refs/heads/work/WORK-0002-phone-baseline` exit0,
+observed remote SHA05768ccbe9b9bbcb0f1c265465349e91dd3650ac equals source commit.
+Default branch untouched; no release/merge/force-push.
+
+Google Drive skill used for authorized artifact delivery. Exact final APK
+SHA256d6ac4cab5dbeaafd812dfaf9a5fbbb118f8659671e7fa4f73ce5ddcd9b963e89,
+11319266bytes,0.2.0/code2,ARM64 debug, uploaded under existing owner hierarchy:
+https://drive.google.com/drive/folders/178qOjlv-KAksy9sOgeQ7syvbEREkBOyv
+- p2pllm_v0.2.0_code2_c05768cc_debug_arm64-v8a.apk, id1WQ_gpQYC-W2FrHEcl5D3QYt0RkEg0BA6
+- BUILD-INFO.json, id1u_m06dHR_zK-F3T1Jq328ZRImNF4LxFu
+- SHA256SUMS.txt, id1vHa_zFxwGqWMDjIxmGbPS-W7KwPpyznS
+- TEST-RESULTS.json, id1DAvLU9HlEYgjkIfH315-UOB7bIY1laGt
+
+Connector folder readback confirms all4 names and sizes; APKmetadata readback
+confirms exact11319266byte size and correct parent. SHA is local exact uploaded
+bytes; connector exposes no remote checksum, so no remote hash claim.
+Buildinfo links source commit; testfile includes frozen common reports and
+actualA72 ui-smoke-003 evidence plus limitations. Debug packaging is not release.
+This metadata-only follow-up records already observed source push and delivery;
+its own exact-commit review/push/remote verification is still pending here.
+
+WORK14 bounded diagnostic implementation/phone persistence/delivery complete.
+Uncovered activeRunning Android kill/rotation is explicitly retained; host
+actualOSkill and live-reopen tests remain distinct. Next model owner continues
+WORK2 guarded export, then numerical validation, exact Androidrunner/backend and
+repeated onphone measurements; no user-visible AI claim follows from this APK.
+
+Persona unchanged; no new product code. Two iterations since meeting14; nextmeeting before iteration18. Remaining peer/model diagnosis questions retain actual responsible owners; metadata finalreview does not imply privacy approval.
+
+## Iteration 17 - Metadata status correction
+
+Closure-001 docs failed solely because Status: completed is not an allowed WORK
+status. Corrected to Status: verified for the bounded delivered diagnostic;
+no product source changed. Preserve failed closure-001 report. Applicable docs
+check will run closure-002; this entry does not claim its future result.
+
+## Meeting after iteration 17
+
+Read latest peer entries and exact journal revisions below. Model agent journal
+is preparation-only historical checkpoint; later failure/retry observations are
+attributed in primary WORK2 evidence, not silently written as that agent.
+- Read: work/agent-journals/android-shell.md | bytes: 42114 | sha256: 23a3b11b6241ff25e60525c67bcc047f8dcaef7fc6aa33b332394c2515fe0851
+- Read: work/agent-journals/sqlite-layer.md | bytes: 35946 | sha256: d1ba559438e5cfcceb1087454ee3b5eb7a6d849f0c6883c779be0cb35aa28220
+- Read: work/agent-journals/product-review.md | bytes: 38944 | sha256: 5361b7be3db9fcb985ee2319fe58569e2c8224a302fddd78f4bf23654ff7218b
+
+| Question ID | WORK/contract and logged change | Question / next action | Owner | Status |
+| --- | --- | --- | --- | --- |
+| CLOSE17-Q1 | WORK-0014 verified status | Does bounded diagnostic acceptance support verified without AI/release claim? Recheck brief. | product-review | asked, response pending |
+| CLOSE17-Q2 | WORK-0014 unchanged code/closure MD | Are targeted docs checks and exact finalcommit metadata review sufficient? Verify diff. | product-review | asked, response pending |
+| CLOSE17-Q3 | WORK-0014 artifact delivery | Is Drive readback/local SHA/source remoteSHA scope accurate without remotechecksum claim? Verify logged receipts. | product-review | asked, response pending |
+| CLOSE17-Q4 | WORK-0002 actual safetensors load | Confirm load_completed alone proves no PTE/numerics/phone/backend result. Retain gates. | sqlite-layer | asked, response pending |
+| CLOSE17-Q5 | WORK-0002 next actual attempt outcome | Does sanitized outcome lead to export/operator, numerical and Android/backend proof without silentfallback? Report concrete blocker. | sqlite-layer | asked, response pending |
+
+Source checkpoint05768cc independently reviewed and actually pushed/remoteverified;
+Drive delivery verified. Metadata finalpush remains pending. Independent reversible
+metadata work proceeds while answers are open; no shared consent fabricated.
+Next responsible agent is model investigator for actual export outcome, reviewer
+for latest metadata commit, primary for finalpush. Next meeting by iteration20.
+
+Actual meeting17 replies received:
+- CLOSE17-Q1 reviewer agrees verified for bounded diagnostic only; retains
+  activeRunning/rotation exclusions and AI/privacy/release gates, closure001fail.
+- CLOSE17-Q2 reviewer agrees targeted metadata/docs recheck when tested source
+  hashes unchanged; original product profiles are not relabelled new-head reruns.
+- CLOSE17-Q3 reviewer accepts existence/size/parent readback scope, LOCAL SHA only;
+  reviewer did not independently retrieve remote bytes or approve release.
+- CLOSE17-Q4 investigator confirms guarded safetensors loader returned, not PTE,
+  numerical equivalence, tokenizer, placement, device or benchmark acceptance.
+- CLOSE17-Q5 investigator confirms one actualworkerattempt, preserved preflight
+  rejection/quarantine; next exactoperator/export, tokenizer/reference numerics,
+  matching Androidrunner/device/actualbackend proof. No unsafe serialization or
+  network fallback. Outcome still pending; model WORK remains in_progress.
+These actual peer answers close the five scope questions; latest metadata commit
+review and push remain primary/reviewer actions, not inferred future success.
+
+Closure-002 package checks665 passed; agent policy rejected shorthand WORK14/WORK2 in new meeting table. Corrected table to canonical WORK-0014/WORK-0002 IDs; preserved failed report, no code change.

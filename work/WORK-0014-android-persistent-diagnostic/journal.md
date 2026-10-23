@@ -73,3 +73,41 @@ SQLite contract stores lowercase succeeded. Corrected only ignored harness,
 retained failed report and repeated complete scenario. No product change needed.
 Android active-running kill/rotation, model inference and privacy remain outside
 this observation. Source commit/review, verified push and Drive delivery follow.
+
+## Verified source checkpoint and Drive delivery, 2026-10-23
+
+Branch work/WORK-0002-phone-baseline; source commit
+05768ccbe9b9bbcb0f1c265465349e91dd3650ac. Independent product-review actually
+bound exact reviewed runtime/UI/binding/config/collector/export/test hashes to
+this clean commit and reported NO BLOCKER for development checkpoint/push.
+No implementation or pair ownership by reviewer. WORK2 export/benchmark and
+privacy acceptance remain open. Latest docs profile final-003 exit0,665checks
+plus agent policy pass after journal/handoff updates; tested code unchanged.
+
+`git push -u origin work/WORK-0002-phone-baseline` exit0. Subsequent
+`git ls-remote --heads origin refs/heads/work/WORK-0002-phone-baseline` exit0,
+observed remote SHA05768ccbe9b9bbcb0f1c265465349e91dd3650ac equals source commit.
+Default branch untouched; no release/merge/force-push.
+
+Google Drive skill used for authorized artifact delivery. Exact final APK
+SHA256d6ac4cab5dbeaafd812dfaf9a5fbbb118f8659671e7fa4f73ce5ddcd9b963e89,
+11319266bytes,0.2.0/code2,ARM64 debug, uploaded under existing owner hierarchy:
+https://drive.google.com/drive/folders/178qOjlv-KAksy9sOgeQ7syvbEREkBOyv
+- p2pllm_v0.2.0_code2_c05768cc_debug_arm64-v8a.apk, id1WQ_gpQYC-W2FrHEcl5D3QYt0RkEg0BA6
+- BUILD-INFO.json, id1u_m06dHR_zK-F3T1Jq328ZRImNF4LxFu
+- SHA256SUMS.txt, id1vHa_zFxwGqWMDjIxmGbPS-W7KwPpyznS
+- TEST-RESULTS.json, id1DAvLU9HlEYgjkIfH315-UOB7bIY1laGt
+
+Connector folder readback confirms all4 names and sizes; APKmetadata readback
+confirms exact11319266byte size and correct parent. SHA is local exact uploaded
+bytes; connector exposes no remote checksum, so no remote hash claim.
+Buildinfo links source commit; testfile includes frozen common reports and
+actualA72 ui-smoke-003 evidence plus limitations. Debug packaging is not release.
+This metadata-only follow-up records already observed source push and delivery;
+its own exact-commit review/push/remote verification is still pending here.
+
+WORK14 bounded diagnostic implementation/phone persistence/delivery complete.
+Uncovered activeRunning Android kill/rotation is explicitly retained; host
+actualOSkill and live-reopen tests remain distinct. Next model owner continues
+WORK2 guarded export, then numerical validation, exact Androidrunner/backend and
+repeated onphone measurements; no user-visible AI claim follows from this APK.

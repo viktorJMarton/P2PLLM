@@ -708,8 +708,8 @@
     },
     {
       "path": "work/INDEX.md",
-      "bytes": 3298,
-      "sha256": "11f6fb2ac1d24eabec163c34d06ac2702644941facce3976b4296bb8afb3d3d7"
+      "bytes": 3347,
+      "sha256": "80251dbc68d401f0eb403a6500be69e70bc579831340017ac8bce925d63747b0"
     },
     {
       "path": "work/PACKAGE-BUILD.md",
@@ -1028,8 +1028,8 @@
     },
     {
       "path": "work/WORK-0014-android-persistent-diagnostic/brief.md",
-      "bytes": 2056,
-      "sha256": "c07b32dab812f6818f34bd3e6aa4172ff2b319d77555578529abafb52a7e1d4f"
+      "bytes": 2053,
+      "sha256": "8d7a21855e6302ac7e060995039a26441946a984c7b6dfcc0b039f28f988e8d1"
     },
     {
       "path": "work/WORK-0014-android-persistent-diagnostic/contract.md",
@@ -1038,8 +1038,8 @@
     },
     {
       "path": "work/WORK-0014-android-persistent-diagnostic/evidence.md",
-      "bytes": 4752,
-      "sha256": "0e3fd2ae576316883bb057d344ebd256366465ff514480a2a8815a74aaa10edd"
+      "bytes": 7105,
+      "sha256": "a22721088499003b34bee82a68560faa3dc22fd57c3dd14c70c45f7e407bafa3"
     },
     {
       "path": "work/WORK-0014-android-persistent-diagnostic/handoff-runtime.md",
@@ -1048,13 +1048,13 @@
     },
     {
       "path": "work/WORK-0014-android-persistent-diagnostic/handoff-ui.md",
-      "bytes": 4672,
-      "sha256": "1a0c25cae282d714882ff6e7d9438b70a86a15c7ce8572497e0b4d63fa472a62"
+      "bytes": 7025,
+      "sha256": "a2e9072304865b135e01fd674b49943c03d18c3a132a3021bc71c59ec0fabd04"
     },
     {
       "path": "work/WORK-0014-android-persistent-diagnostic/journal.md",
-      "bytes": 4742,
-      "sha256": "63351f53253910f81ec1f73ac356c460694824bda1f3c4dc8a7e0358c52afd76"
+      "bytes": 7095,
+      "sha256": "b01ec244b2ced6e35a6fbfcba35d51f14bc6df53d9cf635abb5d32b39647173a"
     },
     {
       "path": "work/WORK-0014-android-persistent-diagnostic/review.md",
@@ -1068,8 +1068,8 @@
     },
     {
       "path": "work/agent-journals/primary.md",
-      "bytes": 43065,
-      "sha256": "c5d9a53a6439fc70734119081326fe582564e0b2329df931638901e147f88235"
+      "bytes": 49614,
+      "sha256": "32e88af5a3781a813c5cc8e944fd9e7d9f1c572bb6b4cfe3be1740b5bde5ca78"
     },
     {
       "path": "work/agent-journals/product-review.md",

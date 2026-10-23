@@ -1,6 +1,6 @@
 # WORK-0014 — Observable persistent Android local diagnostic
 
-Status: in_progress
+Status: verified
 Run: run-20261023-android-diagnostic-01.
 Requirements: REQ-005, REQ-006, REQ-009.
 Roles: desktop-node, android, testing, pr-review. Baseline ba6b116 with ongoing
