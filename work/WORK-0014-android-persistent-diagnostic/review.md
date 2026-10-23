@@ -121,3 +121,18 @@ assertion failure was preserved and corrected in ignored harness, not product.
 This supersedes prior f1d5 APK evidence; no active-running Android crash/rotation,
 model inference or privacy acceptance inferred. No remaining blocking review
 finding for this bounded development checkpoint. Exact commit binding pending.
+
+## Exact committed checkpoint confirmations
+
+Read-only inspection confirmed clean source commit
+05768ccbe9b9bbcb0f1c265465349e91dd3650ac on work/WORK-0002-phone-baseline;
+reviewed runtime/core/lease/SQL/CLI/UI/generated binding/config hashes matched
+exactly, final APKd6ac...3e89 matched, no blocking bounded checkpoint finding.
+
+Follow-up3810a4f8cf5e1cefaa306ddd6e9638d379946b54 was clean, only seven metadata
+files including manifest changed. Git diff against05768cc for crates/tools/tests/
+config/android/Cargo exited0 with no changes. Read actual closure003/docs pass;
+closure001/002 failures retained. Scoped verified status and delivery readback
+appropriately exclude AI/release, remote checksum and uncovered active lifecycle
+claims. Both confirmations were sent to primary before its actual push, with
+remote SHA verification assigned to primary. No source edited by reviewer.

@@ -65,3 +65,24 @@ Correction: commit, push the assigned development branch and verify remote SHA;
 do not repeatedly ask for authorization already granted for this scope.
 Enforcement: department-workflow.md closure procedure and mandatory handoff
 fields. Failed push means pending closure; no force-push/default-branch merge.
+
+## LSN-008 - Console redirection does not prevent in-process payload file logs
+
+Observed2026-10-23: pinned ExecuTorch export builder unconditionally logs example
+inputs/kwargs; Hydra INFO FileHandler persisted tensor representations although
+worker stdout/stderr went to devnull. Initial0B observation became stale;
+post-cleanup two known logs were4435bytes. WORK-0002 evidence/journal contain the
+explicit dated correction and sanitized containment receipt. Known raw logs
+were removed; this is not a claim that no payload ever persisted.
+
+Correction implemented in tools/export_qwen.py: logging protections precede model
+imports; Hydra logging/metadata is disabled.19 targeted host tests passed, also
+independently rerun; actual installed Hydra/builder no-model canary probe passed
+including reconfiguration and late/direct handlers. Keep exception diagnostics to
+bounded types/static frames, never messages/locals/source or tensor formatting.
+Preserve immutable pins, serialization/network and child-job cleanup guards.
+Affected independent review resolved the specific Python/Hydra logging blocker;
+prior execution no-blocker was withdrawn when the hazard was found. No actual
+model export was rerun after this repair; PTE/numerical/backend/phone gates remain.
+Enforcement owner: WORK-0002 exporter implementer and independent reviewer;
+Python logging guards do not establish an OS/native-code confidentiality sandbox.

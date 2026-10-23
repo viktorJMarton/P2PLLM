@@ -91,3 +91,22 @@ Primary sources: [pinned runner statistics](https://github.com/pytorch/executorc
 [runner clock](https://github.com/pytorch/executorch/blob/3b60683923245cf472b7323426920e15623ba361/extension/llm/runner/util.h),
 [wait4 resource accounting](https://man7.org/linux/man-pages/man2/wait4.2.html),
 [Linux maximum RSS units](https://man7.org/linux/man-pages/man2/getrusage.2.html).
+
+## Export-side logging and failure evidence
+
+The dedicated tools/export_qwen.py process installs Python logging emission
+protections before model imports and disables Hydra job/hydra logging plus its
+metadata directory; run output stays inside the new ignored export directory.
+This covers inspected Python logger/handler paths, including late/direct
+FileHandler emission after reconfiguration. It does not sandbox native code or
+arbitrary direct file I/O, nor prevent upstream fstrings evaluating in memory.
+Console redirection alone was insufficient: WORK-0002 records the actual prior
+tensor-log incident, disposal and dated correction; agents/MEMORY.md LSN-008
+preserves that lesson. Do not repeat the withdrawn no-payload-ever claim.
+
+Failure reports retain bounded allowlisted reason codes and exception types/
+static filename-function-line chains, including SystemExit; never messages,
+exit-code payloads, source snippets, locals or tensor representations. Host
+canary regressions and actual installed Hydra/builder no-model probes are
+logging evidence only. A new actual model export still needs affected independent
+review and immutable source/dependency checks; no PTE or benchmark is implied.

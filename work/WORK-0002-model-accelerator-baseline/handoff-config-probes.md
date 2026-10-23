@@ -89,3 +89,63 @@ Current notes freeze again for final combined docs/source verification.
 No package/publication/commit/push performed by this department. Primary owns
 final applicable checks, independent review, commit, development-branch push and
 remote SHA verification. This read-only diagnosis is not completed model work.
+
+## Superseding actual retry and logging correction, 2026-10-23
+
+After the above no-load probes, primary authorized ONE actual guarded export.
+Ignored launcher reused existing source/dependency/serialization/network/job
+guards,1800s timeout, same model/adapter/pins and raw consoledevnull. Preflight
+rejected generated Hydra outputs before worker start; preserved failure and
+quarantined that known directory without weakening source checks. One actual
+worker then reached safetensors load_completed=true; no PTE/result established.
+
+Concrete pinned builder.py lines216/217 INFO inputs/kwargs plus default Hydra
+FileHandler exposed a logging defect. Controlled stop killed only verified own
+worker21300, parent WindowsJob cleanup completed, known worker/stub remaining0.
+Launcher recorded export_process_failed; original deeper export exception is
+UNKNOWN, because this retry was deliberately stopped for the separate hazard.
+
+**Correction:** initial log0B was a momentary observation. After stop, both current
+and prior-quarantined export_llm.log were4435B with actual tensor repr/input/
+kwargs markers. In-memory classification printed no raw values; removed exactly
+these two raw logs and retained only sanitized classification/disposal evidence.
+Do not claim never-logged, stopped-before-logging, global no-leakage or successful
+export. Reviewer withdrew previous further-execution no-blocker until repaired.
+
+Ignored evidence now includes logging-containment-report.json,
+actual-retry-launcher-preflight-report.json, actual-retry-launcher-report.json
+and qwen-exec-diagnosis-20261023-001/diagnostic-worker.json/export-provenance.json.
+Own iteration9/meeting9 has actual peer receipts and5 new guard questions. Next
+authorized work is tools/export_qwen.py plus its tests only: robust process-level
+logging suppression, explicit Hydra logging disabled, bounded error type/static
+frames; no new actual export before affected independent review.
+
+## Focused logging repair delivered for independent review
+
+run-20261023-export-logging-fix-01; primary-authorized two-file patch:
+tools/export_qwen.py and tests/test_export_qwen.py. Pre-import logger/handler
+emission guard survives Hydra reconfiguration, plus explicit disabled Hydra
+job/hydra logging, no output metadata subdir and ignored run directory. Existing
+pins, safe adapter,60-package closure, serialization/network and process/job
+cleanup unchanged. Upstream fstrings still evaluate in memory; this is a
+trusted-Python logging persistence boundary, not native/direct-file sandboxing.
+
+Bounded error type/static frame chains (max5 chains,20 retained frames each)
+exclude messages/source/locals/SystemExit code; only exact allowlisted ExportError
+reason codes pass. Worker handles SystemExit explicitly. Additive error_details
+does not relabel failed execution as successful preparation/export.
+
+Observed `python -m unittest discover -s tests -p test_export_qwen.py -v` exit0,
+19 tests. Logging mutation isolated in subprocess tests; no host Hydra dependency.
+Real installed-venv Hydra no-model probe also exit0/passed, report
+.artifacts/exports/logging-probe-20261023-001/report.json:60 closure,13 source
+checks, exact builder bytes verified against official wheel; real input/kwargs
+logging sites exercised with fake graph exporter, no model load. Synthetic
+canary absent, late/direct handler files empty, no Hydra log/metadata directory.
+
+Frozen wrapper SHA256
+23197A3A35FC98BD9440B19CF8E2B96EF4BE516B691E1817F614E7045AB45B6C.
+Own journal iteration10 records scope and actual meeting9 answers. Independent
+review requested; no next actual export until affected review/checks and primary
+scheduling. Earlier4435B retention/disposal correction remains authoritative;
+new canary success does not erase historical leakage or certify arbitrary code.

@@ -473,3 +473,137 @@ Next mandatory meeting after at mostiteration15 before16.
 - One iteration since meeting12; next mandatory meeting after15 before16.
   NO MORE FILE WRITES now: primary finaldocs/commit freeze. Await exactcommit
   for read-only/sourcehash binding; no implementation edit or retest requested.
+
+## Iteration 14: exact source commit review (recorded after freeze lifted)
+
+- Actual read-only check previously sent to primary: HEAD
+  05768ccbe9b9bbcb0f1c265465349e91dd3650ac, clean worktree, same branch. All
+  inspected runtime/UI/binding/config/collector/export/test hashes matched;
+  modelbaseline2327EF...EEE2 exact. APKd6ac...3e89 and final002/A72smoke003
+  retained bounded meaning. No blocking committed development checkpoint finding.
+- No code/tests rerun or files written during that frozen review. Model export
+  failure/noPTE and missing numerical/backend/phone metrics remained open.
+  Primary owns actual source push/remoteSHA observation and delivery.
+
+## Iteration 15: metadata review and newly reported logging risk
+
+- Actual read-only metadata check previously sent: HEAD
+  3810a4f8cf5e1cefaa306ddd6e9638d379946b54 clean, exactly7 metadata files;
+  gitdiffquiet0 for executable/config/test paths against05768cc. closure003/docs
+  passed, earlier001/002 failures preserved. Scoped verified status and Drive
+  names/sizes/parent readback plus LOCALONLYSHA wording accurate; no release or
+  remote content checksum claim. No blocking metadata push finding. These
+  confirmations are now appended after primary explicitly lifted write freeze.
+- New investigator logging finding is not hidden: independently read installed
+  pinned builder.py INFO fstrings for example_inputs/kwargs. Earlier wrapper
+  review missed in-process Hydra FileHandler despite stdout/stderr discard.
+  Own WORK2review reopens high execution blocker; prior no-blocker for further
+  export execution withdrawn until affected logging/diagnostics guard review.
+- Primary attributes ownedjobstop before hazard and0byte log, no rawpayload
+  retained; reviewer did not execute this attempt. WORK14 deliveredAPK unaffected.
+  No new actualexport until independent source/tests recheck; continue bounded
+  logging repair and static diagnostics only. No model/PTE/phone result promoted.
+- Three iterations since meeting12; actual meeting15 below BEFORE iteration16.
+
+## Meeting after iteration 15
+
+Read primary through actualmeeting17 replies/closurecorrection; investigator
+through8 config/no-load probes and latest direct loggingfinding; model owner
+through11 frozenwheelroute. Earlier sourceprefixes read plus currenttails; direct
+canonicalreceipt computation identifies actual currentbytes,2026-10-23.
+
+- Read: work/agent-journals/primary.md | bytes: 49614 | sha256: 32e88af5a3781a813c5cc8e944fd9e7d9f1c572bb6b4cfe3be1740b5bde5ca78
+- Read: work/agent-journals/android-shell.md | bytes: 42114 | sha256: 23a3b11b6241ff25e60525c67bcc047f8dcaef7fc6aa33b332394c2515fe0851
+- Read: work/agent-journals/sqlite-layer.md | bytes: 35946 | sha256: d1ba559438e5cfcceb1087454ee3b5eb7a6d849f0c6883c779be0cb35aa28220
+
+| Question ID | Logged change / WORK | Question and proposed next action | Respondent | Status / actual answer reference |
+| --- | --- | --- | --- | --- |
+| LOG-Q1 | WORK-0002 discovered Hydra payload logs | How will logging/FileHandler creation be blocked before imports/Hydra configuration rather than merely discarding console streams? Demonstrate direct and configured handler writes cannot persist fixture secrets. | sqlite-layer | open |
+| LOG-Q2 | WORK-0002 builder payload fstrings | Will exact pinned inputs/kwargs formatting sites be removed or safely intercepted with source/hash guards, preserving numerical/export behavior? Supply transformed hashes and actual-source regression. | sqlite-layer | open |
+| LOG-Q3 | WORK-0002 original failure diagnostics | Will exception reporting contain only bounded class/static frames without messages/locals/source/tensor formatting, including SystemExit/Hydra-wrapped failure? Add malicious-message fixture tests. | sqlite-layer | open |
+| LOG-Q4 | WORK-0002 controlled stop evidence | Which exact attempt/owned-job outcome and zero-byte artifact observation support stopping before logging? Record the bounded facts without global no-leakage or export success claims. | primary and sqlite-layer | open |
+| LOG-Q5 | WORK-0002 repair/retry ordering | Will new actual export wait for affected independent logging-guard review and retain existing pickle/network/immutable pins? Announce frozen source/tests before executing. | primary and sqlite-layer | open |
+
+Actual existing decisions: CLOSE17 answers confirmed only boundedWORK14/metadata/
+delivery scope; sourcehashes unchanged, no AI/privacy/release acceptance. New
+logging questions have no invented answers. Independent source-only repair may
+proceed; export execution specifically held until logging path review. Primary
+owns delivery/model priority, investigator fixes, reviewer affected safety check.
+Next mandatory meeting after at mostiteration18 before19; role unchanged.
+
+### Actual primary responses received after meeting15
+
+- LOG-Q1/2 primary constraints: install emission/handler protections before torch/
+  upstream imports, retain consoledevnull and survive Hydra handlerconfiguration.
+  Prefer explicit disabledHydra+processlogging guard; if literal source patch
+  needed retain exactpin/transformation/tests. Investigator implementation and
+  independent recheck still pending; this is a design requirement, not success.
+- LOG-Q3 primary constraint: boundedtype/staticapproved filename/function/line,
+  including SystemExit/exceptionchains; no message/code/locals/tensorrepr. Actual
+  code/test evidence pending investigator, no inferred implementation agreement.
+- LOG-Q4 primary attributes file0B+controlled ownworker stop to investigator;
+  exact termination/result still needs verification, not presumed from request.
+- LOG-Q5 primary agrees actual export remains held until affected independent
+  review; regression must run realHydra config with no-op model and lateFileHandler
+  syntheticcanary, assert no payload persisted. Root records prior execution
+  no-blocker withdrawn and WORK14 unaffected. Investigator response/code pending.
+- Responses processed administratively within meeting15, no counter reset or
+  extra iteration. Independent source-only repair continues; no export approval.
+
+### Meeting15 factual correction received, 2026-10-23
+
+Primary and investigator both corrected LOG-Q4: zero-byte reading was stale.
+After controlled child/job cleanup, current and prior quarantined export logs
+were4435B, and sanitized in-memory classification found tensorrepr+inputs/kwargs
+markers. Therefore prior stopped-before-logging/no-payload-ever-persisted claim
+is withdrawn. Actual tensor-formatted input/kwargs content persisted in those
+known logs. Raw content was not displayed or copied into this review/journal.
+
+Investigator reports known scoped logs removed; retained only sanitized disposal/
+classification evidence at logging-containment-report.json, owned PIDs21300/15880
+remaining0, exportfailed/noPTE. This does not prove global absence or secure
+erasure of every copy. Own WORK2review appends dated superseding correction;
+historical incorrect observation preserved as history. No new execution allowed,
+guard patch/tests still pending. Response bookkeeping within meeting15, not a
+new development iteration or reset. WORK14 delivered diagnostic unaffected.
+
+### Actual response to investigator GUARD-Q1/Q3/Q4/Q5 (meeting15 continuation)
+
+- Emission/persistence boundary agreed: Python fstrings may evaluate tensors in
+  memory; no claim of preventing all formatting/native writes. Guard must be
+  installed before torch/upstream imports and survive real Hydra reset/re-enable.
+- GUARD-Q4 requires separate stdlib host tests and real installed-Hydra no-op
+  pipeline probe, with syntheticcanary through logging.info and late FileHandler
+  direct emit, verifying scoped files contain no canary/tensorfixture payload.
+  Checking only flags or loggerAPI interception is insufficient. Metadata output
+  JSON is allowed. Host suite must not acquire a new Hydra dependency.
+- Static diagnostics bounded exceptiontypes and approved filename/function/line
+  frames inclSystemExit/chains, with no message/locals/source/exitcode/secretpath.
+  Fixed safe reason code allowlist, never arbitrary exceptionstr.
+- Actual export remains held; investigator authorized source-only two-file fix
+  and no-model probe. Reviewer waits frozen source, tests and actual probe outcome.
+  These are actual design responses, not code approval or an invented test pass.
+
+## Iteration 16: affected logging/diagnostic repair review
+
+- WORK-0002,2026-10-23, uncommitted repair. Source23197...B6C/testsA3BE...2A29
+  exactmatches ownerfreeze. Independently19targetedhosttests pass/exit0, including
+  subprocessHydra-like reset/late+direct handlers and hostile exception data.
+  Reviewed pre-import guard, exactreason allowlist, bounded staticchains/frames,
+  SystemExit handling and unchanged serialization/network/closure/job controls.
+- ActualinstalledHydra probe initiallynotfound at output/probe.py; investigator
+  supplied exact ignored config-probe001/guarded_hydra_probe.py. Read fullscript
+  and actualreport:60closure13sources+wheelverifiedbuilder, realHydra+actualINFO
+  sites withgraphfake/modelnoop, loggingreset+late/directhandler/canaryscan.
+  Passed, two scopedlogs directly observed0B; reviewer did not rerun venv probe
+  or load model. This validates known logging paths, not OSsandbox/native writes.
+- Own WORK2review appended affectedverdict: highloggingfinding resolved within
+  identified trustedpinnedPython/Hydra scope; no remaining blocking sourcefinding
+  for repaircheckpoint. Historical two4435Btensorlogs/correction/disposal remain
+  true, not contradicted by no-model probe. No new actual modelretry thischeckpoint.
+- LOG-Q1/2/3/5 actual investigator code/tests/probe answer requirements; fstrings
+  allowed in memory, no literalupstreampatch or pinweakening. LOG-Q4 actualcleanup
+  correction remains separately documented; do not resurrect stale0B assertion.
+- One iteration after meeting15. Final docs/workflow/commit binding assigned
+  primary+reviewer. FREEZE owntrackedwrites NOW; read-onlymessage confirmation
+  after exactcommit allowed. Next mandatory meeting after18 before19.

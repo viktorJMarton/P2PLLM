@@ -4,6 +4,7 @@ import hashlib
 import json
 from pathlib import Path
 import sys
+import subprocess
 import tempfile
 from types import ModuleType, SimpleNamespace
 import unittest
@@ -72,6 +73,102 @@ class SafeLoaderTests(unittest.TestCase):
         export.deny_export_event("open", ())
         with self.assertRaises(export.ExportError):
             export.forbidden_serialization("not-loaded.pt")
+
+
+class LoggingAndDiagnosticTests(unittest.TestCase):
+    def test_logging_guard_survives_reconfiguration_and_direct_late_handlers(self):
+        # A child isolates permanent process-level logging suppression from the
+        # rest of the test runner. Canary data are synthetic, never model data.
+        code = r'''
+import json, logging, logging.config, pathlib, tempfile
+from tools import export_qwen as export
+class Canary:
+    def __str__(self):
+        raise AssertionError("logging must not format lazy payloads")
+class Formatter(logging.Formatter):
+    def format(self, record):
+        raise AssertionError("logging formatter must not be reached")
+with tempfile.TemporaryDirectory() as temporary:
+    path = pathlib.Path(temporary) / "late.log"
+    export.install_logging_guard()
+    logging.config.dictConfig({"version":1,"disable_existing_loggers":False,
+        "handlers":{"late":{"class":"logging.FileHandler","filename":str(path)}},
+        "root":{"level":"DEBUG","handlers":["late"]}})
+    logging.disable(0)
+    logging.getLogger().setLevel(logging.DEBUG)
+    logging.info("prompt/tensor %s", Canary())
+    logging.info(f"inputs: {'SYNTHETIC_TENSOR_CANARY'}")
+    record = logging.LogRecord("fixture",logging.INFO,"fixture.py",1,Canary(),(),None)
+    logging.getLogger().handle(record)
+    late = logging.FileHandler(path)
+    late.setFormatter(Formatter())
+    late.handle(record)
+    late.emit(record)
+    logging.StreamHandler().emit(record)
+    late.close()
+    logging.shutdown()
+    assert path.read_bytes() == b""
+print(json.dumps({"guard_canary_passed":True}))
+'''
+        result = subprocess.run([sys.executable, "-c", code], cwd=export.ROOT,
+                                capture_output=True, text=True, timeout=30)
+        self.assertEqual(result.returncode, 0)
+        self.assertEqual(json.loads(result.stdout), {"guard_canary_passed": True})
+        self.assertNotIn("SYNTHETIC_TENSOR_CANARY", result.stdout + result.stderr)
+
+    def test_exception_chains_have_no_message_source_locals_path_or_exit_code(self):
+        class Secret:
+            def __str__(self):
+                raise AssertionError("must never format exception data")
+            __repr__ = __str__
+        namespace = {}
+        exec(compile("def fixture():\n    raise ValueError('SYNTHETIC_SECRET_MESSAGE')\n",
+                     str(Path(export.__file__).resolve()), "exec"), namespace)
+        try:
+            try:
+                namespace["fixture"]()
+            except ValueError as error:
+                raise SystemExit(Secret()) from error
+        except SystemExit as error:
+            details = export.exception_details(error)
+        encoded = json.dumps(details)
+        self.assertEqual([entry["type"] for entry in details["chain"]],
+                         ["builtins.SystemExit", "builtins.ValueError"])
+        self.assertTrue(any(frame["function"] == "fixture" for frame in details["chain"][1]["frames"]))
+        for forbidden in ("SYNTHETIC_SECRET_MESSAGE", "exit_code", "locals", "source", "message", str(export.ROOT)):
+            self.assertNotIn(forbidden, encoded)
+        class SpoofedExportError(export.ExportError):
+            def __str__(self):
+                raise AssertionError("subclass must never be formatted")
+        self.assertEqual(export.bounded_reason(SpoofedExportError("export_timeout"), "fallback"), "fallback")
+        self.assertEqual(export.bounded_reason(export.ExportError(Secret()), "fallback"), "fallback")
+        self.assertEqual(export.bounded_reason(export.ExportError("unapproved_fixture"), "fallback"), "fallback")
+        self.assertEqual(export.bounded_reason(export.ExportError("export_timeout"), "fallback"), "export_timeout")
+
+    def test_worker_system_exit_writes_bounded_failure_not_payload(self):
+        fake_torch = ModuleType("torch")
+        model = ModuleType("executorch.examples.models.llama.model")
+        model.Llama2Model = type("Llama2Model", (), {})
+        with tempfile.TemporaryDirectory() as temporary:
+            output = Path(temporary)
+            installed = output / "model.py"
+            installed.write_text("# synthetic reviewed source\n")
+            records = [{"path": export.MODEL_SOURCE, "installed_path": str(installed),
+                        "effective_sha256": export.sha256(installed)}]
+            with patch.object(export, "install_logging_guard"), \
+                    patch.object(export, "verify_dependency_closure"), \
+                    patch.dict(sys.modules, {"torch": fake_torch, "executorch.examples.models.llama.model": model}), \
+                    patch("inspect.getsourcefile", return_value=str(installed)), \
+                    patch("runpy.run_module", side_effect=SystemExit("SYNTHETIC_SECRET_EXIT")), \
+                    patch.object(sys, "addaudithook"), patch.object(sys, "argv", ["fixture"]):
+                result = export.worker_main([str(output), str(output), "{}", json.dumps(records)])
+            report = json.loads((output / "worker-result.json").read_text())
+            self.assertEqual(result, 1)
+            self.assertEqual(report["status"], "failed")
+            self.assertEqual(report["reason"], "export_entry_exited")
+            self.assertEqual(report["error_details"]["chain"][0]["type"], "builtins.SystemExit")
+            self.assertNotIn("SYNTHETIC_SECRET_EXIT", json.dumps(report))
+            self.assertNotIn("exit_code", json.dumps(report))
 
 
 class SourceAndInputTests(unittest.TestCase):
@@ -216,7 +313,7 @@ class SourceAndInputTests(unittest.TestCase):
             args = SimpleNamespace(upstream_dir=artifact_root / "upstream" / ("executorch-" + export.REVISION),
                                    checkpoint=checkpoint, tokenizer_dir=checkpoint.parent,
                                    output_dir=output, execute=True)
-            with patch.object(export, "verify_checkout"), patch.object(export, "prepare_sources", return_value=[]), \
+            with patch.object(export, "install_logging_guard"), patch.object(export, "verify_checkout"), patch.object(export, "prepare_sources", return_value=[]), \
                     patch.object(export, "prepare_installed_sources", return_value=(artifact_root, [])), \
                     patch.object(export, "execute_export", side_effect=KeyboardInterrupt):
                 with self.assertRaises(KeyboardInterrupt):

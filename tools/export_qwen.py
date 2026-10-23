@@ -6,9 +6,11 @@ project-local export venv. Raw exporter output is discarded, never journalled.
 """
 
 import argparse
+from collections import deque
 from datetime import datetime, timezone
 import hashlib
 import json
+import logging
 import os
 from pathlib import Path
 import re
@@ -60,6 +62,88 @@ def _qwen_load_safetensors(path, config):
 
 class ExportError(ValueError):
     """Bounded export precondition failure; never include untrusted diagnostics."""
+
+
+KNOWN_EXPORT_REASONS = frozenset({
+    "artifact_hash_mismatch", "artifact_missing_or_size_mismatch", "baseline_package_pin_mismatch",
+    "baseline_revision_mismatch", "dependency_lock_digest_mismatch", "dependency_lock_incomplete",
+    "dependency_lock_manifest_mismatch", "dependency_lock_not_fully_hashed",
+    "dependency_lock_required_version_mismatch", "explicit_safetensors_required", "export_artifact_missing",
+    "export_dependency_closure_unlocked_or_mismatched", "export_dependency_extra_or_url_not_supported",
+    "export_dependency_lock_not_exact_closure", "export_dependency_version_mismatch",
+    "export_forbidden_pickle_or_network", "export_imported_source_mismatch", "export_process_failed",
+    "export_timeout", "installed_export_source_modified", "installed_original_backup_modified",
+    "installed_patch_differs_from_source_patch", "installed_source_changed_before_export",
+    "installed_source_changed_during_export", "isolated_export_venv_missing", "model_revision_mismatch",
+    "official_export_wheel_missing_or_hash_mismatch", "official_wheel_patch_source_missing",
+    "official_wheel_upstream_source_mismatch", "output_must_be_new_and_outside_checkout",
+    "path_outside_artifacts", "pickle_call_remains", "resolved_hash_dependency_lock_missing",
+    "single_checkpoint_required", "source_changed_during_export", "unexpected_export_venv",
+    "unexpected_upstream_checkout_path", "unsafe_export_path", "unsupported_patch_target",
+    "upstream_git_check_failed", "upstream_modified_patch_target", "upstream_patch_context_mismatch",
+    "upstream_revision_mismatch", "upstream_source_hash_mismatch", "upstream_unexpected_modification",
+})
+
+
+def bounded_reason(error, fallback):
+    # Never call exception __str__, including user-defined ExportError subclasses.
+    if type(error) is ExportError and len(error.args) == 1:
+        value = error.args[0]
+        if type(value) is str and value in KNOWN_EXPORT_REASONS:
+            return value
+    return fallback
+
+
+def _discard_log(*args, **kwargs):
+    return None
+
+
+def _empty_log_format(*args, **kwargs):
+    return ""
+
+
+def install_logging_guard():
+    """Suppress Python logging emission in this dedicated export process.
+
+    Hydra may reset levels/handlers after installation. Intercept actual logger
+    and handler paths too, including late/direct FileHandler emission. Upstream
+    fstrings can still evaluate in memory; native/direct file I/O is not an OS
+    sandbox. Console streams are separately discarded by the worker launcher.
+    """
+    logging.disable(sys.maxsize)
+    logging.Logger._log = _discard_log
+    logging.Logger.handle = _discard_log
+    logging.Handler.handle = _discard_log
+    logging.Handler.format = _empty_log_format
+    logging.StreamHandler.emit = _discard_log
+    logging.FileHandler.emit = _discard_log
+
+
+def exception_details(error):
+    """Bounded trusted-source locations/types only; no message, source or locals."""
+    trusted_roots = (ROOT / "tools", Path(sys.prefix) / "Lib", Path(sys.base_prefix) / "Lib")
+    prefixes = ("builtins", "hydra", "omegaconf", "torch", "torchao", "executorch", "safetensors", "subprocess")
+    chain, seen = [], set()
+    current = error
+    while current is not None and id(current) not in seen and len(chain) < 5:
+        seen.add(id(current))
+        cls = type(current)
+        name = cls.__module__ + "." + cls.__qualname__
+        if not (cls.__module__.split(".")[0] in prefixes and re.fullmatch(r"[A-Za-z0-9_.]{1,160}", name)):
+            name = "ExportError" if cls is ExportError else "UnclassifiedError"
+        frames = deque(maxlen=20)
+        frame = current.__traceback__
+        while frame is not None:
+            code = frame.tb_frame.f_code
+            path = Path(code.co_filename)
+            if path.is_absolute() and any(path.is_relative_to(root) for root in trusted_roots):
+                filename, function = path.name, code.co_name
+                if re.fullmatch(r"[A-Za-z0-9_.-]{1,100}", filename) and re.fullmatch(r"[A-Za-z0-9_.<>]{1,100}", function):
+                    frames.append({"filename": filename, "function": function, "line": frame.tb_lineno})
+            frame = frame.tb_next
+        chain.append({"type": name, "frames": list(frames)})
+        current = current.__cause__ if current.__cause__ is not None else current.__context__
+    return {"chain": chain}
 
 
 def sha256(path):
@@ -162,7 +246,9 @@ def export_arguments(checkout, checkpoint, output):
             f'+base.params="{(checkout / "examples/models/qwen3/config/0_6b_config.json").as_posix()}"',
             f'+base.checkpoint="{checkpoint.as_posix()}"',
             f'+export.output_dir="{output.as_posix()}"',
-            '+export.output_name="qwen3_0_6b.pte"']
+            '+export.output_name="qwen3_0_6b.pte"',
+            "hydra/job_logging=disabled", "hydra/hydra_logging=disabled",
+            "hydra.output_subdir=null", f'hydra.run.dir="{output.as_posix()}"']
 
 
 def prepare_installed_sources(root, python, baseline, source_patches):
@@ -311,6 +397,7 @@ def deny_export_event(event, args):
 
 def worker_main(argv):
     """Trusted local export worker; no model data or raw exception text is saved."""
+    install_logging_guard()
     from importlib import metadata
     import inspect
     import runpy
@@ -346,7 +433,12 @@ def worker_main(argv):
         result.update(status="interrupted", reason="export_cancelled")
         return 130
     except Exception as error:
-        result["reason"] = str(error) if isinstance(error, ExportError) else "export_worker_failed"
+        result["reason"] = bounded_reason(error, "export_worker_failed")
+        result["error_details"] = exception_details(error)
+        return 1
+    except SystemExit as error:
+        result["reason"] = "export_entry_exited"
+        result["error_details"] = exception_details(error)
         return 1
     finally:
         with (output / "worker-result.json").open("x", encoding="utf-8") as stream:
@@ -355,8 +447,9 @@ def worker_main(argv):
 
 
 def execute_export(python, checkout, checkpoint, output, versions, source_records, timeout=1800):
+    install_logging_guard()
     env = {k: v for k, v in os.environ.items() if k not in ("PYTHONPATH", "PYTHONHOME")}
-    env.update(HF_HUB_OFFLINE="1", TRANSFORMERS_OFFLINE="1", HF_DATASETS_OFFLINE="1",
+    env.update(HF_HUB_OFFLINE="1", TRANSFORMERS_OFFLINE="1", HF_DATASETS_OFFLINE="1", HYDRA_FULL_ERROR="1",
                HF_HUB_DISABLE_TELEMETRY="1", PYTHONDONTWRITEBYTECODE="1",
                PYTHONNOUSERSITE="1", PYTHONSAFEPATH="1")
     argv = [str(python), "-c", WORKER, str(Path(__file__)), str(checkout), str(output), json.dumps(versions),
@@ -389,6 +482,7 @@ def execute_export(python, checkout, checkpoint, output, versions, source_record
 
 
 def run(args, root=ROOT):
+    install_logging_guard()
     baseline = json.loads((root / "config/model-baselines.json").read_text(encoding="utf-8"))
     if baseline["runtime"]["revision"] != REVISION:
         raise ExportError("baseline_revision_mismatch")
@@ -466,7 +560,8 @@ def run(args, root=ROOT):
         raise
     except (ExportError, OSError, subprocess.SubprocessError) as error:
         report["status"] = "failed"
-        report["reason"] = str(error) if isinstance(error, ExportError) else "export_process_or_io_failed"
+        report["reason"] = bounded_reason(error, "export_process_or_io_failed")
+        report["error_details"] = exception_details(error)
         raise
     finally:
         with (output / "export-provenance.json").open("x", encoding="utf-8") as stream:
@@ -476,6 +571,7 @@ def run(args, root=ROOT):
 
 
 def main():
+    install_logging_guard()
     parser = argparse.ArgumentParser(description=__doc__)
     for name in ("upstream-dir", "checkpoint", "tokenizer-dir", "output-dir"):
         parser.add_argument("--" + name, required=True)
@@ -489,7 +585,7 @@ def main():
     except (ExportError, CheckError, OSError, ValueError, KeyError, StopIteration,
             subprocess.SubprocessError) as error:
         # Only our fixed reason codes are emitted; arbitrary exception text is private.
-        reason = str(error) if isinstance(error, ExportError) else "export_precondition_or_io_failed"
+        reason = bounded_reason(error, "export_precondition_or_io_failed")
         print(json.dumps({"status": "failed", "reason": reason}))
         return 1
     print(json.dumps({"status": report["status"], "phone_measurement_performed": False}))

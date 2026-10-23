@@ -73,8 +73,8 @@
     },
     {
       "path": "agents/MEMORY.md",
-      "bytes": 4006,
-      "sha256": "fda88565eda58f42c1ca5cbfdd4a552d54e204a9f396ce3bfda629e3dd256b86"
+      "bytes": 5430,
+      "sha256": "456a502c6a507c853d132f7419134148ae4742b4f2e2c8af682c5326774ef7ad"
     },
     {
       "path": "agents/PERSONAS.md",
@@ -478,8 +478,8 @@
     },
     {
       "path": "docs/operations/phone-benchmark.md",
-      "bytes": 5816,
-      "sha256": "165b05334b8feb07cb3b0e34092cbb414e08cb14962287efa99519a9746b1570"
+      "bytes": 7021,
+      "sha256": "5ab2d419e0ffc66268b7691d6625622c9eb8625e34e8fb9914a3f0c4e5a22968"
     },
     {
       "path": "docs/research/sources.md",
@@ -623,8 +623,8 @@
     },
     {
       "path": "tests/test_export_qwen.py",
-      "bytes": 16047,
-      "sha256": "a091989de912c4df17587185f73ed0d2d66b0c15dc18369b2b95f2673fc53a2c"
+      "bytes": 21526,
+      "sha256": "a3be3b38638d327dee93c9633d18d7517a84c0b1149b9e847bbacb562f232a29"
     },
     {
       "path": "tests/test_phone_benchmark.py",
@@ -668,8 +668,8 @@
     },
     {
       "path": "tools/export_qwen.py",
-      "bytes": 24429,
-      "sha256": "a09ea6a71e1b4b5f337d2e9380a75d7192f6719e7ab22fe86b5f22f827c21dd2"
+      "bytes": 29324,
+      "sha256": "23197a3a35fc98bd9440b19cf8e2b96ef4be516b691e1817f614e7045ab45b6c"
     },
     {
       "path": "tools/phone_benchmark.py",
@@ -748,13 +748,13 @@
     },
     {
       "path": "work/WORK-0002-model-accelerator-baseline/evidence.md",
-      "bytes": 2965,
-      "sha256": "eb183be2729338bcd83865562c0713868e297a4b1bf2ce5e7fdd764b87c7440a"
+      "bytes": 7603,
+      "sha256": "ad5cdef8e23b756d30951487cc4349b7245b4472b5989def2f1a599b9c149c79"
     },
     {
       "path": "work/WORK-0002-model-accelerator-baseline/handoff-config-probes.md",
-      "bytes": 5074,
-      "sha256": "d0cf31185d2485055eac4be845ed644e40ec5dedb0006b5f7ed2a80dc6af3a08"
+      "bytes": 8880,
+      "sha256": "7462829a3c165b948918ea2021adbbc644d93bdfeb5d5bf2552e4e825c32739c"
     },
     {
       "path": "work/WORK-0002-model-accelerator-baseline/handoff-model-research.md",
@@ -763,13 +763,13 @@
     },
     {
       "path": "work/WORK-0002-model-accelerator-baseline/journal.md",
-      "bytes": 1148,
-      "sha256": "79dfc617729f1108928d41337fb41868c3fbd984de81f7aa1e24c6eac7b5d5be"
+      "bytes": 5786,
+      "sha256": "bf57913dc3be5145a6bc62b80cbefa7401aacfefc39e9429e160ae58f03ca9e2"
     },
     {
       "path": "work/WORK-0002-model-accelerator-baseline/review.md",
-      "bytes": 13351,
-      "sha256": "6ad883ffed14e8b4bc2dbd27900a0126f731e57c7077f586bff61f8ee84a99dd"
+      "bytes": 18596,
+      "sha256": "08132a4bc217b469e2bf11d9af6f8c1a89d978fe4555bb43221c0bf18565dd4e"
     },
     {
       "path": "work/WORK-0002-model-accelerator-baseline/sprint-plan.md",
@@ -1058,8 +1058,8 @@
     },
     {
       "path": "work/WORK-0014-android-persistent-diagnostic/review.md",
-      "bytes": 7613,
-      "sha256": "e75a2ea446a077a3525fdf3ce6af72120b42100cb1c19fccb3791cb5db68d2ca"
+      "bytes": 8499,
+      "sha256": "805dd38103609ede25490bca5314ac2b6d4d8547816163826a30e75f8025c927"
     },
     {
       "path": "work/agent-journals/android-shell.md",
@@ -1068,18 +1068,18 @@
     },
     {
       "path": "work/agent-journals/primary.md",
-      "bytes": 49614,
-      "sha256": "32e88af5a3781a813c5cc8e944fd9e7d9f1c572bb6b4cfe3be1740b5bde5ca78"
+      "bytes": 55702,
+      "sha256": "63cd510097c742c38ec08b3ed177b58daabee5df9b1e0e07ce9f61da083114e7"
     },
     {
       "path": "work/agent-journals/product-review.md",
-      "bytes": 38944,
-      "sha256": "5361b7be3db9fcb985ee2319fe58569e2c8224a302fddd78f4bf23654ff7218b"
+      "bytes": 49061,
+      "sha256": "6009d96e6b326bbd4e9a86bc04cd0e0158de4b83bbdad4e1b8634a475e1ecd58"
     },
     {
       "path": "work/agent-journals/sqlite-layer.md",
-      "bytes": 35946,
-      "sha256": "d1ba559438e5cfcceb1087454ee3b5eb7a6d849f0c6883c779be0cb35aa28220"
+      "bytes": 46033,
+      "sha256": "db1cb7e6849a346a15e7ecf571b8951d5ee450f88cc2b05bc54cd8347240589e"
     }
   ],
   "excluded_from_hashes": [
