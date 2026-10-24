@@ -1080,7 +1080,7 @@ metadata repair and its limitations need independent review before push.
 
 - Read: work/agent-journals/delivery-review.md | bytes: 3352 | sha256: e412e45dd7d9e3c9b3085abfdbffca68add74eb739c38b2c59a2797e61cd47fd
 
-- Read: work/agent-journals/inference-native.md | bytes: 16781 | sha256: 1101ed1da8a6aaa264bd96b1fb358ee425b853d2b192ef812020ba33027c73dc
+- Read: work/agent-journals/inference-native.md | bytes: 1025 | sha256: 9096907bd63ec4068061baf714282192762b9b305f3e316824a44d92c6502b39
 
 - Read: work/agent-journals/inference-android.md | bytes: 23507 | sha256: 1ca43c02cea6f5b3c0606774f17503593ac55e2a88e78dce8d30f196d85e3d6e
 
@@ -1119,7 +1119,7 @@ singleAPKdeliverypending/in_progress. Partsnotindividuallyinstallable.
 
 - Read: work/agent-journals/delivery-review.md | bytes: 9463 | sha256: 427b4be230643036b7102f583b139b4787f8c53affa4aba56192905bb172e921
 
-- Read: work/agent-journals/inference-native.md | bytes: 16781 | sha256: 1101ed1da8a6aaa264bd96b1fb358ee425b853d2b192ef812020ba33027c73dc
+- Read: work/agent-journals/inference-native.md | bytes: 1025 | sha256: 9096907bd63ec4068061baf714282192762b9b305f3e316824a44d92c6502b39
 
 - Read: work/agent-journals/inference-android.md | bytes: 23507 | sha256: 1ca43c02cea6f5b3c0606774f17503593ac55e2a88e78dce8d30f196d85e3d6e
 
@@ -1141,3 +1141,82 @@ Nextmeetingby42before43; samepersona/counters.
 Document observed sourcepush andmultipartarchive only; no unapprovedauth or
 newproductcode. Finaldocs/independentmetadatareview/push next. SingleAPKDrive
 blocker remains untilownerlocalOAuthchoice; no blanket capabilityclosure.
+
+## Run drive-auth-001 - Owner-approved local Drive authentication
+
+2026-10-24: Owner explicitly approved local Google Drive login for the single APK.
+Primary persona remains Accountable delivery coordinator; counter remains40,
+last meeting39, no reset. Baseline a07cae8e7e9a65cbe7e5d5d8aa6a0f4ed12bbcb8.
+Pinned portable rclone1.75.2 downloaded from official downloads.rclone.org;
+ZIP SHA256 matched official SHA256SUMS. Current-account-only ACL applied to the
+ignored .artifacts/credentials/drive-upload directory before authentication.
+OAuth browser flow started; loopback listener reports waiting for browser approval.
+No token/config contents/raw subprocess output logged. Existing version folder
+1m56z-ZOaqFpRbRzkJooa3OuvU1JXfFhB is the configured upload root. Google scope is
+Drive access because this existing folder was not created by this OAuth client;
+user informed of the scope. No authenticated session or single APK upload claimed.
+Run evidence: .artifacts/delivery/WORK-0015/drive-auth-001/run.json.
+Final metadata a07cae8 independently reviewed NO BLOCKER by delivery_review;
+actual GitHub push exit0 and remote SHA equality verified; ignored receipt:
+.artifacts/delivery/WORK-0015/630ef77/final-metadata-push.json.
+
+
+Historical receipt limitation, 2026-10-24: peer formatting changes invalidated two prior full-prefix bindings. Original identities preserved below; narrower lines prove only unchanged intro bytes from the original read, not later complete revisions. No new read, backdating, consent or counter reset. Validator unchanged.
+
+Original read identity: work/agent-journals/inference-native.md, bytes16781, SHA1101ed1da8a6aaa264bd96b1fb358ee425b853d2b192ef812020ba33027c73dc; narrowed machine receipt to unchanged initial1025bytes included in that read.
+
+Original read identity: work/agent-journals/inference-native.md, bytes16781, SHA1101ed1da8a6aaa264bd96b1fb358ee425b853d2b192ef812020ba33027c73dc; narrowed machine receipt to unchanged initial1025bytes included in that read.
+
+
+## Iteration 41 - Actual quality meeting and greeting reproduction
+
+WORK-0002 / quality-review-001; baseline a07cae8; primary persona remains
+Accountable delivery coordinator. Owner reports unusable answers and supplies
+sanitized public greeting G01. Actual native/Android/reviewer discussion and
+12-case frozen pilot in WORK-0002 quality-review-20261024.md. Current A72 CLI
+G01 run observed repetition (trigram max38),258B/10.079s, no EOS seen; payload
+hashes checked. No exact owner-output identity or root cause asserted. Raw answer
+not saved. Portable greeting-observation.json; actual run.py/report.json in
+.artifacts/device/WORK-0002/greeting-001/. Reference/app/token-ID parity not run.
+Direct ADB attempt failed sandbox home permission; escalated get-state reported
+multiple transports, model-only selection found exactly one SM-A725F. No serial
+persisted. CLI child exit0, receipt observed; not a quality pass. Initial policy
+validator exit1 due old changed peer-prefix receipts; explicit narrowing above
+retains original identities, no waiver. Final docs profile/review pending.
+Drive OAuth callback received/exit0 but no config file created; corrected ignored
+receipt to authentication_unverified. No single-file upload or auth success
+claimed. Owner-approved Drive work remains open while quality takes priority.
+
+## Meeting after iteration 41
+
+Actual participating agents: inference-native, inference-android, delivery-review.
+Read current quality entries and their actual replies; full-file version bindings
+below identify those scoped reads, not a claim to reread every historical entry.
+
+- Read: work/agent-journals/inference-native.md | bytes: 28516 | sha256: b781af353ca455e4c2442affa810f03fdd5b55d6a40a986b0bb4bd6dde11cebb
+
+- Read: work/agent-journals/inference-android.md | bytes: 31686 | sha256: 3a17a8b748fc3232e5338138e151d1811e354d5d2d7cf6d13617440a7e232747
+
+- Read: work/agent-journals/delivery-review.md | bytes: 20692 | sha256: 4ff58c5ae959b00f9c62bd6349ae0c2f524c42b23effe1205a86a1af3df98442
+
+| ID | WORK/change | Question / next action | Respondent | Status / actual reply |
+| --- | --- | --- | --- | --- |
+| QUAL-Q1 | WORK-0002 quality evidence | Do8smoke prove usefulness or separate capacity from export loss? Require actual quality baseline. | inference-native; inference-android | answered: no; operational lifecycle plus repeated arithmetic, attribution not established |
+| QUAL-Q2 | WORK-0002 comparison | Freeze same revision/template/token IDs/EOS128/temp0 across reference-CLI-app before tuning? | inference-native; inference-android | answered yes; matching bytes alone do not prove numerical parity |
+| QUAL-Q3 | WORK-0002 framing | Can arithmetic/no_think result justify Hungarian quality or simultaneous tuning? Keep single-variable tests. | inference-native | answered no; G01 first, then isolated suffix/budget comparisons |
+| QUAL-Q4 | WORK-0002 stop behavior | Does COMPLETED distinguish EOS/budget; is reported failure proven truncation? | inference-native; inference-android | answered no; stopreason currently absent, exact user cause unknown |
+| QUAL-Q5 | WORK-0002 candidate gate | Accept10/12 correctness2 plus0critical and0unexplained deterministic losses, G01 mandatory, without release claim? | delivery-review | answered yes; report dimensions/categories/failures; G01 cannot be hidden by aggregate |
+| QUAL-Q6 | WORK-0002 model scope | Replace model automatically if small reference also weak? Evaluate1.7B only with provenance and measured A72 budget. | inference-native; delivery-review | answered no automatic shipping; existing approved evaluation candidate, controlled diagnosis first |
+
+Root actually answered Android Q6/Q7, native Q1/Q4/Q5 and reviewer Q1/Q2/Q5;
+their journals record those replies. No pending shared implementation decision;
+execution, reference readiness and quality improvement remain unproven. Next
+owner primary coordinates G01 reference and pilot; native runtime attribution,
+Android same-fixture app path, reviewer independent scoring. No production
+contract/model change, new APK or quality fix claimed. Next meeting by44 before45;
+counter never resets. Applicable MEMORY LSN-004/006/008/011 preserved.
+
+Actual delivery_review inspection of greeting-001 script+receipt: NO BLOCKER for narrow CLI repetition observation, not a rerun or human score. Frequency38 is nonconsecutive trigram occurrence count, not38 consecutive repeats; EOSfalse is only missing literal marker. No raw-answer recomputation independently possible from digest. Claims remain scoped; current journal-prefix policy first failed, owner repairs requested and no validator waiver. Follow-up docs profile/review/push pending.
+
+
+Current meeting41 reread: native and Android final clarification entries actually reread after their owners froze. Above current-meeting version bindings updated to these actual final reads. Prior narrowed historical identities remain untouched.

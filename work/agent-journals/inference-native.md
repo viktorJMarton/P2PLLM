@@ -242,4 +242,153 @@ Scoped `validate_agent_flow.journal_errors` for this journal passed exit0 with
 issues=[] on Windows/Python3.12. Other agents' issues remain their owners' scope.
 Journal refrozen after this administrative correction.
 
+## Iteration 9 - Owner-reported answer quality investigation
+
+Requested actual team discussion after owner tried the AI input and reported
+unacceptable answer quality. Run quality-meeting-20261024-01; persona unchanged.
+Read-only product source; only own journal/handoff may change. Counter remains9,
+so meeting below precedes further substantive work. Read MEMORY LSN008/011 and
+latest primary40/auth run, Android9/admin entry, delivery-review3/meeting3.
+Their delivered implementation/strict arithmetic success is a bounded execution
+observation, not useful Hungarian/general-answer acceptance.
+
+Targeted source/evidence observations (Windows/PowerShell/Python3.12, read exit0):
+- Current model remains Qwen3-0.6B; official pinned quantizer maps8da4w to dynamic
+  int8 activation/int4 weights; embedding config8,0; export context/sequence2048.
+  Local config/model-baselines.json says1.7B weights_downloaded=false. No measured
+  task-quality delta establishes that capacity or quantization caused this report.
+- Native uses validated raw text + literal /no_think and closed assistant thinking
+  prefix. Controlled template-comparison-001 only proves one public arithmetic
+  response changed141B/nonexact to1B/exact2 under this change. It is not a general
+  template/Hungarian-reasoning improvement proof; revised app smoke passed same
+  narrow arithmetic fixture repeatedly, not independent semantic categories.
+- max_new_tokens128 includes initial prefill token plus at most127 loop tokens.
+  EOS and budget exhaustion can both return Error::Ok; JNI returns plain String,
+  controller marks nonempty/error-free return COMPLETED. No exposed stop reason
+  distinguishes truncation. Longer useful answers may be cut; no observed owner
+  prompt/answer or paired test proves this caused the complaint.
+- Each generate constructs a fresh runner and one user message; no chat history,
+  system instruction or Hungarian response instruction is passed. Single-turn
+  behavior is current implementation, not conversational continuity.
+- Exact bundled tokenizer bytes/hash are verified, but no HF-vs-native rendered
+  template/token-ID parity or float/quantized-reference-vs-PTE numerical/quality
+  comparison exists in inspected evidence. SHA identity proves bytes, not loader,
+  RoPE/attention/KV/export adaptation semantics or quantized numerical fidelity.
+  WORK-0002 still names numerical/quality/backend gates open. Export parent receipt
+  remains statusfailed with separately reviewed artifact recovery; no fresh export
+  or numerical success is inferred. Read-only source/evidence regex had one bad
+  Windows wildcard path, then targeted exact-path reads succeeded; no payload logs
+  read or saved, no model run/download/build performed.
+
+## Meeting after iteration 9
+
+2026-10-24, owner-requested actual asynchronous quality discussion. Root, Android
+and delivery-review available. Current identities below bind scoped latest-entry
+reads plus canonical file bytes, not a claim to reread entire journal histories.
+
+Historical scoped-read revision identity retained after root formatting changed later bytes: primary.md 90128bytes SHA256bf860ba6e7b3ee2afc40d2f65398adf2ffc9572aa55fccaa0124f441e1717684.
+- Read: work/agent-journals/primary.md | bytes: 1025 | sha256: 5a78e816568b354e5c0f457c654fb60a6b14ba06a15ab64d2c6bce24fbbf25fe
+- Read: work/agent-journals/inference-android.md | bytes: 23507 | sha256: 1ca43c02cea6f5b3c0606774f17503593ac55e2a88e78dce8d30f196d85e3d6e
+- Read: work/agent-journals/delivery-review.md | bytes: 9463 | sha256: 427b4be230643036b7102f583b139b4787f8c53affa4aba56192905bb172e921
+
+| ID | WORK/contract | Concrete question / proposed next action | Respondent | Status |
+| --- | --- | --- | --- | --- |
+| NAT-QUAL-Q1 | WORK-0015 useful-answer acceptance | Agree arithmetic/lifecycle pass is insufficient after owner quality failure; preregister12 public HU/EN useful-task fixtures and explicit correctness/completeness rubric before further success claim? | primary | open |
+| NAT-QUAL-Q2 | WORK-0015 single-turn semantics | Confirm fresh runner/no history and no stopreason in UI; measure EOS-versus-budget before changing128token limit or implying conversation memory? | inference-android | open |
+| NAT-QUAL-Q3 | WORK-0002 tokenizer/export fidelity | Require exact rendered prompt/token-ID parity first, then same-pin float reference versus current PTE scores to separate capacity/template from export/quantization effects? | delivery-review | open |
+| NAT-QUAL-Q4 | WORK-0002 model choice | Defer new1.7B export/download until current0.6B reference fails agreed useful-task rubric or measured quantization loss justifies candidate; no promised larger-model improvement? | primary | open |
+| NAT-QUAL-Q5 | WORK-0015 output budget | Run public test-harness-only128vs256 token A/B on failing fixtures with same pins/template/temp0 and explicit EOS/token/time/RSS metadata; keep production limit until evidence/contract agreement? | primary | open |
+| NAT-QUAL-Q6 | WORK-0002 framing attribution | Treat /no_think sensitivity as observed only for arithmetic; freeze current template for baseline, reserve any new language/system prompt as separately paired experiment rather than silent quality fix? | delivery-review | open |
+
+Actual received peer questions/answers sent with this meeting:
+- Android AND-QUAL-Q1 yes: budget completion currently indistinguishable from EOS
+  in JNI result; add test-only metadata before deciding truncation cause.
+- Android AND-QUAL-Q2 yes: fresh runner, single user turn, no history/system/HU
+  instruction; this cannot supply multi-turn context.
+- Android AND-QUAL-Q3 yes: HU/capacity/export causal claims remain hypotheses;
+  same public HU/EN fixtures, pinned reference/device comparison is next evidence.
+- Reviewer QR-Q3: current evidence establishes no reference parity. Exact rendered
+  prompt/token IDs/config/EOS first, then output/stop comparison is technically
+  feasible as a new bounded harness; existing runner stats do not expose all stop
+  distinctions, so source/instrumentation work and checks are required, not done.
+- Reviewer QR-Q6: yes hypotheses only. Smallest useful start is4public fixtures
+  (HU/EN short-answer pair, HU/EN multi-sentence pair), same template/pins/temp0/
+  max128 across float reference and current PTE. Add limit256 only to cases shown
+  hitting budget. No production template change or new model needed to isolate.
+
+Proposed next bounded sprint (not implementation): preregister12 public fixtures
+in6categories x HU/EN: fact, arithmetic, instruction-following, short explanation,
+summarization, uncertainty; each has deterministic expected facts and0/1/2 rubric.
+Require all token-ID sequences equal on identical rendered text (mismatch blocks
+fidelity claims); record per-case correctness/completeness, generated tokens,
+EOS/limit/errors, wall time and device memory. Start4case isolation, finish12case
+baseline only if loader/config/metadata gates pass. Compare existing float0.6B
+reference and phone PTE; if they diverge, add same-weight quantized-reference
+intermediate to distinguish quantization versus export/runtime before re-export.
+Predeclare numerical metrics/tolerances in that brief, not after seeing results.
+Capture only public/synthetic outputs for review; never turn owner personal chat
+into logs/fixtures without explicit authorization. No speed/model-quality target
+is promised; deliver a scored cause-isolation report and one evidence-backed
+decision: retain/fix framing/budget, investigate export, or evaluate larger model.
+Own6questions await actual responses; independent read-only analysis may continue,
+shared contract/model changes remain held. Next meeting due by12/before13.
+
+### Actual root quality questions answered
+
+Root Q1: no evidence separates0.6B capacity from quantization/export loss.
+Root Q2: agree same revision/template/token IDs/EOS128/temp0 reference-CLI-app
+diagnosis; byte identity alone is not numerical parity. Root Q3: agree vary one
+factor; arithmetic/no_think observation is not Hungarian quality proof. Root Q4:
+stop reason unmeasured;128budget is a truncation hypothesis, not established user
+failure cause. Root Q5:1.7B remains WORK-0002 evaluation candidate only if baseline
+findings justify it, with provenance/license/memory/latency/device gates; never
+automatic shipping. No large export started. Root's12public Hungarian-case pilot
+is the intended useful-task focus; optional English paired controls can isolate
+language sensitivity without making English performance the acceptance target.
+
+Actual Android NAT-QUAL-Q2 reply: confirms single-turn/no-history and absent
+EOS-versus-budget result; keep baseline128/temp0/API/template through first same
+public reference-CLI-app comparison. Production stopreason/API/UX changes require
+measured need and versioned contract. Its three received questions have actual
+native replies above. Other own questions await responsible actual answers.
+
+### Actual remaining meeting9 responses and sanitized G01 repro
+
+Reviewer NAT-QUAL-Q3 yes: exact token-ID agreement first; float/PTE difference
+then quantized-reference intermediate distinguishes effects; new EOS/budget
+instrumentation is not existing evidence. NAT-QUAL-Q6 yes: current template frozen,
+arithmetic-only no_think evidence, separate paired HU/system experiment only;
+4case stage0 useful before12HU pilot,256 only isolated documented budget-hit test.
+Root NAT-QUAL-Q1 yes:12case pilot plus separate blocking G01 greeting regression,
+arithmetic is not quality acceptance. NAT-QUAL-Q4 yes:1.7B only after diagnosis/
+float-reference evaluation. NAT-QUAL-Q5 yes: test-only128vs256 paired results,
+same pins and production128 unchanged pending measurements. All6own questions
+now have actual responsible peer responses. No new model/template/API approved.
+
+Owner supplied sanitized G01 public greeting repro via root: greeting input;
+symptom nonsensical repeated answer/instruction-like text and partial slash-No
+fragment. No personal raw response retained here. Root authorizes G01 public
+fixture and requires unchanged current-baseline A72 CLI/app reproduction first,
+then same-pin reference; no tuning. Fragment is consistent with learned echo of
+the appended no_think directive or a budget-cut partial output, but neither is
+proven. Case/fragments cannot identify the cause. Source config.echo=false means
+the adapter does not deliberately echo prompt; generated lexical copying/loops
+can still occur. We must not hide slash fragments or repetition as presentation
+cleanup. Record fixed-public fixture identity, repetition/control-fragment flags,
+length/tokens and actual stop reason when available; no personal answer logging.
+If reference also loops, capacity/framing is a candidate; if reference is useful
+but PTE loops, verify tokenizer/config then quantized-reference/export stages.
+These are attribution branches, not observed results or promised improvements.
+Parent owns bounded WORK-0002 diagnostic draft and actual next execution.
+
+Administrative receipt narrowing after root meeting41 consolidation: the earlier
+primary90128-byte machine receipt no longer matched after that owner's metadata
+formatting. Preserve its full original identity above as historical prose; machine
+binding now covers only the unchanged1025-byte introduction included in the actual
+earlier read, not later journal content or full-history integrity. No new meeting,
+historical read, consent, backdating or counter reset is claimed. Counter9 and
+actual meeting9 questions/answers remain unchanged. Root reports independently
+inspected G01 CLI looping evidence; this neither identifies cause nor establishes
+byte equality with the owner's unsaved personal response. Product code unchanged.
+
 Administrative receipt-format correction by primary,2026-10-24: 2 earlier prefix checks were invalidated by journal format edits. Original recorded read identities remain above as prose. Machine lines now bind only unchanged initial prefixes included in the actual historical reads, not the complete changed later revisions. No new read time, meeting, consent or counter reset is claimed; independent review must retain this limitation. No question/answer or development result was changed.

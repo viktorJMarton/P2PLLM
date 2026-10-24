@@ -7,6 +7,9 @@ CI and Android/device execution remain unobserved in this work item.
 Package preparation is recorded in work/PACKAGE-BUILD.md.
 
 Current sprint: [WORK-0002 capacity/measurement plan](WORK-0002-model-accelerator-baseline/sprint-plan.md).
+Immediate quality priority after owner feedback: [actual team review, G01
+reproduction and frozen comparison plan](WORK-0002-model-accelerator-baseline/quality-review-20261024.md).
+Operational smoke success is not answer-quality acceptance; no quality fix yet.
 Owner-selected target: Samsung Galaxy A72 (replaces Honor400Pro); exact hardware
 observed SM-A725F/Android14/API34/QTI SM7125/5625888KiB OS-visible RAM in WORK-0002.
 Model measurements retain priority; owner2026-10-23 also authorizes parallel

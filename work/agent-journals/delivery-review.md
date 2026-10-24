@@ -133,3 +133,155 @@ meeting next due by6 before7. Journal and handoff now frozen for root checks.
 
 Meeting bookkeeping verification: Windows/Python3.12 executable explicitly,
 `tools/validate_agent_flow.py` exit0, status=passed/issues=[] after this meeting.
+
+## Iteration 4 - Final metadata commit review
+
+WORK-0015; REVIEW-20261024-DELIVERY-01; same independent persona. Read exact
+a07cae8e7e9a65cbe7e5d5d8aa6a0f4ed12bbcb8, parent630ef77, ten metadata/doc paths.
+No Android/native/tools/tests change, APK exact SHA rechecked, clean tree and
+diff --check exit0. Actual delivery-meta-001 docs report passed package and
+agent policy with stable fingerprint. Observed truthful failed413, archival
+parts/local integrity versus remote metadata distinction, single-file pending
+and no full sprint closure; message-bound NO BLOCKER before root push. No tracked
+write during final review; this entry records that actual completed review now.
+No build/device run. Iterations since meeting3:1.
+
+## Iteration 5 - Owner-reported answer quality concern
+
+WORK-0002 quality diagnosis / REVIEW-20261024-QUALITY-01; source baselinea07cae8.
+Primary persona remains pr-review / Independent correctness reviewer; no reset.
+Root relays actual owner dissatisfaction after use, but no specific reproducible
+bad-answer fixture is supplied to reviewer. Failure cause/severity distribution
+unknown; do not invent a diagnosis. No product code changed or model run here.
+
+Targeted reads: primary through40/auth pending note, native through8/admin freeze,
+Android through9/admin freeze; WORK-0002 brief/evidence actual A72 checkpoint;
+WORK-0015 smoke004 observations and current fixed-fixture instrumentation/source.
+WORK-0002 explicitly leaves reference numerical/quality and actual backend gates
+open. Three successful short CLI trials and throughput are runtime observations,
+not quality. Native /no_think comparison only resolves one strict arithmetic
+fixture; no general Hungarian quality conclusion follows.
+
+Eight smoke checks establish installed visible UI, controller/lifecycle,
+preparing/running cancellation, recreation, retry and process-restart behavior on
+tested paths. Their repeated exact answer2 is one kind of quality fixture, not
+eight independent quality tasks. They do not establish Hungarian fluency,
+instruction following, knowledge, multi-turn memory, robustness, reference/export
+equivalence, broad quality or sustained thermal/backend/privacy acceptance.
+Prior no-blocker source verdict remains bounded correctness/security review;
+owner dissatisfaction is compatible with that narrow verdict and blocks a useful
+general-assistant claim. Quality gate remains open, not silently passed by smoke.
+
+Proposed bounded next sprint within WORK-0002: preregister12 short public
+Hungarian fixtures (2each arithmetic, supplied-text comprehension, extraction/
+format, translation, instructions, explicit unknown/false premise). Keep prompts
+within1024B and expected answers within128tokens. Single-turn supplied context;
+do not assume conversational memory absent from current app. Freeze exact model,
+tokenizer, template/token IDs, quantization, runtime/build and generation settings.
+Compare pinned reference -> device CLI -> app on identical fixtures; distinguish
+instruction/content score from stop/truncation and transport differences.
+
+Rubric proposal: correctness0wrong/1partial/2correct, Hungarian0unusable/1awkward/
+2clear, instruction0violated/1partial/2met; deterministic exact checks where valid.
+Publish per-item/category results and failures, no aggregate hiding weak category.
+Root proposed >=10/12 correctness2 and zero critical failures as next-comparison
+candidate gate; reviewer actually accepts only for this pilot, not product/release
+or general-Hungarian acceptance. Define critical conditions before execution:
+crash, fixture corruption, unbounded output/protocol escape or payload logging;
+stop and preserve sanitized failure evidence. Unexplained deterministic-item loss
+reference->device/app blocks model-only cause attribution. If pinned reference
+also fails usefulness, evaluate model fit; no automatic prompt patch or upgrade.
+If runtime lacks stop reason/token count, mark unavailable, not infer from
+COMPLETED. Root owns corpus, rubric and thresholds before run; no posthoc tuning.
+Existing1.7B is approved evaluation candidate in WORK-0002, not approved shipping.
+
+Read/hash/source inspection only; initial rg PowerShell wildcard path failed,
+explicit WORK directory corrected it. No numerical, quality or device pass added.
+Iterations since meeting3:2; actual requested team meeting follows now.
+
+## Meeting after iteration 5
+
+2026-10-24 UTC; root, inference_android and inference_native actually contacted.
+Latest peer scopes read above, independently reread stable introductory prefixes
+already displayed in prior meeting; receipt identity stays limited to those
+prefixes, not current full journal histories. Latest peer replies are messages
+and will be matched to their own journal continuations when available.
+
+- Read: work/agent-journals/primary.md | bytes: 1024 | sha256: 2174a6e5e5e6c6089475c02ae850cf83db3e993f7c7e9f0fe0b9edded444b4d8
+- Read: work/agent-journals/inference-native.md | bytes: 1025 | sha256: 9096907bd63ec4068061baf714282192762b9b305f3e316824a44d92c6502b39
+- Read: work/agent-journals/inference-android.md | bytes: 1024 | sha256: d46980154ff2a82b909c8df6b7b1c0f1a0410562745a9b3808708af524b9d8e5
+
+| ID | WORK/contract | Question / next action | Respondent | Status / actual answer |
+| --- | --- | --- | --- | --- |
+| QR-Q1 | WORK-0002 quality | Distinguish8operational smoke from one repeated arithmetic quality fixture? Correct gate language. | primary | answered yes; actual root message |
+| QR-Q2 | WORK-0002 pilot | Own12public HU cases/rubric and freeze thresholds before run? No posthoc relaxation. | primary | answered yes; actual root message, three-path first diagnosis |
+| QR-Q3 | WORK-0002 equivalence | Compare exact rendered prompt/token IDs/config/EOS/output/stop across reference, CLI, JNI; any current parity proof? Isolate divergence. | inference-native | open; actual reply pending |
+| QR-Q4 | WORK-0015 smoke | Does smoke prove lifecycle only, and can same public corpus compare app/CLI/reference without user chat? Split gates. | inference-android | answered yes; actual peer message, score/token/stop metrics proposed |
+| QR-Q5 | WORK-0002 candidate | No automatic larger-model/pin upgrade before controlled provenance/memory evaluation and shipping decision? Preserve authority. | primary | answered yes;1.7B evaluation already approved, shipping distinct |
+| QR-Q6 | WORK-0002 framing | Treat /no_think sensitivity and128-token truncation as hypotheses only; smallest paired experiment? Preserve production framing. | inference-native | open; actual reply pending |
+| QR-Q7 | WORK-0015 transfer | Distinguish prompt/UI transfer corruption versus cap/EOS/model content before patch? Check public fixture equality. | inference-android | answered actual API lacks stop/tokens; <=1024B fixture input digest/length then output equality, unchanged prompt; >1024B edit rejected whole |
+
+Received root pilot-threshold question actually answered: accept10/12 correctness2
+and0critical for next comparison only, all categories/failures retained; zero
+unexplained exact-item reference/device loss before model-only attribution.
+Received AND-QUAL-Q4/Q5 actually answered: lifecycle/quality gates separate;
+single-turn supplied-context tests only, no assumed followup memory; public-only
+bytecount/digest permitted, never hash personal chats into telemetry.
+
+Native answers remain open; no silence is consent. Independent proposal/report
+can proceed; contract/template/runtime changes and cause attribution await actual
+paired evidence and responsible owners. No product modifications authorized here.
+Next root owns preregistered corpus/measurement brief; reviewer owns independent
+scoring and evidence review. MEMORY LSN-006/008/011 applied: no inferred quality
+from tool success, public-only diagnostics, pin/measure framing. Counter5 persists;
+after this meeting next cadence by8 before9, regardless of open responses.
+
+### Meeting5 actual native responses and resolution
+
+QR-Q3 actual native reply: no reference parity is proven. Exact rendered prompt/
+token IDs/config/EOS/temp0/max128 comparison across pinned reference, device CLI
+and JNI is feasible in a new bounded harness, not implemented evidence. EOS versus
+budget needs new test metadata and remains unmeasured. QR-Q6 actual reply: framing
+and truncation are hypotheses only. Start4 public controls (HU/EN short and
+multi-sentence pairs), fixed current template/pins, float0.6B versus current PTE;
+256 only on demonstrable budget-hit cases as an isolated diagnostic variable.
+This complements root's12HU pilot; English controls are diagnostic, not target
+language acceptance. Both previously open native questions now answered.
+
+Actual replies sent to NAT-QUAL-Q3/Q6: require token-ID equality before attributing
+float/PTE difference; when divergence exists, same-weight quantized reference can
+separate quantization from export/runtime. Preserve current template; arithmetic
+/no_think result is not HU evidence. New HU/system prompt requires separate paired
+experiment; test-only256 is not silent production shipping.
+
+Reread native meeting9 actual QR answers and proposed bounded sprint, plus Android
+meeting10/closure actual reviewer/root/native responses. Their earlier unresolved
+table states are historical, subsequent actual messages/journal continuations
+resolve the listed questions; no unavailable peer or silence used as agreement.
+Root owns threshold/corpus preregistration, native diagnostic metadata/provenance,
+Android same-fixture transfer/display measurements, reviewer independent rubric
+and results audit. No own meeting question remains unanswered; no cause or quality
+pass claimed. Await root consolidated measurement brief, not a speculative patch.
+
+Meeting bookkeeping verification: explicit Python3.12
+`tools/validate_agent_flow.py` exit1 while root journal is being consolidated;
+reported issues are primary-only rewritten prefix/cadence, none for this journal.
+Root notified; no validator waiver. Global passing result awaits final writer
+freeze and root repair. This failed verification is preserved, not called pass.
+
+Root subsequently relayed actual owner public reproduction: greeting
+"Hogy vagy?" produced incoherent repetition and a /No fragment. This supplies a
+specific failure report, superseding the earlier absence of a fixture; reviewer
+has not personally rerun it and cause remains unknown. Proposed G01 mandatory
+blocking regression alongside12case pilot: coherent short Hungarian greeting,
+no pathological repetition or exposed directive fragment. Root notified that
+aggregate10/12 must not hide this critical usefulness regression.
+
+One-variable diagnostic recommendation actually sent root/native/Android:
+first freeze current pins/template/temp0/max128 and compare G01 on reference,
+device CLI and app including token-ID/transport equality; then suffix-only A/B
+separately, not combined with budget/model change.128->256 only after measured
+budget stop; quantized-reference intermediate if float/PTE diverges. /No fragment
+is an output symptom, not proof that /no_think caused it. Root owns actual
+reproduction; no production patch or new measured result by reviewer.
+Own journal now frozen for root's final synthesis/checks.

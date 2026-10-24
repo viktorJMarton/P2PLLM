@@ -101,3 +101,24 @@ hashes/questions/answers/dates/counters preserved; surviving1025-byte native Sta
 prefix receipt is explicitly limited because native later question formatting
 changed historical bytes. Own journal validation passed exit0/issues=[]; other
 journals remain their owners' scope. No source/APK changes; metadata refrozen.
+
+Quality-meeting follow-up / run quality-meeting-android-20261024-01: owner reported
+poor answer quality; Android source inspection found full accepted input/output
+Strings preserved, but >1024UTF8B edit is rejected wholesale (old text remains),
+128new-token termination has no exposed stop reason, and generation is singleturn
+without history/system/HU instruction. No concrete owner payload examined; these
+limits are not a diagnosed cause. Existing6+2smoke repeat one short arithmetic
+fixture and do not establish Hungarian/general quality. Own journal iteration10/
+meeting10 contains7concrete questions, actual root/reviewer answers and remaining
+native/root respondents. Proposed unchanged-pin/template12publicHUfixture
+reference/CLI/app comparison with input/output identity plus score/stop metrics;
+synthetic only, no personal chat or hashes. No product code/model changes or new
+benchmark performed. Root owns qualitypilot brief; next Android step is measured
+public-fixture transfer/UI plan after agreed rubric and contracts.
+
+Meeting10 closed with actual native/root/reviewer responses to all7questions.
+Native confirms unknown stopreason and singleturn; root agrees unchanged baseline
+pilot plus separate history scope. Candidate gate >=10/12correctness2,0critical,
+0unexplained deterministic ref-device/app loss is measurement selection only,
+not HU product acceptance. Root synthesis/docs/review/push next; no new APK,
+model change or benchmark executed by Android. Own metadata now frozen.

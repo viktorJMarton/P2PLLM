@@ -71,3 +71,25 @@ unchanged strict app assertions and lifecycle/restart against rebuilt APK.
 Root must retain source versus AGP-strip-transformed APK library hashes with
 explicit pinned-tool transformation receipt; no same-byte claim. Journal now8,
 meeting next by9/before10. Source frozen; no API/controller/model pin changes.
+
+Owner quality feedback checkpoint: native iteration9/meeting9, six concrete
+questions and actual cross-department replies in own journal. Owner reports
+answers are unsatisfactory; bounded arithmetic/lifecycle pass does not resolve
+this. Read-only investigation found no float/token-ID/quantized-reference versus
+PTE quality parity evidence, no EOS-versus-budget result, single-turn/no history,
+and128newtoken cap. Current0.6B/8da4w capacity or export loss causes are unproven.
+Recommend root-owned preregistered12public Hungarian useful-task pilot with exact
+template/token-ID/config checks then same-pin reference/CLI/app comparison;
+English pairs optional diagnostic controls. No new export/model or product-code
+change by native department. Larger model is evaluation candidate, no promised
+improvement/shipping. Meeting questions remain open until actual peer responses;
+counter9/lastmeeting9, next by12/before13. Next owner primary for bounded sprint.
+
+Meeting9 now has all6actual responses: root accepts12HU pilot plus separate G01
+greeting-loop blocking regression, reference-first model decision and test-only
+budget A/B; Android confirms single-turn/missing stopreason; reviewer accepts
+token parity then float/PTE then quantized-reference attribution, frozen template.
+Sanitized owner G01 symptom is repetition/partial directive-like fragment; no raw
+personal response saved. A fragment is no proof of quantization/export/template
+cause. Next actual work: unchanged current A72 CLI/app G01 reproduction, then
+same-pin reference, no tuning or output concealment. All product code still read-only.

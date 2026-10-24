@@ -763,8 +763,8 @@
     },
     {
       "path": "work/INDEX.md",
-      "bytes": 3713,
-      "sha256": "dfb98e326aec8fd74a4e303c9054411888a5a3edb3a33530a6e2a598f3ea2672"
+      "bytes": 3974,
+      "sha256": "a0e09ea6a9fc376300f5b28c007745d5b92950afdb3edf6ab4da30ebda4b95a7"
     },
     {
       "path": "work/PACKAGE-BUILD.md",
@@ -793,8 +793,8 @@
     },
     {
       "path": "work/WORK-0002-model-accelerator-baseline/brief.md",
-      "bytes": 2747,
-      "sha256": "5a83870b70594d1c83592bdab87a51502f07fec0512a7eeb8178966363f43b3e"
+      "bytes": 3063,
+      "sha256": "8eb610199fb4c3d1139854e80e8030e0f6fa7c9312c06f6e1df75a1d03365431"
     },
     {
       "path": "work/WORK-0002-model-accelerator-baseline/events.jsonl",
@@ -805,6 +805,11 @@
       "path": "work/WORK-0002-model-accelerator-baseline/evidence.md",
       "bytes": 12363,
       "sha256": "92f9e9efcf2d430631f2b2ef566d4ca2792250691bceb35f57f25a83a875d86b"
+    },
+    {
+      "path": "work/WORK-0002-model-accelerator-baseline/greeting-observation.json",
+      "bytes": 823,
+      "sha256": "9b451276f28c6e1e065720edab7a7d36a213a95aa52be99366be057b54badb8b"
     },
     {
       "path": "work/WORK-0002-model-accelerator-baseline/handoff-config-probes.md",
@@ -818,8 +823,8 @@
     },
     {
       "path": "work/WORK-0002-model-accelerator-baseline/handoff-integration.md",
-      "bytes": 4050,
-      "sha256": "b902e55bdf01095ec31396717db5623b5fe919a5721098549a854b07561efd52"
+      "bytes": 4834,
+      "sha256": "79b5d92e0ea8398ee5b9175e97d86b0509cc51bc78a0b1ad1a76f0f1a00129b2"
     },
     {
       "path": "work/WORK-0002-model-accelerator-baseline/handoff-model-research.md",
@@ -833,13 +838,18 @@
     },
     {
       "path": "work/WORK-0002-model-accelerator-baseline/journal.md",
-      "bytes": 8338,
-      "sha256": "1c84df3885deb8ddc3f2556311dbbf845ab69516856222481a7772b38b621316"
+      "bytes": 9125,
+      "sha256": "aa9a9e7c3eee0eced59088db4062bd757e5dc0ff1ab0db3184f75f19a25275aa"
     },
     {
       "path": "work/WORK-0002-model-accelerator-baseline/phone-observations.json",
       "bytes": 9009,
       "sha256": "f9203d8230899ac2f8ad5c96715ead197f0999f918df2be7155e330736acd259"
+    },
+    {
+      "path": "work/WORK-0002-model-accelerator-baseline/quality-review-20261024.md",
+      "bytes": 8188,
+      "sha256": "dfcdca695dd61640e3b1e988e2e71fa38c978d9b1c87a8f0eec87b2fa59deca4"
     },
     {
       "path": "work/WORK-0002-model-accelerator-baseline/review.md",
@@ -1158,8 +1168,8 @@
     },
     {
       "path": "work/WORK-0015-android-local-inference/handoff-android.md",
-      "bytes": 6786,
-      "sha256": "2531be4613a320adf4e010c29a2fa00550c4de1cd956d8f0da790121a74d0edd"
+      "bytes": 8290,
+      "sha256": "1a245c6dd5bf39755df4f7224dbb8f5d6cd74885ad9b3771e0c124591b6a9a6f"
     },
     {
       "path": "work/WORK-0015-android-local-inference/handoff-delivery-review.md",
@@ -1173,8 +1183,8 @@
     },
     {
       "path": "work/WORK-0015-android-local-inference/handoff-native.md",
-      "bytes": 4815,
-      "sha256": "607f70394bc5c3c998d9209b27037701d02c24007df1e9ed1ea867a2036ce563"
+      "bytes": 6422,
+      "sha256": "bbfb88fe1e1749c3b5d1e46c0abe62a1d2e69691216d009b56cc00d8ad7f9876"
     },
     {
       "path": "work/WORK-0015-android-local-inference/journal.md",
@@ -1193,8 +1203,8 @@
     },
     {
       "path": "work/agent-journals/delivery-review.md",
-      "bytes": 9463,
-      "sha256": "427b4be230643036b7102f583b139b4787f8c53affa4aba56192905bb172e921"
+      "bytes": 20692,
+      "sha256": "4ff58c5ae959b00f9c62bd6349ae0c2f524c42b23effe1205a86a1af3df98442"
     },
     {
       "path": "work/agent-journals/independent-review.md",
@@ -1203,13 +1213,13 @@
     },
     {
       "path": "work/agent-journals/inference-android.md",
-      "bytes": 23507,
-      "sha256": "1ca43c02cea6f5b3c0606774f17503593ac55e2a88e78dce8d30f196d85e3d6e"
+      "bytes": 31686,
+      "sha256": "3a17a8b748fc3232e5338138e151d1811e354d5d2d7cf6d13617440a7e232747"
     },
     {
       "path": "work/agent-journals/inference-native.md",
-      "bytes": 16781,
-      "sha256": "1101ed1da8a6aaa264bd96b1fb358ee425b853d2b192ef812020ba33027c73dc"
+      "bytes": 28516,
+      "sha256": "b781af353ca455e4c2442affa810f03fdd5b55d6a40a986b0bb4bd6dde11cebb"
     },
     {
       "path": "work/agent-journals/phone-staging.md",
@@ -1218,8 +1228,8 @@
     },
     {
       "path": "work/agent-journals/primary.md",
-      "bytes": 88897,
-      "sha256": "3365a458bc5acd089c9370776bb08264c199645ec0ecfd0f6bb12bd71f01a01a"
+      "bytes": 95835,
+      "sha256": "a34712225f7d4e2a367b83be910b6721dace1e934dc0bfa0508a913e9a161b71"
     },
     {
       "path": "work/agent-journals/product-review.md",

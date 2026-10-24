@@ -333,3 +333,109 @@ meeting timestamp/read/answer reconstructed from this present reread.
 Final scoped validator result on Windows/Python3.12: own_status=passed,
 own_issues=[], exit0;43other issues remain outside this journal. Administrative
 formatting only, source/tests/APK unchanged. Journal refrozen.
+
+## Iteration 10 - Tulajdonosi minosegi visszajelzes celzott vizsgalata
+
+WORK-0015 / run quality-meeting-android-20261024-01; persona valtozatlan:
+Pragmatic Android platform engineer. HEAD a07cae8e7e9a65cbe7e5d5d8aa6a0f4ed12bbcb8.
+Tulajdonos rossz valaszminoseget jelzett. Konkret kerdes/valasz nincs nalam;
+szemelyes beszelgetest nem kertem/rogzitettem. Csak sajat naplo/handoff valtozik.
+
+Tenyszeru forrasellenorzes: LocalInference.kt az elfogadott teljes prompt Stringet
+adja JNI-nek; OperatorShell Text(state.answer) a teljes visszaadott Stringet kapja,
+nincs substring, ellipsis vagy output maxLines. Input maxLines6 csak mezomagassag.
+1024 UTF8 bajt feletti teljes szerkesztest editPrompt elutasitja, regi szoveg marad;
+nem prefixet vag le. Ez hosszu magyar bemasolasnal ismert UX-kockazat, nem bizonyitott
+oka a tulajdonosi panasznak. Magyar ekezetes inputnal tobb bajt jut egy karakterre.
+Native max_new_tokens128/temp0, egy userturn + /no_think, nincs system/language
+instruction; minden generate ujrunner, nincs elozmeny. COMPLETED nem kulonbozteti
+meg EOS-t a tokenlimit eleresetol; a konkret rovidules jelenleg nem bizonyitott.
+
+Megfigyelt evidencia evidence.md szerint: A72-n6normal+2restart smoke es lathato UI
+ugyanazon rovid angol arithmeticfixture-rel sikerult; ez nem8kulon qualitycase.
+Magyar instruction, format, ekezet, hosszabb tartalom es followup nem kapott altalanos
+minosegi elfogadast. A 0.6B modell korlatja, export/numerikus hiba, magyar gyengeseg,
+vagy128token-cut csak vizsgalando hipotetikus ok, nem kesz diagnozis.
+
+Ellenorzes: celzott PowerShell source/evidence olvasas exit0; elso rg egy nemletezo
+jni_inference.cpp utvonalat is tartalmazott, javitva a tenyleges inference.cpp-re.
+Nem futott uj modellbenchmark/device teszt; nincs implementacios modositas.
+MEMORY LSN-006/011 alkalmazva: smoke nem generalquality, framinget pinelni/merni.
+
+## Meeting after iteration 10
+
+Tenyleges aszinkron csapatmegbeszeles2026-10-24; root/native/delivery-review
+elero es konkret kerdeseket/valaszokat valtottunk. Celzott aktualis bejegyzeseket
+olvastam; alabb ezek teljes akkori fajlprefix-azonositoi, nem uj teljes tortenetolvasas.
+
+- Read: work/agent-journals/primary.md | bytes: 1025 | sha256: 5a78e816568b354e5c0f457c654fb60a6b14ba06a15ab64d2c6bce24fbbf25fe
+- Read: work/agent-journals/inference-native.md | bytes: 1025 | sha256: 9096907bd63ec4068061baf714282192762b9b305f3e316824a44d92c6502b39
+- Read: work/agent-journals/delivery-review.md | bytes: 9463 | sha256: 427b4be230643036b7102f583b139b4787f8c53affa4aba56192905bb172e921
+
+| ID | WORK/concrete change | Kerdes es kovetkezo lepes | Respondent | Status / actual answer |
+| --- | --- | --- | --- | --- |
+| AND-QUAL-Q1 | WORK-0015 tokenlimit | EOS vs128limit jelenleg nem azonosithato biztosan? Kovetkezo meres stopreason/outputtoken metrikat kerjen. | inference-native | open; valasz kert |
+| AND-QUAL-Q2 | WORK-0015 context | Ujrunner/egyetlen userturn tudatos korlat, nincs history/system/HUinstruction? Followup ne legyen hallgatolagos elvaras. | inference-native | open; valasz kert |
+| AND-QUAL-Q3 | WORK-0015 model attribution | Azonos synthetic HU/EN esetek reference/CLI/app osszevetese elozze meg modell/export okmegjelolest? | inference-native | open; valasz kert |
+| AND-QUAL-Q4 | WORK-0015 quality scope | Lifecycle smoke kulon, HUinstruction/followup/truncation kulon kapu? Egyfordulos appban followup csak explicit suppliedcontexttel merheto. | delivery-review | answered actual message: igen; beszelgetesmemoria nelkul nincs multi-turn kovetelmeny |
+| AND-QUAL-Q5 | WORK-0015 prompt transfer | Bytecount/digest csak public synthetic input/output parokra, szemelyeschat hash/telemetria sem? Kovetkezo haromutas meres ezen a hataron. | delivery-review | answered actual message: igen; megmagyarazatlan ref-device/app veszteseg blokkolja model-only cimkezest |
+| AND-QUAL-Q6 | WORK-0015 experiment | Fix12public HUfixture/pins/tokenIDs/template/EOS128/temp0 reference-CLI-app, tuning elott? | primary | open; konkret valasz kert, root ugyanezt javasolta sajatQ2-ben |
+| AND-QUAL-Q7 | WORK-0015 singleturn | Most singleturn minosites, beszelgetesmemoria kulon explicit scope? Minimalis HUacceptance legyen rubric/hibak/stopreason, ne csak vanvalasz. | primary | open; konkret valasz kert |
+
+Tenyleges sajat valaszaim ROOTqualityQ1 igen8smoke nem8qualitycase; Q2 igen elso
+12publicHUfixture meres valtozatlanpins/tokenIDs/template/EOS128/temp0 haromuton,
+nem tuning; Q3 igen128elere nem bizonyit teljesvalaszt, stopreason/UX csak meresutan
+verziozottcontracttal; Q4 igen1024Beditelutasitas ismertkorlat, nem bizonyitott userhiba;
+Q5 minimalis HUertheto/helyes valasz, instruction/format teljesites, ekezetatadas,
+rovid factual/szamolas es vegigmondottvalasz elore rogzitettrubric szerint kategoriankent,
+latthato hibakkal; history/followup kulon scope.
+
+QR-Q4 valasz delivery-reviewnak: 6+2smoke lifecycle/egyarithmetic, public synthetic
+HU/ENkorpusz reference/CLI/app score+stop meres tamogatott, userchat nelkul.
+QR-Q7: nincs jelenlegi stopreason, eloszor <=1024B synthetic input UTF8length/digest
+egyezes es output byteegyezes app/JNI/CLI kozott valtozatlan production framinggel;
+1024B elutasitast kulon UXkorlatkent kell kezelni.
+
+Kovetkezo felelos root: pilotbrief/korpusz/ertekelesi rubric; native: stopreason es
+referenciaut terv; Android: ugyanazon publicfixture app-utjan atadas/lathato output
+meresi terv. Root pilotjelolt >=10/12 correctness2 es0criticalfailure javaslata
+reviewer uzeneteben szerepelt, nem rogzitett productrelease/ownerelfogadas.
+Nyitott valaszokra nincs hallgatolagos beleegyezes. Nincs termekkodvaltozas,
+modellcsere vagy automatikus benchmarkinditas. Kovetkezo meeting legkesobb13 elott14.
+
+### Meeting10 tenyleges valaszok es zaras
+
+Native actual uzenet AND-QUAL-Q1 igen128budget/EOS egyarantOK, nincs JNIstopreason,
+csonkolas nem bizonyithato jelenlegi eredmenybol; Q2 igenfreshrunner/egyuserturn,
+history/systemHUinstruction es kontextusfolytonossag nincs; Q3 igen publicHU/EN
+samepins/template reference-CLI-app osszevetes kell, modell/exporthiba nem bizonyitott.
+NAT-QUAL-Q2-re sajat valasz igen: elso baseline128/temp0/API/template valtozatlan,
+elobb EOSvsbudget meres; production eredmeny/UXcontract csak meres utan valtozzon.
+
+Root actual uzenet AND-QUAL-Q6 igen kulonHU/ENpilot valtozatlan128/temp0/template,
+stopreason unknown oszinten ismeretlen; Q7 igen explicitcontextes singleturn most,
+elozmenymemoria kulontermekigeny. Root/reviewer pilot-jeloltkapu egyezese >=10/12
+correctness2,0criticalfailure,0megmagyarazatlan determinisztikus reference-device/app
+veszteseg, kategoriak/hibak kulon lathatoak. Ez meresi jeloltkapu, nem magyar
+termekelfogadas vagy release. Mind7sajat kerdesre tenyleges valasz beerkezett;
+nyitott sajat meetingkerdes nincs. UjAPK kod/meres nelkul nem keszul.
+
+Egy kontextusnelkuli adminpatch nem talalt sort, nem modositott fajlt; ez a helyes
+append rogziti a valaszokat. Nincs teszt/meres eredmeny kitalalva. Csak sajat
+journal/handoff modosult; source/API/pins/APK valtozatlan. Root kovetkezik:
+szintezis, docsprofile, fuggetlenreview/push; minosegpilot meg nincs vegrehajtva.
+
+Meeting10 receipt clarification: native journal at actual scoped read was16781B
+SHA1101ed1da8a6aaa264bd96b1fb358ee425b853d2b192ef812020ba33027c73dc.
+Concurrent native meeting update invalidated that full prefix; scoped validator
+first failed on that receipt only. Machine line now binds surviving1025B Start
+prefix included in actual read, not integrity of later changed bytes. The original
+current-read identity remains here; no backdated read/meeting or new peer answer.
+
+Administrative root-binding clarification: meeting10 actual root-read identity
+was90128canonical bytes SHA256bf860ba6e7b3ee2afc40d2f65398adf2ffc9572aa55fccaa0124f441e1717684.
+Root meeting41 administrative receipt consolidation changed later historical
+bytes. Machine line now binds only surviving1025B introductory prefix included in
+that actual read, not integrity of later changed root history. Original identity
+preserved here, no new/backdated historical read, meeting, answer or counter reset.
+No product/source/API/APK changes; administrative metadata only.

@@ -2,6 +2,10 @@
 
 Status: in_progress
 Three A72 inference observations are available in [phone-observations.json](phone-observations.json); numerical quality and actual-backend acceptance remain open.
+Owner-reported unusable greeting answers triggered an actual team review on
+2026-10-24. [Quality review and frozen pilot](quality-review-20261024.md): G01
+repetition reproduced on unchanged A72 CLI; [receipt](greeting-observation.json).
+Reference/app parity, the12-case pilot and a quality fix remain unimplemented.
 Requirements: REQ-001, REQ-010
 Roles: qwen-research-deputy, research, android, learning, mathematical-modeling
 Dependencies: WORK-0001 host Rust/toolchain scaffold; full Android acceptance is not required for independent host-only work
