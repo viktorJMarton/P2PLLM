@@ -15,6 +15,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -80,6 +81,10 @@ internal fun OperatorShell(
     onRefreshDiagnostics: () -> Unit,
     onNextDiagnostics: () -> Unit,
     onOpenAppSettings: () -> Unit,
+    inference: InferenceState,
+    onEditPrompt: (String) -> Unit,
+    onGenerate: () -> Unit,
+    onStopInference: () -> Unit,
 ) {
     var selection by rememberSaveable { mutableStateOf(Destination.OVERVIEW.name) }
     val destination = Destination.entries.firstOrNull { it.name == selection }
@@ -128,24 +133,73 @@ internal fun OperatorShell(
                 StatusPanel(state, onRefresh)
                 when (destination) {
                     Destination.OVERVIEW -> Overview(state)
-                    Destination.SESSION -> UnavailableFeature(
-                        "Helyi AI", "A modellbetöltés és a szöveggenerálás még nincs bekötve. " +
-                            "Ez a felület jelenleg a csomópont állapotát tudja lekérni.",
-                        "Munkamenet indítása",
+                    Destination.SESSION -> LocalInferencePanel(
+                        inference, onEditPrompt, onGenerate, onStopInference,
                     )
                     Destination.JOBS -> Text(
                         "Ezek a telefonon végzett helyi ellenőrzések. " +
-                            "Hálózati és AI-feladat még nem indítható.",
+                            "Hálózati feladat még nem indítható. A helyi AI az AI lapon érhető el.",
                     )
                     Destination.MODELS -> UnavailableFeature(
                         "Modellek és frissítések", "Nincs bekötött modellnyilvántartás. " +
-                            "Modellbetöltés, közös tanulás, frissítésaktiválás és visszaállítás " +
-                            "jelenleg nem indítható.", "Modell betöltése",
+                            "Az AI lap a beépített Qwen3-0.6B modellt futtatja. Közös tanulás, " +
+                            "modellfrissítés és visszaállítás jelenleg nem indítható.", "Modell frissítése",
                     )
                     Destination.RESOURCES -> Resources(state)
                 }
             }
         }
+    }
+}
+
+@Composable
+private fun LocalInferencePanel(
+    state: InferenceState,
+    onEditPrompt: (String) -> Unit,
+    onGenerate: () -> Unit,
+    onStop: () -> Unit,
+) {
+    InfoCard("Kérdezz a helyi AI-tól") {
+        Text("Qwen3-0.6B · offline CPU bemutató. A kérdés és válasz csak az alkalmazás " +
+            "memóriájában marad; a folyamat leállításakor elvész. Az első indítás a " +
+            "beépített modell előkészítése miatt tovább tarthat.")
+        OutlinedTextField(
+            value = state.prompt,
+            onValueChange = onEditPrompt,
+            enabled = !state.busy,
+            label = { Text("Kérdés") },
+            supportingText = { Text("${state.prompt.toByteArray(Charsets.UTF_8).size} / 1024 UTF-8 bájt") },
+            minLines = 3,
+            maxLines = 6,
+            modifier = Modifier.fillMaxWidth(),
+        )
+        Button(onClick = onGenerate, enabled = !state.busy && state.prompt.isNotBlank(),
+            modifier = Modifier.fillMaxWidth().heightIn(min = 48.dp)) {
+            Text("Válasz kérése")
+        }
+        if (state.busy) {
+            CircularProgressIndicator()
+            Text(when {
+                state.stopping -> "Leállítás folyamatban… A modell betöltésének befejezése eltarthat."
+                state.phase == InferencePhase.PREPARING -> "Modell előkészítése és ellenőrzése: ${state.progress}%"
+                else -> "Válasz készül a telefonon…"
+            })
+            Button(onClick = onStop, enabled = !state.stopping,
+                modifier = Modifier.heightIn(min = 48.dp)) { Text("Leállítás") }
+        }
+        when (state.phase) {
+            InferencePhase.COMPLETED -> Text("A válasz elkészült.")
+            InferencePhase.CANCELLED -> Text("Megszakítva. Újra kérdezhetsz.")
+            else -> Unit
+        }
+        state.error?.let { Text(it, color = MaterialTheme.colorScheme.error) }
+        if (state.answer.isNotEmpty()) {
+            Text("Válasz", style = MaterialTheme.typography.titleMedium,
+                modifier = Modifier.semantics { heading() })
+            Text(state.answer)
+        }
+        Text("A generálás leáll, ha az alkalmazás háttérbe kerül. A képernyő elforgatása " +
+            "nem indít új feladatot. A modell tévedhet; a válasz hossza korlátozott.")
     }
 }
 
@@ -259,7 +313,7 @@ private fun Overview(state: NodeStatusState) {
         }
     }
     InfoCard("Fejlesztési állapot") {
-        Text("A navigáció és az állapotfrissítés használható. Az AI-, hálózati és " +
+        Text("A helyi kérdés és válasz az AI lapon próbálható ki. Hálózati és " +
             "tanulási műveletekhez további mag- és platformintegráció szükséges.")
     }
 }

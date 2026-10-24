@@ -1,11 +1,11 @@
-# Android operator app (WORK-0001/0011/0014)
+# Android operator app (WORK-0001/0011/0014/0015)
 
 The Kotlin/Compose app uses the generated UniFFI0.28.3 bridge for status and a
 persisted local diagnostic. Version0.2.0/code2 adds a real start button on overview
 and jobs, actual result/history, typed errors and bounded paging. Rust owns SQLite
 under Android filesDir, the process lifecycle lock and first-owner recovery;
 Activity recreation does not recover live work. All native/storage calls run
-off the main thread. It does not run inference or connect to peers.
+off the main thread. WORK-0015 version0.3.0/code3 adds the bounded offline AI tab through ADR-013; it does not connect to peers.
 WORK-0014 records Kotlin/native ARM64 debug APK build on Windows. Host crash/
 ownership tests are not Android device/UI validation; device acceptance remains
 separate. WORK-0002 phone inventory/helper proof is not model inference evidence.
@@ -60,3 +60,28 @@ The 35.0.0 Linux build tools archive was inspected on this aarch64 proot:
 its `aapt2` executable is x86-64, so an APK build on this host is not
 supported by that official package. A generated binding on Linux does
 not prove the Android call works.
+
+## Offline question/answer build (WORK-0015)
+
+`python tools/build_android.py` now first runs verified JNI/model preparation,
+then the existing Rust/Android build. Windows prerequisite: pinned ExecuTorch
+source/static runtime from WORK-0002, approved NDK, export venv/wheelhouse and
+recovered hash-verified PTE. Missing inputs block packaging; there is no automatic
+model/runtime upgrade. The new preparation route is Windows-specific; other
+host support is unverified. Direct Gradle packaging also checks payload hashes
+and required ARM64 libraries/notices, preventing an empty AI APK.
+
+The debug APK bundles about480MB of public pinned model/tokenizer data, with
+component notices. First use copies/verifies assets in app-private no-backup
+storage; partial copies are discarded/retried, and both hashes precede inference.
+Questions/responses remain in process memory. Single worker survives Activity
+recreation; backgrounding cancels and waits for the current native operation.
+Stop does not imply immediate interruption of model load/prefill. Input<=1024
+UTF-8 bytes; output<=128 new tokens/16384bytes. No network permission.
+
+The test-only platform instrumentation needs no external test library:
+`gradlew :app:assembleDebugAndroidTest`, then install app and test APK and run
+`adb shell am instrument -w org.p2pai.app.test/org.p2pai.app.LocalInferenceSmokeInstrumentation`.
+After an actual force-stop, repeat with `-e mode restart` before the component.
+It emits only flags/counts/static failure codes. Compilation is not device
+acceptance; see WORK-0015 evidence for actual results and remaining limits.

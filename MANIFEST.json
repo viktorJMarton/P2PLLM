@@ -73,8 +73,8 @@
     },
     {
       "path": "agents/MEMORY.md",
-      "bytes": 5430,
-      "sha256": "456a502c6a507c853d132f7419134148ae4742b4f2e2c8af682c5326774ef7ad"
+      "bytes": 6832,
+      "sha256": "e90a1be807ebb1d4ee75a4cef2a6bd759292e178947773fcfd104c0658e18d7b"
     },
     {
       "path": "agents/PERSONAS.md",
@@ -153,13 +153,13 @@
     },
     {
       "path": "android/README.md",
-      "bytes": 3412,
-      "sha256": "79ada81e5f69ed4eb125b563f96ea3c948d629f206d53f1c1ae83f8858394485"
+      "bytes": 5087,
+      "sha256": "96dc10f24e3f634b0bce03690cd5a650d3166afa460f45b8625c5ec4996a4a8c"
     },
     {
       "path": "android/app/build.gradle.kts",
-      "bytes": 973,
-      "sha256": "23b4e613858f54fc447e07b45d9b4d2436b4263df732706d8bfaeaa14120a535"
+      "bytes": 4399,
+      "sha256": "f12295ed90964b0c69edaf1cc7662bddea1043635e2892dcb90754a392e6389b"
     },
     {
       "path": "android/app/gradle.lockfile",
@@ -167,19 +167,29 @@
       "sha256": "b6b9e8c0f8bb9ce43122553cce7f56ce7fcb2ca78dc8e1896ed056388d06e72e"
     },
     {
+      "path": "android/app/src/androidTest/java/org/p2pai/app/LocalInferenceSmokeInstrumentation.kt",
+      "bytes": 14006,
+      "sha256": "d27d2ab5b4135b956c643663b688f51cb83406487eae93d72e6162bb0b944dfd"
+    },
+    {
       "path": "android/app/src/main/AndroidManifest.xml",
-      "bytes": 556,
-      "sha256": "11ee6f5bd9fd48d964c4073dc6d41d843cc7c54e490b7064478ace7175617b6e"
+      "bytes": 592,
+      "sha256": "3f44b33b9d2122d5c7ffd098797db84cc41032e12d0697d975bd28561e35c10c"
+    },
+    {
+      "path": "android/app/src/main/java/org/p2pai/app/LocalInference.kt",
+      "bytes": 8625,
+      "sha256": "fdeeeb748ba29c026dddf73c8464862ba2178dbfc66f0b7e4f2ecf1ed5647217"
     },
     {
       "path": "android/app/src/main/java/org/p2pai/app/MainActivity.kt",
-      "bytes": 10641,
-      "sha256": "ff77d5dd36f20ff4dcf7571a117dbb3bafe1cbbbadb150514e28e6fc793dae1f"
+      "bytes": 11073,
+      "sha256": "f0bceb1af3ba502d085c432b52a60b44afff86a2b1fb8084eb5dce68e7f35ab3"
     },
     {
       "path": "android/app/src/main/java/org/p2pai/app/OperatorShell.kt",
-      "bytes": 12978,
-      "sha256": "512f4ccfe418866fa76d5da36f9a516ed2b2a53e66a2da9f49b4852e1e5b5a6b"
+      "bytes": 15400,
+      "sha256": "73f846c7dc5df0ec91ec3427cf8e6e6bca324c628e2c36cf64485b0b49cc6525"
     },
     {
       "path": "android/app/src/main/java/uniffi/p2p_android_bridge/p2p_android_bridge.kt",
@@ -353,8 +363,8 @@
     },
     {
       "path": "docs/architecture/overview.md",
-      "bytes": 2024,
-      "sha256": "f0da256e46bfdfaa61c7c52058c6be74d098fe0f73d9b8780fce94e4942cd1af"
+      "bytes": 2378,
+      "sha256": "197af8f37b32bcddf34e72f2579a5cbd1b5146bbcea9f92536b10684c833d6cb"
     },
     {
       "path": "docs/architecture/scheduling.md",
@@ -422,9 +432,14 @@
       "sha256": "eb117f67ba6074c0b1ae7f9d5c8ac0890be37a760666166bbf9a4990988f6d3f"
     },
     {
+      "path": "docs/decisions/ADR-013-bounded-android-inference-adapter.md",
+      "bytes": 1831,
+      "sha256": "c94fbb3e4cb393f5145466c9e9b9148c1a685bd5817062fd352389a789a8ac4b"
+    },
+    {
       "path": "docs/decisions/INDEX.md",
-      "bytes": 1207,
-      "sha256": "3a799090d3b87af10395148ca549f1d100ceb1f585708c17fb4a3660038ee498"
+      "bytes": 1307,
+      "sha256": "7ae2f1f6b4c4e5a9245f64dc0b6aee9f15945f87f212339dd65bb13cdd890855"
     },
     {
       "path": "docs/design-provenance.md",
@@ -468,8 +483,8 @@
     },
     {
       "path": "docs/operations/drive-workflow.md",
-      "bytes": 1335,
-      "sha256": "1980b9570e5a982499a4972eef69d5b406d37974fc785656a9492c3f9cfda673"
+      "bytes": 1388,
+      "sha256": "53774361e8d6614f9b74097eb0794f170745aa94409cf9742ed5d15e61a56391"
     },
     {
       "path": "docs/operations/local-diagnostics.md",
@@ -535,6 +550,26 @@
       "path": "native/README.md",
       "bytes": 161,
       "sha256": "c2ccce7114bdeb66402c8fe2f5d9d8db17c8288449d52a857a54545c7b2da0dd"
+    },
+    {
+      "path": "native/executorch-adapter/CMakeLists.txt",
+      "bytes": 1427,
+      "sha256": "8097eb5321703eaad283c0091134315adafd57902a39fb338e740a99ce1fbef4"
+    },
+    {
+      "path": "native/executorch-adapter/boundary.h",
+      "bytes": 4240,
+      "sha256": "68b9abf5051f523e49807c3be01b58542771130f510be0f80c8c60221dee6b5e"
+    },
+    {
+      "path": "native/executorch-adapter/boundary_test.cpp",
+      "bytes": 2640,
+      "sha256": "1bf4710a7abd3d98f7eb063b22480fff3a404dde9aa199f61eac2940a7c280a0"
+    },
+    {
+      "path": "native/executorch-adapter/inference.cpp",
+      "bytes": 3792,
+      "sha256": "176005f9b747b51d9ec37a581d7a5d79a203520e2f789facf5e0b780b9d4afa3"
     },
     {
       "path": "privacy-backends/README.md",
@@ -632,6 +667,11 @@
       "sha256": "5d85ca9264967ddd4be9ae6371874dd4fb1a8d98480393442638588b8a2e0c64"
     },
     {
+      "path": "tests/test_prepare_android_inference.py",
+      "bytes": 4917,
+      "sha256": "626198448caaece9eeac9497b3e0e31799d70a2d289ba4acd433a71338e3f6b8"
+    },
+    {
       "path": "tests/test_run_checks.py",
       "bytes": 11615,
       "sha256": "f88ddca4c12560e50e993e25ad1c11f2e4d3f34e1f1e50645a97646577efc525"
@@ -653,8 +693,8 @@
     },
     {
       "path": "tools/build_android.py",
-      "bytes": 412,
-      "sha256": "0ce8a9376a23c13f8bde91b6420a0fba37cb9336bae47036468e7c9412de5b8b"
+      "bytes": 942,
+      "sha256": "a768dd965a7c19baf12e26740e82674e05f5a3e8241499101eb1ee888205bd5a"
     },
     {
       "path": "tools/build_phone_runner.py",
@@ -680,6 +720,11 @@
       "path": "tools/phone_benchmark.py",
       "bytes": 22919,
       "sha256": "a36fb2a3d96a1daeaf3c65f26768bb0fa3ac88f03249472c9d4df9c7bdb9968a"
+    },
+    {
+      "path": "tools/prepare_android_inference.py",
+      "bytes": 11314,
+      "sha256": "09afa01ed1e691a9f6c77caaa9de6e173ec5254ff246752ecea4f9a028045862"
     },
     {
       "path": "tools/regenerate-android-bindings.sh",
@@ -718,8 +763,8 @@
     },
     {
       "path": "work/INDEX.md",
-      "bytes": 3347,
-      "sha256": "80251dbc68d401f0eb403a6500be69e70bc579831340017ac8bce925d63747b0"
+      "bytes": 3621,
+      "sha256": "391e252c7e955237793a62ba21221f0a8c942b560291cb4c6c7772200ef3bc96"
     },
     {
       "path": "work/PACKAGE-BUILD.md",
@@ -1092,14 +1137,74 @@
       "sha256": "805dd38103609ede25490bca5314ac2b6d4d8547816163826a30e75f8025c927"
     },
     {
+      "path": "work/WORK-0015-android-local-inference/brief.md",
+      "bytes": 4045,
+      "sha256": "4163b36a137b7ad11b21898a2959bd67654c6b4dc8221d31c4951d22a43992e0"
+    },
+    {
+      "path": "work/WORK-0015-android-local-inference/device-observations.json",
+      "bytes": 5136,
+      "sha256": "83c00ce35f4f031f305b30fc68e11a3ee7c7078299a014238be3d3e045fe54dd"
+    },
+    {
+      "path": "work/WORK-0015-android-local-inference/evidence.md",
+      "bytes": 4362,
+      "sha256": "29dd4499aafb15722ba1729166bc30ccd1eb1fcc5ce6055bdf0cc035a8ec6156"
+    },
+    {
+      "path": "work/WORK-0015-android-local-inference/handoff-android.md",
+      "bytes": 6786,
+      "sha256": "2531be4613a320adf4e010c29a2fa00550c4de1cd956d8f0da790121a74d0edd"
+    },
+    {
+      "path": "work/WORK-0015-android-local-inference/handoff-delivery-review.md",
+      "bytes": 2301,
+      "sha256": "8f2e92b731b0181c6cfe2ced4ca5e1a77edf9efedae9fd67ec255b4ddfe654d8"
+    },
+    {
+      "path": "work/WORK-0015-android-local-inference/handoff-integration.md",
+      "bytes": 1213,
+      "sha256": "6f04873eb0b16ab3d6c6d91cd41ef4d8cd61010923b8a9cf1f3c899ec80ac935"
+    },
+    {
+      "path": "work/WORK-0015-android-local-inference/handoff-native.md",
+      "bytes": 4815,
+      "sha256": "607f70394bc5c3c998d9209b27037701d02c24007df1e9ed1ea867a2036ce563"
+    },
+    {
+      "path": "work/WORK-0015-android-local-inference/journal.md",
+      "bytes": 1138,
+      "sha256": "e5e7e75984827713c7bdcdbe761ed06208c0316252fa1c70a294f6337e17f349"
+    },
+    {
+      "path": "work/WORK-0015-android-local-inference/review.md",
+      "bytes": 4344,
+      "sha256": "04acc81aaa64a3a3d3fbbc172c316759652535ff4cc0446ea3b70252f1ce3672"
+    },
+    {
       "path": "work/agent-journals/android-shell.md",
       "bytes": 42114,
       "sha256": "23a3b11b6241ff25e60525c67bcc047f8dcaef7fc6aa33b332394c2515fe0851"
     },
     {
+      "path": "work/agent-journals/delivery-review.md",
+      "bytes": 3352,
+      "sha256": "e412e45dd7d9e3c9b3085abfdbffca68add74eb739c38b2c59a2797e61cd47fd"
+    },
+    {
       "path": "work/agent-journals/independent-review.md",
-      "bytes": 2548,
-      "sha256": "797fb69045b3d05b71bc4159e625a8514faa2bc9738accc8e1d2d99dc50ac4f3"
+      "bytes": 17925,
+      "sha256": "48753f2bc3d8ae956bbb95144695ac9a3a7d7089c5a376bcf6ecd9b050700819"
+    },
+    {
+      "path": "work/agent-journals/inference-android.md",
+      "bytes": 23507,
+      "sha256": "1ca43c02cea6f5b3c0606774f17503593ac55e2a88e78dce8d30f196d85e3d6e"
+    },
+    {
+      "path": "work/agent-journals/inference-native.md",
+      "bytes": 16781,
+      "sha256": "1101ed1da8a6aaa264bd96b1fb358ee425b853d2b192ef812020ba33027c73dc"
     },
     {
       "path": "work/agent-journals/phone-staging.md",
@@ -1108,8 +1213,8 @@
     },
     {
       "path": "work/agent-journals/primary.md",
-      "bytes": 68576,
-      "sha256": "913af30b0cc7aa2aa4b6bc997711e774cf8e62851ac7d8a069a87a7e383d426c"
+      "bytes": 86066,
+      "sha256": "331671fe9e0cb484a24972339f0c2857e5ec45ee72f43d86f62ff43e0ca260c1"
     },
     {
       "path": "work/agent-journals/product-review.md",

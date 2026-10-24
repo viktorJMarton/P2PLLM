@@ -18,3 +18,5 @@ Initial modules: domain, protocol, node-core, privacy-policy, backend-api, trans
 Independent substate machines: lifecycle, network, task, update. Model version pinned for every active task. Failed remote execution may retry only under the same privacy constraints. Background operation is a capability controlled by Android; expiry/resource withdrawal is normal.
 
 Diagrams: diagrams/components.puml, diagrams/session.puml, diagrams/learning.puml and diagrams/task-lifecycle.bpmn.
+
+WORK-0015/ADR-013 adds a bounded local Android JNI inference adapter and process-owned Kotlin worker. This explicit composition exception does not introduce shared AI task storage, remote policy, network routing or general Rust runtime. See [ADR-013](../decisions/ADR-013-bounded-android-inference-adapter.md); device acceptance is recorded separately.

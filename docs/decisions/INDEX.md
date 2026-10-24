@@ -16,3 +16,5 @@
 
 Accepted decisions define direction; implementation evidence is recorded per
 WORK. Open choices remain in PRODUCT.md and work/INDEX.md.
+
+- [ADR-013: Bounded Android local inference adapter](ADR-013-bounded-android-inference-adapter.md)

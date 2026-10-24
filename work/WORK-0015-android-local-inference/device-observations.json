@@ -1,0 +1,161 @@
+{
+  "work_id": "WORK-0015",
+  "run_id": "smoke-004",
+  "status": "passed",
+  "scope": "installed production controller/native/lifecycle with public synthetic fixtures",
+  "capability_limits": [
+    "not full model numerical equivalence",
+    "not backend placement proof",
+    "not sustained thermal/privacy/release acceptance"
+  ],
+  "apk": {
+    "bytes": 509885353,
+    "sha256": "f91a77d23774228a48b3f827fce536297b3d3bae3aba843e9118270091ee6a19"
+  },
+  "test_apk": {
+    "sha256": "1c6475db5b2f69891eb3516d4356da2d70b6886bf1ef6a9995777c12d9e4dacd"
+  },
+  "strip_provenance": {
+    "path": ".artifacts/device/WORK-0015/strip-provenance-002/report.json",
+    "sha256": "5dfcbaaf791e8fdd6e8c3fe3e164ed03c92d8ba099cc602accb57bbcd5f053bf"
+  },
+  "steps": [
+    {
+      "name": "apk_payload_audit",
+      "passed": true,
+      "files": [
+        {
+          "path": "assets/local-model/model.pte",
+          "sha256": "07786b553d9661d36431426d06c268f385d453314f6722ca79f66c7e79653b48",
+          "bytes": 468633472,
+          "compression": 0
+        },
+        {
+          "path": "assets/local-model/tokenizer.json",
+          "sha256": "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4",
+          "bytes": 11422654,
+          "compression": 0
+        },
+        {
+          "path": "lib/arm64-v8a/libp2p_inference.so",
+          "sha256": "f4792a7486d85c0802a11bc3c6db990b174a7e75eff3bd34bc8f7f7974984038",
+          "bytes": 8446896,
+          "compression": 0
+        }
+      ],
+      "notice_components": 18,
+      "notice_files": 48
+    },
+    {
+      "name": "manifest_audit",
+      "passed": true,
+      "network_permission": false,
+      "allow_backup": false
+    },
+    {
+      "name": "install_app",
+      "passed": true,
+      "seconds": 21.203
+    },
+    {
+      "name": "install_test",
+      "passed": true,
+      "seconds": 1.797
+    },
+    {
+      "name": "instrumentation_normal",
+      "seconds": 36.312,
+      "results": {
+        "background_cancel": true,
+        "completed_checks": 6,
+        "foreground_retry_answer": true,
+        "passed": true,
+        "preparing_cancel_and_retry_blocked": true,
+        "preparing_recreation_answer_and_duplicate_rejected": true,
+        "running_recreation_and_cancel": true,
+        "visible_ai_question_answer": true
+      },
+      "instrumentation_code": -1,
+      "passed": true
+    },
+    {
+      "name": "force_stop_between_runs",
+      "passed": true
+    },
+    {
+      "name": "instrumentation_restart",
+      "seconds": 5.484,
+      "results": {
+        "completed_checks": 2,
+        "passed": true,
+        "restart_answer": true,
+        "restart_empty": true
+      },
+      "instrumentation_code": -1,
+      "passed": true
+    },
+    {
+      "name": "bounded_logcat_canary",
+      "passed": true,
+      "matched_canary_indices": [],
+      "raw_log_saved": false,
+      "scope": "target app UID, last1000 lines since test start; tested paths only"
+    }
+  ],
+  "device": {
+    "ro.product.manufacturer": "samsung",
+    "ro.product.model": "SM-A725F",
+    "ro.product.device": "a72q",
+    "ro.build.version.release": "14",
+    "ro.build.version.sdk": "34",
+    "ro.build.display.id": "UP1A.231005.007.A725FXXSBFYC1",
+    "ro.product.cpu.abilist": "arm64-v8a,armeabi-v7a,armeabi",
+    "ro.soc.manufacturer": "QTI",
+    "ro.soc.model": "SM7125",
+    "mem_total_kib": 5625888,
+    "context": {
+      "battery_temperature_c": 25.4,
+      "thermal_status": 0,
+      "battery_status_code": 4,
+      "power_connected": {
+        "AC": false,
+        "USB": true,
+        "Wireless": false
+      }
+    }
+  },
+  "evidence_sources": {
+    "device": {
+      "path": ".artifacts/device/WORK-0015/smoke-004/report.json",
+      "sha256": "2b0f7559711801d395d8def70a2e36daea3e6c74da2a1792a6c61234b2b4be9d"
+    },
+    "strip": {
+      "path": ".artifacts/device/WORK-0015/strip-provenance-002/report.json",
+      "sha256": "5dfcbaaf791e8fdd6e8c3fe3e164ed03c92d8ba099cc602accb57bbcd5f053bf"
+    },
+    "android_checks": {
+      "path": ".artifacts/checks/WORK-0015/offline-app-002/android/report.json",
+      "sha256": "4c1abf30e3f7111cace54ecd5ec65515722aee2ed578c3369b23cc54aa38c8e2"
+    },
+    "workflow_checks": {
+      "path": ".artifacts/checks/WORK-0015/offline-final-001/workflow/report.json",
+      "sha256": "832edb2277978270955d67ffe2b3eb8b9d98a8e571dfeaab77d2ce237e251bad"
+    },
+    "negative_guard": {
+      "path": ".artifacts/checks/WORK-0015/payload-guard-001/report.json",
+      "sha256": "6b65973bb1e77619238d5b1bcf464267eb2e9fbd02d14bff26a14828829ba5ef"
+    },
+    "template_comparison": {
+      "path": ".artifacts/device/WORK-0015/template-comparison-001/report.json",
+      "sha256": "5d6506a18e09b54036c9fbb2d356771ac1e15d6741e539dadbd5ba2a15a083d3"
+    },
+    "native_build": {
+      "path": ".artifacts/checks/native-inference-08/report.json",
+      "sha256": "6f6ea4f4cb60c088c8b09205cb688a6af9fd4bb12aa865023f69f0b3192caa52"
+    },
+    "native_output_bindings": {
+      "path": ".artifacts/checks/native-inference-08/output-bindings.json",
+      "sha256": "a8d6629856a6b0fc067ffaa8139a59a1f737b84f3f408f9637177ef5dabe41f4"
+    }
+  }
+}

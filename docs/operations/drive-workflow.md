@@ -1,6 +1,6 @@
 # Drive workflow for Codex CLI
 
-Design only: rclone is the preferred transfer tool; OAuth has not been configured in the user's CLI. This conversation's Drive connector does not imply CLI access. Optional MCP integration can be evaluated later.
+The CLI rclone route remains design-only and OAuth is not configured there. The connected Google Drive plugin is used for owner-authorized versioned APK delivery (WORK-0014/0015 receipts); this connector access does not imply CLI OAuth access or a release approval.
 
 Git owns active source history and review. Drive stores immutable source snapshots, documentation bundles, experiments, releases and incoming material. Never sync the active .git directory or credentials. No unattended two-way bisync or deletion mirroring. Fetch to staging, verify manifest, inspect diff, then normal Git review.
 

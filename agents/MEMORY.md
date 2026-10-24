@@ -86,3 +86,27 @@ prior execution no-blocker was withdrawn when the hazard was found. No actual
 model export was rerun after this repair; PTE/numerical/backend/phone gates remain.
 Enforcement owner: WORK-0002 exporter implementer and independent reviewer;
 Python logging guards do not establish an OS/native-code confidentiality sandbox.
+
+## LSN-009 - Verify the executed packaging guard, not just its declaration
+
+WORK-0015 first APK build succeeded without executing its payload guard because
+Kotlin Gradle task Spec resolved project.name. Explicit it.name fixes the hook.
+Actual negative assemble rejected missing model; positive common Android build
+executed the guard. Evidence: WORK-0015 evidence.md and payload-guard-001 receipt.
+Enforcement: exact asset hashes, required native/notices, observed task execution.
+
+## LSN-010 - Native source bytes and packaged bytes can differ reproducibly
+
+AGP stripped the already-built JNI library again. Initial strict audit correctly
+stopped; pinned NDK llvm-strip --strip-unneeded reproduced exact APK bytes.
+Record distinct source and packaged hashes plus tool/argv/exit and byte equality;
+never waive unexplained mismatches. WORK-0015 strip-provenance-002 and portable
+observations bind final bytes. ELF headers alone are not provenance/security.
+
+## LSN-011 - Pin and measure the model prompt framing
+
+A closed thinking prefix alone did not satisfy the public exact-answer fixture.
+Same-pin A72 comparison supported literal /no_think suffix. Both owners agreed
+before code; golden native template regression and rebuilt actual app passed
+unchanged strict assertion. Preserve prior failure; a small answer pass is not
+full numerical/quality/backend/privacy acceptance. WORK-0015 evidence.md.

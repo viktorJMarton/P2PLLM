@@ -50,6 +50,10 @@ class MainActivity : ComponentActivity() {
                         startActivity(Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
                             Uri.parse("package:$packageName")))
                     },
+                    inference = LocalInferenceController.state,
+                    onEditPrompt = LocalInferenceController::editPrompt,
+                    onGenerate = { LocalInferenceController.generate(applicationContext) },
+                    onStopInference = LocalInferenceController::cancel,
                 )
             }
         }
@@ -236,5 +240,10 @@ class MainActivity : ComponentActivity() {
         }
         statusExecutor.shutdown()
         super.onDestroy()
+    }
+
+    override fun onStop() {
+        if (!isChangingConfigurations) LocalInferenceController.cancel()
+        super.onStop()
     }
 }

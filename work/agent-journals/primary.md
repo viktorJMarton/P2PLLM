@@ -925,3 +925,175 @@ SHA. This is the observed source delivery, not a future push claim. Metadata
 follow-up records this result and fixes the stale brief sentence; its own
 commit review/push remains pending until performed. Next primary owner keeps
 WORK-0002 gates open and advances response quality/placement then Android use.
+
+## Iteration 27 - WORK-0015 local question/answer start
+
+Run run-20261024-local-inference-01; persona Accountable delivery coordinator unchanged. Existing developmentbranch HEAD9f33493 clean at start. Read Product/Technology, architecture, threat model, memory and bounded Android sources. New brief fixes pinned bundled offline model and one local JNI adapter, no network/DB/chat persistence. Assigned separate native/Android source ownership and journals. Actual peer replies accepted requestId Long generate/cancel API to close pre-entry race; short lock alone was rejected by both. Root owns public synthetic output checks/integration. Next meeting by28 before29, counters retained across WORK change.
+
+## Iteration 28 - Public answer probe and parser correction
+
+CLI first probe had CRLF echo parse failure;002 normalized line endings but
+included protocol EOS in exact-answer comparison, so no quality pass claimed.
+003 arithmetic then confirmed EOS present and exact answer after protocol
+removal, but Hungarian fixture preflight failed due host-script encoding error.
+Original receipts retained;003 partial is not3/3 acceptance. Avoid further CLI
+reruns: actual production-adapter instrumentation is next. Native owner used
+this observation for split-EOS handling tests and actual run05 build.
+
+## Meeting after iteration 28
+
+Timing deviation: the EOS003 probe/preflight had already started before this
+meeting was recorded. This checkpoint is late; it is not backdated or claimed
+on-time. Preserve counters and failed evidence; require a checkpoint before
+starting subsequent bounded work. No peer consent is inferred from that delay.
+
+Historical complete-read receipt (retained, old prefix changed by formatting): - Read: work/agent-journals/inference-native.md | bytes: 6011 | sha256: 949e02dbb046035e1bce1d93c690e25b435fcf537937d67bd9b18fdceec4b25c
+- Read: work/agent-journals/inference-native.md | bytes: 1025 | sha256: 9096907bd63ec4068061baf714282192762b9b305f3e316824a44d92c6502b39
+
+Historical complete-read receipt (retained, old prefix changed by formatting): - Read: work/agent-journals/inference-android.md | bytes: 9088 | sha256: acc0d01caecdac6003e1d34f3bb28cd4166ba62f027395a92efdade9206f52b7
+- Read: work/agent-journals/inference-android.md | bytes: 1024 | sha256: d46980154ff2a82b909c8df6b7b1c0f1a0410562745a9b3808708af524b9d8e5
+
+Historical complete-read receipt (retained, old prefix changed by formatting): - Read: work/agent-journals/independent-review.md | bytes: 8008 | sha256: 4a55f0cea3f1765206c9ac03286ef07657376f25e90ca0300b48af841d2409ec
+- Read: work/agent-journals/independent-review.md | bytes: 1024 | sha256: efb22920a5737f7c38f3ba3432fc0b89dec974aac85ee9e658daf660b26e1bdb
+
+| ID | WORK/change | Question / next action | Respondent | Status |
+| --- | --- | --- | --- | --- |
+| ROOT15-Q1 | WORK-0015 EOS | Does callback stop remain effective after first-token reset and while cancellation is latched? Verify bounds/next callbacks. | inference-native | asked |
+| ROOT15-Q2 | WORK-0015 offline APK | Require installed-app acceptance beyond CLI/source/480MB packaging? Execute instrumented app. | independent-review | answered yes |
+| ROOT15-Q3 | WORK-0015 lifecycle | Does instrumentation exercise production worker/native plus actual Activity and emit only sanitized flags? Record coverage and limits. | inference-android | asked |
+| ROOT15-Q4 | WORK-0015 logging | Static bindings plus canary prove tested paths only? Keep scope explicit. | independent-review | answered yes |
+| ROOT15-Q5 | WORK-0015 attribution | Inventory must cover actually linked components without legal certification claim? Preserve component notices. | independent-review | answered yes |
+
+Reviewer actual replies agree bounded claims, real lifecycle receipts and truthful
+late-checkpoint correction. Native/Android answers pending; continue independent
+packaging preparation, not capability acceptance. Persona unchanged.
+
+Meeting28 actual Android Q3 reply: testAPK exercises production worker/native and realActivity, bounded120s phase deadline, sanitized flags only; manual navigation/keyboard/thermal/fullquality/privacy not certified. Native Q1 reply: repeated worker stop after logicalEOS/latchedcancel, including firstcallback reset; Q5 notices bounded inclusion notlegalcert. All five root questions now actual answers.
+
+## Iteration 29 - APK integration and real lifecycle harness
+
+Added preparation to common build wrapper and documented ADR013 route, existing Rust unchanged. Kotlincompile/lint exit0; native05/EOS boundary and staging tests pass. Test-only platform Instrumentation added by Android owner for production controller/native/Activity checks; root assembling testAPK, then full debugAPK/device. Source uncommitted on9f33493. No app acceptance or Drive delivery claimed yet.
+
+## Iteration 30 - Packaging guard and common Android verification
+
+Initial Gradle payloadguard used project.name in Spec, so firstsuccessfulAPKbuild did not execute guard. Android owner corrected to it.name. Actualnegative test .artifacts/checks/WORK-0015/payload-guard-001/report.json rejected missingmodel atverifyLocalInferencePayload and restored exactownedasset in finally. CommonAndroid profile offline-app-001 then passed allsteps exit0 with stablefingerprint: Rusttoolchain/lint/JVM(no JVMtests)/nativepreparation+Rustbridge+APK. Explicitguardtaskexecuted positive. Source branch now work/WORK-0015-offline-android-ai at9f33493; disjointsharedcheckout preserved. Test-only UiAutomation delta follows for visibleAIinteraction, separatetestAPKcompile/lint; prodAPK unchanged501436669bytes. Fullmodelnumerical/backend/privacy gates remainopen. Nextactualdeviceiteration31 thenmeetingbefore32.
+
+## Iteration 31 - Installed-app audit preflight
+
+Final testAPK/lint96519 passed after APIconstant repair; productionAPK unchanged.
+smoke001 exited1 before installation: APKmodel/tokenizer exact, but AGPpackaged
+JNI SO8446736B SHAfa607801039ba5887d07fc3d70770eba4af1cdfd59670e8762d64e3c2149b0fc
+is8B smaller than native05source8446744B2dbfa35e... . No phone/UI acceptance
+claimed. Investigate deterministic approved strip transform, do not waive hash.
+
+## Meeting after iteration 31
+
+Historical complete-read receipt (retained, old prefix changed by formatting): - Read: work/agent-journals/inference-native.md | bytes: 12852 | sha256: 047f55d8ddc99fb6ff68babe2129868e2c279c49ba47b1d3184494f3e3de1f2d
+- Read: work/agent-journals/inference-native.md | bytes: 1025 | sha256: 9096907bd63ec4068061baf714282192762b9b305f3e316824a44d92c6502b39
+
+Historical complete-read receipt (retained, old prefix changed by formatting): - Read: work/agent-journals/inference-android.md | bytes: 17917 | sha256: b8a226d5853d6fdb38ff7ec3a8b18f4a631a71e2941306ba4715a289ebd57c7a
+- Read: work/agent-journals/inference-android.md | bytes: 1024 | sha256: d46980154ff2a82b909c8df6b7b1c0f1a0410562745a9b3808708af524b9d8e5
+
+Historical complete-read receipt (retained, old prefix changed by formatting): - Read: work/agent-journals/independent-review.md | bytes: 11757 | sha256: e845810648add0a5213bc09f845b89a7c9669e07eb2ecf5a3bb48144192286f7
+- Read: work/agent-journals/independent-review.md | bytes: 1024 | sha256: efb22920a5737f7c38f3ba3432fc0b89dec974aac85ee9e658daf660b26e1bdb
+
+| ID | WORK/change | Question / next action | Respondent | Status |
+| --- | --- | --- | --- | --- |
+| APK15-Q1 | WORK-0015 strip | Reproduce pinned NDK strip to fresh file and require exact packaged hash? Verify before install. | independent-review | asked |
+| APK15-Q2 | WORK-0015 provenance | Retain distinct source/packaged hashes plus transform evidence? No identical-byte claim. | independent-review | asked |
+| APK15-Q3 | WORK-0015 instrument | Require normal6/restart2 and result-OK plus bounded canary? Check counts/codes. | independent-review | asked |
+| APK15-Q4 | WORK-0015 UI | Require actual visible UI and lifecycle, beyond CLI? Run only after payload audit. | independent-review | asked |
+| APK15-Q5 | WORK-0015 scope | Keep numerical/backend/privacy/release gates open despite small answer? Preserve limits. | independent-review | asked |
+
+Native owner also asked transform/hash questions. No unanswered shared claim
+is accepted; independent reversible strip investigation follows, then device.
+Counter retained; next meeting no later than34 before35.
+
+Meeting31 actual reviewer answers allfive yes: reproduce approvedstrip exactbytes/no hashwaiver; distinctsource/packagedhashes+transform; normal6/restart2 with RESULT_OK andboundedcanary; actualUI/lifecyclebeforeappacceptance; fullnumerical/backend/privacy/release remainopen. Nativeowner actualQ1/Q2 agrees.
+
+## Iteration 32 - Exact APK strip provenance
+
+Pinned NDK llvm-strip --strip-unneeded source->freshignoredfile exit0 produced exactly APKSO fa607801...49b0fc/8446736B; native05source remains2dbfa35e...6037/8446744B. ToolSHA59895baccad99045955082080b018ae21fca4d520be918609d5dadcffbc2500f; receipt .artifacts/device/WORK-0015/strip-provenance-001/report.json. No hashwaiver or source rebuild. Smoke002 thenpassed payloadaudit (all18noticecomponents) butstopped beforeinstall at manifestparser expectingnumericfalse; actualaapt2 prints allowBackup=false andnoINTERNET. Failedreceiptpreserved.
+
+## Iteration 33 - Manifest parser and actual app smoke
+
+Adjusted only ignoredhostauditparser for observedaapt2 booleanformat, notappmanifest. Smoke003 nowperforms actual install/UI/lifecycle/restart checks; noresultclaimeduntilreceipt. UItestAPK/lint96519 exit0; 81workflowtests80pass/1standardWindows symlinkprivilegeskip, reportoffline-final-001/workflow passedstable. No productioncode changes aftercommonAndroidpassed. Nextmeetingby34before35.
+
+## Iteration 34 - Controlled template comparison
+
+Actual installed app reached COMPLETED through visible AI input/generate, but
+strict2 failed; smoke003 preserves0checks/ANSWER_CHECK_FAILED, so no slice
+acceptance. Bounded targetUID canary passed testedpublic needles only. Controlled
+samepin/A72/CLI128/temp0 comparison001: existingnativeprompt141B/exact2false,
+standalone2true; addingliteral /no_think suffix gives1B/exact2true, SHA256
+d4735e3a265e16eee03f59718b9b5d03019c07d8b6c51f90da3a666eec13ab35.
+No rawanswer retained. This is template sensitivity, not an inferred wrong-math
+bug. Both native andAndroidowners actually agree framingrevision while keeping
+strict test and requiring rebuiltactualapp verification.
+
+## Meeting after iteration 34
+
+Historical complete-read receipt (retained, old prefix changed by formatting): - Read: work/agent-journals/inference-native.md | bytes: 12852 | sha256: 047f55d8ddc99fb6ff68babe2129868e2c279c49ba47b1d3184494f3e3de1f2d
+- Read: work/agent-journals/inference-native.md | bytes: 1025 | sha256: 9096907bd63ec4068061baf714282192762b9b305f3e316824a44d92c6502b39
+
+Historical complete-read receipt (retained, old prefix changed by formatting): - Read: work/agent-journals/inference-android.md | bytes: 21522 | sha256: 46feb852db40f82ef78e6cee882e817012e47cf5d6ad548c6868cac4235656dc
+- Read: work/agent-journals/inference-android.md | bytes: 1024 | sha256: d46980154ff2a82b909c8df6b7b1c0f1a0410562745a9b3808708af524b9d8e5
+
+Historical complete-read receipt (retained, old prefix changed by formatting): - Read: work/agent-journals/independent-review.md | bytes: 11757 | sha256: e845810648add0a5213bc09f845b89a7c9669e07eb2ecf5a3bb48144192286f7
+- Read: work/agent-journals/independent-review.md | bytes: 1024 | sha256: efb22920a5737f7c38f3ba3432fc0b89dec974aac85ee9e658daf660b26e1bdb
+
+| ID | WORK/change | Question / next action | Respondent | Status |
+| --- | --- | --- | --- | --- |
+| TEMPLATE15-Q1 | WORK-0015 framing | Append measured /no_think before im_end, same raw limits? Rebuild one native revision. | inference-native | answered yes; Android also agrees |
+| TEMPLATE15-Q2 | WORK-0015 quality test | Preserve strict2 and require actual rebuilt app? No relaxed criterion. | inference-android | answered yes; native also agrees |
+| TEMPLATE15-Q3 | WORK-0015 binary | Bind fresh native and strip/APK hashes after change? Reproduce transform. | independent-review | answered yes |
+| TEMPLATE15-Q4 | WORK-0015 evidence | Keep prior failure/public-only diagnostics? Retain receipts. | independent-review | answered yes |
+| TEMPLATE15-Q5 | WORK-0015 limits | Small pass leaves full model/backend/privacy/thermal open? Preserve scope. | independent-review | answered yes |
+
+All actual replies received before native implementation proceeds. Counter and
+persona retained. Next meeting by37 before38; root resumes35 integration after
+nativeowner exact regression/build, no modelre-export.
+
+## Iteration 35 - Rebuilt measured template and app acceptance
+
+Native08 exacttemplate hostregression andbuildpassed; sourceSO31f07120...aa2901. CommonAndroidoffline-app-002 all4stepspassed/stable. FreshapprovedNDKstrip002 exactlymaps source8446904B toAPKSO8446896B SHA f4792a7486d85c0802a11bc3c6db990b174a7e75eff3bd34bc8f7f7974984038. Smoke004actualA72 installednewAPK509885353B SHA f91a77d23774228a48b3f827fce536297b3d3bae3aba843e9118270091ee6a19; visibleAIanswer2, sixnormalcases plusactualforce-stop/tworestartcases allpassed, bothinstrumentcodes-1. BoundedUIDlast1000linecanarypassed onlytestedpaths, no rawlogssaved. AllAPKmodel/tokenizer/18componentnoticehashesverified, mergednoINTERNET/allowBackupfalse. Earlierfailedreceipts retained. Portableobservations saved; latestcommitreview/Drive/push stillpending. Scopeboundedappdemo, nofullnumerical/backend/privacy/thermal acceptance.
+
+## Iteration 36 - Source closure preparation
+
+Persisted actualsmoke004 portableevidence, conciseworkhandoff and3specific memorylessons (executedGradleguard, exactstripmap, measuredtemplate). Allprodsourcefrozen; no furthernative/model/APK builds. Priorreviewer independentlyread/hashchecked actualAPK/receipts andfoundnoblocker butusage limit interruptedbeforelatestcommitbinding/durableiteration9; neverinventthatapproval. Newindependent delivery_review available, nonauthor, willreviewexactsourcecommit. Finaldocsprofile/manifestnext, thencommit; DrivefolderalreadycreatedunderownerAPKroot butnoAPKuploadedbeforefinalreview. Rootcounter36since34meeting; nextmandatorymeetingby37before38.
+
+Administrative receipt-format correction by primary,2026-10-24: 9 earlier prefix checks were invalidated by journal format edits. Original recorded read identities remain above as prose. Machine lines now bind only unchanged initial prefixes included in the actual historical reads, not the complete changed later revisions. No new read time, meeting, consent or counter reset is claimed; independent review must retain this limitation. No question/answer or development result was changed.
+
+## Iteration 37 - Journal format correction without capability changes
+
+Final docs initially716packagechecks passed but agentpolicyfailed: WORK0015/WORK15
+cells were notcanonical, prose revisionhashes lacked machine receipt lines,
+andformattingoldjournals invalidated some later prefix checks. Owners corrected
+own metadata; unavailable reviewer journal got explicit primary custodial repair.
+Originalquestions/answers/timing/fullreadhashes preserved. Machine receipts now
+explicitly bind surviving intro prefixes only; they do not certify unchanged full
+later revisions. No retrospective meeting/read/approval or validator relaxation.
+validate_agent_flow nowpassed. Product/test/native/APKbytes unchanged. Distinct
+metadata repair and its limitations need independent review before push.
+
+## Meeting after iteration 37
+
+- Read: work/agent-journals/delivery-review.md | bytes: 3352 | sha256: e412e45dd7d9e3c9b3085abfdbffca68add74eb739c38b2c59a2797e61cd47fd
+
+- Read: work/agent-journals/inference-native.md | bytes: 16781 | sha256: 1101ed1da8a6aaa264bd96b1fb358ee425b853d2b192ef812020ba33027c73dc
+
+- Read: work/agent-journals/inference-android.md | bytes: 23507 | sha256: 1ca43c02cea6f5b3c0606774f17503593ac55e2a88e78dce8d30f196d85e3d6e
+
+| ID | WORK/change | Question / next action | Respondent | Status |
+| --- | --- | --- | --- | --- |
+| FORMAT-Q1 | WORK-0015 journal repair | Original full hashes preserved; only unchanged intro-prefix machine binding, explicit limitation/no backdating? Review truthfulness. | delivery-review | asked |
+| FORMAT-Q2 | WORK-0015 source identity | No validator/product/test/APK changes; actual results still bind? Check hashes. | delivery-review | asked |
+| FORMAT-Q3 | WORK-0015 closure | Require new nonauthor exactcommit review before push, not relabel old review? Bind final SHA. | delivery-review | asked |
+| FORMAT-Q4 | WORK-0015 Drive | Claim local hash and observed remote metadata only unless checksum exposed? Verify upload/readback. | delivery-review | asked |
+| FORMAT-Q5 | WORK-0015 scope | Close only bounded delivery after checks/push/Drive, keep WORK2/privacy/release gates open? Preserve limits. | delivery-review | asked |
+
+Five actual responses pending; independent docs verification may continue while
+approval waits. Next meeting by40 before41; same persona/counters. No source
+change or APK rebuild is authorized by metadata formatting alone.
+
+Meeting37 actual delivery-review answers all5 received: format truthfulness accepted withlimitedprefixscope and53currentreceipt hashes independentlyverified;13code/APKhashes unchanged; final nonauthor Gitblob/commit binding mandatory; Driveclaims onlyactualreadback/localSHA; WORK2/privacy/release gates remainopen. No outstanding dependent shared decision; final exactcommit verdict still awaits commit.
