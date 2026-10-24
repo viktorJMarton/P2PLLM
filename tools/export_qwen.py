@@ -21,8 +21,10 @@ import zipfile
 
 try:
     from run_checks import WindowsJob, safe_path, CheckError
+    from runtime_artifacts import verified_flatc, recheck_flatc, RuntimeArtifactError
 except ModuleNotFoundError:
     from tools.run_checks import WindowsJob, safe_path, CheckError
+    from tools.runtime_artifacts import verified_flatc, recheck_flatc, RuntimeArtifactError
 
 ROOT = Path(__file__).resolve().parents[1]
 REVISION = "3b60683923245cf472b7323426920e15623ba361"
@@ -82,6 +84,7 @@ KNOWN_EXPORT_REASONS = frozenset({
     "unexpected_upstream_checkout_path", "unsafe_export_path", "unsupported_patch_target",
     "upstream_git_check_failed", "upstream_modified_patch_target", "upstream_patch_context_mismatch",
     "upstream_revision_mismatch", "upstream_source_hash_mismatch", "upstream_unexpected_modification",
+    "flatc_artifact_verification_failed", "flatc_worker_recheck_failed",
 })
 
 
@@ -246,7 +249,7 @@ def export_arguments(checkout, checkpoint, output):
             f'+base.params="{(checkout / "examples/models/qwen3/config/0_6b_config.json").as_posix()}"',
             f'+base.checkpoint="{checkpoint.as_posix()}"',
             f'+export.output_dir="{output.as_posix()}"',
-            '+export.output_name="qwen3_0_6b.pte"',
+            f'+export.output_name="{(output / "qwen3_0_6b.pte").as_posix()}"',
             "hydra/job_logging=disabled", "hydra/hydra_logging=disabled",
             "hydra.output_subdir=null", f'hydra.run.dir="{output.as_posix()}"']
 
@@ -402,7 +405,8 @@ def worker_main(argv):
     import inspect
     import runpy
     checkout, output = Path(argv[0]), Path(argv[1])
-    versions, source_records, args = json.loads(argv[2]), json.loads(argv[3]), argv[4:]
+    versions, source_records, flatc = json.loads(argv[2]), json.loads(argv[3]), json.loads(argv[4])
+    args = argv[5:]
     result = {"status": "failed", "phase": "dependency_versions"}
     try:
         for package, version in versions.items():
@@ -410,6 +414,11 @@ def worker_main(argv):
                 raise ExportError("export_dependency_version_mismatch")
         result["phase"] = "dependency_closure"
         verify_dependency_closure(versions, PACKAGES)
+        result["phase"] = "flatbuffer_compiler"
+        try:
+            os.environ["FLATC_EXECUTABLE"] = recheck_flatc(flatc, Path(sys.prefix))
+        except RuntimeArtifactError as error:
+            raise ExportError("flatc_worker_recheck_failed") from error
         result["phase"] = "torch_import"
         import torch
 
@@ -446,14 +455,14 @@ def worker_main(argv):
             stream.write("\n")
 
 
-def execute_export(python, checkout, checkpoint, output, versions, source_records, timeout=1800):
+def execute_export(python, checkout, checkpoint, output, versions, source_records, flatc, timeout=1800):
     install_logging_guard()
     env = {k: v for k, v in os.environ.items() if k not in ("PYTHONPATH", "PYTHONHOME")}
     env.update(HF_HUB_OFFLINE="1", TRANSFORMERS_OFFLINE="1", HF_DATASETS_OFFLINE="1", HYDRA_FULL_ERROR="1",
                HF_HUB_DISABLE_TELEMETRY="1", PYTHONDONTWRITEBYTECODE="1",
                PYTHONNOUSERSITE="1", PYTHONSAFEPATH="1")
     argv = [str(python), "-c", WORKER, str(Path(__file__)), str(checkout), str(output), json.dumps(versions),
-            json.dumps(source_records), *export_arguments(checkout, checkpoint, output)]
+            json.dumps(source_records), json.dumps(flatc), *export_arguments(checkout, checkpoint, output)]
     process = job = None
     try:
         job = WindowsJob() if os.name == "nt" else None
@@ -540,7 +549,12 @@ def run(args, root=ROOT):
             report["installed_export_package"] = str(installed)
             report["installed_source_records"] = source_records
             report["host_export_route"] = "verified_official_wheel_with_pinned_safetensors_adapter"
-            execute_export(python, checkout, checkpoint, output, versions, source_records)
+            try:
+                flatc = verified_flatc(root, baseline, python)
+            except RuntimeArtifactError as error:
+                raise ExportError("flatc_artifact_verification_failed") from error
+            report["flatc"] = flatc
+            execute_export(python, checkout, checkpoint, output, versions, source_records, flatc)
             verify_artifact(checkpoint, model["weight_artifacts"][0])
             for entry in model["files"]:
                 verify_artifact(tokenizer_dir / entry["path"], entry)

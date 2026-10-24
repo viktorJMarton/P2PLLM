@@ -586,3 +586,100 @@ acceptance remains distinct from answered design questions.
 - Iterations since actual meeting9:1; next mandatory meeting after iteration12
   before13. Remaining acceptance belongs independent reviewer/primary. No
   completed model/export/device/numerical/secure-runtime claim follows.
+
+## Iteration 11 — reviewed actual export retry (in progress)
+
+WORK-0002 / run-20261023-export-runtime-02, baseline42b4a0cdffc1d4dc1032b80222cb3685d35177a6;
+research persona unchanged. Primary authorizes actual guarded same-pin CPU8da4w
+export after independent logging repair review/commit058c55f. Read applicable
+logging memory lesson; preserve source/60-dependency/13-installed-source and
+serialization/network/job guards. One new output qwen-runtime-20261023-002;
+actual outcome pending. Prior generated checkout outputs metadata is preserved
+outside checkout before exact source validation. No model/PTE result inferred.
+
+### Iteration11 actual outcome
+
+Actual guarded export exited1: qwen-runtime-20261023-002/worker-result.json
+contains FileNotFoundError static frames in XNNPACK _run_flatc/subprocess.
+Pinned Windows wheel ships flatc.exe; installed resource selector asks for
+flatc, then falls back to PATH. No PTE. No raw exception messages retained.
+
+## Iteration 12 - verified native compiler repair
+
+WORK-0002 / same run; research persona unchanged, uncommitted. Added shared
+tools/runtime_artifacts.py: exact locked-wheel SHA and member bytes, dedicated
+venv installed executable match. Export parent verifies provenance; worker
+independently rechecks fixed venv path/hash before torch and sets absolute
+FLATC_EXECUTABLE. Parent native builder consumes same helper. No PATH fallback,
+pin/60-package closure/13-source guard/backend/CPU8da4w change.
+
+`python -m unittest discover -s tests -p test_export_qwen.py -v`:21 tests PASS,
+exit0. Actual dedicated-venv no-model probe
+.artifacts/exports/flatc-probe-20261023-001/probe.py exits0; report.json records
+original selector FileNotFoundError, verified flatc24.3.25 and real installed
+_flatc_compile synthetic roundtrip PASS. No weights loaded/no PTE claim.
+Independent affected review requested; no changed-code model retry yet.
+LSN-003/004/006/008 applied: preserve cleanup/logging controls and source freeze
+for review; synthetic compiler result does not replace actual model evidence.
+
+## Meeting after iteration 12
+
+Read2026-10-23T21:49+02; primary22/shared helper+native build, reviewer17/native
+writepath finding, android-shell historical export preparation reviewed.
+- Read: work/agent-journals/primary.md | bytes: 61680 | sha256: 677394d0217b15e763c5bbec242cb9e320e3fafa744258c666afb56f2c48cb3d
+- Read: work/agent-journals/android-shell.md | bytes: 42114 | sha256: 23a3b11b6241ff25e60525c67bcc047f8dcaef7fc6aa33b332394c2515fe0851
+- Read: work/agent-journals/product-review.md | bytes: 51057 | sha256: f66ca728cd91476fff3a788edf78d29d1dbf2666b8c41b0d1ea6b0361b083c7c
+
+| ID | WORK/impact | Concrete question and next action | Respondent | Status |
+| --- | --- | --- | --- | --- |
+| COMP-Q1 | WORK-0002 shared compiler | Parent wheel/member verification plus worker fixed-venv hash before torch meets shared provenance? Consume same helper. | primary | answered yes by actual message; BUILD-Q1 implemented |
+| COMP-Q2 | WORK-0002 evidence limit | Original failure plus synthetic compile proves path repair only, leaving full export unproven? Preserve boundary. | product-review | open |
+| COMP-Q3 | WORK-0002 retry identity | Retain pins/13sources/60closure/CPU8da4w and fresh output after affected review? Next actual retry follows review. | primary | answered yes by actual message |
+| COMP-Q4 | WORK-0002 execution gate | Any blocking compiler verification/path/worker-order finding in frozen patch? Review before model retry. | product-review | open; affected review requested |
+| COMP-Q5 | WORK-0002 acceptance | Synthetic serialization leaves PTE/numerical/tokenizer/backend/three-phone-trial gates distinct? Keep incomplete gates. | primary | answered yes by actual message |
+
+Actual NATIVE-Q3/Q5 replies: jobs2 native cap preserves model priority;
+native binary/PTE alone cannot establish numerical/backend/phone acceptance.
+BUILD-Q1 worker independent recheck confirmed in code; BUILD-Q4 original
+FileNotFound failure preserved. Primary explicitly authorizes next actual retry
+only after affected no-blocker review and this meeting record; reviewer silence
+is not consent. No implementation changes while review is active.
+
+### Meeting12 actual affected response and iteration13 start
+
+Primary relayed actual reviewer no-blocker: independent21tests, actual compiler
+probe script and three exact source hashes checked; worker ordering/provenance
+accepted. COMP-Q2 remains synthetic-only evidence, COMP-Q4 no blocking finding.
+Own reviewer response pending durable read; no blanket privacy/build approval.
+Iteration13 actual same-pin guarded export started session24980, fresh output
+.artifacts/exports/qwen-runtime-20261023-003. Model/PTE outcome pending; no code
+changes after affected review. Parent explicitly authorized immediate execution.
+
+Actual reviewer message confirms COMP-Q2 synthetic-only limit and COMP-Q4 no
+blocker for exact helper7c2f/export9abf/tests4a5b; independent21 tests passed.
+TOOLQ2/3 response: failed002 and probe source/report preserved; fresh003 uses
+unchanged pins/source/closure/guards, no previous output overwritten. Primary
+authorized execution; separate native build finding does not waive its own gate.
+
+## Iteration 13 - actual model pipeline complete, wrapper path failure
+
+Actual retry003/session24980 ended exit1/export_artifact_missing, while worker
+receipt is passed/complete. Located newly generated checkout/qwen3_0_6b.pte:
+468633472 bytes, SHA25607786b553d9661d36431426d06c268f385d453314f6722ca79f66c7e79653b48.
+Pinned installed _get_output_filename uses an output_name ending .pte verbatim,
+bypassing output_dir. Actual export produced model artifact; original wrapper
+failed intended-location acceptance. Original failed receipt remains unchanged.
+
+## Iteration 14 - exact output contract fix and artifact recovery
+
+Primary authorized absolute intended output_name; tiny exporter change and host
+regression (space-containing directory) delivered.22 targeted tests PASS/exit0.
+No model rerun. Actual installed function no-model probe plus safe_path-confined
+copy to fresh intended destination PASS/exit0; source/destination hashes and
+468633472 bytes match, original retained. Receipt
+.artifacts/exports/output-contract-probe-20261023-001/report.json status is
+recovered_worker_artifact, not original-wrapper success. Original provenance
+hashddc86bfbb9fb67495ef1ebd26a7a81c7c1b5346f442fae7b18b10bf0caec3070 unchanged.
+Reviewer requested affected output-contract/recovery check. Parent owns runner
+and device staging; no numerical/tokenizer/backend/phone proof yet. Research
+persona unchanged; two iterations since meeting12, next meeting by15 before16.

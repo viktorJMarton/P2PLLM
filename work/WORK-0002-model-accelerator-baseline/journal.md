@@ -108,3 +108,7 @@ before repeated A72 load/TTFT/decode-throughput/peak-memory/thermal trials.
 Original failed export's exactcause remains unknown; guardprobe is not a model
 export. No unsafe logging/pickle/runtime/backend fallback. WORK-0002 and privacy
 WORK-0003 remain in_progress. No actualmodelworker remains running.
+
+### Real phone inference continuation
+
+Observed three successful A72 inference trials; see [evidence](evidence.md#actual-a72-inference-checkpoint-2026-10-23-utc) and [portable observations](phone-observations.json). Native runner and recovered PTE are real; collector remains incomplete for numerical/backend gates. No new APK or in-app AI delivered. Primary owns quality/placement validation and Android integration next. Exact commit/push verification remains pending.

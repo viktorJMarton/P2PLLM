@@ -350,6 +350,55 @@ def checkpoint(output, report):
             temporary.unlink()
 
 
+def stage_artifacts(adb, recipe, output, report):
+    """Deploy validated pins only; every mutation has a durable intent record."""
+    report["recipe"] = recipe
+    report["staging"] = {role: {"status": "pending"} for role in recipe["artifacts"]}
+    report["directory_status"] = "preflight"
+    checkpoint(output, report)
+    # Reject pre-existing redirects/types before any write. This assumes no
+    # hostile concurrent process sharing the device shell UID; it is not an
+    # atomic filesystem sandbox against concurrent replacement of checked paths.
+    paths = [(REMOTE.rstrip("/"), "-d")]
+    paths.extend((a["remote_path"], "-f") for a in recipe["artifacts"].values())
+    for path, expected_type in paths:
+        quoted = shlex.quote(path)
+        result = adb.shell(
+            f"if [ -L {quoted} ]; then echo rejected; "
+            f"elif [ -e {quoted} ]; then "
+            f"if [ {expected_type} {quoted} ]; then echo accepted; else echo rejected; fi; "
+            "else echo absent; fi").strip()
+        if result not in ("accepted", "absent"):
+            raise MeasurementError("Unsafe existing benchmark directory or artifact type")
+    report["directory_status"] = "preparing"
+    checkpoint(output, report)
+    adb.shell("mkdir -p " + shlex.quote(REMOTE))
+    adb.shell("chmod 700 " + shlex.quote(REMOTE))
+    report["directory_status"] = "prepared"
+    checkpoint(output, report)
+    for role, artifact in recipe["artifacts"].items():
+        state = report["staging"][role]
+        state["status"] = "push_started"
+        checkpoint(output, report)
+        adb.call(["-s", adb.serial, "push", str(Path(artifact["local_path"]).resolve()),
+                  artifact["remote_path"]], timeout=600)
+        state["status"] = "pushed_unverified"
+        checkpoint(output, report)
+        actual = adb.shell("sha256sum " + shlex.quote(artifact["remote_path"])).split()
+        if not actual or actual[0] != artifact["sha256"]:
+            state["status"] = "hash_mismatch"
+            raise MeasurementError("On-device staged artifact differs from pinned local bytes")
+        state["status"] = "verified"
+        checkpoint(output, report)
+        if role in ("launcher", "runner"):
+            state["status"] = "chmod_started"
+            checkpoint(output, report)
+            adb.shell("chmod 700 " + shlex.quote(artifact["remote_path"]))
+        state["status"] = "staged"
+        checkpoint(output, report)
+    report["status"] = "staged_not_executed"
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--adb", default=str(ROOT / ".artifacts/toolchains/android-sdk/platform-tools/adb.exe"))
@@ -357,9 +406,10 @@ def main():
     sub.add_parser("probe").add_argument("--output", required=True)
     build = sub.add_parser("build-helper")
     build.add_argument("--output", required=True)
-    run = sub.add_parser("run")
-    run.add_argument("--recipe", required=True)
-    run.add_argument("--output", required=True)
+    for action in ("run", "stage"):
+        command = sub.add_parser(action)
+        command.add_argument("--recipe", required=True)
+        command.add_argument("--output", required=True)
     args = parser.parse_args()
     try:
         if args.action == "build-helper":
@@ -370,7 +420,8 @@ def main():
             raise MeasurementError("Evidence output already exists")
         output.parent.mkdir(parents=True, exist_ok=True)
         report = {"schema_version": 1, "work_id": "WORK-0002",
-                  "run_kind": "device_inventory" if args.action == "probe" else "phone_inference",
+                  "run_kind": {"probe": "device_inventory", "run": "phone_inference",
+                               "stage": "artifact_staging"}[args.action],
                   "time_utc": datetime.now(timezone.utc).isoformat(), "status": "blocked"}
         # Exclusive creation means even failed/no-device attempts are retained.
         with output.open("x", encoding="utf-8") as stream:
@@ -378,10 +429,13 @@ def main():
             stream.write("\n")
         try:
             try:
-                recipe = load_recipe(args.recipe) if args.action == "run" else None
+                recipe = load_recipe(args.recipe) if args.action in ("run", "stage") else None
                 adb = Adb(args.adb)
-                report["device"] = adb.probe()
-                if recipe:
+                if args.action == "stage":
+                    stage_artifacts(adb, recipe, output, report)
+                else:
+                    report["device"] = adb.probe()
+                if args.action == "run":
                     for artifact in recipe["artifacts"].values():
                         actual = adb.shell("sha256sum " + shlex.quote(artifact["remote_path"])).split()
                         if not actual or actual[0] != artifact["sha256"]:
@@ -398,7 +452,7 @@ def main():
                         report["trials"].append(result)
                         checkpoint(output, report)
                     report["status"] = "incomplete" if all(t["status"] == "observed" for t in report["trials"]) else "failed"
-                else:
+                elif args.action == "probe":
                     report["status"] = "observed_inventory_only"
             except MeasurementError as error:
                 report["blocker"] = str(error)
@@ -411,7 +465,7 @@ def main():
         finally:
             checkpoint(output, report)
         print(json.dumps({"status": report["status"], "evidence": str(output)}))
-        return 0 if report["status"] == "observed_inventory_only" else 2
+        return 0 if report["status"] in ("observed_inventory_only", "staged_not_executed") else 2
     except (MeasurementError, OSError, subprocess.SubprocessError) as error:
         print(json.dumps({"status": "failed", "error_type": type(error).__name__}), file=sys.stderr)
         return 1

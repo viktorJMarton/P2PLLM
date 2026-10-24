@@ -1,0 +1,258 @@
+{
+  "schema_version": 1,
+  "work_id": "WORK-0002",
+  "run_kind": "phone_inference",
+  "time_utc": "2026-10-23T20:15:21.655632+00:00",
+  "status": "incomplete",
+  "device": {
+    "ro.product.manufacturer": "samsung",
+    "ro.product.model": "SM-A725F",
+    "ro.product.device": "a72q",
+    "ro.build.version.release": "14",
+    "ro.build.version.sdk": "34",
+    "ro.build.display.id": "UP1A.231005.007.A725FXXSBFYC1",
+    "ro.product.cpu.abilist": "arm64-v8a,armeabi-v7a,armeabi",
+    "ro.soc.manufacturer": "QTI",
+    "ro.soc.model": "SM7125",
+    "mem_total_kib": 5625888,
+    "context": {
+      "battery_temperature_c": 27.0,
+      "thermal_status": 0,
+      "battery_status_code": 4,
+      "power_connected": {
+        "AC": false,
+        "USB": true,
+        "Wireless": false
+      }
+    }
+  },
+  "recipe": {
+    "schema_version": 1,
+    "model_id": "Qwen/Qwen3-0.6B",
+    "model_revision": "c1899de289a04d12100db370d81485cdf75e47ca",
+    "runtime_revision": "3b60683923245cf472b7323426920e15623ba361",
+    "quantization": "8da4w",
+    "export_config_sha256": "01384e9ef483d720ceda178c22d63c5b69e742a19379ac70fba813e1801b0eda",
+    "requested_backend": "xnnpack",
+    "trials": 3,
+    "max_new_tokens": 64,
+    "cpu_threads": 4,
+    "timeout_seconds": 300,
+    "artifacts": {
+      "launcher": {
+        "local_path": ".artifacts/phone-benchmark/sprint02/bench_exec",
+        "remote_path": "/data/local/tmp/p2pllm-benchmark/bench_exec",
+        "sha256": "63b3df8b508321e3c611842672b0222547f117bc0f18fe5d5558aa886a5bd3be"
+      },
+      "runner": {
+        "local_path": ".artifacts/native/android-1.5.1/examples/models/llama/llama_main",
+        "remote_path": "/data/local/tmp/p2pllm-benchmark/llama_main",
+        "sha256": "3e9c443f82d9765a74cc66ed29c2c5d650ffc34c744ac9c8e4c9430b19b44b71"
+      },
+      "model": {
+        "local_path": ".artifacts/exports/qwen-runtime-20261023-003/qwen3_0_6b.pte",
+        "remote_path": "/data/local/tmp/p2pllm-benchmark/qwen3_0_6b.pte",
+        "sha256": "07786b553d9661d36431426d06c268f385d453314f6722ca79f66c7e79653b48"
+      },
+      "tokenizer": {
+        "local_path": ".artifacts/models/Qwen3-0.6B-c1899de289a04d12100db370d81485cdf75e47ca/tokenizer.json",
+        "remote_path": "/data/local/tmp/p2pllm-benchmark/tokenizer.json",
+        "sha256": "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4"
+      },
+      "fixture": {
+        "local_path": ".artifacts/phone-benchmark/sprint02/public-fixture.txt",
+        "remote_path": "/data/local/tmp/p2pllm-benchmark/public-fixture.txt",
+        "sha256": "ff06295ac28e340be4149d6deb1e4fde7cbbdd875a80bc2aa360e59b57598d50"
+      }
+    }
+  },
+  "actual_backend": "unverified",
+  "backend_acceptance": "blocked; requires independent graph/placement evidence",
+  "cache_policy": "fresh process each trial; OS page cache uncontrolled",
+  "trials": [
+    {
+      "observer": {
+        "model_load_start_ms": 1792786524818,
+        "model_load_end_ms": 1792786528888,
+        "inference_start_ms": 1792786528888,
+        "inference_end_ms": 1792786532366,
+        "prompt_eval_end_ms": 1792786529455,
+        "first_token_ms": 1792786529455,
+        "prompt_tokens": 20,
+        "generated_tokens": 63
+      },
+      "resource": {
+        "exit_code": 0,
+        "timed_out": false,
+        "interrupted": false,
+        "peak_rss_kib": 1014616,
+        "wall_ms": 8651.093
+      },
+      "adb_exit_code": 0,
+      "status": "observed",
+      "metrics": {
+        "load_ms": 4070,
+        "ttft_ms_excluding_load": 567,
+        "runner_decode_tokens_per_second": 21.64204740638956,
+        "observer_clock": "pinned runner CLOCK_REALTIME milliseconds; not monotonic",
+        "token_count_semantics": "decode-loop tokens; excludes prefill first token; includes loop EOS",
+        "ttft_endpoint": "runner first-token timestamp before tokenizer decode/callback; not host arrival",
+        "peak_rss_kib": 1014616,
+        "memory_method": "Android wait4 child ru_maxrss; KiB",
+        "launcher_wall_ms": 8651.093
+      },
+      "index": 1,
+      "before": {
+        "battery_temperature_c": 27.0,
+        "thermal_status": 0,
+        "battery_status_code": 4,
+        "power_connected": {
+          "AC": false,
+          "USB": true,
+          "Wireless": false
+        }
+      },
+      "after": {
+        "battery_temperature_c": 27.1,
+        "thermal_status": 0,
+        "battery_status_code": 4,
+        "power_connected": {
+          "AC": false,
+          "USB": true,
+          "Wireless": false
+        }
+      }
+    },
+    {
+      "observer": {
+        "model_load_start_ms": 1792786534133,
+        "model_load_end_ms": 1792786535709,
+        "inference_start_ms": 1792786535709,
+        "inference_end_ms": 1792786538815,
+        "prompt_eval_end_ms": 1792786535933,
+        "first_token_ms": 1792786535933,
+        "prompt_tokens": 20,
+        "generated_tokens": 63
+      },
+      "resource": {
+        "exit_code": 0,
+        "timed_out": false,
+        "interrupted": false,
+        "peak_rss_kib": 1014640,
+        "wall_ms": 5797.3
+      },
+      "adb_exit_code": 0,
+      "status": "observed",
+      "metrics": {
+        "load_ms": 1576,
+        "ttft_ms_excluding_load": 224,
+        "runner_decode_tokens_per_second": 21.859819569743234,
+        "observer_clock": "pinned runner CLOCK_REALTIME milliseconds; not monotonic",
+        "token_count_semantics": "decode-loop tokens; excludes prefill first token; includes loop EOS",
+        "ttft_endpoint": "runner first-token timestamp before tokenizer decode/callback; not host arrival",
+        "peak_rss_kib": 1014640,
+        "memory_method": "Android wait4 child ru_maxrss; KiB",
+        "launcher_wall_ms": 5797.3
+      },
+      "index": 2,
+      "before": {
+        "battery_temperature_c": 27.1,
+        "thermal_status": 0,
+        "battery_status_code": 4,
+        "power_connected": {
+          "AC": false,
+          "USB": true,
+          "Wireless": false
+        }
+      },
+      "after": {
+        "battery_temperature_c": 27.1,
+        "thermal_status": 0,
+        "battery_status_code": 4,
+        "power_connected": {
+          "AC": false,
+          "USB": true,
+          "Wireless": false
+        }
+      }
+    },
+    {
+      "observer": {
+        "model_load_start_ms": 1792786540456,
+        "model_load_end_ms": 1792786542024,
+        "inference_start_ms": 1792786542024,
+        "inference_end_ms": 1792786545160,
+        "prompt_eval_end_ms": 1792786542254,
+        "first_token_ms": 1792786542254,
+        "prompt_tokens": 20,
+        "generated_tokens": 63
+      },
+      "resource": {
+        "exit_code": 0,
+        "timed_out": false,
+        "interrupted": false,
+        "peak_rss_kib": 1014516,
+        "wall_ms": 5810.338
+      },
+      "adb_exit_code": 0,
+      "status": "observed",
+      "metrics": {
+        "load_ms": 1568,
+        "ttft_ms_excluding_load": 230,
+        "runner_decode_tokens_per_second": 21.679284239504472,
+        "observer_clock": "pinned runner CLOCK_REALTIME milliseconds; not monotonic",
+        "token_count_semantics": "decode-loop tokens; excludes prefill first token; includes loop EOS",
+        "ttft_endpoint": "runner first-token timestamp before tokenizer decode/callback; not host arrival",
+        "peak_rss_kib": 1014516,
+        "memory_method": "Android wait4 child ru_maxrss; KiB",
+        "launcher_wall_ms": 5810.338
+      },
+      "index": 3,
+      "before": {
+        "battery_temperature_c": 27.1,
+        "thermal_status": 0,
+        "battery_status_code": 4,
+        "power_connected": {
+          "AC": false,
+          "USB": true,
+          "Wireless": false
+        }
+      },
+      "after": {
+        "battery_temperature_c": 27.1,
+        "thermal_status": 0,
+        "battery_status_code": 4,
+        "power_connected": {
+          "AC": false,
+          "USB": true,
+          "Wireless": false
+        }
+      }
+    }
+  ],
+  "evidence_sources": {
+    "trials": {
+      "path": ".artifacts/phone-benchmark/sprint02/trials-001.json",
+      "sha256": "4ae109010a878682a3b39ef17a4c95f16b5d98bd9723c1f90261dfb29a962ae6"
+    },
+    "staging": {
+      "path": ".artifacts/phone-benchmark/sprint02/stage-001.json",
+      "sha256": "6c469d28dd2f92748726d7c8721b9f394ab5154df166d4f23d8a5e233ccb59fb"
+    },
+    "native_build": {
+      "path": ".artifacts/native/run-20261023-005/report.json",
+      "sha256": "cdf55ffab23cde2725560505508cba28955011163b52a4b8703c357717a99b34"
+    },
+    "export_recovery": {
+      "path": ".artifacts/exports/output-contract-probe-20261023-001/report.json",
+      "sha256": "956cfefe070a10e88cfe5d4ef70e42fbff7ac45f85cf305ad64ac25ecc841d2e"
+    }
+  },
+  "acceptance_limits": [
+    "Observed device inference, not model quality or reference numerical equivalence",
+    "Requested XNNPACK; runtime placement remains independently unverified",
+    "No GPU/NPU or privacy acceptance",
+    "Three short runs do not establish sustained thermal performance",
+    "App inference integration remains unimplemented"
+  ]
+}

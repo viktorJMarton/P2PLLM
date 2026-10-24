@@ -149,3 +149,28 @@ Own journal iteration10 records scope and actual meeting9 answers. Independent
 review requested; no next actual export until affected review/checks and primary
 scheduling. Earlier4435B retention/disposal correction remains authoritative;
 new canary success does not erase historical leakage or certify arbitrary code.
+
+## Compiler repair delta - run-20261023-export-runtime-02
+
+Persona: research / Reproducibility-first technical investigator. Actual guarded
+qwen-runtime-20261023-002 export failed FileNotFoundError at XNNPACK flatc;
+no PTE. Windows pinned wheel contains flatc.exe but selector falls back to flatc.
+Shared tools/runtime_artifacts.py verifies locked wheel/member and dedicated-venv
+binary; exporter worker independently rechecks before torch, sets absolute path.
+Parent builder reuses helper. Pins/source/closure/serialization/logging/job guards
+unchanged. Uncommitted; affected independent review pending, then primary owns
+integration/push.21 targeted tests PASS; actual no-model compiler probe report
+.artifacts/exports/flatc-probe-20261023-001/report.json PASS (original failure
+reproduced, flatc24.3.25, real synthetic roundtrip). No model-export success implied.
+Own meeting12 COMP-Q2/Q4 await reviewer; primary Q1/3/5 actually answered.
+
+Actual subsequent affected compiler review passed; retry003 worker completed.
+Wrapper reported export_artifact_missing because upstream treats .pte output_name
+verbatim, saving in checkout. Recovered genuine468633472B artifact into
+.artifacts/exports/qwen-runtime-20261023-003/qwen3_0_6b.pte; SHA256
+07786b553d9661d36431426d06c268f385d453314f6722ca79f66c7e79653b48.
+Scoped source/destination hash-copy and actual installed selector probe receipt:
+.artifacts/exports/output-contract-probe-20261023-001/report.json,
+recovered_worker_artifact. Original retained/failed provenance unchanged.
+Absolute intended output-name fix and22hosttests PASS; affected independent
+review pending. No new model rerun; numerical/tokenizer/backend/phone gates open.

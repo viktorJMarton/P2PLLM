@@ -53,3 +53,13 @@ Implementation/checkpoint closure follows AGENTS.md: checks, independent review,
 commit, appropriate branch push and remote SHA check. Upload a new APK to the
 owner's Drive structure only if a new APK was actually built; this tooling sprint
 does not require rebuilding an unchanged UI to create an artificial artifact.
+
+## Active continuation 2026-10-23
+
+Run run-20261023-export-runtime-02, baseline42b4a0c, same developmentbranch.
+Deliver actual pinned0.6B CPU inference and three numericA72 trials: guarded
+export (sqlite-layer), matchingnative runner (primary), reviewed artifactstage
+(phone-staging), independentreview on changedcode/results (product-review).
+No UI/doc-only expansion. Preserve numerical/backend/measurement gates and
+three-iteration meetings; use short delta logs/targetedreads/checks. Native
+sources in separate .artifacts/native/executorch so exportcheckout stays fixed.

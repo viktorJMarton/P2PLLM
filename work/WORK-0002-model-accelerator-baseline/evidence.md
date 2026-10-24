@@ -135,3 +135,53 @@ before repeated A72 load/TTFT/decode-throughput/peak-memory/thermal trials.
 Original failed export's exactcause remains unknown; guardprobe is not a model
 export. No unsafe logging/pickle/runtime/backend fallback. WORK-0002 and privacy
 WORK-0003 remain in_progress. No actualmodelworker remains running.
+
+## Actual A72 inference checkpoint (2026-10-23 UTC)
+
+[Portable sanitized observations](phone-observations.json) preserve all three
+trials, device inventory, exact artifact hashes, recipe and source-receipt hashes.
+Qwen3-0.6B revision c1899de289a04d12100db370d81485cdf75e47ca,
+ExecuTorch revision3b60683923245cf472b7323426920e15623ba361,8da4w,4CPU threads.
+Native ARM64 runner build and all five staged device hashes verified. Export
+worker completed; parent output-location check failed. A separately verified
+copy recovered the PTE without rerunning export or rewriting failed provenance.
+
+| Trial | Load ms | TTFT ms excluding load | Decode tokens/s | Peak child RSS KiB |
+| --- | --- | --- | --- | --- |
+| 1 | 4070 | 567 | 21.642 | 1014616 |
+| 2 | 1576 | 224 | 21.860 | 1014640 |
+| 3 | 1568 | 230 | 21.679 | 1014516 |
+
+Each child exited0 with63 decode-loop tokens; excludes the first prefill token.
+Fresh processes; OS cache uncontrolled. A72 SM-A725F/Android14/API34,
+USB connected, battery27.0-27.1C, reported thermal status0. Three short runs
+cannot establish sustained thermal behavior. Peak RSS is wait4 child ru_maxrss,
+not device/GPU total. No prompt or generated response is persisted in evidence.
+
+Collector intentionally returns2/status incomplete: actual backend placement and
+reference numerical/quality validation remain open. Static placement probe001
+failed with a generated-accessor TypeError; no backend proof is inferred.
+WORK-0002 remains in_progress; WORK-0003 privacy is unchanged. Android app
+inference is not implemented by this tooling checkpoint; unchanged APK0.2.0
+still provides local diagnostics. Next owner primary: numerical/response-quality
+check and explicit placement evidence, then bounded Android local question/answer
+integration with visible progress, cancel/error states and real-phone acceptance.
+
+Independent product-review found no blocking issue in the exact exporter,
+shared compiler, native build and staging source snapshots;22 exporter and20
+phone tests passed independently. Exact latest-commit review/push is pending
+until recorded below. No release or completed model-feasibility gate is claimed.
+
+Final frozen checks: Windows11/Python3.12.0, tools/run_checks.py profiles docs and
+workflow, WORK-0002/run sprint02-final-002: both exit0/passed; source fingerprints
+stable within each run. Docs677 package checks plus journal policy; workflow75
+tests (74passed, one Windows symlink privilege1314 skip). Reports under
+.artifacts/checks/WORK-0002/sprint02-final-002/{docs,workflow}/report.json.
+Applicable product source unchanged, so Rust/unchanged APK not rebuilt. Current
+source uncommitted on42b4a0c. Final native helper incremental006 pending;005
+runner was already built and actually executed on phone. Successor independent
+reviewer available for latest source commit; final push still pending.
+
+Native006 final shared-verifier recipe subsequently passed all six phases/exit0; runner SHA3e9c443f82d9765a74cc66ed29c2c5d650ffc34c744ac9c8e4c9430b19b44b71 unchanged from actual phone trials. Report .artifacts/native/run-20261024-006/report.json. No new model export or additional trials.
+
+Execution note: outer PowerShell redirected-console session006 reported exit1; the Python receipt reports passed and all six actual phase subprocess exits are0. Do not relabel the outer exit as0. Artifact matches previously successful build005 and phone execution; this wrapper discrepancy remains noted, not a model/backend acceptance claim.

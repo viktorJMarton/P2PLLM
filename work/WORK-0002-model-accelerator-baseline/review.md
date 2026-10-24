@@ -275,3 +275,89 @@ final applicable docs/workflow checks and committed-byte binding remain pending.
 The earlier actual4435B tensor-log incident and cleanup correction remain true
 and are not erased by passing regression. No new actual model retry is included
 in this checkpoint; export/PTE/numerical/backend/device acceptance remain open.
+
+## Native runner build helper, initial scoped review
+
+Read new tools/build_phone_runner.py and pinned native checkout's llama README
+Android recipe only. Existing NDK27 attempt versus upstream-tested28c is an
+explicit compatibility experiment; CPU/XNNPACK build flags match that recipe.
+Version/hash receipts for existing CMake/Ninja and official-wheel flatc provide
+host provenance. Reusing run_checks.execute preserves existing child-job timeout
+cleanup. No native build/help/inference executed by reviewer in this review.
+
+**Medium, open:** only report output uses safe_path. Computed writable native
+build/host/source-derived flatcc paths are passed to CMake unchecked; a local
+symlink/junction can redirect writes outside intended .artifacts workspace.
+Validate those paths before native phases. Actual report/artifact review pending.
+
+Separate pinned clean clone avoids export-checkout mutation, under single-writer
+assumption; record gitlink state. Jobs<=2 is resource policy, not performance
+proof. Native build/help/probe cannot supply PTE/reference/placement or repeated
+phone-model benchmark acceptance. No change to earlier accepted logging guard.
+
+## Shared flatc repair review
+
+Exact helper7C2F73748F02D500FB8474410CFBFA3BBD6B48D23BAAA99212F5C3BCE4D079A0,
+exporter9ABF2C013484FC1B14F09EF1E65A3B48ED50DEDB91C4464FF01DB8BEB8C752DD,
+tests4A5B30235D34E65018BA35F7976AC5A4F82EA45AA197E24249A9F2F7B811B52C
+reviewed; independent21 targeted tests pass/exit0. Parent verifies exact trusted
+wheel/member bytes, worker rechecks fixed dedicated-venv executable hash and
+sets absolute FLATC_EXECUTABLE before torch import. No mutable PATH fallback.
+No blocking finding in this scoped compiler repair.
+
+Inspected actual flatc-probe001 source/report: original selector fallback
+reproduced FileNotFoundError; verified24.3.25 compiler drives real installed
+_flatc_compile synthetic n=7 binary roundtrip. This repairs the demonstrated
+compiler-selection blocker only; no model/PTE/full-export/numerical/backend or
+phone acceptance follows. Existing logging/pickle/network/job controls retained.
+
+Native build writepath fix substantially addressed: source/build/host/python/
+NDK/compiler/hostflatcc paths validated, PATH restored in finally. One remaining
+nested output, runner_build=build/examples/models/llama, still requires its own
+safe_path to reject a pre-existing junction below the guarded build root.
+Sent focused native-only correction; it need not block isolated export retry.
+Native build is still in progress, not reviewed as a passing artifact.
+
+## Phone artifact staging, initial scoped review
+
+Read only new stage delta in phone_benchmark.py/test_phone_benchmark.py;
+independent19 targeted tests pass/exit0. Local recipe pins all validated before
+ADB, quoted restricted remote basenames, per-push intent/hash/chmod checkpoints
+and staged_not_executed status correctly avoid inference/backend claims.
+
+**Medium, open:** existing remote directory/target symlinks are not checked;
+adb push/chmod follow them and may modify unrelated shell-writable phone files.
+Reject directory/target symlinks and unexpected target directories before any
+mutation; add negative regression. Code author/primary notified. No staging or
+device execution performed by reviewer. Native nested runner_build now uses
+safe_path; prior native path finding resolved by focused line inspection.
+
+Staging finding **resolved**: frozen collector
+A36FB2A3D96A1DAEAF3C65F26768BB0FA3AC88F03249472C9D4DF9C7BDB9968A,
+tests5D85CA9264967DDD4BE9AE6371874DD4FB1A8D98480393442638588B8A2E0C64;
+independent20 targeted tests pass/exit0. Read-only -L/type preflight covers fixed
+directory and all five targets before mkdir/chmod/push, rejects dangling links
+and unexpected types. Negative canaries confirm no mutation. Trusted-device,
+no-hostile-concurrent-sameUID-replacement boundary explicit. No remaining blocking
+staging source finding; no actual device transfer or execution reviewed yet.
+
+## Output contract repair and native artifact review (iteration21)
+
+Uncommitted snapshot: exporter A53C4FC18A18F1B4484E02262B5D34AC6BFACB656E7F74A8196AAFDC6C6D1B87;
+tests 7E57AAC9ECC67FE87D9280FFD73B29C258D4CE42DA023E97E45C89883A880377.
+Independent Python3.12 export tests: 22 passed/exit0. Absolute output_name fixes
+the actual installed selector's verbatim .pte behavior. Inspected ignored
+output-contract-probe-20261023-001 source/report: source/destination confined,
+x-create copy and matching hashes; original failed003 provenance retained.
+Recovered PTE468633472B SHA07786b553d9661d36431426d06c268f385d453314f6722ca79f66c7e79653b48
+independently matches. This is recovered_worker_artifact, not rewritten wrapper
+success; no model rerun. No blocking output-contract/recovery finding.
+
+Native helper3329D84DD31EFBAD4B9E6E0070478E74EF444DCF20D2B97808D0D49C29F91F10
+scoped recheck: nested runner safe_path, process PATH restoration and shared
+verified compiler intact. Native run005 all six phases passed/exit0. Independently
+hashed8519544B runner SHA3e9c443f82d9765a74cc66ed29c2c5d650ffc34c744ac9c8e4c9430b19b44b71;
+ELF64 machine183 confirms AArch64 artifact. No blocking source finding; build
+is not inference, numerical equivalence or delegate placement proof. Primary
+reports subsequent three observed phone trials; their detailed artifact review
+is separate. WORK2 backend/numerical/app-integration gates remain open.

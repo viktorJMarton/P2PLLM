@@ -13,6 +13,7 @@ from unittest.mock import patch
 from pip._vendor.packaging.requirements import Requirement
 
 from tools import export_qwen as export
+from tools import runtime_artifacts
 
 
 def config(**updates):
@@ -157,11 +158,13 @@ print(json.dumps({"guard_canary_passed":True}))
                         "effective_sha256": export.sha256(installed)}]
             with patch.object(export, "install_logging_guard"), \
                     patch.object(export, "verify_dependency_closure"), \
+                    patch.object(export, "recheck_flatc", return_value="unused-verified-fixture"), \
+                    patch.dict(export.os.environ), \
                     patch.dict(sys.modules, {"torch": fake_torch, "executorch.examples.models.llama.model": model}), \
                     patch("inspect.getsourcefile", return_value=str(installed)), \
                     patch("runpy.run_module", side_effect=SystemExit("SYNTHETIC_SECRET_EXIT")), \
                     patch.object(sys, "addaudithook"), patch.object(sys, "argv", ["fixture"]):
-                result = export.worker_main([str(output), str(output), "{}", json.dumps(records)])
+                result = export.worker_main([str(output), str(output), "{}", json.dumps(records), "{}"])
             report = json.loads((output / "worker-result.json").read_text())
             self.assertEqual(result, 1)
             self.assertEqual(report["status"], "failed")
@@ -171,7 +174,64 @@ print(json.dumps({"guard_canary_passed":True}))
             self.assertNotIn("exit_code", json.dumps(report))
 
 
+class NativeCompilerTests(unittest.TestCase):
+    def fixture(self, root):
+        venv = root / ".artifacts/venvs/qwen-export"
+        python = venv / "Scripts/python.exe"
+        python.parent.mkdir(parents=True)
+        python.write_bytes(b"synthetic interpreter path only")
+        native = b"MZ synthetic wheel-member fixture; never executed"
+        installed = venv / "Lib/site-packages/executorch/data/bin/flatc.exe"
+        installed.parent.mkdir(parents=True)
+        installed.write_bytes(native)
+        wheel = venv / "wheelhouse/executorch-1.5.1-fixture.whl"
+        wheel.parent.mkdir()
+        with zipfile.ZipFile(wheel, "w") as archive:
+            archive.writestr("executorch/data/bin/flatc.exe", native)
+        baseline = {"runtime":{"dependency_resolution":{"packages":[
+            {"name":"executorch","sha256":export.sha256(wheel)}]}}}
+        return python, installed, wheel, baseline
+
+    def test_compiler_must_match_locked_wheel_then_worker_rechecks(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary).resolve()
+            python, native, wheel, baseline = self.fixture(root)
+            record = runtime_artifacts.verified_flatc(root, baseline, python)
+            self.assertEqual(record["executable"], str(native.resolve()))
+            self.assertEqual(record["sha256"], export.sha256(native))
+            self.assertEqual(record["wheel_sha256"], export.sha256(wheel))
+            self.assertEqual(runtime_artifacts.recheck_flatc(record, python.parent.parent), str(native.resolve()))
+            native.write_bytes(b"MZ modified installed compiler")
+            with self.assertRaises(runtime_artifacts.RuntimeArtifactError):
+                runtime_artifacts.verified_flatc(root, baseline, python)
+            with self.assertRaises(runtime_artifacts.RuntimeArtifactError):
+                runtime_artifacts.recheck_flatc(record, python.parent.parent)
+
+    def test_no_wrong_venv_missing_binary_or_mutable_path_fallback(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary).resolve()
+            python, native, wheel, baseline = self.fixture(root)
+            with self.assertRaises(runtime_artifacts.RuntimeArtifactError):
+                runtime_artifacts.verified_flatc(root, baseline, root / "other-python.exe")
+            native.unlink()
+            with self.assertRaises(runtime_artifacts.RuntimeArtifactError):
+                runtime_artifacts.verified_flatc(root, baseline, python)
+            wheel.write_bytes(b"wrong wheel")
+            with self.assertRaises(runtime_artifacts.RuntimeArtifactError):
+                runtime_artifacts.verified_flatc(root, baseline, python)
+
+
 class SourceAndInputTests(unittest.TestCase):
+    def test_pte_output_name_is_absolute_because_upstream_uses_pte_path_verbatim(self):
+        with tempfile.TemporaryDirectory(prefix="export output ") as temporary:
+            output = Path(temporary).resolve()
+            args = export.export_arguments(output / "checkout", output / "weights.safetensors", output)
+            value = next(arg.split("=", 1)[1] for arg in args if arg.startswith("+export.output_name="))
+            actual = Path(json.loads(value))
+            self.assertTrue(actual.is_absolute())
+            self.assertEqual(actual, output / "qwen3_0_6b.pte")
+            self.assertNotEqual(actual.parent, output / "checkout")
+
     def test_patch_removes_checkpoint_pickle_and_guards_other_loads(self):
         original = ("import torch\nclass Model:\n    def load(self):\n" +
                     export.CHECKPOINT_BLOCK + "        adapter = torch.load('adapter.pt')\n").encode()
@@ -314,6 +374,7 @@ class SourceAndInputTests(unittest.TestCase):
                                    checkpoint=checkpoint, tokenizer_dir=checkpoint.parent,
                                    output_dir=output, execute=True)
             with patch.object(export, "install_logging_guard"), patch.object(export, "verify_checkout"), patch.object(export, "prepare_sources", return_value=[]), \
+                    patch.object(export, "verified_flatc", return_value={"executable":"never-executed-fixture"}), \
                     patch.object(export, "prepare_installed_sources", return_value=(artifact_root, [])), \
                     patch.object(export, "execute_export", side_effect=KeyboardInterrupt):
                 with self.assertRaises(KeyboardInterrupt):

@@ -607,3 +607,95 @@ new development iteration or reset. WORK14 delivered diagnostic unaffected.
 - One iteration after meeting15. Final docs/workflow/commit binding assigned
   primary+reviewer. FREEZE owntrackedwrites NOW; read-onlymessage confirmation
   after exactcommit allowed. Next mandatory meeting after18 before19.
+
+### Administrative exact-head confirmations after iteration16
+
+Read-only058c55fac095473308b5cdbe571f81351b02fa90 review confirmed exact guard/test
+hashes,13 intended paths and unchanged app/config; clean42b4a0cdffc1d4dc1032b80222cb3685d35177a6
+follow-up contained only5 metadata paths, unchanged executable bytes, actual docs
+pass. Primary received no-blocker source/metadata push responses; actual remote
+verification belongs primary. No code changes or renewed semantic review of
+unchanged guard occurred; these were administrative source-identity checks.
+
+## Iteration 17: native-runner build helper source review
+
+- WORK-0002 new tools/build_phone_runner.py, primary author; reviewer no code
+  edits. Read only helper and matching pinned native llama README Android recipe.
+  Original native/et path absent after primary renamed checkout to required
+  executorch basename; corrected source read succeeded. No model or build/test
+  executed by reviewer; actual build report pending primary.
+- Medium concrete finding: reportoutput confined, but CMake build/host and source-
+  derived flatcc write paths need safe_path to reject existing junction/symlink
+  redirects. Sent focused fix; CPUflags/provenance/reused jobcleanup otherwise
+  no blocking source finding within observed single-writer scope.
+- Actual NATIVE-Q1..5 answers to primary: separate immutable clean clone/gitlinks
+  provides buildidentity under no-concurrentwriter assumption; attempt27 while
+  recording READMEtested28c, actualcompatibility not presumed; jobs<=2 acceptable
+  resourcepolicy; existing CMake/Ninja version/hash boundedbootstrap acceptable;
+  binary/help/probe is not PTE/numerics/placement/repeated-phone acceptance.
+- Original logging guard unchanged/accepted; no re-blocking unchanged code.
+  Root owns native source fix/build/report, model investigator actualexport.
+  Two substantive iterations since meeting15 (16 and17); next
+  mandatory meeting by18 before19, counter not reset by work/status changes.
+
+## Iteration 18: scoped shared compiler repair verification
+
+WORK-0002: read exact sharedhelper7c2f...79a0/export9abf...2dd/tests4a5b...52c,
+actual no-model probe source/report, native helper path/PATH delta. Independent
+21 export tests pass/exit0. Worker fixedvenv hash check/absolutecompiler occurs
+before torch; no blocking flatc finding. COMP-Q2 answered pathrepair only,
+full export unproven; COMP-Q4 no blocking verification/order issue. Native
+remaining nested runner_build output needs safe_path; root notified, isolated
+export not blocked by independent native fix. Actualnative build WIP not pass.
+
+## Meeting after iteration 18
+
+Read delta entries primary22/meeting22, investigator12/meeting12, historical
+modelowner11 unchanged. Canonical read prefixes2026-10-23:
+- Read: work/agent-journals/primary.md | bytes: 61680 | sha256: 677394d0217b15e763c5bbec242cb9e320e3fafa744258c666afb56f2c48cb3d
+- Read: work/agent-journals/android-shell.md | bytes: 42114 | sha256: 23a3b11b6241ff25e60525c67bcc047f8dcaef7fc6aa33b332394c2515fe0851
+- Read: work/agent-journals/sqlite-layer.md | bytes: 50234 | sha256: 4d56c0f8fb4016965e2df54e05b76d4680331edd91b5092ffadcfcbc58ebd047
+
+| ID | WORK/impact | Question / next action | Respondent | Status |
+| --- | --- | --- | --- | --- |
+| TOOL-Q1 | WORK-0002 native nested writepath | Will runner_build exactnestedpath also use safe_path before CMake, closing remaining junction redirect? Apply focused fix. | primary | open |
+| TOOL-Q2 | WORK-0002 flatc retry evidence | Will actual retry preserve original failure/syntheticprobe and report its own phase/PTE outcome without treating pathrepair as export success? | sqlite-layer | open |
+| TOOL-Q3 | WORK-0002 unchanged safety gates | Will retry retain logging/pickle/network/60closure/13source pins and fresh output, with no fallback to repair downstream failures? | primary and sqlite-layer | open |
+| TOOL-Q4 | WORK-0002 native compatibility | Will actual native finalreport distinguish partial2275-target progress from successful runner artifact/build/phone validation? Keep failedattempt receipts. | primary | open |
+| TOOL-Q5 | WORK-0002 capacity priority | Will native jobs<=2 and actualmodelpriority remain, with reference/backend/three-trial measurement gates separately open? | primary | open |
+
+Actual BUILD-Q2..5 scope replies already sent: intended pathguards appropriate
+subject finalcode check; processPATH+finally not global mutation under single-
+writer assumption; three failedbuilds preserved; correctEXECUTORCH_LOG_LEVEL flag
+does not prove allpayloadlogging protected or inference. New actual code review
+confirms narrowflatc fix, no native success invented. Questions remain open until
+actual respondents; independent export retry may proceed under primary authority
+and retained guards, not silence. Next meeting after at most21 before22.
+
+### Actual TOOL responses
+
+Primary confirms nested runner_build safe_path applied, same guards/pins/fresh
+export output, failednative001-004 preserved and005 only partial compilation,
+jobs2 kept with resource limits/measurement gates open. Investigator confirms
+failedruntime002/probe preserved and retry003 fresh under primary authorization.
+No model result inferred. Native nestedpath line independently rechecked below.
+
+## Iteration 19: phone staging source review
+
+WORK-0002, new phone_staging author owns only collector/test delta. Independent
+19 targeted phone tests pass/exit0, no real device staging. Localpreflight before
+ADB/remotehash/atomicpartial intent receipts/noexecution labels sound. Medium
+remoteexisting-symlink redirect finding sent author+primary: check directory/all
+targets and reject unexpected directories before first mutation, negative test.
+No implementation coauthored. Native runner_build exactnestedpath safe_path now
+inspected; earlier nativefinding closed. One iteration since meeting18; next
+mandatory meeting by21 before22. Await narrowfix/frozenhashes, no broad reruns.
+
+## Iteration 20: staging redirect fix recheck
+
+Exacta36fb2...9968a/5d85...0c64 scoped source read, independent20targetedphone
+tests pass/exit0. Remote6path read-only link/type checks precede all mutations;
+negative canaries prove no mkdir/chmod/push. Finding resolved, no blockingstage
+sourceissue under documented trusteddevice/nonhostileconcurrent-shell scope.
+Own WORK2review updated; root/author notified. No real stage/model/device run by
+reviewer. Two iterations since meeting18; next meeting by21 before22.

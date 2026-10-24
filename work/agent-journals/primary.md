@@ -771,3 +771,144 @@ before repeated A72 load/TTFT/decode-throughput/peak-memory/thermal trials.
 Original failed export's exactcause remains unknown; guardprobe is not a model
 export. No unsafe logging/pickle/runtime/backend fallback. WORK-0002 and privacy
 WORK-0003 remain in_progress. No actualmodelworker remains running.
+
+## Meeting after iteration 19
+
+Run run-20261023-export-runtime-02. Persona: Accountable delivery coordinator.
+Owner requests substantive code and lower token use: short delta logs, targeted
+reads/tests, reviewers only for concrete patches; mandatory cadence unchanged.
+- Read: work/agent-journals/sqlite-layer.md | bytes: 46661 | sha256: b09d05aa54cab725e71ee56e1194cb608f8a00d710801666b23900f0d208df3d
+- Read: work/agent-journals/product-review.md | bytes: 49061 | sha256: 6009d96e6b326bbd4e9a86bc04cd0e0158de4b83bbdad4e1b8634a475e1ecd58
+
+| ID | Change | Question / next action | Respondent | Status |
+| --- | --- | --- | --- | --- |
+| NATIVE-Q1 | WORK-0002 native source | Separate official3b606 clone/gitlink verification sufficient provenance? Keep export checkout untouched. | product-review | asked |
+| NATIVE-Q2 | WORK-0002 NDK compatibility | Try existingNDK27 without claiming README-tested28c equivalence? Record actual build result. | product-review | asked |
+| NATIVE-Q3 | WORK-0002 capacity | Nativeparallel2 preserves actualexport priority? Observe contention. | sqlite-layer/product-review | asked |
+| NATIVE-Q4 | WORK-0002 native tools | Record existingVS CMake3.28.0-msvc1/Ninja1.11 hashes, no install or silentupgrade? | product-review | asked |
+| NATIVE-Q5 | WORK-0002 acceptance | Nativebuild/help alone cannot replace numerical/backend/three-phone-trial evidence? Retain gates. | sqlite-layer/product-review | asked |
+
+## Iteration 20 - Reproducible Android runner build
+
+Run above; branch work/WORK-0002-phone-baseline, baseline42b4a0c, uncommitted.
+Actualexport delegated sqlite-layer; primary builds matching CPU/XNNPACK runner
+from separate official clone, exact3b606 verified. ExistingVS tools found; no
+new SDK license/dependency upgrade. Required gitlink submodules fetching; Windows
+longpath checkout failed for nestedJSON benchmark images, scoped recovery next.
+No native binary/phone inference success claimed. Logs will reference build
+receipts rather than duplicate full output. Next meeting no later than22.
+
+Meeting19 actualanswers: reviewer Q1 separate cleanclone/gitlinks valid provenance;
+Q2 NDK27 compatibility unproven until actualrun; Q3 jobs2 policy reasonable;
+Q4 existingVS tool version/hash receipts valid bootstrap; Q5 build!=inference.
+Investigator Q3/Q5 agrees; explicit no exportcheckout mutations/no benchmarkclaim.
+
+## Iteration 21 - Native checkpoint recovery
+
+New build_phone_runner.py run001 failed because shared write_json uses create-X;
+fixed separate perphase receipts and final report. Run002 reached AndroidClang18,
+then pinned CMake requires source basename executorch (et rejected). Reports
+.artifacts/native/run-20261023-00{1,2}; source pin unchanged, no binary claimed.
+
+## Iteration 22 - Native tool discovery
+
+Renamed only verified ownedcache to native/executorch, fresh build/host caches.
+Run003 reachedXNNPACK/KleidiAI but nested downloader lacked Ninja PATH. Fixed
+process-only CMake/Ninja PATH+restore for nextattempt. Reviewer writepathfinding
+addressed shared safe_path source/build/host/python/NDK/flatc/hostflatccbin+lib.
+No compiler/backend/pin upgrade. Actual model export separately failed missing
+Windows flatc.exe lookup; investigator implementing shared verified compiler.
+
+## Meeting after iteration 22
+
+- Read: work/agent-journals/sqlite-layer.md | bytes: 46661 | sha256: b09d05aa54cab725e71ee56e1194cb608f8a00d710801666b23900f0d208df3d
+- Read: work/agent-journals/product-review.md | bytes: 51057 | sha256: f66ca728cd91476fff3a788edf78d29d1dbf2666b8c41b0d1ea6b0361b083c7c
+
+| ID | Change | Question / next action | Respondent | Status |
+| --- | --- | --- | --- | --- |
+| BUILD-Q1 | WORK-0002 compiler sharing | Verified_flatc returns path/hash/wheel provenance; worker independently rechecks before execution? Consume common verifier. | sqlite-layer | interface accepted; recheck confirmation pending |
+| BUILD-Q2 | WORK-0002 writepath fix | safe_path all explicit writable build/generator paths sufficient for found redirect issue? Recheck frozen code. | product-review | asked |
+| BUILD-Q3 | WORK-0002 nestedNinja | Process-only PATH+finallyrestore fixes discovery without global mutation? Actual rerun next. | product-review | asked |
+| BUILD-Q4 | WORK-0002 failed builds | Preserve three real failed attempts without compatibility success claim? Reference receipts. | product-review | asked |
+| BUILD-Q5 | WORK-0002 native logging | Use actual EXECUTORCH_LOG_LEVEL=Error; numeric observer remains separate? Verify effective cache. | product-review | asked |
+
+Short delta-only logs follow owner token instruction; root now may start23,
+next mandatory meeting by25 before26. No unanswered question treated as consent.
+
+Meeting22 actualreplies: Q1 investigator confirms parent+worker verifiedcompiler;
+Q2 reviewer pathguard direction accepted and finalnestedrunner fix now resolved;
+Q3 process-only PATH restore agreed; Q4 failedreceipts retained; Q5 effective
+EXECUTORCH_LOG_LEVEL=Error verified in CMake, not a confidentiality/inferenceclaim.
+
+## Iteration 23 - Nested dependency recovery
+
+Run004 failed because previous upstream download cached nonexistentKleidiAI path.
+Only staleKLEIDIAI_SOURCE_DIR unset when expectedCMakeLists missing; no pinned
+URL/hash changed. WindowsPATH/Ninja issue fixed before this attempt. Failure
+receipt .artifacts/native/run-20261023-004/report.json preserved.
+
+## Iteration 24 - Actual runtime build and shared compiler
+
+Run005 configPASS; pinnedKleidiAI downloaded/hashverified, actualARM64 build2275
+steps ongoing/jobs2. Common runtime_artifacts.verified_flatc now shared by native
+builder/export; no duplicate wheel trust logic. Native symlink/junction finding
+fixed with safe_path, including nestedrunner output. ExportactualFileNotFound
+fixed/independentlyreviewed, syntheticrealcompilerprobe and21tests pass; retry
+qwen-runtime-20261023-003 stillrunning, noPTEclaimed. Agentphone_staging delivered
+reviewed stageCLI/remotehashcheck/remote-linkpreflight with20tests; noADBexecution.
+A72 currentinventory observed; helperrebuildSHA63b3df8b508321e3c611842672b0222547f117bc0f18fe5d5558aa886a5bd3be.
+Ownerrequests realphoneAI result and minimal token use: no newUI/docs-only work,
+short delta logs, scopedchecks. Commonworkflow/docs next; no workerrestart.
+
+## Iteration 25 - Real A72 model execution
+
+Native run005 passed, runner ELF64/AArch64 8519544B SHA256
+3e9c443f82d9765a74cc66ed29c2c5d650ffc34c744ac9c8e4c9430b19b44b71;
+only Android system dynamic libraries. Export003 worker complete but parent
+output-path acceptance failed; reviewed recovery preserves original receipt,
+468633472B PTE SHA07786b553d9661d36431426d06c268f385d453314f6722ca79f66c7e79653b48.
+Actual stage001 five hashes match on A72. Trials001: three observed exit0 runs,
+63 decode-loop tokens each; load4070/1576/1568ms, TTFT567/224/230ms excluding
+load, decode21.642/21.860/21.679tokens/s, peakRSS1014616/1014640/1014516KiB.
+Evidence .artifacts/phone-benchmark/sprint02/{recipe,stage-001,trials-001}.json.
+Collector exit2/status incomplete deliberately retains backend/numerical gates.
+No quality assessment, app AI integration or privacy acceptance follows.
+
+## Meeting after iteration 25
+
+- Read: work/agent-journals/sqlite-layer.md | bytes: 52709 | sha256: c33b5c7826d1b7d8f436d87c45924f7c04fd4e77d50912708467c4d736721d68
+- Read: work/agent-journals/product-review.md | bytes: 55533 | sha256: 78997d35c807cf5bcba3702fc34c4bb7021e111a6fd31f81d1fdb1de6ac9299d
+- Read: work/agent-journals/phone-staging.md | bytes: 4642 | sha256: d3d8224d0f6992bed33ada4ed72ecfad1afe96e72b1b970b2ba7e0235d1db437
+
+| ID | WORK/change | Question / next action | Respondent | Status |
+| --- | --- | --- | --- | --- |
+| PHONE-Q1 | WORK-0002 inference | Three numeric exit0 runs prove inference observation, not quality/numerical acceptance? Preserve distinction. | product-review | asked |
+| PHONE-Q2 | WORK-0002 collector | Keep exit2/incomplete while acceptance gates open? Preserve receipt. | product-review | asked |
+| PHONE-Q3 | WORK-0002 memory | Report wait4 child peakRSS only, not total device memory? Label units/method. | product-review | asked |
+| PHONE-Q4 | WORK-0002 placement | Static delegates plus run cannot establish every op XNNPACK or GPU/NPU? Bound claim. | product-review | asked |
+| PHONE-Q5 | WORK-0002 closure | Deliver bounded tooling/observations while WORK2 quality/backend gates stay open? Commit only observed scope. | product-review | asked |
+
+Actual responses pending; no consent inferred. Root may continue independent
+reversible evidence/check work; next meeting by28 before29. Persona unchanged.
+
+Meeting25 actual product-review replies: PHONE-Q1 yes observation only; Q2 retain exit2/incomplete; Q3 child wait4RSS only; Q4 no all-op/GPU/NPU claim; Q5 bounded delivery while WORK2 gates stay open. Root answered reviewer OUT-Q1..5 affirming preserved failed provenance, exact local/remote hashes, count/cache semantics and acceptance limits. Reviewer/investigator later became unavailable due usage limits; no subsequent approval/results invented. Placement probe001 failed; record preserved. Independent-review successor available for final committed snapshot.
+
+## Iteration 26 - Frozen delivery verification
+
+Persisted sanitized portable phone observations and linked actual results once.
+Final shared-compiler native recipe006 incremental verification/check profiles
+follow; no model re-export or redundant unchanged APK build. Persona unchanged.
+
+Final frozen checks: Windows11/Python3.12.0, tools/run_checks.py profiles docs and
+workflow, WORK-0002/run sprint02-final-002: both exit0/passed; source fingerprints
+stable within each run. Docs677 package checks plus journal policy; workflow75
+tests (74passed, one Windows symlink privilege1314 skip). Reports under
+.artifacts/checks/WORK-0002/sprint02-final-002/{docs,workflow}/report.json.
+Applicable product source unchanged, so Rust/unchanged APK not rebuilt. Current
+source uncommitted on42b4a0c. Final native helper incremental006 pending;005
+runner was already built and actually executed on phone. Successor independent
+reviewer available for latest source commit; final push still pending.
+
+Native006 final shared-verifier recipe subsequently passed all six phases/exit0; runner SHA3e9c443f82d9765a74cc66ed29c2c5d650ffc34c744ac9c8e4c9430b19b44b71 unchanged from actual phone trials. Report .artifacts/native/run-20261024-006/report.json. No new model export or additional trials.
+
+Execution note: outer PowerShell redirected-console session006 reported exit1; the Python receipt reports passed and all six actual phase subprocess exits are0. Do not relabel the outer exit as0. Artifact matches previously successful build005 and phone execution; this wrapper discrepancy remains noted, not a model/backend acceptance claim.

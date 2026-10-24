@@ -41,3 +41,7 @@ No Android activeRunning kill/rotation, inference or privacy acceptance inferred
 Known rawtensorlogs were removed after actual loggingfailure; sanitizeddisposal
 receipt exists, not a claim no payload ever persisted. New no-model probe logs
 were empty under corrected guard. No rawpayload copied into this handoff.
+
+### Real phone inference continuation
+
+Observed three successful A72 inference trials; see [evidence](evidence.md#actual-a72-inference-checkpoint-2026-10-23-utc) and [portable observations](phone-observations.json). Native runner and recovered PTE are real; collector remains incomplete for numerical/backend gates. No new APK or in-app AI delivered. Primary owns quality/placement validation and Android integration next. Exact commit/push verification remains pending.

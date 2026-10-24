@@ -1,5 +1,6 @@
 import hashlib
 import json
+import shlex
 from pathlib import Path
 import subprocess
 import sys
@@ -22,6 +23,128 @@ def metrics():
 def resource():
     return dict(exit_code=0, timed_out=False, interrupted=False,
                 peak_rss_kib=123456, wall_ms=400)
+
+
+class FakeStagingAdb:
+    """Simulate copied bytes independently from recipe hashes; never use ADB."""
+    serial = "PRIVATE-DEVICE-ID"
+
+    def __init__(self, failure=None):
+        self.failure = failure
+        self.files = {}
+        self.commands = []
+        self.checkpoints = []
+        self.output = None
+
+    def call(self, args, timeout=30):
+        self.checkpoints.append(json.loads(self.output.read_text()))
+        self.commands.append(args)
+        if self.failure == "push" and len(self.files) == 1:
+            raise bench.MeasurementError("ADB operation failed; raw diagnostics suppressed")
+        self.files[args[-1]] = Path(args[-2]).read_bytes()
+        return ""
+
+    def shell(self, command):
+        self.commands.append(command)
+        parts = shlex.split(command)
+        if parts[0] == "if":
+            path = parts[3]
+            if self.failure in ("directory_symlink", "directory_file") and path == bench.REMOTE.rstrip("/"):
+                return "rejected\n"
+            if self.failure in ("target_symlink", "target_directory") and path == bench.REMOTE+"fixture.txt":
+                return "rejected\n"
+            return "absent\n"
+        if parts[0] == "sha256sum":
+            data = self.files[parts[1]]
+            if self.failure == "hash":
+                data += b"remote corruption"
+            return hashlib.sha256(data).hexdigest() + "  " + parts[1] + "\n"
+        if self.failure == "chmod" and parts == ["chmod", "700", bench.REMOTE+"llama_main"]:
+            raise bench.MeasurementError("ADB operation failed; raw diagnostics suppressed")
+        return ""
+
+
+class PhoneStaging(unittest.TestCase):
+    def invoke(self, directory, failure=None, mutate=None):
+        root = Path(directory)
+        artifacts = {}
+        for role, name in (("launcher", "bench_exec"), ("runner", "llama_main"),
+                           ("model", "model.pte"), ("tokenizer", "tokenizer.json"),
+                           ("fixture", "fixture.txt")):
+            path = root/name
+            path.write_bytes(("sanitized "+role).encode())
+            artifacts[role] = dict(local_path=str(path), remote_path=bench.REMOTE+name,
+                                   sha256=bench.sha256(path))
+        recipe = dict(schema_version=1, model_id="Qwen/Qwen3-0.6B", model_revision="a"*40,
+                      runtime_revision="b"*40, quantization="8da4w", export_config_sha256="c"*64,
+                      requested_backend="cpu-xnnpack", trials=3, max_new_tokens=32,
+                      cpu_threads=2, timeout_seconds=300, artifacts=artifacts)
+        if mutate:
+            mutate(recipe)
+        recipe_path = root/"recipe.json"
+        recipe_path.write_text(json.dumps(recipe))
+        adb = FakeStagingAdb(failure)
+        adb.output = root/".artifacts"/"stage.json"
+        with patch.object(bench, "ROOT", root), patch.object(bench, "Adb", return_value=adb) as constructor, \
+             patch.object(bench, "collect_trial", side_effect=AssertionError("No execution allowed")), \
+             patch.object(sys, "argv", ["phone_benchmark", "stage", "--recipe", str(recipe_path),
+                                        "--output", str(adb.output)]):
+            code = bench.main()
+        return code, json.loads(adb.output.read_text()), adb, constructor.call_count
+
+    def test_stages_exact_bytes_permissions_and_separate_report(self):
+        with tempfile.TemporaryDirectory() as directory:
+            code, report, adb, _ = self.invoke(directory)
+            self.assertEqual(code, 0)
+            self.assertEqual(report["status"], "staged_not_executed")
+            self.assertEqual(report["run_kind"], "artifact_staging")
+            self.assertEqual(len(adb.files), 5)
+            self.assertTrue(all(s["status"] == "staged" for s in report["staging"].values()))
+            chmods = [c for c in adb.commands if isinstance(c, str) and c.startswith("chmod ")]
+            self.assertEqual(chmods, ["chmod 700 "+bench.REMOTE, "chmod 700 "+bench.REMOTE+"bench_exec",
+                                       "chmod 700 "+bench.REMOTE+"llama_main"])
+            for snapshot in adb.checkpoints:
+                self.assertIn("push_started", [s["status"] for s in snapshot["staging"].values()])
+            for key in ("device", "trials", "metrics", "actual_backend"):
+                self.assertNotIn(key, report)
+            self.assertNotIn(adb.serial, json.dumps(report))
+            self.assertNotIn("sanitized fixture", json.dumps(report))
+
+    def test_failed_push_hash_or_chmod_retains_partial_checkpoint(self):
+        for failure, expected, copied in (("push", "push_started", 1),
+                                          ("hash", "hash_mismatch", 1),
+                                          ("chmod", "chmod_started", 2)):
+            with self.subTest(failure=failure), tempfile.TemporaryDirectory() as directory:
+                code, report, adb, _ = self.invoke(directory, failure)
+                self.assertEqual(code, 2)
+                self.assertEqual(report["status"], "blocked")
+                self.assertIn(expected, [s["status"] for s in report["staging"].values()])
+                self.assertEqual(len(adb.files), copied)
+                self.assertIn("pending", [s["status"] for s in report["staging"].values()])
+
+    def test_unsafe_paths_and_changed_local_bytes_fail_before_adb(self):
+        for remote in ("/sdcard/model.pte", bench.REMOTE+"../model.pte", bench.REMOTE+"model.pte;reboot",
+                       bench.REMOTE+"nested/model.pte"):
+            with self.subTest(remote=remote), tempfile.TemporaryDirectory() as directory:
+                code, report, adb, calls = self.invoke(directory, mutate=lambda r:
+                    r["artifacts"]["model"].update(remote_path=remote))
+                self.assertEqual((code, calls, adb.commands), (2, 0, []))
+                self.assertEqual(report["status"], "blocked")
+        with tempfile.TemporaryDirectory() as directory:
+            code, _, adb, calls = self.invoke(directory, mutate=lambda r:
+                r["artifacts"]["model"].update(sha256="d"*64))
+            self.assertEqual((code, calls, adb.commands), (2, 0, []))
+
+    def test_remote_symlinks_and_unexpected_types_reject_before_any_mutation(self):
+        for failure in ("directory_symlink", "directory_file", "target_symlink", "target_directory"):
+            with self.subTest(failure=failure), tempfile.TemporaryDirectory() as directory:
+                code, report, adb, _ = self.invoke(directory, failure)
+                self.assertEqual(code, 2)
+                self.assertEqual(report["directory_status"], "preflight")
+                self.assertEqual(adb.files, {})
+                self.assertTrue(all(isinstance(c, str) and c.startswith("if [ -L ")
+                                    for c in adb.commands))
+                self.assertNotIn("push_started", json.dumps(report))
 
 
 class PhoneMeasurements(unittest.TestCase):
