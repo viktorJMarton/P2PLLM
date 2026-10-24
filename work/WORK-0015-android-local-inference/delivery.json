@@ -1,0 +1,151 @@
+{
+  "schema_version": 1,
+  "work_id": "WORK-0015",
+  "status": "multipart_archive_uploaded_single_apk_delivery_pending",
+  "source_commit": "630ef77bac1fe065fa17b88ad4b45735cf6217a0",
+  "branch": "work/WORK-0015-offline-android-ai",
+  "source_push_exit_code": 0,
+  "remote_source_sha": "630ef77bac1fe065fa17b88ad4b45735cf6217a0",
+  "folder_url": "https://drive.google.com/drive/folders/1m56z-ZOaqFpRbRzkJooa3OuvU1JXfFhB",
+  "apk_bytes": 509885353,
+  "apk_sha256": "f91a77d23774228a48b3f827fce536297b3d3bae3aba843e9118270091ee6a19",
+  "single_apk_uploaded": false,
+  "single_apk_blocker": "Connector HTTP413 rejects files above104857600bytes; separate local Drive OAuth choice pending, no consent inferred",
+  "archive_parts": 6,
+  "reassembly": {
+    "command": "Join-APK.cmd",
+    "actual_windows_exit_code": 0,
+    "exact_apk_sha256_verified": true,
+    "parts_individually_installable": false
+  },
+  "remote_verification": {
+    "names_sizes_parents_verified": true,
+    "files_read_back": 13,
+    "remote_checksum_exposed": false,
+    "remote_bytes_independently_verified": false
+  },
+  "files": [
+    {
+      "name": "P2PLLM-v0.3.0-code3-arm64-debug-630ef77.apk.part01",
+      "id": "1HpJ2jJ1JLpOBztX0-eG3KftQM9sYR5Nb",
+      "bytes": 94371840,
+      "url": "https://drive.google.com/file/d/1HpJ2jJ1JLpOBztX0-eG3KftQM9sYR5Nb/view?usp=drivesdk",
+      "parent_ids": [
+        "1m56z-ZOaqFpRbRzkJooa3OuvU1JXfFhB"
+      ]
+    },
+    {
+      "name": "P2PLLM-v0.3.0-code3-arm64-debug-630ef77.apk.part02",
+      "id": "1tnGABurf2OrfKN5VlyoJIl5yFfFa3g9u",
+      "bytes": 94371840,
+      "url": "https://drive.google.com/file/d/1tnGABurf2OrfKN5VlyoJIl5yFfFa3g9u/view?usp=drivesdk",
+      "parent_ids": [
+        "1m56z-ZOaqFpRbRzkJooa3OuvU1JXfFhB"
+      ]
+    },
+    {
+      "name": "P2PLLM-v0.3.0-code3-arm64-debug-630ef77.apk.part03",
+      "id": "1egKksbpOP2T1cG_4uuv8idme01BxLhdu",
+      "bytes": 94371840,
+      "url": "https://drive.google.com/file/d/1egKksbpOP2T1cG_4uuv8idme01BxLhdu/view?usp=drivesdk",
+      "parent_ids": [
+        "1m56z-ZOaqFpRbRzkJooa3OuvU1JXfFhB"
+      ]
+    },
+    {
+      "name": "P2PLLM-v0.3.0-code3-arm64-debug-630ef77.apk.part04",
+      "id": "1Uh7p0K_3PQZAN1PorpAX8oC6MCVn9QH-",
+      "bytes": 94371840,
+      "url": "https://drive.google.com/file/d/1Uh7p0K_3PQZAN1PorpAX8oC6MCVn9QH-/view?usp=drivesdk",
+      "parent_ids": [
+        "1m56z-ZOaqFpRbRzkJooa3OuvU1JXfFhB"
+      ]
+    },
+    {
+      "name": "P2PLLM-v0.3.0-code3-arm64-debug-630ef77.apk.part05",
+      "id": "14xapL2cPOrbN9wb_jP_wltVz74Pp_Kzq",
+      "bytes": 94371840,
+      "url": "https://drive.google.com/file/d/14xapL2cPOrbN9wb_jP_wltVz74Pp_Kzq/view?usp=drivesdk",
+      "parent_ids": [
+        "1m56z-ZOaqFpRbRzkJooa3OuvU1JXfFhB"
+      ]
+    },
+    {
+      "name": "P2PLLM-v0.3.0-code3-arm64-debug-630ef77.apk.part06",
+      "id": "19b3McaMW2Ff7LeEJ0ZssRGVcoln7ThQE",
+      "bytes": 38026153,
+      "url": "https://drive.google.com/file/d/19b3McaMW2Ff7LeEJ0ZssRGVcoln7ThQE/view?usp=drivesdk",
+      "parent_ids": [
+        "1m56z-ZOaqFpRbRzkJooa3OuvU1JXfFhB"
+      ]
+    },
+    {
+      "name": "BUILD-INFO.json",
+      "id": "1MaKgXAS7aeK8YEc5LFRsx6ZqTkYij8R3",
+      "bytes": 1141,
+      "url": "https://drive.google.com/file/d/1MaKgXAS7aeK8YEc5LFRsx6ZqTkYij8R3/view?usp=drivesdk",
+      "parent_ids": [
+        "1m56z-ZOaqFpRbRzkJooa3OuvU1JXfFhB"
+      ]
+    },
+    {
+      "name": "TEST-RESULTS.json",
+      "id": "1wFp4XlJxZsID9TblDslOuF5zOEcUCduj",
+      "bytes": 5361,
+      "url": "https://drive.google.com/file/d/1wFp4XlJxZsID9TblDslOuF5zOEcUCduj/view?usp=drivesdk",
+      "parent_ids": [
+        "1m56z-ZOaqFpRbRzkJooa3OuvU1JXfFhB"
+      ]
+    },
+    {
+      "name": "APK-PARTS.json",
+      "id": "1ED0A2vHZx2gFXa3HI5LryB-keFfnW9ao",
+      "bytes": 1541,
+      "url": "https://drive.google.com/file/d/1ED0A2vHZx2gFXa3HI5LryB-keFfnW9ao/view?usp=drivesdk",
+      "parent_ids": [
+        "1m56z-ZOaqFpRbRzkJooa3OuvU1JXfFhB"
+      ]
+    },
+    {
+      "name": "PARTS-VERIFIED.json",
+      "id": "1LICmd85K40kpYFuMd3U8C9SLKWcqT8pV",
+      "bytes": 331,
+      "url": "https://drive.google.com/file/d/1LICmd85K40kpYFuMd3U8C9SLKWcqT8pV/view?usp=drivesdk",
+      "parent_ids": [
+        "1m56z-ZOaqFpRbRzkJooa3OuvU1JXfFhB"
+      ]
+    },
+    {
+      "name": "Join-APK.cmd",
+      "id": "1pXWLrfM6v6LVKRrK5kK8y4SPxKjk1Yf7",
+      "bytes": 1001,
+      "url": "https://drive.google.com/file/d/1pXWLrfM6v6LVKRrK5kK8y4SPxKjk1Yf7/view?usp=drivesdk",
+      "parent_ids": [
+        "1m56z-ZOaqFpRbRzkJooa3OuvU1JXfFhB"
+      ]
+    },
+    {
+      "name": "OLVASS-EL.txt",
+      "id": "1H2h7CXvhZuYS_qG7o2vsWnPQCOtQ1St3",
+      "bytes": 462,
+      "url": "https://drive.google.com/file/d/1H2h7CXvhZuYS_qG7o2vsWnPQCOtQ1St3/view?usp=drivesdk",
+      "parent_ids": [
+        "1m56z-ZOaqFpRbRzkJooa3OuvU1JXfFhB"
+      ]
+    },
+    {
+      "name": "SHA256SUMS.txt",
+      "id": "1Vt1UcsjHi006PG7MULOGoH9S3qYze1gP",
+      "bytes": 1317,
+      "url": "https://drive.google.com/file/d/1Vt1UcsjHi006PG7MULOGoH9S3qYze1gP/view?usp=drivesdk",
+      "parent_ids": [
+        "1m56z-ZOaqFpRbRzkJooa3OuvU1JXfFhB"
+      ]
+    }
+  ],
+  "capability_limits": [
+    "bounded A72 offline debug slice only",
+    "WORK-0002 full numerical/quality/backend acceptance open",
+    "privacy, thermal and release gates open"
+  ]
+}

@@ -1097,3 +1097,47 @@ approval waits. Next meeting by40 before41; same persona/counters. No source
 change or APK rebuild is authorized by metadata formatting alone.
 
 Meeting37 actual delivery-review answers all5 received: format truthfulness accepted withlimitedprefixscope and53currentreceipt hashes independentlyverified;13code/APKhashes unchanged; final nonauthor Gitblob/commit binding mandatory; Driveclaims onlyactualreadback/localSHA; WORK2/privacy/release gates remainopen. No outstanding dependent shared decision; final exactcommit verdict still awaits commit.
+
+## Iteration 38 - Reviewed source push
+
+Exact630ef77 latestcommit independently bound bydelivery_review (13Gitblobs,
+35intendedpaths), NO BLOCKER forboundedapp. Actualdevelopmentbranchpush-u exit0;
+ls-remote630ef77 equality verified. No defaultmerge/release. No productcode/APK
+changesafterthissourcecommit.
+
+## Iteration 39 - Transfer limit and verified archive fallback
+
+WholeAPKupload HTTP413104857600B cap. No localrclone/DriveFSconfigured; userasked
+localDriveOAuthchoice, unanswered/noapprovalassumed. Created6<=90MiB byteparts,
+actualWindows Join-APK.cmd reconstruction exit0/exactoriginalSHA; independent
+reviewer separately verifiedallparts/concatenation. Uploaded6parts+7metadata and
+DELIVERY.json; readback13names/sizes/parents plusdeliverymetadata+14filelisting.
+No remotechecksumexposed, no remotedigestclaim. WORK15implementationverified,
+singleAPKdeliverypending/in_progress. Partsnotindividuallyinstallable.
+
+## Meeting after iteration 39
+
+- Read: work/agent-journals/delivery-review.md | bytes: 9463 | sha256: 427b4be230643036b7102f583b139b4787f8c53affa4aba56192905bb172e921
+
+- Read: work/agent-journals/inference-native.md | bytes: 16781 | sha256: 1101ed1da8a6aaa264bd96b1fb358ee425b853d2b192ef812020ba33027c73dc
+
+- Read: work/agent-journals/inference-android.md | bytes: 23507 | sha256: 1ca43c02cea6f5b3c0606774f17503593ac55e2a88e78dce8d30f196d85e3d6e
+
+| ID | WORK/change | Question / next action | Respondent | Status |
+| --- | --- | --- | --- | --- |
+| ARCH-Q1 | WORK-0015 transfer | Parts/archive only, no inferred single APK upload or OAuth consent? Keep pending. | delivery-review | answered yes |
+| ARCH-Q2 | WORK-0015 reconstruction | Actual CMD/SHA and6part verification prove local integrity only? Preserve scope. | delivery-review | answered yes |
+| ARCH-Q3 | WORK-0015 remote evidence | Claim observed IDs/names/parents/sizes, not checksum-free remote bytes? Bound readback. | delivery-review | answered yes |
+| ARCH-Q4 | WORK-0015 status | Implementation verified but singlefile pending/in_progress, no full closure? Preserve blocker. | delivery-review | answered yes |
+| ARCH-Q5 | WORK-0015 metadata | Final metadata exactreview+push/remoteverify stillrequired, no defaultmerge/release? Finish handoff. | delivery-review | answered yes |
+
+All5actualanswers received. RootactualDR-Q1..5responses agree pendingstatus,
+remoteintegritylimitation, metadata-onlydiff, failed413/formatlimitationretention,
+reviewedmetadata push. Reviewer recorded own meeting3 beforefurtherreview.
+Nextmeetingby42before43; samepersona/counters.
+
+## Iteration 40 - Delivery metadata checkpoint
+
+Document observed sourcepush andmultipartarchive only; no unapprovedauth or
+newproductcode. Finaldocs/independentmetadatareview/push next. SingleAPKDrive
+blocker remains untilownerlocalOAuthchoice; no blanket capabilityclosure.
