@@ -101,3 +101,7 @@ primary resumes single-file Drive transfer only after local authentication;
 continue WORK-0002 quality/backend work independently. Metadata follow-up final
 commit/review/push is pending until actually executed, without a release/default
 branch merge. Full numerical/backend/privacy/thermal gates remain open.
+
+### Single-file delivery follow-up, 2026-10-24
+
+Owner-approved local OAuth succeeded after fixing the execution-account credential-directory ACL. Full same0.3.0 APK uploaded; local SHA256 unchanged, remote size/MD5 match. See delivery.json; remote SHA256 not verified. The multipart fallback remains, but is no longer required for installation. This is delivery progress only: owner-reported G01 repetition reproduced on A72 CLI and quality diagnosis stays open under WORK-0002. No new APK or quality-fix claim. Actual ignored receipts: .artifacts/delivery/WORK-0015/drive-auth-002/{auth-result,upload-result,metadata-update}.json. Metadata checks/review/push next.

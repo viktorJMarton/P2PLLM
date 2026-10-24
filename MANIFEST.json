@@ -763,8 +763,8 @@
     },
     {
       "path": "work/INDEX.md",
-      "bytes": 3974,
-      "sha256": "a0e09ea6a9fc376300f5b28c007745d5b92950afdb3edf6ab4da30ebda4b95a7"
+      "bytes": 3991,
+      "sha256": "4e9b68077f993fad0f82b23f5dc33664f31e4fc95222d239ff6815d24d7b4a86"
     },
     {
       "path": "work/PACKAGE-BUILD.md",
@@ -1148,13 +1148,13 @@
     },
     {
       "path": "work/WORK-0015-android-local-inference/brief.md",
-      "bytes": 4183,
-      "sha256": "6d89dd225f778f0168d72a80444f35f3bc66b48e7d001c56e3e2bd90cf3892ea"
+      "bytes": 4373,
+      "sha256": "88d847eb02c88be2f6d22fb65c21574fad32dedc146f950dc5f77cd5556214c6"
     },
     {
       "path": "work/WORK-0015-android-local-inference/delivery.json",
-      "bytes": 5292,
-      "sha256": "7e745fdc36150eae4e525d017167cfc4318dcb4fa8276f1796b6ef114b7aa186"
+      "bytes": 6213,
+      "sha256": "82ae2103c8be46b179acb44a5c31dc83c513c2da2b0feb852125bec044f2b3c8"
     },
     {
       "path": "work/WORK-0015-android-local-inference/device-observations.json",
@@ -1163,8 +1163,8 @@
     },
     {
       "path": "work/WORK-0015-android-local-inference/evidence.md",
-      "bytes": 6285,
-      "sha256": "c5f9aaaeecde41da43ddc72999dc77486cca7638c0a87865c4d40845d39fb9e6"
+      "bytes": 6952,
+      "sha256": "91c7327cffcfa9fadc22456b38ba360a7a8e1d76863f94a592bb43e4b250058c"
     },
     {
       "path": "work/WORK-0015-android-local-inference/handoff-android.md",
@@ -1178,8 +1178,8 @@
     },
     {
       "path": "work/WORK-0015-android-local-inference/handoff-integration.md",
-      "bytes": 3136,
-      "sha256": "8d99db65d05de97604676ebb76cef0761d12a3c3a36c41bf45d2b4ae6ee45467"
+      "bytes": 3803,
+      "sha256": "b42819b28a291f014478d0a1f89c9ace80daa9f9813eb1a8fac5d52b97951725"
     },
     {
       "path": "work/WORK-0015-android-local-inference/handoff-native.md",
@@ -1188,8 +1188,8 @@
     },
     {
       "path": "work/WORK-0015-android-local-inference/journal.md",
-      "bytes": 3061,
-      "sha256": "d5beb6c2ee376e608959abd77c0c48738334fcddcc6ff45d8cb9d124ffc23327"
+      "bytes": 3728,
+      "sha256": "9a25745ddbd24e2bbb7268b6480518502ffd931eea3c198e087c4e70e79af34f"
     },
     {
       "path": "work/WORK-0015-android-local-inference/review.md",
@@ -1228,8 +1228,8 @@
     },
     {
       "path": "work/agent-journals/primary.md",
-      "bytes": 95835,
-      "sha256": "a34712225f7d4e2a367b83be910b6721dace1e934dc0bfa0508a913e9a161b71"
+      "bytes": 97424,
+      "sha256": "e3d9e63ee0a7cb6ca20102c69c14b691e8a3f1158c8679a2ea73e30aaeb4e649"
     },
     {
       "path": "work/agent-journals/product-review.md",

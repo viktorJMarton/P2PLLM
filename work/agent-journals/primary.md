@@ -1220,3 +1220,25 @@ Actual delivery_review inspection of greeting-001 script+receipt: NO BLOCKER for
 
 
 Current meeting41 reread: native and Android final clarification entries actually reread after their owners froze. Above current-meeting version bindings updated to these actual final reads. Prior narrowed historical identities remain untouched.
+
+## Iteration 42 - Single APK Drive delivery after authorized local login
+
+WORK-0015 / drive-auth-002; Accountable delivery coordinator, counters preserved.
+First OAuth callback did not save config: sandbox-created credential directory
+had no write permission for actual OAuth execution account. Explicit grant by
+its directory owner fixed that access; no broad ACL/inheritance enabled. Second
+browser callback exited0 and config exists; actual upload then succeeded. Tokens
+remain only in ignored credentials, never printed/committed. Pinned rclone1.75.2
+ZIP verified against official SHA256SUMS. Upload15.266s/exit0; size509885353B,
+remote MD5 f68c3b21f9b8c06b61909a65b106b392 matches locally streamed original.
+Local SHA256 remains f91a77d23774228a48b3f827fce536297b3d3bae3aba843e9118270091ee6a19.
+Remote file1fX3xcEKFgPa3-yqJ75Fw-GgOAuuQlHZ4 in existing version folder;
+connector independently read back ID/name/size/parent and observed webViewLink.
+Remote SHA256 not verified; checksum source is rclone Drive MD5, not connector.
+Source unchanged0.3.0/630ef77: this upload does not fix G01. Quality remains open
+under WORK-0002. Prior source-repro metadata35669f7 independently reviewed,
+pushed exit0 and remote equality verified; ignored push-receipt.json recorded.
+Current tracked metadata uncommitted; final docs/review/push required. Remote
+DELIVERY.json/readme update and readback evidence in drive-auth-002. No raw chat,
+new APK, model change, quality acceptance or project/release closure claimed.
+Next meeting by44 before45; latest actual meeting41 retained, no counter reset.

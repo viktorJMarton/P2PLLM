@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "work_id": "WORK-0015",
-  "status": "multipart_archive_uploaded_single_apk_delivery_pending",
+  "status": "single_apk_uploaded_answer_quality_regression_open",
   "source_commit": "630ef77bac1fe065fa17b88ad4b45735cf6217a0",
   "branch": "work/WORK-0015-offline-android-ai",
   "source_push_exit_code": 0,
@@ -9,8 +9,8 @@
   "folder_url": "https://drive.google.com/drive/folders/1m56z-ZOaqFpRbRzkJooa3OuvU1JXfFhB",
   "apk_bytes": 509885353,
   "apk_sha256": "f91a77d23774228a48b3f827fce536297b3d3bae3aba843e9118270091ee6a19",
-  "single_apk_uploaded": false,
-  "single_apk_blocker": "Connector HTTP413 rejects files above104857600bytes; separate local Drive OAuth choice pending, no consent inferred",
+  "single_apk_uploaded": true,
+  "single_apk_blocker": null,
   "archive_parts": 6,
   "reassembly": {
     "command": "Join-APK.cmd",
@@ -147,5 +147,27 @@
     "bounded A72 offline debug slice only",
     "WORK-0002 full numerical/quality/backend acceptance open",
     "privacy, thermal and release gates open"
-  ]
+  ],
+  "single_apk": {
+    "work_id": "WORK-0015",
+    "run_id": "drive-auth-002",
+    "status": "uploaded_checksum_verified",
+    "folder_id": "1m56z-ZOaqFpRbRzkJooa3OuvU1JXfFhB",
+    "name": "P2PLLM-v0.3.0-code3-arm64-debug-630ef77.apk",
+    "apk_sha256": "f91a77d23774228a48b3f827fce536297b3d3bae3aba843e9118270091ee6a19",
+    "apk_md5": "f68c3b21f9b8c06b61909a65b106b392",
+    "bytes": 509885353,
+    "upload_exit_code": 0,
+    "elapsed_seconds": 15.266,
+    "remote_id": "1fX3xcEKFgPa3-yqJ75Fw-GgOAuuQlHZ4",
+    "remote_md5": "f68c3b21f9b8c06b61909a65b106b392",
+    "remote_size": 509885353,
+    "remote_md5_matches_local": true,
+    "remote_sha256_verified": false,
+    "url": "https://drive.google.com/file/d/1fX3xcEKFgPa3-yqJ75Fw-GgOAuuQlHZ4/view?usp=drivesdk",
+    "connector_name_size_parent_readback": true,
+    "checksum_source": "rclone Google Drive remote MD5; connector does not expose checksum",
+    "quality_fix": false
+  },
+  "quality_status": "G01 repetition reproduced on A72 CLI; WORK-0002 diagnosis open, no quality fix"
 }

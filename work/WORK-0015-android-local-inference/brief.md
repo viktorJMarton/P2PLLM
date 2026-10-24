@@ -1,7 +1,10 @@
 # WORK-0015 - Usable offline Android question and answer
 
 Status: in_progress
-Implementation: verified bounded A72 slice. Delivery: multipart archive uploaded; single APK pending separate local Drive authentication.
+Implementation: operational A72 slice verified; owner-reported answer-quality
+regression remains open. Delivery: single APK uploaded with remote size/MD5
+match after owner-approved local Drive login. This is the same0.3.0 APK, no fix.
+See [quality diagnosis](../WORK-0002-model-accelerator-baseline/quality-review-20261024.md).
 Run: run-20261024-local-inference-01
 Owner: primary; persona Accountable delivery coordinator.
 Requirements: REQ-001, REQ-005, REQ-009. Depends on WORK-0002 observed A72 inference.
