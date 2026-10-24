@@ -1,7 +1,7 @@
 # WORK-0002 — Pinned Qwen and accelerator inventory
 
 Status: in_progress
-Phone measurements are not yet available.
+Three A72 inference observations are available in [phone-observations.json](phone-observations.json); numerical quality and actual-backend acceptance remain open.
 Requirements: REQ-001, REQ-010
 Roles: qwen-research-deputy, research, android, learning, mathematical-modeling
 Dependencies: WORK-0001 host Rust/toolchain scaffold; full Android acceptance is not required for independent host-only work
