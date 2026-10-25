@@ -271,3 +271,50 @@ This narrower binding does not prove the remainder of the former 6485-byte
 revision is unchanged. I re-read the reviewer's current journal to identify
 the edit and retain its new question/status context. The existing 3143-byte
 and 10788-byte references that peers made to this journal remain untouched.
+
+## Iteration 5 - Concurrent client and bounded admission interoperability
+
+- WORK / run / source revision: WORK-0004 /
+  `run-20261025-protocol-concurrency-03` / HEAD
+  `602bd638bd6f07e38dfed282dfa37b30b6b3754b`; this follow-up remains
+  uncommitted at this entry. Primary owns integration and commit.
+- Intended change and affected contracts: independently verify over actual
+  loopback TCP that a confirmed active client's partial frame does not block
+  another synthetic SQUARE result, and that the agreed eight-session cap
+  rejects a ninth connection yet recovers after a slot is released.
+- Observed result / changed path: `tests/interop/test_p2p_lab_peer.py` gained
+  two process/socket cases. The first client completes HELLO before holding a
+  partial OFFER, proving its worker was admitted. A second client then
+  receives `RESULT free 529`. The cap test completes HELLO on each of eight
+  clients, leaves each with a partial OFFER, observes EOF or Windows reset
+  on the ninth with no protocol response, releases one held connection and
+  receives `RESULT recovered 49` on a replacement. A 2-second deadline bounds
+  the new peer checks/recovery; no latency or production throughput claim is
+  made. Updated a stale test comment from the previous sequential server.
+- Actual coordinated wire contract: protocol_impl direct message specified
+  eight active connections, slot acquired before HELLO, immediate ninth close
+  with no protocol response, and recovery after a slot releases. It rebuilt
+  the Rust executable with SHA-256
+  `78f5b4fa0d454841d430326a65733d3c39e82098eaf23ea5be362d029cce3ae1`.
+  Its current agent journal had no new concurrency iteration at my latest
+  read; I do not attribute the direct message to a durable journal entry yet.
+- Verification command, environment, exit code and evidence: Windows
+  PowerShell/Python 3.12 and the rebuilt Rust debug server above;
+  `P2P_LAB_PEER_BIN=C:\Users\Viktor\repos\P2PLLM\target\debug\p2p-lab-peer.exe`
+  and `P2P_LAB_CLIENT_BIN=C:\Users\Viktor\repos\P2PLLM\target\debug\p2p-lab-client.exe`;
+  `C:/Users/Viktor/AppData/Local/Programs/Python/Python312/python.exe -m unittest discover -s tests/interop -p 'test_*.py' -v`, exit 0,
+  **14 tests** in 0.663s. Thirteen socket/process cases are from this
+  independent interop author; the pre-existing Rust CLI client test was
+  authored by primary and must not be counted as independently authored.
+  The final comment-only edit followed this run and did not change execution.
+  Final Python file SHA-256
+  `1e0b3fd22fcc6637f0d426c24369e8e2ce24df62da8acdafb67359a30418f580`.
+- Lessons applied: LSN-006 requires real execution/author attribution;
+  LSN-004 requires stable writers for final profiles. Synthetic numerals and
+  fixture IDs only; no personal prompts or keys on the wire or in logs.
+- Boundaries / next owner: this demonstrates host-loopback concurrent
+  admission for a public arithmetic fixture. It does not authenticate HELLO,
+  execute protobuf, run on Android/Linux or establish private hive compute.
+  Primary owns final profile/review/push; protocol owner should journal its
+  concurrent implementation. Next own meeting due by iteration7 before8.
+- Iterations since last meeting: 1.

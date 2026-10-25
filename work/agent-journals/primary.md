@@ -2015,3 +2015,49 @@ profile `protocol-cli-review-fix-20261025-001` passed exit 0. I pushed
 `HEAD:refs/heads/work/WORK-0015-offline-android-ai`, exit 0; remote
 `git ls-remote --heads` returned that exact SHA, exit 0. This append is
 metadata after the verified source commit and will be separately delivered.
+
+## Iteration 76 - Integrate bounded concurrent host sessions
+
+WORK-0004 / `run-20261025-protocol-concurrency-03`, persona Accountable
+delivery coordinator, baseline remote-verified `602bd638bd6f07e38dfed282dfa37b30b6b3754b`.
+Protocol owner implemented at-most-eight concurrent loopback workers and
+explicit ninth-close semantics in `crates/protocol-session/src/main.rs` and
+README. Separately, the interop peer wrote two real TCP cases in
+`tests/interop/test_p2p_lab_peer.py`; each owner updated its own journal. I
+updated WORK-0004 journal/evidence/handoff and MANIFEST. Protocol owner
+reported Rust unit3/3, fmt, Clippy, build exit0; interop owner reported
+14/14 process/socket passes, with 13 cases separately authored and one older
+CLI case by me. I independently reran the 14 cases on Windows/Python3.12,
+exit0 in 0.390s. Common `docs`, `workflow` and `rust` profiles under
+`protocol-concurrency-20261025-001` all passed exit0 with identical stable
+fingerprint `cb9c1592b5123cffc131aee412eb1ee4dfd4d53e657495f0a3a9086744dcb222`;
+docs829, workflow99/two environment skips, workspace Rust checks passed.
+`git diff --check` exit0. Source is uncommitted; final meeting/inventory/docs,
+exact-commit security review and development push remain. This is a host
+synthetic availability change only, not WORK-0004 full acceptance.
+
+## Meeting after iteration 76
+
+2026-10-25 Europe/Budapest. Read the final frozen protocol and independent
+interop journals through their iteration5 entries and the security reviewer's
+latest iteration4/meeting4 entry. The five answers below are those agents'
+actual recorded results, not my inferred consent to a production protocol.
+
+- Read: work/agent-journals/protocol-impl.md | bytes: 18304 | sha256: 1d24d399fb7b1723061110ad497a147450b1702cc323b09500280028777f3641
+- Read: work/agent-journals/interop-peer.md | bytes: 23674 | sha256: f6eae41649126c2c7a36ef12c689d28eee2b61523955fa9533c4c8efba131c09
+- Read: work/agent-journals/protocol-security-review.md | bytes: 15449 | sha256: e89d70cb8e267b1e357909111b2d62390f3896b8f39aa0b469d24d05225d8749
+
+| ID | Logged change / WORK | Concrete question and next action | Respondent | Actual answer / status |
+| --- | --- | --- | --- | --- |
+| P76-Q1 | WORK-0004 protocol iteration5 active-slot limit | Does a ninth connection create a worker or receive a protocol response? Keep explicit lab cap in README. | protocol-impl | Answered in protocol-impl.md iteration5: CAS cap8 before HELLO; ninth closes without worker or response. |
+| P76-Q2 | WORK-0004 protocol iteration5 worker lifecycle | Is the slot released on normal exit, error, panic and spawn failure? Preserve bounded admission. | protocol-impl | Answered in protocol-impl.md iteration5: RAII decrement on worker exit/unwind; explicit decrement on spawn failure. |
+| P76-Q3 | WORK-0004 interop iteration5 partial first client | Did another HELLO and SQUARE finish while the first worker held a partial OFFER? Keep real TCP evidence. | interop-peer | Answered in interop-peer.md iteration5: second RESULT free 529 after first HELLO-confirmed partial OFFER; 14/14 pass. |
+| P76-Q4 | WORK-0004 interop iteration5 cap/recovery | Were all eight slots actually accepted, was ninth rejected, and did a released slot work? Retain actual socket test. | interop-peer | Answered in interop-peer.md iteration5: eight HELLO-confirmed held clients, ninth EOF/reset, replacement RESULT recovered 49. |
+| P76-Q5 | WORK-0004 security review iteration4 plus interop iteration5 authorship | Do these public tests complete authenticated REQ-002 or private compute, and which cases are independently authored? Keep gates/attribution explicit. | protocol-security-review, interop-peer | Answered in security review iteration4 and interop iteration5: no auth/privacy claim; 13 interop-authored cases plus one primary-authored CLI case. |
+
+All five have recorded peer answers. Shared product/security decisions remain
+unchanged: RFC-0001 authentication, Android/Linux independent peers, protobuf,
+durable replay, active cancellation and approved privacy backend stay open.
+Next owner primary freezes final source, checks inventory/docs, commits,
+requests independent exact-commit review, then pushes the development branch.
+Next primary meeting by iteration79 before80.

@@ -97,3 +97,20 @@ ls-remote --heads origin refs/heads/work/WORK-0015-offline-android-ai`
 returned exactly `4da68679c36069bb3594e30ba0cab30dbc8fbecd`, exit 0.
 Full WORK-0004, authentication, Android interoperability and privacy
 acceptance remain open. This receipt itself is a subsequent metadata change.
+
+## 2026-10-25 - Bounded concurrent loopback sessions
+
+WORK-0004 / `run-20261025-protocol-concurrency-03`, owner primary,
+persona Accountable delivery coordinator; baseline remote-verified
+`602bd638bd6f07e38dfed282dfa37b30b6b3754b`. Protocol implementer
+owns `crates/protocol-session/src/main.rs` and README; interop peer owns the
+Python TCP tests. Each wrote its own journal. The currently uncommitted
+server admits at most eight concurrent local connections; a ninth closes
+without a response or worker. The per-connection 30-second deadline remains.
+The separate interop author added two real-process cases: a HELLO-confirmed
+partial client did not block a second `RESULT 529`, and eight held clients
+rejected a ninth while one released slot later served `RESULT 49`. Its 14/14
+suite passed exit 0, including the earlier primary-authored CLI test;
+13 cases were authored by the interop peer. Protocol-owner Rust unit/fmt/
+Clippy/build checks passed exit 0. This is a public synthetic host-only
+availability improvement. Common profiles, review, commit and push follow.

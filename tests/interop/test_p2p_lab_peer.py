@@ -15,6 +15,7 @@ import queue
 import socket
 import subprocess
 import threading
+import time
 import unittest
 from pathlib import Path
 
@@ -120,7 +121,7 @@ class IndependentPeerTests(unittest.TestCase):
         client_binary = os.environ.get("P2P_LAB_CLIENT_BIN")
         if not client_binary:
             self.skipTest("P2P_LAB_CLIENT_BIN not set")
-        # The lab listener is sequential; release the setup peer first.
+        # Release the unused setup peer so this case has its own session/slot.
         self.peer.close()
         address = f"{self.server.endpoint[0]}:{self.server.endpoint[1]}"
         result = subprocess.run(
@@ -243,6 +244,62 @@ class IndependentPeerTests(unittest.TestCase):
         self.assertEqual("P2P1 ERROR RESOURCE_LIMIT", self.peer.receive())
         self.peer.send("P2P1 OFFER t63 SQUARE 63")
         self.assertEqual("P2P1 RESULT t63 3969", self.peer.receive())
+
+    def test_partial_client_does_not_block_another_result(self) -> None:
+        self.peer.hello()  # Proves the first connection occupies a worker.
+        self.peer.send_bytes(b"P2P1 OFFER held SQUARE ")
+        second = WirePeer(self.server.endpoint)
+        try:
+            second.socket.settimeout(2.0)
+            second.hello()
+            second.send("P2P1 OFFER free SQUARE 23")
+            self.assertEqual("P2P1 RESULT free 529", second.receive())
+        finally:
+            second.close()
+
+    def test_eight_active_clients_reject_ninth_then_recover(self) -> None:
+        self.peer.hello()
+        self.peer.send_bytes(b"P2P1 OFFER held0 SQUARE ")
+        held: list[WirePeer] = []
+        try:
+            for number in range(1, 8):
+                peer = WirePeer(self.server.endpoint)
+                held.append(peer)
+                peer.socket.settimeout(2.0)
+                peer.hello()  # Each has been admitted before testing the cap.
+                peer.send_bytes(f"P2P1 OFFER held{number} SQUARE ".encode("ascii"))
+
+            ninth = socket.create_connection(self.server.endpoint, timeout=2.0)
+            try:
+                ninth.settimeout(2.0)
+                try:
+                    closed = ninth.recv(1)
+                except (ConnectionResetError, ConnectionAbortedError):
+                    closed = b""  # Windows may reset a rejected connection.
+                self.assertEqual(b"", closed)
+            finally:
+                ninth.close()
+
+            held.pop().close()  # Release one confirmed active worker.
+            deadline = time.monotonic() + 2.0
+            while True:
+                replacement = WirePeer(self.server.endpoint)
+                try:
+                    replacement.socket.settimeout(0.4)
+                    replacement.hello()
+                    replacement.send("P2P1 OFFER recovered SQUARE 7")
+                    self.assertEqual("P2P1 RESULT recovered 49", replacement.receive())
+                    break
+                except (EOFError, ConnectionResetError, ConnectionAbortedError,
+                        BrokenPipeError, TimeoutError):
+                    if time.monotonic() >= deadline:
+                        self.fail("connection slot did not recover after release")
+                    time.sleep(0.02)
+                finally:
+                    replacement.close()
+        finally:
+            for peer in held:
+                peer.close()
 
 
 if __name__ == "__main__":

@@ -3,10 +3,22 @@
 use p2p_protocol_session::{LabSession, MAX_FRAME_BYTES};
 use std::io::{self, Read, Write};
 use std::net::{Ipv4Addr, SocketAddr, TcpListener, TcpStream};
+use std::sync::atomic::{AtomicUsize, Ordering};
+use std::sync::Arc;
+use std::thread;
 use std::time::{Duration, Instant};
 
+const MAX_ACTIVE_CONNECTIONS: usize = 8;
 const MAX_FRAMES_PER_SESSION: usize = 256;
 const SESSION_DURATION: Duration = Duration::from_secs(30);
+
+struct ActiveConnection(Arc<AtomicUsize>);
+
+impl Drop for ActiveConnection {
+    fn drop(&mut self) {
+        self.0.fetch_sub(1, Ordering::AcqRel);
+    }
+}
 
 fn read_frame(stream: &mut TcpStream, deadline: Instant) -> io::Result<Option<Vec<u8>>> {
     let mut frame = Vec::with_capacity(MAX_FRAME_BYTES);
@@ -81,12 +93,30 @@ fn main() -> io::Result<()> {
         ));
     }
     let listener = TcpListener::bind(addr)?;
+    let active = Arc::new(AtomicUsize::new(0));
     println!("LISTEN {}", listener.local_addr()?);
     io::stdout().flush()?;
     for stream in listener.incoming() {
         match stream {
             Ok(stream) => {
-                let _ = serve_connection(stream);
+                if active
+                    .fetch_update(Ordering::AcqRel, Ordering::Acquire, |count| {
+                        (count < MAX_ACTIVE_CONNECTIONS).then_some(count + 1)
+                    })
+                    .is_err()
+                {
+                    // Over-cap clients receive no protocol response or worker.
+                    drop(stream);
+                    continue;
+                }
+                let worker_count = Arc::clone(&active);
+                if let Err(error) = thread::Builder::new().spawn(move || {
+                    let _slot = ActiveConnection(worker_count);
+                    let _ = serve_connection(stream);
+                }) {
+                    active.fetch_sub(1, Ordering::AcqRel);
+                    return Err(error);
+                }
             }
             Err(error) => return Err(error),
         }

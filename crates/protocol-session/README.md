@@ -7,10 +7,12 @@ strings, not verified identities. Do not send personal-derived inputs or expose
 the listener outside loopback.
 
 Run `cargo run -p p2p-protocol-session --bin p2p-lab-peer -- 127.0.0.1:0`.
-The first stdout line is `LISTEN 127.0.0.1:<port>`. Connections are served
-sequentially; each client has a 30-second absolute session deadline, a
-five-second per-read timeout and a 256-frame cap. Results and cancellation
-tombstones expire on disconnect.
+The first stdout line is `LISTEN 127.0.0.1:<port>`. At most eight connections
+are served concurrently. An accepted connection occupies a slot even before
+HELLO; a ninth is closed immediately without a protocol response or worker.
+Each client has a 30-second absolute session deadline, a five-second per-read
+timeout and a 256-frame cap. Results and cancellation tombstones expire on
+disconnect.
 
 To try the public fixture manually, keep the peer running and use its printed
 port with `cargo run -p p2p-protocol-session --bin p2p-lab-client --

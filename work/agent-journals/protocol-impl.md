@@ -198,3 +198,58 @@ No source review or secure-channel approval follows from these responses.
   The latest independently authored TCP peer test reported 9/9 pass after
   rebuilding; its full evidence is in interop-peer iteration3.
 - Iterations since last meeting: 1.
+
+## Iteration 5 - Bounded concurrent loopback clients
+
+- WORK / run / source revision: WORK-0004 /
+  `run-20261025-protocol-concurrency-03` / baseline HEAD
+  `602bd638bd6f07e38dfed282dfa37b30b6b3754b`; own source uncommitted.
+- Intended change and affected contracts: permit several synthetic loopback
+  peers to progress independently while bounding workers, accepted slots and
+  each session. This is a lab availability feature, not authenticated hive
+  transport or private computation.
+- Observed result / changed paths: `crates/protocol-session/src/main.rs` now
+  admits at most eight active clients with an atomic slot acquired before
+  HELLO, one worker per accepted client and an RAII slot guard that decrements
+  on normal/error/panic unwind. Spawn failure also decrements before returning
+  error. A ninth client is closed immediately without response or worker.
+  `crates/protocol-session/README.md` states these semantics. Every accepted
+  connection retains 30-second absolute deadline, five-second per-read
+  timeout, 256-frame and 64-task-ID bounds.
+- Verification: Windows PowerShell/Rust 1.88,
+  `cargo fmt --all` exit 0,
+  `cargo test -p p2p-protocol-session --offline` exit 0 (3 unit tests),
+  `cargo clippy -p p2p-protocol-session --all-targets --offline -- -D warnings`
+  exit 0, `cargo build -p p2p-protocol-session --bin p2p-lab-peer --offline`
+  exit 0. Rebuilt binary SHA-256
+  `78f5b4fa0d454841d430326a65733d3c39e82098eaf23ea5be362d029cce3ae1`.
+  Independent Python concurrency tests were requested from interop peer and
+  are pending at this entry; unit tests do not prove parallel socket behavior.
+- Peer coordination: sent exact cap/over-cap/slot-before-HELLO contract to
+  interop peer and primary before tests. I read interop journal through
+  meeting after iteration4 and primary journal through iteration75 at task
+  start; no new privacy authorization or production transport design appeared.
+- Lessons applied: LSN-004 freeze source after actual interop outcome; LSN-006
+  real peer test and exact review remain distinct. No personal bytes or secrets.
+- Blockers / next: independently run held-client/second-progress/9th-reject/
+  freed-slot tests, then meeting by iteration6 before7 and primary integration.
+- Iterations since last meeting: 2.
+
+### Independent TCP result and journal-order correction
+
+The separately authored interop peer reported that the rebuilt concurrent
+binary passed 14/14 TCP subprocess tests, exit 0 in 0.663 seconds. In the new
+cases, a partial first client stayed connected while a second completed
+SQUARE 23 = 529; eight held clients occupied all slots, the ninth closed
+without a response, and a replacement client completed SQUARE 7 = 49 after
+one slot was released. The 14 include one primary-authored CLI case, so they
+are not all independent peer-authored tests. See interop-peer journal iteration5
+for its command and scope. This verifies one Windows loopback run, not wide-area
+concurrency, authentication or production availability.
+
+My initial append of iteration5 landed before iteration2 because the patch
+anchor matched the first `Iterations since last meeting: 1.`. I moved those
+exact bytes to EOF, restoring the prior journal prefix rather than changing
+earlier entries; `tools/validate_agent_flow.py` then passed exit 0. No Rust
+source changed during this journal repair. Own source and journal are frozen
+for primary's source inventory, combined checks and exact independent review.

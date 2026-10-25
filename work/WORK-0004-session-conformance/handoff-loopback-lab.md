@@ -63,3 +63,12 @@ branch, remote SHA verified. The latest-commit independent review found no
 blocker for this public lab only. Its newly added Python subprocess case was
 authored by primary; the earlier 11 socket cases were separately authored by
 the interop peer. WORK-0004 remains in progress with the gates above.
+
+Next host-lab increment (`run-20261025-protocol-concurrency-03`) admits at
+most eight simultaneous localhost clients. A ninth gets no protocol reply;
+released slots can be reused. The separately authored Python peer observed
+14/14 actual process/socket passes, including two new concurrency/admission
+cases; the suite includes one primary-authored Rust-CLI process case. This
+increment is uncommitted pending combined checks and exact-commit review at
+this handoff update; it changes lab availability, not authentication or the
+privacy gate.
