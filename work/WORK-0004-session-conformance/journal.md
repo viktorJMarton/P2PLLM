@@ -1,3 +1,50 @@
 # WORK-0004 journal
 
-No implementation activity recorded. Brief creation is planning only.
+The first implementation activity is recorded below; full WORK-0004 acceptance
+remains open.
+
+## 2026-10-25 - First executable public loopback slice
+
+WORK-0004 / run-20261025-protocol-loopback-01; owner primary, persona
+Accountable delivery coordinator. Branch work/WORK-0015-offline-android-ai,
+baseline 17703b57938e859ea4074d7d704a4c8493eb7f54. Source is currently
+uncommitted. The protocol agent owns new Rust crate files and its own journal;
+the testing agent owns a separate Python TCP peer and journal; primary owns
+workspace membership, this work log and the handoff. The security agent owns
+only its own review journal. Their meeting questions and actual answers are
+recorded in those journals and primary meeting70. No concurrent shared append.
+
+The implemented bounded slice and limits are in
+[handoff-loopback-lab.md](handoff-loopback-lab.md). Rust unit tests three passed,
+fmt/Clippy/build exited 0; the independently written Python peer passed 11/11
+actual Windows loopback TCP cases against the rebuilt Rust binary. One
+30-second byte-trickle scenario observed disconnect at about 30.11 seconds,
+after a first test-helper failure due to unhandled Windows abort; both attempts
+remain in the protocol agent journal. Earlier Python 8/9 and first 11-case
+fixture failures were harness issues, corrected and retained in its journal.
+See [evidence](evidence.md) for commands and measured limits. This paragraph
+reports department observations; final combined check/source identity and
+exact-commit security review are pending.
+
+Status in_progress. RFC-0001 authenticated peer identity/session, the draft
+protobuf schema, persistent replay handling across reconnect, active compute
+cancellation, Android and Linux interoperability, secure private computation
+and privacy-profile approval are **not** complete. No personal-derived remote
+inputs are accepted by this loopback fixture. Next owner primary freezes source,
+runs docs/workflow/Rust/independent-peer checks, obtains exact-commit security
+review, pushes development branch and verifies remote SHA. Full WORK-0004
+acceptance remains open after this bounded lab checkpoint.
+
+## Exact-commit review correction before push
+
+The first local source commit `359da1822b85f7b604eed7e2845c5563f20bfeb1`
+was **not pushed**. Independent security review found a documentation blocker:
+the crate README incorrectly promised RESOURCE_LIMIT for partial EOF/timeout,
+while the Rust reader closes without a protocol response in those cases.
+The reviewer reproduced partial EOF with a disposable public socket; its helper
+exited 0 after receiving zero bytes. The protocol owner corrected only its
+README. Primary also corrected the stale WORK-0004 no-implementation lines in
+this journal/evidence and the work queue's opening status. No Rust/Python code
+changed. Re-run source inventory/docs checks, amend the unpushed commit and
+obtain fresh exact-commit security review before any development push. The
+earlier review blocker remains part of this history, not a passing verdict.

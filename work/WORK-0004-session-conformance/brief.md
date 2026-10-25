@@ -1,6 +1,10 @@
 # WORK-0004 — Authenticated session and independent peer
 
-Status: not_started
+Status: in_progress
+
+A host-only synthetic loopback lab slice has real Rust/Python
+TCP interoperability evidence in handoff-loopback-lab.md; authenticated
+cross-platform sessions and the acceptance cases below remain open.
 Requirements: REQ-002, REQ-005, REQ-007
 Roles: protocol, android, desktop-node, testing, security
 Dependencies: WORK-0001 host Rust/toolchain scaffold; full Android acceptance is not required for independent host-only work

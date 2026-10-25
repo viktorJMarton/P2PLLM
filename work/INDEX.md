@@ -1,7 +1,8 @@
 # Work queue
 
 WORK-0001 is **in_progress**; WORK-0002 is the primary active phone-baseline work,
-WORK-0003 is active experiment preparation, and WORK-0004–0008 remain **not_started**.
+WORK-0003 is active experiment preparation; WORK-0004 has an in-progress
+synthetic loopback lab, while WORK-0005–0008 remain **not_started**.
 WORK-0009 workflow infrastructure is **verified locally**; Linux
 CI and Android/device execution remain unobserved in this work item.
 Package preparation is recorded in work/PACKAGE-BUILD.md.
@@ -23,7 +24,7 @@ WORK-0014 visible local diagnostic. Privacy preparation is not experimental feas
 - [WORK-0001: Buildable repository and CI foundation](WORK-0001-project-bootstrap/brief.md) — dependencies: none
 - [WORK-0002: Pinned Qwen and accelerator inventory](WORK-0002-model-accelerator-baseline/brief.md) — dependencies: WORK-0001
 - [WORK-0003: Privacy threat model and primitive feasibility](WORK-0003-privacy-primitive-selection/brief.md) — dependencies: WORK-0001
-- [WORK-0004: Authenticated session and independent peer](WORK-0004-session-conformance/brief.md) — dependencies: WORK-0001
+- [WORK-0004: Authenticated session and independent peer](WORK-0004-session-conformance/brief.md) — in_progress; bounded host loopback lab and independent synthetic TCP tests observed; real authentication, protobuf and Android/desktop interoperability open
 - [WORK-0005: Useful private cooperative AI operation](WORK-0005-private-shared-compute/brief.md) — dependencies: WORK-0002, WORK-0003, WORK-0004
 
 - [WORK-0006: Private adapter round and local activation](WORK-0006-private-shared-learning/brief.md) — dependencies: WORK-0002, WORK-0003, WORK-0004

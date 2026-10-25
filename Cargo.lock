@@ -426,6 +426,10 @@ name = "p2p-node-core"
 version = "0.1.0"
 
 [[package]]
+name = "p2p-protocol-session"
+version = "0.1.0"
+
+[[package]]
 name = "p2p-storage-sqlite"
 version = "0.1.0"
 dependencies = [

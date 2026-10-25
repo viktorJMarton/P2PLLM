@@ -33,13 +33,13 @@
     },
     {
       "path": "Cargo.lock",
-      "bytes": 22478,
-      "sha256": "2ebe730e40e96ef59bbe7d35bc36fedb0d6e3cb202bb11c9a39a12aba853234a"
+      "bytes": 22539,
+      "sha256": "5e1f965531ce1ca9e1a7c1a8924da667515aa7a07016e8729a464b7877d75581"
     },
     {
       "path": "Cargo.toml",
-      "bytes": 205,
-      "sha256": "bab1237e65c22b568dc763355c43ffc8068776c4f4319ac6ab1f937897fd931e"
+      "bytes": 232,
+      "sha256": "52d89a5dc81ed1f32066d61f0fb8972d467c5a17d1ebf9310ed0a3e646d32500"
     },
     {
       "path": "GOVERNANCE.md",
@@ -258,8 +258,8 @@
     },
     {
       "path": "crates/README.md",
-      "bytes": 441,
-      "sha256": "76751964ded492c6ea883036b8bacbd9e77fad5dba6606838f5a28e79d9e65db"
+      "bytes": 587,
+      "sha256": "1f6a60287acf1f594c00bb08886168b6fb9d3e196d026b47c8cae559999472ea"
     },
     {
       "path": "crates/android-bridge/Cargo.toml",
@@ -320,6 +320,26 @@
       "path": "crates/node-core/src/tasks.rs",
       "bytes": 6236,
       "sha256": "d3512f1edc6d0cb66c71f95a5b05af6cafa8d1e0fead5470914dbe407ed737d0"
+    },
+    {
+      "path": "crates/protocol-session/Cargo.toml",
+      "bytes": 209,
+      "sha256": "e3047c36eb98cdb9e666146030baf1961c4382f7c5737fd9e833ee606bdeb378"
+    },
+    {
+      "path": "crates/protocol-session/README.md",
+      "bytes": 1927,
+      "sha256": "4197caa678eb3cdb7a9a52a5ddfc1b190ae3a743099561855fee2a44a6d46812"
+    },
+    {
+      "path": "crates/protocol-session/src/lib.rs",
+      "bytes": 7390,
+      "sha256": "c8acd5c0ef02c1d9f36388b77ab4fe34b6c17749340cfbd7569e3b1757dc949a"
+    },
+    {
+      "path": "crates/protocol-session/src/main.rs",
+      "bytes": 3169,
+      "sha256": "7de6d06d609b6fd0d605fc4d22828efda7d2be4df0714b05942d7133fa8b3aa2"
     },
     {
       "path": "crates/storage-sqlite/Cargo.toml",
@@ -667,6 +687,11 @@
       "sha256": "9cefc22fe24910748908473b6dae464e6088223ad3239112ea440b6bf7fb4588"
     },
     {
+      "path": "tests/interop/test_p2p_lab_peer.py",
+      "bytes": 8559,
+      "sha256": "67422c01bd4422bb13c1b422f281a3715ef93b85f7596913770dd77359bb5430"
+    },
+    {
       "path": "tests/test_agent_flow.py",
       "bytes": 4568,
       "sha256": "f2200af533f441259c938739685f51c60235ed5a800b85bde74a79ee4f214cd5"
@@ -813,8 +838,8 @@
     },
     {
       "path": "work/INDEX.md",
-      "bytes": 4976,
-      "sha256": "bf6057de2c3c660854f2239f41ccccf3351ec3577ea8dd4955172aeef2e3899a"
+      "bytes": 5164,
+      "sha256": "a65bcd3ddc5bf46c8a1992ff6c7ac0989d92d8a2b20d3563fbf66a7d928e8abd"
     },
     {
       "path": "work/PACKAGE-BUILD.md",
@@ -973,8 +998,8 @@
     },
     {
       "path": "work/WORK-0004-session-conformance/brief.md",
-      "bytes": 1529,
-      "sha256": "095a8211e0564ddd4d93d8ebc5ad4d1d31ff9ee07558c68107e497405cd7d0ce"
+      "bytes": 1732,
+      "sha256": "846f16b2de55d5e3c304ec31a77fbceedd4a5ba55cdeb582a209b310a7cc90e2"
     },
     {
       "path": "work/WORK-0004-session-conformance/events.jsonl",
@@ -983,13 +1008,18 @@
     },
     {
       "path": "work/WORK-0004-session-conformance/evidence.md",
-      "bytes": 132,
-      "sha256": "055fddca7595a9568feadec216eb3f8c0409bba59b161a858becfbc905998481"
+      "bytes": 2379,
+      "sha256": "20d1c243adaecec974c51b22d46de2f5ea6a9adc1e50249cf2c3e739c27632a9"
+    },
+    {
+      "path": "work/WORK-0004-session-conformance/handoff-loopback-lab.md",
+      "bytes": 3327,
+      "sha256": "235a9171e8d475e89daa0f4247efb29cfad64f864c203f8e6557bd059c0feee2"
     },
     {
       "path": "work/WORK-0004-session-conformance/journal.md",
-      "bytes": 91,
-      "sha256": "d64e1cbe68fd1c2a96428c9b934c3e31c36d8f66eccdbc6bac3c6cbc59be540e"
+      "bytes": 3048,
+      "sha256": "632b25f9ecf2147d18761b2c3c8588f99ad570cccadb37190dd5f51d988e9c1b"
     },
     {
       "path": "work/WORK-0005-private-shared-compute/brief.md",
@@ -1312,6 +1342,11 @@
       "sha256": "d2e7f33c08145ec5de79f76237fea3719d10fc9c61a900f2e7a7c391669527e1"
     },
     {
+      "path": "work/agent-journals/interop-peer.md",
+      "bytes": 20451,
+      "sha256": "4b604b9ba240a07e683f799161aab31a9c12fa385f15499bb9eacf9b32f4dac4"
+    },
+    {
       "path": "work/agent-journals/math.md",
       "bytes": 13212,
       "sha256": "1de005ac65f61b85288bb5b1df1b251d95c1e81373bee48db6fa9b408347205c"
@@ -1323,13 +1358,23 @@
     },
     {
       "path": "work/agent-journals/primary.md",
-      "bytes": 143238,
-      "sha256": "76b6054d38ad46b36a4098f18d6fff2c8323eb8740b0402b3cde45e7cb7d1b52"
+      "bytes": 156564,
+      "sha256": "697000b86c7adc9f17bc83ddd7d59caaded07900298923adcc7f42290ee47520"
     },
     {
       "path": "work/agent-journals/product-review.md",
       "bytes": 55533,
       "sha256": "78997d35c807cf5bcba3702fc34c4bb7021e111a6fd31f81d1fdb1de6ac9299d"
+    },
+    {
+      "path": "work/agent-journals/protocol-impl.md",
+      "bytes": 14840,
+      "sha256": "f1c9b117e0a583116b066760dd79d7b9977fbc4e50d110959dde643d123e2c55"
+    },
+    {
+      "path": "work/agent-journals/protocol-security-review.md",
+      "bytes": 10191,
+      "sha256": "5da3c4a63de82f410a09cb7914f86ed20e2c198eec394c46b02b918de62c1046"
     },
     {
       "path": "work/agent-journals/quality-review-successor.md",

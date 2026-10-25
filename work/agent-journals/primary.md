@@ -1796,3 +1796,175 @@ origin refs/heads/work/WORK-0015-offline-android-ai` exit 0 returned the same
 e22490d759024d089d9847470776051790a2685f. No force/default-branch merge.
 This later metadata-only journal update records actual outcomes; its own commit,
 scoped review and push must be separately verified before closure.
+
+## Iteration 70 - Start bounded protocol implementation
+
+WORK-0004 / run-20261025-protocol-loopback-01, source baseline
+17703b57938e859ea4074d7d704a4c8493eb7f54 on
+work/WORK-0015-offline-android-ai. Prior research metadata commit was
+independently reviewed, pushed exit 0 and ls-remote exit 0 verified that exact
+SHA; final ignored receipt is under .artifacts/checks/WORK-0005. Current source
+tree was clean before this run. Read WORK-0004 brief, RFC-0001/0002, draft
+session.proto, Cargo workspace, agent roles/memory and accepted privacy boundary.
+Explicit owner feedback requires real feature progress. Delegated a new Rust
+protocol-session crate/state machine and bounded loopback-only synthetic
+transport to protocol_impl; delegated independently written Python peer/tests
+to interop_peer. Files are disjoint; primary owns Cargo workspace, integration,
+work logs and checks. No authentication or private-compute claim from plain TCP.
+Memory LSN-004/006/007 applies: freeze writers for final checks, actual agent
+execution only, reviewed development push for bounded closure. Next: read their
+journals, resolve wire contract and perform mandatory meeting before iteration
+71. No implementation or test result is claimed at this entry.
+
+## Meeting after iteration 70
+
+2026-10-25 Europe/Budapest. I read the actual protocol and independent Python
+peer journals after their first source iterations, before changing the shared
+Cargo workspace. Their source-contract replies are recorded below. The Rust
+crate had not compiled at this point because its workspace entry was missing;
+the Python peer had only passed syntax compilation. No executed network result
+or authentication is inferred from this meeting.
+
+- Read: work/agent-journals/protocol-impl.md | bytes: 4009 | sha256: bb9a811850bb4eca9839ac76f8616d11465b7e0b5e6e3613e039276d4aa6d597
+- Read: work/agent-journals/interop-peer.md | bytes: 3143 | sha256: c71948f896d4ce3d6ce9defdac767aa5cee2b96eba101b993ccf3816419075a8
+
+| ID | Logged change / WORK | Concrete question and next action | Respondent | Actual answer / status |
+| --- | --- | --- | --- | --- |
+| P70-Q1 | WORK-0004 Rust bounded frame reader | What exact inclusive frame cap and pre-allocation behavior are implemented? Verify with fragmented/oversized TCP cases. | protocol-impl | Answered in protocol-impl.md P70-Q1: 256 bytes inclusive LF and bounded read vector; actual TCP test pending. |
+| P70-Q2 | WORK-0004 Rust HELLO parser | What happens on major-version mismatch before any task? Verify independent peer response and close. | protocol-impl | Answered in protocol-impl.md P70-Q2: VERSION_UNSUPPORTED then close; TCP evidence pending. |
+| P70-Q3 | WORK-0004 Rust task cache | How do same ID/same input, conflicting input and disconnect expiry differ? Check real wire and avoid global exactly-once claim. | protocol-impl | Answered in protocol-impl.md P70-Q3: cached result, STEP_CONFLICT and connection-local expiry; TCP evidence pending. |
+| P70-Q4 | WORK-0004 Rust cancel path | What exactly is cancelled in synchronous SQUARE, and what future cleanup remains? Document tombstone scope. | protocol-impl | Answered in protocol-impl.md P70-Q4: completed/unknown ID tombstone only; no active compute interruption claim. |
+| P70-Q5 | WORK-0004 independent Python peer | Which separately authored socket cases will test real Rust network behavior, and what host/security gates remain? Execute after workspace integration. | interop-peer | Planned in interop-peer.md iteration 1: real subprocess/TCP cases; syntax exit0 only, network result open. |
+
+Shared wire decision for this bounded lab: ASCII LF, fixed P2P1 major,
+256-byte cap, SQUARE-only public fixtures, connection-local 64-ID state and
+loopback bind. Both agents explicitly agreed on the draft wire; it is not the
+RFC's protobuf or authenticated transport. Primary now owns the one-line Cargo
+workspace integration and combined checks. P70-Q5's execution portion and all
+authenticated/remote/privacy claims remain open. Next meeting by iteration 73
+before iteration 74.
+
+## Responses to protocol meeting PI3 (same meeting bookkeeping)
+
+After reading protocol-impl.md meeting after iteration 3, I sent actual
+responses to its owner. PI3-Q3: the shared handoff will label ASCII/LF and
+127.0.0.1 as a temporary public-fixture lab; REQ-002 authentication remains
+open. PI3-Q4: cancellation here is a completed/unknown task tombstone; active
+asynchronous work interruption remains open under REQ-005. PI3-Q5: primary
+will freeze the combined source after Rust and independent Python peer fixes,
+run applicable checks against its source inventory, and obtain the separate
+security review on the exact commit. These are coordination decisions, not
+preemptive test/review results or a privacy-profile approval.
+
+## Iteration 71 - Integrate compiled host lab
+
+WORK-0004 / run-20261025-protocol-loopback-01. Added the new
+crates/protocol-session member to Cargo.toml after meeting70, allowing the
+protocol owner to compile its std-only crate; Cargo.lock acquired only the
+new workspace package entry, no external dependencies. Its own journal records
+three Rust unit tests, fmt, Clippy and debug build passing after a compile
+repair. The separately authored Python socket peer's journal records a later
+9/9 real TCP pass against the rebuilt executable, after correcting a Windows
+reset-versus-EOF harness assumption. The protocol owner also added a 30-second
+absolute connection deadline and 256-frame cap to close a local listener
+starvation path; the 9/9 peer retest used that rebuilt binary. Independent
+security reviewer provisionally found no parser blocker but keeps RFC-0001
+authentication and full WORK-0004 acceptance open. Two targeted negative tests
+are pending before writer freeze. No new device or network privacy measurement.
+Next: final interop result, concise user-facing lab documentation, combined
+frozen profiles, exact review and development-branch push. This is host-only
+synthetic functionality, not an authenticated hive node.
+
+Security meeting PS1-Q5 response (same iteration bookkeeping): I read
+protocol-security-review.md iteration 1/meeting 1 and replied to its owner.
+Shared WORK-0004 status and handoff will keep authenticated REQ-002/protobuf,
+durable cross-session replay prevention and active asynchronous cancellation
+open. The present TCP peer is loopback-only, public/synthetic and untrusted;
+this response is a scope commitment, not completed security review.
+
+## Iteration 72 - Make the host lab visible and bounded
+
+WORK-0004 / run-20261025-protocol-loopback-01, uncommitted combined source.
+Added a concise host-lab handoff, updated WORK-0004 brief/status, work INDEX,
+crates README, and WORK-0004 journal/evidence to distinguish observed synthetic
+TCP functionality from full authenticated cross-platform acceptance. The
+independent peer finalized 11/11 actual Windows TCP tests, including exact
+256-byte/no-LF boundary and non-loopback bind rejection; its source hash and
+binary hash are recorded in evidence. Protocol owner independently observed a
+trickle connection closing at 30.11 seconds under the absolute deadline.
+Security reviewer answered five concrete questions through actual peer journals
+and retains authentication/active-cancel gates. Journal validator initially
+failed because two owners' historical meeting entries lacked canonical read
+receipts; each owner repaired only its own journal with explicit limited-scope
+receipt notes, preserving original read claims. Subsequent peer append changed
+one prefix; the interop owner narrowed that machine binding to an actually
+unchanged 1024-byte prefix and retained original full-read identity as prose.
+The final standalone agent validator passed exit 0 after these repairs.
+No source code beyond the lab crate/Python peer/Cargo membership was changed by
+this coordinator. Next: freeze writers, update inventory, run applicable common
+profiles and independent exact security review. Full WORK-0004 and privacy gates
+remain open.
+
+## Iteration 73 - Combined host feature checks
+
+WORK-0004 / run-20261025-protocol-loopback-01. Frozen sources include the Rust
+crate, independent Python peer, Cargo workspace/lock, bounded handoff and work
+status. MANIFEST.json updated for 277 files. The common Rust profile001 passed
+exit 0 (workspace fmt, Clippy, tests and desktop build); workflow profile001
+passed exit 0 with 99 host tests and two environment-dependent skips. My own
+independent Python-peer invocation against the built Rust binary passed 11/11
+actual TCP tests exit 0. Initial docs profile001 failed exit 1 because the
+WORK-0004 brief status line included explanatory text; after making the status
+line exact, docs profile002 passed exit 0 with 828 package checks and agent
+flow. Failed attempt retained. No Android or authenticated transport test ran.
+The documented lab scope and WORK-0004 in_progress state match observed code;
+full acceptance remains open. Next: read final peer journals and mandatory
+meeting before another iteration, then final source-stable checks, independent
+security review on exact commit and development push.
+
+## Meeting after iteration 73
+
+2026-10-25 Europe/Budapest. Read frozen protocol, independent Python peer and
+security reviewer journals, including later narrowed prefix-receipt repairs.
+All five answers below are drawn from actual agent-owned entries. They support
+only the host synthetic lab; no auth/privacy approval is inferred.
+
+- Read: work/agent-journals/protocol-impl.md | bytes: 14840 | sha256: f1c9b117e0a583116b066760dd79d7b9977fbc4e50d110959dde643d123e2c55
+- Read: work/agent-journals/interop-peer.md | bytes: 20451 | sha256: 4b604b9ba240a07e683f799161aab31a9c12fa385f15499bb9eacf9b32f4dac4
+- Read: work/agent-journals/protocol-security-review.md | bytes: 10191 | sha256: 5da3c4a63de82f410a09cb7914f86ed20e2c198eec394c46b02b918de62c1046
+
+| ID | Logged change / WORK | Concrete question and next action | Respondent | Actual answer / status |
+| --- | --- | --- | --- | --- |
+| P73-Q1 | WORK-0004 protocol iteration4 deadline | Did a partial-byte trickle actually stop near 30 seconds? Keep a single host observation, not an uptime claim. | protocol-impl | Answered in protocol-impl.md iteration4: corrected helper exit0, Windows abort at30.11s; first helper failure retained. |
+| P73-Q2 | WORK-0004 protocol sequential listener | Can a local client occupy the listener, and what production availability work remains? State lab-only scope. | protocol-impl | Answered in protocol-impl.md iteration4 PS1-Q2: one client sequentially, future authenticated multiplexing/starvation control open. |
+| P73-Q3 | WORK-0004 independent interop iteration4 | Did exact frame boundary and non-loopback bind fail safely in actual TCP/process tests? Preserve 11-case receipt. | interop-peer | Answered in interop-peer.md iteration4: rebuilt binary SHA recorded, final11/11 exit0; first fixture failure corrected. |
+| P73-Q4 | WORK-0004 task replay cache | Is duplicate handling durable across reconnect or only one connection? Leave cross-session replay gate open. | protocol-impl | Answered in protocol-impl.md P70-Q3 and interop-peer.md iteration3: cache expires on disconnect; no global exactly-once claim. |
+| P73-Q5 | WORK-0004 security provisional review | Does the bounded lab result meet authenticated REQ-002 or private computation? Keep full WORK/privacy gates open and request exact-commit review. | protocol-security-review | Answered in protocol-security-review.md iterations1-3 and PS1-Q5: no auth/protobuf/persistent replay/active cancellation; exact review pending. |
+
+All five scope questions have recorded responses. The remaining issues are
+future capability gates, not silently waived: authenticated peer identity and
+transport, draft protobuf conformance, durable replay, active-task cancel,
+Android/desktop network measurement and qualified privacy profile. Primary
+owns frozen final checks/commit/push; security reviewer reviews exact commit.
+Next primary meeting by iteration 76 before iteration 77.
+
+Administrative receipt correction: after this meeting, the interop journal
+owner removed one extra terminal newline to satisfy `git diff --check`. I
+re-read its resulting full 20451-byte canonical revision above. The earlier
+20452-byte read remains a historical read of that file before its final-byte
+formatting edit; no test claim or peer answer changed. Earlier peer prefixes
+referenced by other meetings remain unchanged.
+
+## Iteration 74 - Correct reviewed lab documentation before push
+
+WORK-0004 / run-20261025-protocol-loopback-01. Commit
+359da1822b85f7b604eed7e2845c5563f20bfeb1 was local only; independent
+security reviewer found a real README mismatch about partial EOF/timeout
+behavior and reproduced zero-byte close. Protocol owner corrected its own
+README; I corrected stale WORK-0004 no-implementation/status opening lines
+in work journal/evidence/INDEX. Rust and Python code/test files are unchanged.
+This is a documentation correctness repair, not a new protocol result.
+The initial exact-commit review was BLOCKER for publication of the lab wire
+description; a new exact-commit review is required. Next: update inventory,
+recheck docs and stable source, amend the unpushed commit, review again, then
+push only if clear. Full authentication/privacy gates stay open.
