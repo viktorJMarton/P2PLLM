@@ -48,3 +48,38 @@ this journal/evidence and the work queue's opening status. No Rust/Python code
 changed. Re-run source inventory/docs checks, amend the unpushed commit and
 obtain fresh exact-commit security review before any development push. The
 earlier review blocker remains part of this history, not a passing verdict.
+
+## 2026-10-25 - Reviewed lab checkpoint and Rust client
+
+The corrected host-lab commit `2507705fc37474d38fc3c06a1a000a6e0abfcb7f`
+received independent exact-commit security review with no blocker for the
+public synthetic loopback scope. It was pushed to
+`work/WORK-0015-offline-android-ai`; `git ls-remote --heads origin
+refs/heads/work/WORK-0015-offline-android-ai` returned that exact SHA, exit 0.
+Full WORK-0004 acceptance remains open.
+
+Follow-up WORK-0004 / `run-20261025-protocol-cli-02`, owner primary,
+persona Accountable delivery coordinator, starts from that remote-verified
+checkpoint. The currently uncommitted std-only `p2p-lab-client` sends one
+bounded local public `SQUARE` request. It rejects non-loopback addresses and
+invalid numbers, bounds response frames and has a 10-second response deadline.
+The independent Python process test observed `23 → 529` against the Rust peer
+and rejection of a non-loopback address. The interop module passed 12/12,
+exit 0, using explicit Python 3.12 and Rust 1.88.0 binaries on Windows 11.
+Initial invocation via inaccessible WindowsApps `python.exe` failed exit 1
+before tests ran. Common checks, review, commit and push remain pending. No
+Android/device or private-compute claim follows.
+
+The common `docs`, `workflow` and `rust` profiles passed exit 0 for
+`protocol-cli-20261025-001`, with identical before/after source fingerprint
+`9c3b53158da21d53ec6e9f998ccdbedfb42e5032b2a2a04a9fb33405312a0896`.
+The docs package ran 829 checks; workflow ran 99 tests with two environment
+skips. `git diff --check` exited 0. These are pre-commit source checks; the
+final changed evidence lines require a refreshed inventory/docs receipt.
+
+Review correction for this follow-up: the 12th Python subprocess case was
+written by primary alongside the Rust client. The earlier 11 Python socket
+cases were independently authored by the interop peer. The phrase
+"independent Python process test" above overstates the 12th case's authorship;
+its actual pass/result remains valid. Independent review of the corrected
+documentation and latest commit is required.

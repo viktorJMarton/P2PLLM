@@ -14,6 +14,13 @@ cache and one-connection expiry. The TCP adapter limits frames to 256 bytes,
 connections to 256 frames and 30 seconds, with five-second read/write waits.
 The [crate README](../../crates/protocol-session/README.md) states the wire.
 
+A follow-up `p2p-lab-client` binary provides a manual public-fixture path:
+connect to the printed local port and run `SQUARE 23` to see `529`. The client
+accepts only IPv4 loopback and bounded canonical integers, validates the
+expected HELLO/RESULT, and bounds response time and frame size. Its process
+interop case passed with the Rust peer. This is a local lab aid, not an
+authenticated cross-platform peer or AI task.
+
 This is a temporary fixture separate from the draft
 [session schema](../../schemas/protocol/v1/session.proto) and
 [RFC-0001](../../docs/rfcs/RFC-0001-session.md). Plain loopback TCP and HELLO

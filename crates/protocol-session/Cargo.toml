@@ -10,3 +10,7 @@ name = "p2p_protocol_session"
 [[bin]]
 name = "p2p-lab-peer"
 path = "src/main.rs"
+
+[[bin]]
+name = "p2p-lab-client"
+path = "src/bin/client.rs"

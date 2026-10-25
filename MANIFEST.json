@@ -323,13 +323,18 @@
     },
     {
       "path": "crates/protocol-session/Cargo.toml",
-      "bytes": 209,
-      "sha256": "e3047c36eb98cdb9e666146030baf1961c4382f7c5737fd9e833ee606bdeb378"
+      "bytes": 269,
+      "sha256": "adc6582adc434a197f5a69ca60dcddc82fd65063786569881de2635435966087"
     },
     {
       "path": "crates/protocol-session/README.md",
-      "bytes": 1927,
-      "sha256": "4197caa678eb3cdb7a9a52a5ddfc1b190ae3a743099561855fee2a44a6d46812"
+      "bytes": 2296,
+      "sha256": "83347446a37eef0e4f2a8c63d3a9e7236e28b8333b23a0dedca799c0d454848a"
+    },
+    {
+      "path": "crates/protocol-session/src/bin/client.rs",
+      "bytes": 3208,
+      "sha256": "b956727a152abd17cccbeb95811bc9a42f02d367f2273b1360ea48720c15abd1"
     },
     {
       "path": "crates/protocol-session/src/lib.rs",
@@ -688,8 +693,8 @@
     },
     {
       "path": "tests/interop/test_p2p_lab_peer.py",
-      "bytes": 8559,
-      "sha256": "67422c01bd4422bb13c1b422f281a3715ef93b85f7596913770dd77359bb5430"
+      "bytes": 9599,
+      "sha256": "b2575c133be9931549391ad825b3f1918bfa65348bd1c14d5e0cdc7a1fe0c46f"
     },
     {
       "path": "tests/test_agent_flow.py",
@@ -1008,18 +1013,18 @@
     },
     {
       "path": "work/WORK-0004-session-conformance/evidence.md",
-      "bytes": 2379,
-      "sha256": "20d1c243adaecec974c51b22d46de2f5ea6a9adc1e50249cf2c3e739c27632a9"
+      "bytes": 3460,
+      "sha256": "dda51fa0d9361508f87888fe096421aa2883b4e3cd2f385e655a847554088d77"
     },
     {
       "path": "work/WORK-0004-session-conformance/handoff-loopback-lab.md",
-      "bytes": 3327,
-      "sha256": "235a9171e8d475e89daa0f4247efb29cfad64f864c203f8e6557bd059c0feee2"
+      "bytes": 3749,
+      "sha256": "05fc52ff14c5e10c59b2dd067d18bbaaf300805a1604242bdf148edc48e7412e"
     },
     {
       "path": "work/WORK-0004-session-conformance/journal.md",
-      "bytes": 3048,
-      "sha256": "632b25f9ecf2147d18761b2c3c8588f99ad570cccadb37190dd5f51d988e9c1b"
+      "bytes": 5145,
+      "sha256": "f75480852d7979f1dcdeb1cacc6201ff3236344d9c16e7f586b690d3bcdbe49f"
     },
     {
       "path": "work/WORK-0005-private-shared-compute/brief.md",
@@ -1358,8 +1363,8 @@
     },
     {
       "path": "work/agent-journals/primary.md",
-      "bytes": 156564,
-      "sha256": "697000b86c7adc9f17bc83ddd7d59caaded07900298923adcc7f42290ee47520"
+      "bytes": 158955,
+      "sha256": "38c6c47c1c385e2e74851f80b974621df75237b5fd2159da882e2395da584e5f"
     },
     {
       "path": "work/agent-journals/product-review.md",
@@ -1373,8 +1378,8 @@
     },
     {
       "path": "work/agent-journals/protocol-security-review.md",
-      "bytes": 10191,
-      "sha256": "5da3c4a63de82f410a09cb7914f86ed20e2c198eec394c46b02b918de62c1046"
+      "bytes": 15449,
+      "sha256": "e89d70cb8e267b1e357909111b2d62390f3896b8f39aa0b469d24d05225d8749"
     },
     {
       "path": "work/agent-journals/quality-review-successor.md",

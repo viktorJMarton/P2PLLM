@@ -3,6 +3,25 @@
 The entries below cover only the public synthetic host lab. There is no model
 benchmark or authenticated/private-compute security evidence.
 
+## Manual Rust client follow-up, 2026-10-25
+
+`run-20261025-protocol-cli-02` on Windows 11: `rustup run 1.88.0 cargo build
+-p p2p-protocol-session --bins --locked --offline` exit 0. With
+`P2P_LAB_PEER_BIN=target/debug/p2p-lab-peer.exe` and
+`P2P_LAB_CLIENT_BIN=target/debug/p2p-lab-client.exe`, explicit Python 3.12
+`-m unittest discover -s tests/interop -p 'test_*.py' -v` passed 12/12 in
+0.472 seconds, exit 0. The new process case observed the client returning
+`529` for `23` through an actual loopback socket and rejecting `192.0.2.1:9`
+before connect. The WindowsApps Python alias failed exit 1 before tests;
+the explicit Python312 executable worked. Source is uncommitted at this point.
+
+Common profile receipts for `protocol-cli-20261025-001` all passed, exit 0,
+on identical source fingerprint
+`9c3b53158da21d53ec6e9f998ccdbedfb42e5032b2a2a04a9fb33405312a0896`:
+`docs` package 829 checks and agent flow; `workflow` 99 tests with two
+environment skips; `rust` workspace fmt, Clippy, tests and desktop build.
+Reports: `.artifacts/checks/WORK-0004/protocol-cli-20261025-001/`.
+
 ## Public synthetic loopback lab, 2026-10-25
 
 Run `run-20261025-protocol-loopback-01`, Windows 11, Rust 1.88.0 and Python

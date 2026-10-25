@@ -91,3 +91,33 @@ privacy profile.
 - Next owner: primary freezes source and commits after combined checks; this
   reviewer then audits exact HEAD. No unresolved PS1 question remains; full
   authenticated/persistent production protocol remains separate open work.
+
+## Iteration 4 - Exact-commit review of manual Rust lab client
+
+- WORK / run / source revision: WORK-0004 / `run-20261025-protocol-security-02` / committed HEAD `73dd02ec3093adf8f780d289e238adca4d2c4c62`, clean working tree at first review.
+- Intended review: the nine-file follow-up relative to reviewed `2507705fc37474d38fc3c06a1a000a6e0abfcb7f`, especially new `src/bin/client.rs`, its Cargo target, Python subprocess case and bounded public-lab claims.
+- Observed result: the client rejects non-IPv4-loopback addresses and noncanonical/out-of-range integers before connecting; it bounds connect/read/write time, response frame length and exact expected HELLO/RESULT. With max input 1,000,000 the local squaring arithmetic is within `u64`. New test uses a real process/socket and closes setup peer first for the sequential listener. No code-level security blocker found for this public-only lab.
+- Documentation finding: primary iteration75 says it authored both the client and added Python test case. `work/WORK-0004-session-conformance/journal.md` and `work/agent-journals/primary.md` call the new case independent. Only the earlier 11 cases were independently authored by the other agent. Primary acknowledged the error by direct message and will amend to `Python subprocess interop test`; exact-commit no-blocker review awaits that correction.
+- Verification: `git diff 2507705..73dd02e --check` exit 0; `tools/validate_agent_flow.py` exit 0 on Windows/Python3.12. Direct execution of `target/debug/p2p-lab-client.exe` with `127.0.0.1:1 01`, `127.0.0.1:1 1000001`, and `192.0.2.1:9 23` each returned exit 1 before reaching an accepted task. This is a focused negative canary, not cross-platform or private-compute evidence. New client source SHA-256 `b956727a152abd17cccbeb95811bc9a42f02d367f2273b1360ea48720c15abd1`.
+- Changed paths: own journal only after this review. Repo source was not edited by reviewer.
+- Applicable memory: LSN-004 freeze source for exact review, LSN-006 distinction between independently authored tests and reviewer/implementer work, LSN-008 do not log private inputs; public numeric fixtures only.
+- Iterations since last meeting: 3. Meeting follows before further development.
+
+## Meeting after iteration 4
+
+- Time / participant availability: 2026-10-25 Europe/Budapest. I reread the latest relevant primary journal entry and the protocol/interop owners' latest journal entries. Protocol and interop owners' earlier journals remain historical peer context; primary is the new client/test owner. The five questions below record actual scope dependencies; only Q2 has an actual direct reply so far.
+- Read: work/agent-journals/protocol-impl.md | bytes: 1024 | sha256: 7d09d0315cd8f7152a6bbc9624af4e925c1f4ebd1577ad59a915c10713504f32
+- Read: work/agent-journals/interop-peer.md | bytes: 1024 | sha256: 9b7d2cb8a3cdafe0e477456d6a70d529e057f68f13934d6a26341b6e6870edf5
+- Read: work/agent-journals/primary.md | bytes: 1024 | sha256: 2174a6e5e5e6c6089475c02ae850cf83db3e993f7c7e9f0fe0b9edded444b4d8
+
+| Question ID | Logged change / WORK | Question and proposed next action | Respondent | Status / actual answer reference |
+| --- | --- | --- | --- | --- |
+| PS4-Q1 | Primary iteration75 Rust CLI / WORK-0004 | Does the client make only a public local SQUARE request with an exact expected reply, and keep auth/privacy gates open? Preserve this boundary in handoff. | primary | open; source supports bounded scope, owner response pending |
+| PS4-Q2 | Primary iteration75 Python case / WORK-0004 | Who authored the 12th case? Correct independence wording in work and primary journals before review closure. | primary | answered by direct message: primary authored both client and 12th case; amendment planned |
+| PS4-Q3 | Interop iteration4 independent 11 cases / WORK-0004 | Does the 12/12 receipt distinguish the original 11 independent cases from the new primary-authored process test? Keep evidence attribution precise. | primary | open; corrective wording pending |
+| PS4-Q4 | Protocol iteration4 sequential listener / WORK-0004 | Does the CLI process test close its setup connection before opening another, so the 30-second serial listener cannot mask a failed test? Preserve direct socket evidence. | primary | open; source shows closure, owner response pending |
+| PS4-Q5 | Primary iteration75 final checks / WORK-0004 | Are the CLI's invalid-number and non-loopback rejects observed and the refreshed manifest/check profiles bound to final source? Record exact commit/fingerprint after amendment. | primary | open; direct negative canaries observed by reviewer, final checks pending |
+
+- Actual shared decisions: primary acknowledged PS4-Q2 authorship mistake and chose a documentation correction. No peer agreed to an authenticated/private protocol or changed the accepted PRODUCT/privacy gate.
+- Unanswered questions / dependent work held: exact-commit no-blocker outcome pending corrected documentation and final inventory/checks; PS4-Q1/Q3/Q4/Q5 remain open for primary responses. Independent source review can continue.
+- Next responsible agent: primary amends its owned documentation and requests new exact-commit review; this reviewer verifies the corrected HEAD. Next meeting due by iteration 7 before iteration 8.

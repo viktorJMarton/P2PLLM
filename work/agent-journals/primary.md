@@ -1968,3 +1968,42 @@ The initial exact-commit review was BLOCKER for publication of the lab wire
 description; a new exact-commit review is required. Next: update inventory,
 recheck docs and stable source, amend the unpushed commit, review again, then
 push only if clear. Full authentication/privacy gates stay open.
+
+## Iteration 75 - Deliver checked lab checkpoint and add manual client
+
+WORK-0004 / `run-20261025-protocol-cli-02`, persona Accountable delivery
+coordinator. Independent exact-commit security review of `2507705` found no
+blocker in the public synthetic loopback scope. I pushed the reviewed commit
+to `work/WORK-0015-offline-android-ai`; `git ls-remote --heads origin
+refs/heads/work/WORK-0015-offline-android-ai` returned exactly
+`2507705fc37474d38fc3c06a1a000a6e0abfcb7f`, exit 0.
+
+I added `crates/protocol-session/src/bin/client.rs`, its Cargo target, README
+command, and one independent Python process case in
+`tests/interop/test_p2p_lab_peer.py`; WORK-0004 journal/evidence/handoff were
+updated. This is an uncommitted follow-up, not part of reviewed `2507705`.
+The client accepts only IPv4 loopback and canonical 0..=1000000 input,
+requires exact HELLO/RESULT, and bounds response size and time. `rustup run
+1.88.0 cargo build -p p2p-protocol-session --bins --locked --offline` exit 0;
+Python312 interop 12/12 exit 0, including actual Rust client 23→529 and
+non-loopback rejection. Initial `python` alias invocation failed exit 1
+before tests due to inaccessible WindowsApps executable; explicit Python312
+worked. Next: update manifest, common profiles, independent latest-commit
+review, then commit/push/verify. Full auth/privacy/Android gates remain open.
+Meeting due by iteration76 before77.
+
+Same iteration verification receipt: common profiles `docs`, `workflow` and
+`rust` each passed exit 0 under `protocol-cli-20261025-001`, with identical
+before/after fingerprint
+`9c3b53158da21d53ec6e9f998ccdbedfb42e5032b2a2a04a9fb33405312a0896`.
+Docs package 829 checks, workflow 99 tests with two environment skips;
+workspace Rust fmt/Clippy/tests/build passed. `git diff --check` exit 0.
+Evidence append changes source after those runs; inventory/docs must refresh.
+
+Review correction, same iteration: I authored the 12th Python subprocess
+interop case as well as the Rust client. Calling that new case "independent"
+above was inaccurate. The original 11 Python socket cases were authored by
+the separate interop peer. Security reviewer identified this on exact local
+commit `73dd02ec3093adf8f780d289e238adca4d2c4c62`; I preserve the
+original entry and append this correction rather than silently rewriting it.
+Latest-commit review must be repeated after the documentation correction.

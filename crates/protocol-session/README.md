@@ -12,6 +12,12 @@ sequentially; each client has a 30-second absolute session deadline, a
 five-second per-read timeout and a 256-frame cap. Results and cancellation
 tombstones expire on disconnect.
 
+To try the public fixture manually, keep the peer running and use its printed
+port with `cargo run -p p2p-protocol-session --bin p2p-lab-client --
+127.0.0.1:<port> 23`. The client prints `529` on a valid reply and exits
+nonzero on an invalid or missing reply. It accepts only IPv4 loopback and a
+canonical integer in `0..=1000000`; it does not send arbitrary prompts.
+
 Frames are ASCII with one LF, maximum 256 bytes including LF. No CR or extra
 spaces are accepted. The client first sends `P2P1 HELLO <id>` and receives
 `P2P1 HELLO lab-peer`. IDs contain 1–32 ASCII letters, digits, `_` or `-`.

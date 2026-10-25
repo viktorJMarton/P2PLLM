@@ -116,6 +116,32 @@ class IndependentPeerTests(unittest.TestCase):
         self.peer.close()
         self.server.stop()
 
+    def test_rust_cli_client_completes_public_fixture_and_rejects_remote_address(self) -> None:
+        client_binary = os.environ.get("P2P_LAB_CLIENT_BIN")
+        if not client_binary:
+            self.skipTest("P2P_LAB_CLIENT_BIN not set")
+        # The lab listener is sequential; release the setup peer first.
+        self.peer.close()
+        address = f"{self.server.endpoint[0]}:{self.server.endpoint[1]}"
+        result = subprocess.run(
+            [client_binary, address, "23"],
+            capture_output=True,
+            text=True,
+            timeout=TIMEOUT + 3,
+            check=False,
+        )
+        self.assertEqual(0, result.returncode, result.stderr)
+        self.assertEqual("529", result.stdout.strip())
+        denied = subprocess.run(
+            [client_binary, "192.0.2.1:9", "23"],
+            capture_output=True,
+            text=True,
+            timeout=TIMEOUT,
+            check=False,
+        )
+        self.assertNotEqual(0, denied.returncode)
+        self.assertIn("loopback only", denied.stderr)
+
     def test_hello_square_and_duplicate_are_same_result(self) -> None:
         self.peer.hello()
         self.peer.send("P2P1 OFFER one SQUARE 23")
