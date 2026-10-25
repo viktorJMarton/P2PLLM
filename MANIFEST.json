@@ -1018,13 +1018,13 @@
     },
     {
       "path": "work/WORK-0004-session-conformance/handoff-loopback-lab.md",
-      "bytes": 4699,
-      "sha256": "9f9974331f7fd8386d3dbbc88f1935f96a85bbd2e078710405e8388b0aa469da"
+      "bytes": 5143,
+      "sha256": "465806d18ffc46889633237c5357db65870a759f80efc710b01e7eba2f3e08fd"
     },
     {
       "path": "work/WORK-0004-session-conformance/journal.md",
-      "bytes": 7019,
-      "sha256": "a7f7e8595426eb4bb4e086ed7eaa888c2b5809e0d02e54f7b783082999750fc3"
+      "bytes": 7740,
+      "sha256": "1edd608aed0f774d7a7d051fb4f02e6274e5f2e8f79bcfe23abd699f0341acd1"
     },
     {
       "path": "work/WORK-0005-private-shared-compute/brief.md",
@@ -1363,8 +1363,8 @@
     },
     {
       "path": "work/agent-journals/primary.md",
-      "bytes": 163717,
-      "sha256": "21e2e0370c0fa28246db33fe728979e60449124400c2a367ab54597c23590aca"
+      "bytes": 164246,
+      "sha256": "00aef7515fd355dd7742c9bf31fd10f97a353423ec94ace95912ffd6f3075b3d"
     },
     {
       "path": "work/agent-journals/product-review.md",
@@ -1378,8 +1378,8 @@
     },
     {
       "path": "work/agent-journals/protocol-security-review.md",
-      "bytes": 15449,
-      "sha256": "e89d70cb8e267b1e357909111b2d62390f3896b8f39aa0b469d24d05225d8749"
+      "bytes": 18204,
+      "sha256": "856ebe32d44667ca71ee447bc1aae1ac8b287f3a23a6cdc5e5c0382b46e7588e"
     },
     {
       "path": "work/agent-journals/quality-review-successor.md",
