@@ -103,10 +103,10 @@ def plan(root: Path) -> dict:
 def invoke(root: Path, selected: dict, timeout_seconds: int) -> int:
     if not (root / ".git").exists():
         raise RuntimeError("Execution requires a local Git worktree")
-    if subprocess.run(["git", "diff", "--quiet"], cwd=root, check=False).returncode != 0:
-        raise RuntimeError("Tracked files modified; refuse unattended execution")
-    if subprocess.run(["git", "diff", "--cached", "--quiet"], cwd=root, check=False).returncode != 0:
-        raise RuntimeError("Staged changes present; refuse unattended execution")
+    status = subprocess.run(["git", "status", "--porcelain", "--untracked-files=all"],
+                            cwd=root, capture_output=True, text=True, check=True)
+    if status.stdout.strip():
+        raise RuntimeError("Worktree is not clean; refuse unattended execution")
     if not shutil_which("codex"):
         raise RuntimeError("codex CLI unavailable")
     run_id = str(uuid.uuid4())
