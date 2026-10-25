@@ -893,8 +893,8 @@
     },
     {
       "path": "work/WORK-0002-model-accelerator-baseline/handoff-quality-checkpoint.md",
-      "bytes": 2494,
-      "sha256": "4d859fb4ab4b6d1c182462c9079ac28f2a204cbfbc51d6d8ff653d09196d420a"
+      "bytes": 3227,
+      "sha256": "a72def3d033395a5747906b3d0b9aa53c6e02ea933aacc45c0e213579cbc4eaa"
     },
     {
       "path": "work/WORK-0002-model-accelerator-baseline/journal.md",
@@ -1298,8 +1298,8 @@
     },
     {
       "path": "work/agent-journals/primary.md",
-      "bytes": 133384,
-      "sha256": "0e283f40d58ef36534d6dfb2ac2858bccf300905aa6583bcf84e4bcbcabeebaf"
+      "bytes": 134600,
+      "sha256": "a3ad6bbfd487115bbeaca17be3466b24f7f539e778bb959247a5de67d2d73fc9"
     },
     {
       "path": "work/agent-journals/product-review.md",
