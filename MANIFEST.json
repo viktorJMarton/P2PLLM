@@ -1018,13 +1018,13 @@
     },
     {
       "path": "work/WORK-0004-session-conformance/handoff-loopback-lab.md",
-      "bytes": 3749,
-      "sha256": "05fc52ff14c5e10c59b2dd067d18bbaaf300805a1604242bdf148edc48e7412e"
+      "bytes": 4156,
+      "sha256": "5bf17a47c768d24c561e18d6a10fe701641a62f0d71691e88f1dfd6aba375408"
     },
     {
       "path": "work/WORK-0004-session-conformance/journal.md",
-      "bytes": 5145,
-      "sha256": "f75480852d7979f1dcdeb1cacc6201ff3236344d9c16e7f586b690d3bcdbe49f"
+      "bytes": 5947,
+      "sha256": "8d6b011320b371a10a2bae7a315a3b6f8499256234d61884b8b02a51b61676d1"
     },
     {
       "path": "work/WORK-0005-private-shared-compute/brief.md",
@@ -1363,8 +1363,8 @@
     },
     {
       "path": "work/agent-journals/primary.md",
-      "bytes": 158955,
-      "sha256": "38c6c47c1c385e2e74851f80b974621df75237b5fd2159da882e2395da584e5f"
+      "bytes": 159437,
+      "sha256": "196013e731a4497f499b1b191222448527eed9bf8d5848920da136e46fca69c6"
     },
     {
       "path": "work/agent-journals/product-review.md",

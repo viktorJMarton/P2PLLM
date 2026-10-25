@@ -56,3 +56,10 @@ on Android and desktop, and actual resource/connectivity measurements. The
 empty [privacy registry](../../docs/security/privacy-profile-registry.md)
 still blocks personal-derived remote work. This lab neither proves private
 computation nor advances the WORK-0003 backend gate.
+
+The manual CLI checkpoint is commit
+`4da68679c36069bb3594e30ba0cab30dbc8fbecd` on the existing development
+branch, remote SHA verified. The latest-commit independent review found no
+blocker for this public lab only. Its newly added Python subprocess case was
+authored by primary; the earlier 11 socket cases were separately authored by
+the interop peer. WORK-0004 remains in progress with the gates above.

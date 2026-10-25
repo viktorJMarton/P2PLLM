@@ -83,3 +83,17 @@ cases were independently authored by the interop peer. The phrase
 "independent Python process test" above overstates the 12th case's authorship;
 its actual pass/result remains valid. Independent review of the corrected
 documentation and latest commit is required.
+
+## Delivery receipt for manual client
+
+The corrected commit `4da68679c36069bb3594e30ba0cab30dbc8fbecd`
+received an independent exact-commit security/correctness review with **no
+blocker** in the public synthetic loopback scope. Final docs/agent-flow
+profile `protocol-cli-review-fix-20261025-001` passed exit 0 (829 package
+checks); Rust/workflow and the 12 actual interop cases passed before the
+documentation-only correction. `git push origin
+HEAD:refs/heads/work/WORK-0015-offline-android-ai` exited 0, and `git
+ls-remote --heads origin refs/heads/work/WORK-0015-offline-android-ai`
+returned exactly `4da68679c36069bb3594e30ba0cab30dbc8fbecd`, exit 0.
+Full WORK-0004, authentication, Android interoperability and privacy
+acceptance remain open. This receipt itself is a subsequent metadata change.

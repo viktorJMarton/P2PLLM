@@ -2007,3 +2007,11 @@ the separate interop peer. Security reviewer identified this on exact local
 commit `73dd02ec3093adf8f780d289e238adca4d2c4c62`; I preserve the
 original entry and append this correction rather than silently rewriting it.
 Latest-commit review must be repeated after the documentation correction.
+
+Same iteration delivery receipt: the corrected commit
+`4da68679c36069bb3594e30ba0cab30dbc8fbecd` received independent exact
+review with no blocker in the public lab scope. Final docs/agent-flow
+profile `protocol-cli-review-fix-20261025-001` passed exit 0. I pushed
+`HEAD:refs/heads/work/WORK-0015-offline-android-ai`, exit 0; remote
+`git ls-remote --heads` returned that exact SHA, exit 0. This append is
+metadata after the verified source commit and will be separately delivered.
