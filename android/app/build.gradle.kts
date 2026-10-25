@@ -1,10 +1,51 @@
 import java.security.MessageDigest
+import groovy.json.JsonSlurper
 
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("org.jetbrains.kotlin.plugin.compose")
 }
+
+// Repository-owned build input, never a remote model selector. Missing or
+// unrecognized fields fail configuration rather than falling back to old pins.
+val localModelManifestFile = rootProject.file("../config/local-inference-model.json")
+check(localModelManifestFile.isFile && localModelManifestFile.length() in 1L..16384L) {
+    "Missing or oversized local inference model manifest."
+}
+val localModelManifest = JsonSlurper().parse(localModelManifestFile, "UTF-8") as? Map<*, *>
+    ?: error("Local inference model manifest must be an object.")
+val localModelFields = setOf("schema_version", "model_revision", "quantization", "source_path",
+    "model_bytes", "model_sha256", "tokenizer_source_path", "tokenizer_bytes", "tokenizer_sha256")
+check(localModelManifest.keys == localModelFields) { "Local inference model manifest fields do not match schema1." }
+check(localModelManifest["schema_version"] == 1) { "Unsupported local inference model schema." }
+check(localModelManifest["model_revision"] == "c1899de289a04d12100db370d81485cdf75e47ca") {
+    "Unsupported local inference model revision."
+}
+check(localModelManifest["quantization"] in setOf("8da4w", "int8")) {
+    "Unsupported local inference quantization profile."
+}
+listOf("source_path", "tokenizer_source_path").forEach { field ->
+    val path = localModelManifest[field] as? String ?: error("Invalid local model source path field.")
+    check(path.isNotEmpty() && !path.startsWith('/') && !path.contains('\\') && !path.contains(':') &&
+        path.split('/').none { it.isEmpty() || it == "." || it == ".." }) {
+        "Local model source paths must be repository relative."
+    }
+}
+fun localModelBytes(field: String): Long {
+    val value = localModelManifest[field]
+    check(value is Int || value is Long) { "Local model byte counts must be integers." }
+    return (value as Number).toLong().also { check(it > 0) { "Local model byte counts must be positive." } }
+}
+fun localModelHash(field: String): String {
+    val value = localModelManifest[field] as? String ?: error("Invalid local model hash type.")
+    check(Regex("[0-9a-f]{64}").matches(value)) { "Local model hashes must be lowercase SHA256." }
+    return value
+}
+val localModelSize = localModelBytes("model_bytes")
+val localModelSha256 = localModelHash("model_sha256")
+val localTokenizerSize = localModelBytes("tokenizer_bytes")
+val localTokenizerSha256 = localModelHash("tokenizer_sha256")
 
 android {
     namespace = "org.p2pai.app"
@@ -17,6 +58,10 @@ android {
         versionCode = 3
         versionName = "0.3.0"
         testInstrumentationRunner = "org.p2pai.app.LocalInferenceSmokeInstrumentation"
+        buildConfigField("long", "LOCAL_MODEL_BYTES", "${localModelSize}L")
+        buildConfigField("String", "LOCAL_MODEL_SHA256", "\"$localModelSha256\"")
+        buildConfigField("long", "LOCAL_TOKENIZER_BYTES", "${localTokenizerSize}L")
+        buildConfigField("String", "LOCAL_TOKENIZER_SHA256", "\"$localTokenizerSha256\"")
         ndk {
             abiFilters += "arm64-v8a"
         }
@@ -31,8 +76,10 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
     sourceSets.getByName("main").assets.srcDir(layout.buildDirectory.dir("generated/localModelAssets"))
+    sourceSets.getByName("androidTest").assets.srcDir(rootProject.file("../tests/fixtures"))
     androidResources {
         noCompress += listOf("pte", "json")
     }
@@ -73,10 +120,8 @@ val verifyLocalInferencePayload by tasks.registering {
             val actualHash = digest.digest().joinToString("") { "%02x".format(it) }
             check(actualHash == expectedHash) { "Bundled $name hash mismatch; repeat verified preparation." }
         }
-        verifyAsset("model.pte", 468633472L,
-            "07786b553d9661d36431426d06c268f385d453314f6722ca79f66c7e79653b48")
-        verifyAsset("tokenizer.json", 11422654L,
-            "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4")
+        verifyAsset("model.pte", localModelSize, localModelSha256)
+        verifyAsset("tokenizer.json", localTokenizerSize, localTokenizerSha256)
         verifyAsset("LICENSE", 11343L,
             "832dd9e00a68dd83b3c3fb9f5588dad7dcf337a0db50f7d9483f310cd292e92e")
         listOf("runtime-notices/inventory.json", "runtime-notices/executorch/LICENSE").forEach { name ->

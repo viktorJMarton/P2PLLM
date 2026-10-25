@@ -158,8 +158,8 @@
     },
     {
       "path": "android/app/build.gradle.kts",
-      "bytes": 4399,
-      "sha256": "f12295ed90964b0c69edaf1cc7662bddea1043635e2892dcb90754a392e6389b"
+      "bytes": 7196,
+      "sha256": "8fcee27a50510272b25b4a67ad0fdaa7d9ae3e5ef6c48363852f80866efce8be"
     },
     {
       "path": "android/app/gradle.lockfile",
@@ -168,8 +168,8 @@
     },
     {
       "path": "android/app/src/androidTest/java/org/p2pai/app/LocalInferenceSmokeInstrumentation.kt",
-      "bytes": 14006,
-      "sha256": "d27d2ab5b4135b956c643663b688f51cb83406487eae93d72e6162bb0b944dfd"
+      "bytes": 24106,
+      "sha256": "d72bb138aba3e34d7daadf2c58a71c2eead4ecfd40137e67865464f0e787267c"
     },
     {
       "path": "android/app/src/main/AndroidManifest.xml",
@@ -178,8 +178,8 @@
     },
     {
       "path": "android/app/src/main/java/org/p2pai/app/LocalInference.kt",
-      "bytes": 8625,
-      "sha256": "fdeeeb748ba29c026dddf73c8464862ba2178dbfc66f0b7e4f2ecf1ed5647217"
+      "bytes": 8600,
+      "sha256": "103361832358f99aeff2c2e78dc932281b987e367493c14cbca2647a52825907"
     },
     {
       "path": "android/app/src/main/java/org/p2pai/app/MainActivity.kt",
@@ -240,6 +240,11 @@
       "path": "config/development-windows.json",
       "bytes": 2424,
       "sha256": "e1dacfaadc18de18b5149892f188f7ed9b756d893ce550a6a0a5783311c04af2"
+    },
+    {
+      "path": "config/local-inference-model.json",
+      "bytes": 547,
+      "sha256": "2ec862f28e66f5d78bef936921b10d3881074e43465455ec422fd9db2b64ed08"
     },
     {
       "path": "config/model-baselines.json",
@@ -572,6 +577,16 @@
       "sha256": "176005f9b747b51d9ec37a581d7a5d79a203520e2f789facf5e0b780b9d4afa3"
     },
     {
+      "path": "native/quality-tokenizer-probe/CMakeLists.txt",
+      "bytes": 1240,
+      "sha256": "dcfbf1378105e9199690774bf5ac3c8273e81663aecf6dd0e42f04a753581089"
+    },
+    {
+      "path": "native/quality-tokenizer-probe/main.cpp",
+      "bytes": 3490,
+      "sha256": "350c1e44471bc13e46217a7a84641abe1d88282962de44a1fc7f6981b1035649"
+    },
+    {
       "path": "privacy-backends/README.md",
       "bytes": 176,
       "sha256": "2acd0497d2a5f8a3f57960755b9c9dd7752914d56e2b43bb9029c330c8242009"
@@ -647,6 +662,11 @@
       "sha256": "003e51c38fa7c49f60cd04847b75bf9a111bf04b286cf2131db17a813b8349fc"
     },
     {
+      "path": "tests/fixtures/local-inference-quality.json",
+      "bytes": 1926,
+      "sha256": "9cefc22fe24910748908473b6dae464e6088223ad3239112ea440b6bf7fb4588"
+    },
+    {
       "path": "tests/test_agent_flow.py",
       "bytes": 4088,
       "sha256": "17cf3532c972b2f0fae64721acbec3b187eb84d6fcce36f0102a66cbb963de34"
@@ -658,8 +678,13 @@
     },
     {
       "path": "tests/test_export_qwen.py",
-      "bytes": 25209,
-      "sha256": "7e57aac9ecc67fe87d9280ffd73b29c258d4ce42da023e97e45c89883a880377"
+      "bytes": 28226,
+      "sha256": "91d3386663960af23fd7366538dcbbe44cc3d1de776349378fc252d1bc216966"
+    },
+    {
+      "path": "tests/test_int8_linear_pass.py",
+      "bytes": 4778,
+      "sha256": "6c6c9f7bf27481045c4e004a07c8405616e7bd35f2f4a5e8fc357f331b1272f1"
     },
     {
       "path": "tests/test_phone_benchmark.py",
@@ -668,8 +693,18 @@
     },
     {
       "path": "tests/test_prepare_android_inference.py",
-      "bytes": 4917,
-      "sha256": "626198448caaece9eeac9497b3e0e31799d70a2d289ba4acd433a71338e3f6b8"
+      "bytes": 7751,
+      "sha256": "20d3a83eae6683850f9b0d03a31ceb528ff297bf53a529c35cf08723d43d15a9"
+    },
+    {
+      "path": "tests/test_quality_pilot.py",
+      "bytes": 2092,
+      "sha256": "3e1fdf43edbf8116042e0893a63bcd4ce1f032b0bd8f31b92848ce3e28292b92"
+    },
+    {
+      "path": "tests/test_quality_reference.py",
+      "bytes": 6949,
+      "sha256": "b500faacc9e5d602cec372cf9d0bd9bb301afe702cf0bb27fb0931193da2ac4b"
     },
     {
       "path": "tests/test_run_checks.py",
@@ -713,8 +748,13 @@
     },
     {
       "path": "tools/export_qwen.py",
-      "bytes": 30179,
-      "sha256": "a53c4fc18a18f1b4484e02262b5d34ac6bfacb656e7f74a8196aafdc6c6d1b87"
+      "bytes": 33918,
+      "sha256": "77eb6db40e3df5c10c82bb2bbcb0b0941ccc9a0e50aa4444534c10481e9f81ab"
+    },
+    {
+      "path": "tools/int8_linear_pass.py",
+      "bytes": 3574,
+      "sha256": "e9ff9ccceee9c91b6c8aa6b2ff15e82a7b36adb68f932732356a9f871cb6df0b"
     },
     {
       "path": "tools/phone_benchmark.py",
@@ -723,8 +763,18 @@
     },
     {
       "path": "tools/prepare_android_inference.py",
-      "bytes": 11314,
-      "sha256": "09afa01ed1e691a9f6c77caaa9de6e173ec5254ff246752ecea4f9a028045862"
+      "bytes": 14812,
+      "sha256": "8e372666210675e406872cc369873f323d7d4f926819694cfc7ec20bdd1e0fbd"
+    },
+    {
+      "path": "tools/quality_pilot.py",
+      "bytes": 5375,
+      "sha256": "dce4b0ef49530f03063bfcc3021e7604ee647d686d28dec7c3637ce726aa1a11"
+    },
+    {
+      "path": "tools/quality_reference.py",
+      "bytes": 13996,
+      "sha256": "9ad7059424b3b1a73b7f8a957201e87a3da1d598c1b2cdd0e8525e0890013700"
     },
     {
       "path": "tools/regenerate-android-bindings.sh",
@@ -763,8 +813,8 @@
     },
     {
       "path": "work/INDEX.md",
-      "bytes": 3991,
-      "sha256": "4e9b68077f993fad0f82b23f5dc33664f31e4fc95222d239ff6815d24d7b4a86"
+      "bytes": 4413,
+      "sha256": "5a66aa81556e28a2a32496c83ab3b2a7e01d1ba4da769b1bbc6003d040278018"
     },
     {
       "path": "work/PACKAGE-BUILD.md",
@@ -793,8 +843,8 @@
     },
     {
       "path": "work/WORK-0002-model-accelerator-baseline/brief.md",
-      "bytes": 3063,
-      "sha256": "8eb610199fb4c3d1139854e80e8030e0f6fa7c9312c06f6e1df75a1d03365431"
+      "bytes": 3598,
+      "sha256": "2835923a6663e8d9237f226015645f442b41a60288c80d2ef54a195055277013"
     },
     {
       "path": "work/WORK-0002-model-accelerator-baseline/events.jsonl",
@@ -810,6 +860,11 @@
       "path": "work/WORK-0002-model-accelerator-baseline/greeting-observation.json",
       "bytes": 823,
       "sha256": "9b451276f28c6e1e065720edab7a7d36a213a95aa52be99366be057b54badb8b"
+    },
+    {
+      "path": "work/WORK-0002-model-accelerator-baseline/handoff-android-tokenizer-probe.md",
+      "bytes": 4330,
+      "sha256": "85886aa8cff9a919ccc09a06e9caf15b906279c3d059fda4e9098b13fb2d0449"
     },
     {
       "path": "work/WORK-0002-model-accelerator-baseline/handoff-config-probes.md",
@@ -837,6 +892,11 @@
       "sha256": "ea5f63d8d2d572bd2c9a4e67dbf1220647e06f1411931983a1e13f235066ac16"
     },
     {
+      "path": "work/WORK-0002-model-accelerator-baseline/handoff-quality-checkpoint.md",
+      "bytes": 2494,
+      "sha256": "4d859fb4ab4b6d1c182462c9079ac28f2a204cbfbc51d6d8ff653d09196d420a"
+    },
+    {
       "path": "work/WORK-0002-model-accelerator-baseline/journal.md",
       "bytes": 9125,
       "sha256": "aa9a9e7c3eee0eced59088db4062bd757e5dc0ff1ab0db3184f75f19a25275aa"
@@ -847,9 +907,19 @@
       "sha256": "f9203d8230899ac2f8ad5c96715ead197f0999f918df2be7155e330736acd259"
     },
     {
+      "path": "work/WORK-0002-model-accelerator-baseline/quality-checkpoint-20261025.json",
+      "bytes": 7704,
+      "sha256": "1c9c967e7aaecd8da6bc2972c01021370b9dee992fb270254945b680400d050b"
+    },
+    {
+      "path": "work/WORK-0002-model-accelerator-baseline/quality-isolation-observations.json",
+      "bytes": 48358,
+      "sha256": "59249f339013c139a338ae9eb04505133b9d807e82f4ae7786802a403c64c9a2"
+    },
+    {
       "path": "work/WORK-0002-model-accelerator-baseline/quality-review-20261024.md",
-      "bytes": 8188,
-      "sha256": "dfcdca695dd61640e3b1e988e2e71fa38c978d9b1c87a8f0eec87b2fa59deca4"
+      "bytes": 14267,
+      "sha256": "c25cecd7a88b4833c03d8f1498ead55e79a2645f92fe345e552ff832d6d2d66c"
     },
     {
       "path": "work/WORK-0002-model-accelerator-baseline/review.md",
@@ -1168,8 +1238,8 @@
     },
     {
       "path": "work/WORK-0015-android-local-inference/handoff-android.md",
-      "bytes": 8290,
-      "sha256": "1a245c6dd5bf39755df4f7224dbb8f5d6cd74885ad9b3771e0c124591b6a9a6f"
+      "bytes": 9060,
+      "sha256": "d65e5419437a7dc4c35bf09887411f0c6875e239028cedc6c8c4fb221caef1f4"
     },
     {
       "path": "work/WORK-0015-android-local-inference/handoff-delivery-review.md",
@@ -1203,8 +1273,8 @@
     },
     {
       "path": "work/agent-journals/delivery-review.md",
-      "bytes": 20692,
-      "sha256": "4ff58c5ae959b00f9c62bd6349ae0c2f524c42b23effe1205a86a1af3df98442"
+      "bytes": 25097,
+      "sha256": "00b9d57e5168ea2a06d4bfb08741d3b2b0c26f0dc3858b1f6c2e8df8b95a1bb5"
     },
     {
       "path": "work/agent-journals/independent-review.md",
@@ -1213,13 +1283,13 @@
     },
     {
       "path": "work/agent-journals/inference-android.md",
-      "bytes": 31686,
-      "sha256": "3a17a8b748fc3232e5338138e151d1811e354d5d2d7cf6d13617440a7e232747"
+      "bytes": 50731,
+      "sha256": "32e1fab1739c53376459866c7ca6e56a91104a6dfa6b81b76387fc0af6b176dc"
     },
     {
       "path": "work/agent-journals/inference-native.md",
-      "bytes": 28516,
-      "sha256": "b781af353ca455e4c2442affa810f03fdd5b55d6a40a986b0bb4bd6dde11cebb"
+      "bytes": 30124,
+      "sha256": "d2e7f33c08145ec5de79f76237fea3719d10fc9c61a900f2e7a7c391669527e1"
     },
     {
       "path": "work/agent-journals/phone-staging.md",
@@ -1228,13 +1298,18 @@
     },
     {
       "path": "work/agent-journals/primary.md",
-      "bytes": 97424,
-      "sha256": "e3d9e63ee0a7cb6ca20102c69c14b691e8a3f1158c8679a2ea73e30aaeb4e649"
+      "bytes": 133384,
+      "sha256": "0e283f40d58ef36534d6dfb2ac2858bccf300905aa6583bcf84e4bcbcabeebaf"
     },
     {
       "path": "work/agent-journals/product-review.md",
       "bytes": 55533,
       "sha256": "78997d35c807cf5bcba3702fc34c4bb7021e111a6fd31f81d1fdb1de6ac9299d"
+    },
+    {
+      "path": "work/agent-journals/quality-review-successor.md",
+      "bytes": 53478,
+      "sha256": "c6736e241160cf17158225a093de6b44d1e50f9a3d230adb1c338c11c81a3f59"
     },
     {
       "path": "work/agent-journals/sqlite-layer.md",

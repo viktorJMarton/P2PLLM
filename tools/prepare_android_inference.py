@@ -7,6 +7,7 @@ import argparse
 import json
 import os
 from pathlib import Path
+import re
 import shutil
 import subprocess
 import sys
@@ -21,9 +22,55 @@ except ModuleNotFoundError:
     from tools.runtime_artifacts import verified_flatc
 
 RUNTIME_REVISION = "3b60683923245cf472b7323426920e15623ba361"
-MODEL = (468633472, "07786b553d9661d36431426d06c268f385d453314f6722ca79f66c7e79653b48")
-TOKENIZER = (11422654, "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4")
 LICENSE = (11343, "832dd9e00a68dd83b3c3fb9f5588dad7dcf337a0db50f7d9483f310cd292e92e")
+
+
+def load_model_manifest(root):
+    def unique_fields(pairs):
+        result = {}
+        for key, value in pairs:
+            if key in result:
+                raise CheckError("Duplicate local model manifest field")
+            result[key] = value
+        return result
+    path = safe_path(root, "config/local-inference-model.json")
+    if not path.is_file() or not 0 < path.stat().st_size <= 16384:
+        raise CheckError("Local model manifest missing or oversized")
+    data = json.loads(path.read_text(encoding="utf-8"), object_pairs_hook=unique_fields)
+    fields = {"schema_version", "model_revision", "quantization", "source_path", "model_bytes",
+              "model_sha256", "tokenizer_source_path", "tokenizer_bytes", "tokenizer_sha256"}
+    if not isinstance(data, dict) or set(data) != fields or type(data["schema_version"]) is not int or data["schema_version"] != 1:
+        raise CheckError("Local model manifest schema mismatch")
+    if data["model_revision"] != "c1899de289a04d12100db370d81485cdf75e47ca" or data["quantization"] not in ("8da4w", "int8"):
+        raise CheckError("Unsupported local model profile")
+    for field in ("model_bytes", "tokenizer_bytes"):
+        if type(data[field]) is not int or not 0 < data[field] < 2**63:
+            raise CheckError("Invalid local model byte count")
+    for field in ("model_sha256", "tokenizer_sha256"):
+        if not isinstance(data[field], str) or not re.fullmatch(r"[0-9a-f]{64}", data[field]):
+            raise CheckError("Invalid local model hash")
+    for field, prefix in (("source_path", ".artifacts/exports/"), ("tokenizer_source_path", ".artifacts/models/")):
+        value = data[field]
+        if not isinstance(value, str) or not value.startswith(prefix) or "\\" in value or ":" in value or any(p in ("", ".", "..") for p in value.split("/")):
+            raise CheckError("Invalid local model artifact path")
+        safe_path(root, value)
+    return data
+
+
+def verify_candidate_provenance(root, model, manifest):
+    if manifest["quantization"] != "int8":
+        return
+    path = safe_path(root, model.parent / "export-provenance.json")
+    if not path.is_file() or path.stat().st_size > 1024 * 1024:
+        raise CheckError("Candidate export provenance missing or oversized")
+    provenance = json.loads(path.read_text(encoding="utf-8"))
+    if (provenance.get("status") != "exported_not_reference_or_device_verified" or
+            provenance.get("model_revision") != manifest["model_revision"] or
+            provenance.get("runtime_revision") != RUNTIME_REVISION or
+            provenance.get("pte_sha256") != manifest["model_sha256"] or
+            provenance.get("pte_size_bytes") != manifest["model_bytes"] or
+            provenance.get("actual_export_config", {}).get("qmode") != "int8"):
+        raise CheckError("Candidate manifest and actual export provenance differ")
 
 
 def verify_file(path, expected):
@@ -119,9 +166,20 @@ def run(output, jobs):
             raise CheckError("Native source or submodule modified")
         if any(line.startswith(("+", "U")) for line in git(source, "submodule", "status", "--recursive").splitlines()):
             raise CheckError("Native submodule revision mismatch")
-        model = safe_path(ROOT, ".artifacts/exports/qwen-runtime-20261023-003/qwen3_0_6b.pte")
-        model_dir = safe_path(ROOT, ".artifacts/models/Qwen3-0.6B-c1899de289a04d12100db370d81485cdf75e47ca")
-        for path, expected in ((model, MODEL), (model_dir / "tokenizer.json", TOKENIZER), (model_dir / "LICENSE", LICENSE)):
+        manifest = load_model_manifest(ROOT)
+        model = safe_path(ROOT, manifest["source_path"])
+        tokenizer = safe_path(ROOT, manifest["tokenizer_source_path"])
+        model_dir = tokenizer.parent
+        model_expected = (manifest["model_bytes"], manifest["model_sha256"])
+        tokenizer_expected = (manifest["tokenizer_bytes"], manifest["tokenizer_sha256"])
+        pinned_model = next(m for m in baseline["models"] if m["repo_id"] == "Qwen/Qwen3-0.6B")
+        pinned_tokenizer = next(f for f in pinned_model["files"] if f["path"] == "tokenizer.json")
+        if tokenizer_expected != (pinned_tokenizer["size_bytes"], pinned_tokenizer["sha256"]):
+            raise CheckError("Local tokenizer manifest differs from pinned revision")
+        report["model_manifest_sha256"] = digest(ROOT / "config/local-inference-model.json")
+        report["quantization"] = manifest["quantization"]
+        verify_candidate_provenance(ROOT, model, manifest)
+        for path, expected in ((model, model_expected), (tokenizer, tokenizer_expected), (model_dir / "LICENSE", LICENSE)):
             verify_file(path, expected)
         if not (install / "lib/cmake/ExecuTorch/executorch-config.cmake").is_file():
             raise CheckError("Pinned Android static runtime install missing")
@@ -158,8 +216,8 @@ def run(output, jobs):
         binary = safe_path(ROOT, build / "libp2p_inference.so")
         native_dir = safe_path(ROOT, "android/app/src/main/jniLibs/arm64-v8a")
         assets = safe_path(ROOT, "android/app/build/generated/localModelAssets/local-model")
-        verified_copy(model, assets / "model.pte", MODEL)
-        verified_copy(model_dir / "tokenizer.json", assets / "tokenizer.json", TOKENIZER)
+        verified_copy(model, assets / "model.pte", model_expected)
+        verified_copy(tokenizer, assets / "tokenizer.json", tokenizer_expected)
         verified_copy(model_dir / "LICENSE", assets / "LICENSE", LICENSE)
         report["runtime_notices"] = stage_notices(source, install, ndk, assets)
         binary_expected = (binary.stat().st_size, digest(binary))
@@ -170,8 +228,8 @@ def run(output, jobs):
         report.update(status="passed", library={"path": (native_dir / binary.name).relative_to(ROOT).as_posix(),
                       "bytes": binary_expected[0], "sha256": binary_expected[1]},
                       assets_directory=assets.relative_to(ROOT).as_posix(),
-                      model={"bytes": MODEL[0], "sha256": MODEL[1]},
-                      tokenizer={"bytes": TOKENIZER[0], "sha256": TOKENIZER[1]})
+                      model={"bytes": model_expected[0], "sha256": model_expected[1]},
+                      tokenizer={"bytes": tokenizer_expected[0], "sha256": tokenizer_expected[1]})
     except (CheckError, OSError, ValueError, subprocess.SubprocessError) as error:
         report["reason"] = str(error) if type(error) is CheckError else "build_precondition_or_io_failed"
     finally:

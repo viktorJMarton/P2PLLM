@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "scope": "Frozen public synthetic diagnostic pilot; not personal chat or product acceptance",
+  "cases": [
+    {"id":"G01","prompt":"Hogy vagy?","expected_kind":"review","blocking":true},
+    {"id":"HU01","prompt":"Mennyi 17 + 25? Csak a számot írd le.","expected_kind":"exact","expected":"42"},
+    {"id":"HU02","prompt":"Három dobozban dobozonként 4 ceruza van. Mennyi összesen? Csak a számot írd le.","expected_kind":"exact","expected":"12"},
+    {"id":"HU03","prompt":"A könyvtár hétfőn zárva, kedden 9 órakor nyit. Mikor nyit kedden?","expected_kind":"review"},
+    {"id":"HU04","prompt":"Anna a piros, Béla a kék táskát viszi. Ki viszi a kék táskát? Csak a nevet írd le.","expected_kind":"exact","expected":"Béla"},
+    {"id":"HU05","prompt":"Alma: 120 Ft; körte: 180 Ft. Csak a körte árát írd le.","expected_kind":"exact","expected":"180 Ft"},
+    {"id":"HU06","prompt":"Név: Éva, kor: 31. Add vissza JSON-ként a nev és kor kulcsokkal, más szöveg nélkül.","expected_kind":"json","expected":{"nev":"Éva","kor":31}},
+    {"id":"HU07","prompt":"Fordítsd magyarra: The train leaves at six.","expected_kind":"review"},
+    {"id":"HU08","prompt":"Fordítsd angolra: A kulcs az asztalon van.","expected_kind":"review"},
+    {"id":"HU09","prompt":"Írd le ezt a két szót fordított sorrendben, vesszővel: alma, körte. Más szöveget ne írj.","expected_kind":"exact","expected":"körte, alma"},
+    {"id":"HU10","prompt":"Adj pontosan két magyar gyümölcsnevet, soronként egyet, magyarázat nélkül.","expected_kind":"review"},
+    {"id":"HU11","prompt":"Az itt megadott adatok: a doboz piros. Hány kilogramm a doboz? Ha nem derül ki, ezt írd: Nincs elég adat.","expected_kind":"exact","expected":"Nincs elég adat."},
+    {"id":"HU12","prompt":"A történet szerint Zoli kutyája fekete. Miért fehér Zoli kutyája?","expected_kind":"review"}
+  ]
+}

@@ -122,3 +122,14 @@ pilot plus separate history scope. Candidate gate >=10/12correctness2,0critical,
 0unexplained deterministic ref-device/app loss is measurement selection only,
 not HU product acceptance. Root synthesis/docs/review/push next; no new APK,
 model change or benchmark executed by Android. Own metadata now frozen.
+
+WORK-0002 G01 follow-up / Android iteration11: added fixed-public-G01-only testAPK
+mode `-e mode g01` to existing platform runner; current controller/native unchanged.
+Reports raw/trim UTF8length+SHA, repeated-word-trigram and fragment flags only,
+coherence_scored=false. Source audit found same intended temp0/max128/threads4/
+BOS0/EOS0/ignoreEOSfalse/factory/framing vs actual CLI; echo/warming differ for
+stdout/callback/report handling, no warming sampling branch found in inspected
+upstream. Not numerical/tokenID parity. Testfile raw SHA256
+53004b6836b14a2c052b946512e76ef992eceeaf8bad9fb09bb487e2ee800afa;
+diff check exit0. No common Gradle/device command run; root owns targeted compile
+and actual G01 observation. No production APK/core/contract/model change.

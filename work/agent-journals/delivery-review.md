@@ -285,3 +285,63 @@ budget stop; quantized-reference intermediate if float/PTE diverges. /No fragmen
 is an output symptom, not proof that /no_think caused it. Root owns actual
 reproduction; no production patch or new measured result by reviewer.
 Own journal now frozen for root's final synthesis/checks.
+
+## Iteration 6 - Actual G01 CLI script and receipt review
+
+WORK-0002; same independent persona. Inspected greeting-001/run.py/report.json,
+recipe and runner output handling. Narrow repetition observation supported:
+10.079s,258parsed UTF8B, word-trigram frequency38, directive flagfalse. No raw
+answer saved, no independent recomputation/human score. EOSfalse means no literal
+marker, not a measured native stop reason. No reference/app/token-ID parity or
+cause attributed. Message-only verdict, no tracked writes at that freeze.
+Scoped reads exit0, no device/model run. Counter6;1since meeting5.
+
+## Iteration 7 - Quality metadata exact revision review
+
+WORK-0002; exact35669f7a9777c5890bd7304fb845159374882e03 parenta07cae8. Reviewed
+other owners' quality synthesis/peer journals/portable G01, explicitly excluding
+own journal from independent review.13doc paths, no product source change, clean
+tree/diff check exit0. Portable G01 fields match actual receipt;59other-owner
+canonical prefix checks match. Actual quality-review-001 docs report passed and
+stable. Message-bound NO BLOCKER for truthful observation/planned pilot only,
+not quality improvement. No tracked writes then. Counter7;2since meeting5.
+
+## Iteration 8 - Successful single APK delivery metadata review
+
+WORK-0015; exact9c4f0566dd1d5201f45316e7f6fd342e82cf31b2 parent35669f7.
+Eight root metadata/doc paths only, clean tree/diff check exit0. Inspected
+upload.py/upload-result.json/metadata-update.json and sanitized auth-result,
+never credential configuration. Actual rclone copyto exit0 then lsjson size/MD5
+check supports uploaded checksum-verification claim. Independently localMD5
+f68c3b21f9b8c06b61909a65b106b392 matches receipt. Remote SHA256 explicitly false;
+same0.3.0 APK and G01 quality regression stay explicit. Observed docs report
+passed/stable. Message-bound NO BLOCKER, no product-quality or release approval.
+No tracked writes then. Counter8;3since meeting5; meeting follows before audit9.
+
+## Meeting after iteration 8
+
+WORK-0002 / REVIEW-20261024-PROVENANCE-01; primary persona remains Independent
+correctness reviewer.2026-10-24 actual root responses received. Read latest root
+through42, native through9 and Android through10 administrative/quality entries
+and scoped responsibilities, with current primary/native/Android messages.
+Machine receipts below retain limited actually read introductory-prefix bindings;
+latest-entry scopes above are separate from full-history integrity claims.
+
+- Read: work/agent-journals/primary.md | bytes: 1024 | sha256: 2174a6e5e5e6c6089475c02ae850cf83db3e993f7c7e9f0fe0b9edded444b4d8
+- Read: work/agent-journals/inference-native.md | bytes: 1025 | sha256: 9096907bd63ec4068061baf714282192762b9b305f3e316824a44d92c6502b39
+- Read: work/agent-journals/inference-android.md | bytes: 1024 | sha256: d46980154ff2a82b909c8df6b7b1c0f1a0410562745a9b3808708af524b9d8e5
+
+| ID | WORK/contract | Question / next action | Respondent | Status / actual reply |
+| --- | --- | --- | --- | --- |
+| PV-Q1 | WORK-0002 identity | Freeze currentPTE/recipe/runtime/export-config hashes during audit? Avoid attribution drift. | primary | answered yes actual message, PTE07786... fixed, no model/export/config/pin change |
+| PV-Q2 | WORK-0002 provenance | Preserve failed parent export and recovery, not relabel recovered PTE fresh export? Keep evidence chain. | primary | answered yes actual message |
+| PV-Q3 | WORK-0002 weights | File hash alone does not prove pretrained-weight loading or numerical parity? Inspect load path. | primary | answered yes actual message |
+| PV-Q4 | WORK-0002 cause | Random weights/config drift remain hypotheses absent actual source/receipt proof? Avoid cause invention. | primary | answered yes actual message |
+| PV-Q5 | WORK-0002 attribution | Require tokenizer/config/token-ID checks and quantized intermediate for divergence attribution? Bound next experiment. | primary | answered yes actual message |
+
+All5 actual root answers received before dependent audit. No owner decision,
+model change or privacy authority inferred. Root owns current CLI run, native
+float-reference/harness, Android test-only app G01; reviewer read-only weight/
+export-provenance audit. No shared question pending. MEMORY004/006/008/011 apply:
+freeze source, artifact identity is not parity, no raw tensor/model-output logs,
+pin framing. Next meeting due by11 before12; counters never reset.

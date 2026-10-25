@@ -1193,7 +1193,9 @@ Actual participating agents: inference-native, inference-android, delivery-revie
 Read current quality entries and their actual replies; full-file version bindings
 below identify those scoped reads, not a claim to reread every historical entry.
 
-- Read: work/agent-journals/inference-native.md | bytes: 28516 | sha256: b781af353ca455e4c2442affa810f03fdd5b55d6a40a986b0bb4bd6dde11cebb
+Original read identity: work/agent-journals/inference-native.md | bytes: 28516 | sha256: b781af353ca455e4c2442affa810f03fdd5b55d6a40a986b0bb4bd6dde11cebb. Later entries were inserted before an existing administrative footer. The original HEAD bytes reproduce that original digest; the machine receipt below binds only the unchanged28025-byte prefix within the original read, not later inserted entries. No new read time, answer or approval is asserted.
+
+- Read: work/agent-journals/inference-native.md | bytes: 28025 | sha256: 1392e097164b1fcf67e31937f410b41992541e0d7a779159a2f6cec9974d242e
 
 - Read: work/agent-journals/inference-android.md | bytes: 31686 | sha256: 3a17a8b748fc3232e5338138e151d1811e354d5d2d7cf6d13617440a7e232747
 
@@ -1242,3 +1244,425 @@ Current tracked metadata uncommitted; final docs/review/push required. Remote
 DELIVERY.json/readme update and readback evidence in drive-auth-002. No raw chat,
 new APK, model change, quality acceptance or project/release closure claimed.
 Next meeting by44 before45; latest actual meeting41 retained, no counter reset.
+
+
+## Iteration 43 - Public corpus and actual app G01 parity
+
+WORK-0002 / quality-isolation-001; persona Accountable delivery coordinator.
+Added frozen public13case corpus (G01+12HU) in tests/fixtures/local-inference-quality.json. Android owner test-only mode compiled: quality-app-001 Gradle offline assembleDebugAndroidTest exit0/62.641s. Actual unchanged installed APK SHA f91a77... checked before test-only APK install. greeting-app-001 instrumentation exit-1/observation complete:258B SHAe7055f... exactly matches previous CLI, trigram maximum38. No raw answer saved, no human coherence score. This measured case is not explained by UI-only corruption. No product/model/prompt change. Native and old reviewer hit usage quota; explicit handoff to root and quality-review-successor, no inferred approval.
+
+## Iteration 44 - Actual guarded FLOAT reference
+
+WORK-0002 / quality-reference-002: root took over native harness after quota. Native first001 NameError parent failure preserved; corrected source launcher and six targeted boundary tests pass, no model result invented for failed001. Actual002 parent/worker exit0, safetensors+lock hashes checked; same20inputtoken digest c41ba66a... for host HF and Cpp. FP32/eager/greedy128/explicitEOS151645, same rendered fixture9c66202a...:15B/7tokens/EOS/no repetition or directive flags. Load2.203s/generation1.422s are host-only observations, no phone speed comparison. Input phone tokenIDs still not measured. Reviewer successor independently inspected snapshot/tests/report; no execution blocker, no human coherence claim. Paths .artifacts/device/WORK-0002/quality-reference-002/{report,worker-result}.json. No product fix, no larger model or new export.
+
+## Meeting after iteration 44
+
+Read current scoped quality/audit entries and actual messages. Peer version bindings follow; not a claim of new full-history semantic reread.
+
+- Read: work/agent-journals/inference-native.md | bytes: 30124 | sha256: d2e7f33c08145ec5de79f76237fea3719d10fc9c61a900f2e7a7c391669527e1
+
+- Read: work/agent-journals/inference-android.md | bytes: 35864 | sha256: 6f78b06ac36397b9423519f03d6f654154934082dd5c7736b9369ddb2b5568f0
+
+- Read: work/agent-journals/quality-review-successor.md | bytes: 4177 | sha256: d4561047de42bf29f04f0b44d6e93bb4412fb089d155a4ab495c9d55b766dc83
+
+| ID | WORK/change | Question and next action | Respondent | Status / actual response |
+| --- | --- | --- | --- | --- |
+| ISO-Q1 | WORK-0002 actual differential | Does15B FLOAT vs258B app/CLI prove quantization cause or human quality? Preserve scope. | quality-review-successor | answered no; differential only, coherence not rated |
+| ISO-Q2 | WORK-0002 token boundary | Measure actual Android pinned HFTokenizer encode0/0 with G01 canonical IDhash, IDs memory-only? | quality-review-successor | answered yes; include tokenizer/binary/source hashes, no host-only substitution |
+| ISO-Q3 | WORK-0002 model adaptation | Compare same-checkpoint adaptedFP32 vsHFFP32 before attributing quantization/export? | quality-review-successor | answered yes; teacher-forced same prefix, aggregate error/argmax and separate decode |
+| ISO-Q4 | WORK-0002 correction scope | If adapted float diverges, inspect config/conversion/QKnorm/RoPE/attention before model/sampling/UI cleanup? | quality-review-successor | answered yes; no masking or simultaneous tuning |
+| ISO-Q5 | WORK-0002 quality gates | Keep G01+pilot/phone parity gates open and development-only reviewed push, no new APK acceptance? | quality-review-successor | answered yes; no release or quality-fix claim |
+
+Root actually answered successor SR-Q1..5: retain failed001; actual ARM64 tokenizer
+probe; float32/eval/safetensors/strict weights; identical teacher-forced prefix;
+1.7B remains evaluation only. Answered predecessor PV-Q1..5 before its quota:
+freeze hashes, retain failed export/recovery, identity not weight/numerical proof,
+random-weight hypotheses only, require intermediate comparisons. Predecessor
+source findings via actual messages are not a final latest-commit approval.
+Android own pending reference-parity question answered by root actual002 receipt:
+raw/trimmed identities separate, phone stopreason still unknown, no inferred EOS.
+New owner root executes adaptedfloat; Android owns diagnostic ARM64 tokenprobe;
+successor independently audits. No shared production contract change authorized.
+Next meeting by47 before48, counters never reset. Current source uncommitted;
+meaningful workflow/docs checks and independent latest-commit review required.
+
+
+## Iteration 45 - Adapted FP32 diagnostic first attempt
+
+WORK-0002 adapter-float-001 helper failed before adapted model evaluation: executorch is a namespace package, __file__None caused TypeError. Receipt preserved; parent child exit0 alone is not experiment success. No tensor/answer output persisted; no model result claimed.
+
+## Iteration 46 - Actual phone token-ID parity
+
+WORK-0002 token-parity-001: pinned ARM64 diagnostic binary7c4e8827... linked same installed libtokenizers; actualA72 matched G01fixture/tokenizer hashes, encode0/0 returned20IDs. Canonical compactJSON token digest c41ba66a... equals hostHF/Cpp. RawIDs memory-only, no persistence. Successor independently inspected C++source/buildlink/receipt, NO BLOCKER. This case has equal encoded input, not general numerical parity.
+
+## Iteration 47 - Adapted FP32 namespace repair attempt
+
+WORK-0002 adapter-float-002 corrected namespace root lookup but failed FileNotFoundError before adapted evaluation: installed wheel omits0_6b_config.json, while export explicitly uses pinned upstream file. Native source config exists; next helper uses the exact export parameter path after verification, no config invention. Both failed reports retained, no model quality result inferred. Source/data/model pins unchanged.
+
+## Meeting after iteration 47
+
+Actual successor responses to root5questions received; read current audit entries and Android12handoff. Version receipts identify these scoped reads.
+
+Original read identity (administrative correction, no new read or consent): work/agent-journals/quality-review-successor.md | bytes: 10568 | sha256: a046c628a8db6457ab402d55ee8421941f1be37b9015cfadc05e130208643e74
+
+- Read: work/agent-journals/quality-review-successor.md | bytes: 1025 | sha256: 1cc47707daf43e0d41b1fd15282669cba806b1727907447c1389e9b682cf7edc
+
+- Read: work/agent-journals/inference-android.md | bytes: 38977 | sha256: f8c26dfa00460f7f6ab2e99a054f0c4345d6aec206b9e4661be17f8e93385d51
+
+| ID | WORK/change | Question and next action | Respondent | Status / actual response |
+| --- | --- | --- | --- | --- |
+| PAR-Q1 | WORK-0002 phone tokens | Does actual20token hash parity establish whole pipeline equality? Keep G01-only scope. | quality-review-successor | answered no; observed input encoding equal forG01 only |
+| PAR-Q2 | WORK-0002 numerical isolation | Require same-weight adaptedFP32/HFFP32 before quantization attribution? | quality-review-successor | answered yes; same teacher-forced prefix and no early causal label |
+| PAR-Q3 | WORK-0002 failed helpers | Do namespace/path failures establish any adapted model result? Preserve failed receipts. | quality-review-successor | answered no; infrastructure failure only, fixed paths must be verified |
+| PAR-Q4 | WORK-0002 model choice | Compare actual same-weight8da4 intermediate before switching to larger model? | quality-review-successor | answered yes; configuration/provenance must match |
+| PAR-Q5 | WORK-0002 product behavior | May UI filtering or repetition cleanup substitute for a generation fix? | quality-review-successor | answered no; quality gates stay open |
+
+Phone probe is diagnostic-only, not a production bridge change. Next root owns
+verified-path adaptedfloat retry; Android probe/source frozen, successor audit.
+No new APK/model/export or quality pass. No pending shared decision inferred from
+unavailable native/predecessor agents. Next meeting by50 before51, counters kept.
+
+
+## Iteration 48 - Successful same-prefix adapted FLOAT observation
+
+WORK-0002 adapter-float-003 statusobserved: verified actualexport upstream0_6b_config.json SHA5326149f...,strictweights0missing/unexpected. Seven identical HF prefixes allcloseatol.001/rtol.0001 andargmaxmatch,maxabs4.53e-5; greedy7tokenEOS+answerhashsameHF. Cacheoffscopeexplicit. One shellquoteSyntaxError before helpercreation yielded workerexit2 and no model observation; fixed with literal filepatch, no changed model config. Successor independently inspected source/receipt; no blocker/scopedonly.
+
+## Iteration 49 - Eager8da4w failure reproduced before export
+
+WORK-0002 adapter-quant4-001 observed same-checkpoint transformed eager model. Existing recipe embedding8,0 then8da4w/HQQ/group128, noKV.128tokens/budget/noEOS,352B,repeatedtrigrammax9. Fiveof7teacherforcedargmaxagree,0allclose,maxabs10.75. SamefailureclassasPTE butnotexact258Boutput. This localizes one failure to quantization pipeline, not solelinearbitwidth cause or completePTEexplanation. Source quantorder independently checked. Host16GiBbudget allowed only one model job, free2.7GiB observed; no parallelmodel load.
+
+## Iteration 50 - Alternate int8 weight-only candidate
+
+WORK-0002 adapter-q8-001 observed same publicG01/weights/framing, embedding8,0HQQ, linearqmodeint8. Greedy7tokens/EOS/15B/digestequalsHF, norepetition/directiveflags;7of7teacherforcedargmaxequal,0allclose. This is a different quantizationprofile, not soleweightbit ablation; activationquantizationremoved and BF16checkpointprecisioncanroundscales. Reportdtypefloat32describesprequant model, noteverypostquantbuffer. LinearWOignoresHQQflag; embeddingHQQremainsactive. No actualnewexport orphonefixyet. Successor independently inspected actualcandidate/sourceprofile and sent explicitscopeconstraints.
+
+## Meeting after iteration 50
+
+Read actualcurrent peer sourcehandoffs/quality entries and successor7answers; no imaginary native/predecessorresponse afterquota.
+
+Original read identity (administrative correction, no new read or consent): work/agent-journals/quality-review-successor.md | bytes: 18576 | sha256: 09bd1d5c3ef1b5d6f0489e1917e5c6f49f126b717c910970320766aba9456e19
+
+- Read: work/agent-journals/quality-review-successor.md | bytes: 1025 | sha256: 1cc47707daf43e0d41b1fd15282669cba806b1727907447c1389e9b682cf7edc
+
+- Read: work/agent-journals/inference-android.md | bytes: 38977 | sha256: f8c26dfa00460f7f6ab2e99a054f0c4345d6aec206b9e4661be17f8e93385d51
+
+| ID | WORK/change | Question and next action | Respondent | Status / actual response |
+| --- | --- | --- | --- | --- |
+| Q8-Q1 | WORK-0002 candidate | Does host7token candidate establish phone fix or general quality? | quality-review-successor | answered no; preexportcandidate only, no human score/numerical equivalence |
+| Q8-Q2 | WORK-0002 exporter | Permit boundedoptin8da4w/int8 with unchangeddefault/pins and explicitprofile, codeaudit first? | quality-review-successor | answered yes; guards remain and exactcodeaudit before execute |
+| Q8-Q3 | WORK-0002 provenance | Keep originalbaselineimmutable and newdirPTE+SHA/size with same safetensors/log/jobguards? | quality-review-successor | answered yes; no originaloverwrite, newexportnotpreapprovedquality |
+| Q8-Q4 | WORK-0002 delivery | Require realA72G01/HUpilot/resource/lifecycle/payload checks before userqualityacceptance? | quality-review-successor | answered yes; diagnosticAPKbuild may precede tests, no premature shipping |
+| Q8-Q5 | WORK-0002 localmanifest | Singleversionedlocalmanifest for build/staging hash/size/profile, not remote authority? | quality-review-successor | answered yes; failclosed unknown/missing/unsupportedprofile, no modelpinupgrade |
+
+Root preserves q8profile caveats and candidateonly status. NativebridgeAPI stays
+unchanged. Root owns exporter/prepare/sourceprofile configuration, Android owns
+Gradle/Kotlin consumption of localmanifest, reviewer independent code audit.
+Pending exactexportercode review holds execution; safe implementation continues.
+Next meeting by53 before54; no counter reset or release approval. Current source
+uncommitted and needs actualchecks/latestcommitreview/developmentpush.
+
+
+## Iteration 51 - Explicit candidate exporter and guarded execution
+
+WORK-0002: optinint8/default8da4w exporter, actualmergedconfigwhitelist before originalexport, strictworkerreceipt and candidateprofileprovenance. First31targetedtests failed mockedSystemExitfixture after newimport; correctedonlysyntheticmodulefixture, originalsecretnondisclosureassertions kept.32testsPASS, independentlyrerun bysuccessor; snapshotexecutionreviewNO BLOCKER before actualnewexport001 started. Newdir only; exportremainsrunning, notquality/deviceaccepted.
+
+## Iteration 52 - Shared local model manifest
+
+WORK-0002: strict9field localmanifest consumed by rootstaging and AndroidgeneratedBuildConfig; unknown/type/path/hash/profile failclosed, actualexportprovenance required forint8. Old468633472B/PTE07786... and version3 unchanged. Actual Kotlin+androidTest compile59.75s/exit0; negativebooleanmodel_bytes rejected by Gradle exit1 with expectedstaticmessage, originalmanifestbytes restored and hash2ec862f... verified. No productionpin change.
+
+## Iteration 53 - Fixed public pilot implementation
+
+WORK-0002: hostquality_pilot.py and ref --pilot with pinned13casecorpus, offline/safetensors/logguards.10ref/pilottargetedtests initiallyPASS; test-only Androidpilotmode compiled39.484s/exit0 and APKassetbytebind added to baselinecollector before execution. Exact/json predicates arebool, qualitative/correctnessnot_human_rated; no aggregatequalitypass. Successor independent review found Pythonfloat rounding could accept31.000000000000000001 unlike AndroidBigDecimal. This verificationfailure is preserved; code needed Decimal correction. Actual5peerquestions/responses arrived before correction. OldinstalledAPK baselinepilot13 began; observationpending, no rawanswerspersisted.
+
+## Meeting after iteration 53 - Journal checkpoint recorded late
+
+Cadence deviation: the Decimal correction was started after actualpeeranswers but before this journal refresh/meetingentry. This entry is recorded now, not backdated and does not claim the prior journal was timely. No invented approval or counter reset; actualreviewfinding and correction are recorded below as54. Read current scoped successor/Android entries and actualresponses.
+
+Original read identity (administrative correction, no new read or consent): work/agent-journals/quality-review-successor.md | bytes: 24914 | sha256: a5f6a76bfd13088c175f501679bb12325cb66f9692dbadb94410edcfe20c5856
+
+- Read: work/agent-journals/quality-review-successor.md | bytes: 1025 | sha256: 1cc47707daf43e0d41b1fd15282669cba806b1727907447c1389e9b682cf7edc
+
+Original read identity (administrative correction, no new read or consent): work/agent-journals/inference-android.md | bytes: 48941 | sha256: 662e9c25a90c88bc72db02f0ee4ab3efcf37defb08c0a198e2a64512af34018c
+
+- Read: work/agent-journals/inference-android.md | bytes: 1025 | sha256: ab162a3fbc12583fdb694e81a65e79a8fcffb66adbfd190518bf7969d8d2c02d
+
+| ID | WORK/change | Question and next action | Respondent | Status / actual response |
+| --- | --- | --- | --- | --- |
+| PILOT-Q1 | WORK-0002 fixed cases | Can pilot accept arbitrary prompts or unbound testAPK corpus? | quality-review-successor | answered no; frozen13publiccases and actualAPKassetbyte/hashbinding required |
+| PILOT-Q2 | WORK-0002 scoring | Do boolmatches supply complete correctness/language/instruction scores? | quality-review-successor | answered no; pendingqualitative scores staynot_human_rated |
+| PILOT-Q3 | WORK-0002 baseline | Run13cases on hashverifiedoldAPK before modelreplacement for A/B? | quality-review-successor | answered yes; samefixedcorpus and freshcontroller state |
+| PILOT-Q4 | WORK-0002 numeric JSON | Preserve numeric31semantic and use Decimal to avoid rounded-near31 acceptance? | quality-review-successor | answered yes;31.0/3.1e1 valid, nearby distinctnumber rejected |
+| PILOT-Q5 | WORK-0002 resource budget | Hold HFpilot until exportends to avoid parallelmodel memorypressure on16GiBhost? | quality-review-successor | answered yes; phone measurement independent of hostmodel heap |
+
+Actualsourcefinding not waived, no qualityscores accepted from buggy predicate.
+Rootowns correctedhostpredicate+collector; AndroidstrictJSON alreadycorrect,
+sourcefrozen. Newexport and baselinepilot observations stillpending. Nextmeeting
+by56 before57; counters preserved despite this explicitlylate journal checkpoint.
+
+## Iteration 54 - Decimal scoring correction
+
+WORK-0002: json parse_float/parse_int use Decimal, reject nonfinite/duplicates/
+extra fields, nearby31.000000000000000001 regression added.10ref/pilottestsPASS.
+Renamed worker cases-list digest to cases_sha256 distinct from parentfullcorpus
+public_corpus_sha256. Original G01reference002 source archived by exactinverseof
+laterpilotadditions; SHA d9368f... equals actualrecordedharness, explicitlysource
+reconstruction, not newexecution. Independent correctionreviewpending; model and
+productionpins remainunchanged. No new inference acceptance or shipping claim.
+
+## Iteration 55 - Candidate-only linear pass correction, 2026-10-25
+
+Persona remains Accountable delivery coordinator; WORK-0002, run
+linear-pass-001. Resume read MEMORY, orchestrator persona, WORK brief, primary
+journal and actual successor messages. Prior INT8 export001 ended exit1:
+builder ConvertToLinearPass -> meta_mm dimension mismatch, no candidate PTE.
+Original failure receipts remain in .artifacts/exports/qwen-int8-candidate-20261024-001.
+Public synthetic rectangular graph reproduces the original RuntimeError; a
+conservative explicit-transpose transform preserves exact synthetic outputs.
+
+Implemented tools/int8_linear_pass.py and candidate-only worker binding in
+tools/export_qwen.py. Three installed upstream source hashes checked before
+binding; no installed file overwrite or default8da4w behavior change. Explicit
+2D transpose only; scaled addmm/other permutation rejected; graph lint and
+ExportPass metadata retrace retained. Provenance records adaptation source SHA.
+tests/test_int8_linear_pass.py first execution failed due to missing factory
+instantiation in test calls, corrected test-only calls. Rerun pinned export venv
+5 tests exit0; host exporter/staging/pilot/reference 42 tests exit0. Numeric
+fixtures cover folded/explicit/permuted, biased/unbiased and batch1/2/4 with
+exact value/shape equality, not full symbolic/model/PTE parity.
+
+Old installed APK baseline pilot completed13 cases,0/7 deterministic matches;
+.artifacts/device/WORK-0002/pilot-app-baseline-001/report.json. Human qualitative
+scores remain pending. Successor audit10 confirmed Decimal correction no blocker.
+Requested exact new pass audit12 before export002; no approval inferred from
+prior plan audit. HF13-case pilot started after heavy export ended, fresh
+quality-pilot-reference-001 output; result pending. Source uncommitted, no new
+APK/device quality acceptance. Next mandatory meeting by56 before57.
+
+## Iteration 56 - Actual worker import route correction
+
+WORK-0002, run linear-pass-import-002, 2026-10-25. Successor audit12 found
+execution blocker missed by numerical tests: python-c/run_path worker inserts
+ROOT, not tools/, so top-level int8_linear_pass import would fail. Changed to
+tools.int8_linear_pass; added actual WORKER launch prefix/run_path/foreign-cwd
+subprocess regression, no model. Host43 tests exit0. Successor independently
+reran the import regression exit0, unchanged numerical pass already independently
+5PASS; audit13 snapshot NO BLOCKER for export002 execution only, not quality or
+latest-commit acceptance. No failed heavy export wasted on this found blocker.
+HFpilot still running, no concurrent export started. Process memory query via
+Get-CimInstance denied in sandbox; no escalation needed for that optional check.
+
+## Meeting after iteration 56
+
+Read successor audit12/13 and actual M56 answers, Android14 frozen handoff.
+No response invented from unavailable native/predecessor agents. Canonical LF
+journal receipts identify scoped entries actually read.
+
+Original read identity (administrative correction, no new read or consent): work/agent-journals/quality-review-successor.md | bytes: 34553 | sha256: 5dd677d015ead9c468ad1b32c4bc0d26dda5853369d363cd73c701709f465545
+
+- Read: work/agent-journals/quality-review-successor.md | bytes: 1025 | sha256: 1cc47707daf43e0d41b1fd15282669cba806b1727907447c1389e9b682cf7edc
+Original read identity (administrative correction, no new read or consent): work/agent-journals/inference-android.md | bytes: 48941 | sha256: 662e9c25a90c88bc72db02f0ee4ab3efcf37defb08c0a198e2a64512af34018c
+
+- Read: work/agent-journals/inference-android.md | bytes: 1025 | sha256: ab162a3fbc12583fdb694e81a65e79a8fcffb66adbfd190518bf7969d8d2c02d
+
+| ID | WORK/contract question and next action | Respondent | Actual answer/status |
+| --- | --- | --- | --- |
+| M56-Q1 | WORK-0002 pass | distinguish5numericPASS from workerimportBLOCKER, recheck before002? | quality-review-successor | yes; actual qualified-import route rechecked, execution no blocker |
+| M56-Q2 | WORK-0002 shapes | varying-batchFX is not symbolicexport proof, actualshape errors block? | quality-review-successor | yes; retain actual export gate |
+| M56-Q3 | WORK-0002 resources | foldedmm remainsmm, evaluate PTE/RAM/backend without manualweighttranspose? | quality-review-successor | yes; real device/resource acceptance remains open |
+| M56-Q4 | WORK-0002 host | no parallel HFpilot/export on16GBhost? | quality-review-successor | yes; wait for actualpilotexit beforeexport002 |
+| M56-Q5 | WORK-0002 product |10-15% estimate not acceptance; baseline0/7 and no newAPK explicit? | quality-review-successor | yes; deterministic results distinct from13 human ratings |
+
+All five actual responses received; no shared scope decision pending. Primary
+owns serialized pilot/export and device follow-through, successor exact review.
+Next mandatory meeting by59 before60, counters unchanged by date/run. Current
+source uncommitted, GitHub closure and phone quality remain pending.
+
+## Iteration 57 - Pilot observation and unresolved reference drift
+
+WORK-0002 quality-pilot-reference-001 finished exit0,13observed,2/7 exact
+predicates, no repetition flags, HU12 token budget. Source/receipts immutable.
+G01 has identical fixture/input-token digests to reference002 but11 generated
+tokens/24B instead of7tokens/15B. Therefore no accepted deterministic reference
+or model-capacity conclusion from these counts. Successor audit14 confirms both
+HF loaders omit output_loading_info/strict missing/unexpected/mismatched/error
+checks; pinned upstream can initialize missing parameters, but occurrence here
+is not yet measured. Seed difference alone is not proof of root cause.
+
+After pilot process actually exited, independently reviewed INT8 export002
+started in .artifacts/exports/qwen-int8-candidate-20261025-002. It is still running;
+no new PTE/APK claimed. No second heavy model job until actual export exit.
+Next bounded change: shared fail-closed HF load receipt and state fingerprint,
+then a separate controlled diagnostic. Existing receipts are not rewritten.
+
+## Iteration 58 - Fail-closed reference loading and state identity
+
+WORK-0002, run reference-loading-001. Added shared verified_float_model in
+tools/quality_reference.py, consumed by both HF workers. Require explicit
+output_loading_info with empty missing/unexpected/mismatched/error collections;
+persist counts only, no parameter names or errors. Nonempty/malformed receipts
+block generation. Added model_state_fingerprint for parameters and all buffers,
+including nonpersistent rotary buffers, streaming memoryview into SHA without
+tensor files/bytes copies. Seed untouched: this correction does not explain drift.
+tests/test_quality_reference.py includes partial-load canary/invalid receipt and
+buffer-sensitive fingerprint checks.12 reference/pilot tests exit0. Independent
+audit15 requested after actual D14 answers, not presumed from prior pass review.
+
+Consolidated existing sanitized q4/q8/oldAPKpilot/FLOATpilot receipts into portable
+quality-isolation-observations.json; original files unchanged. Updated brief,
+index and quality review with current failure gates. Export002 still running,
+no new HF model loaded in parallel, no production model/version change. Source
+uncommitted; next meeting by59 before60. No claimed Android/quality fix yet.
+
+Administrative format correction,2026-10-25: validator rejected the meeting56
+table's combined WORK/question cells. Split those cells without changing actual
+questions/answers/counter/timing. Earlier native footer insertion invalidated a
+meeting41 full-prefix receipt; original HEAD digest exactly verified and original
+read identity preserved with a narrower unchanged-prefix binding. Historical
+read limitations remain explicit. This is no new peer meeting or consent.
+
+## Iteration 59 - Actual candidate export and strict reference receipt
+
+WORK-0002: export qwen-int8-candidate-20261025-002 completed exit0,
+2547248816B PTE/SHA173928bd8c413ff34fbba592da5a7bab455cdbb24a894a985e588a63b3f7e10d.
+Actual merged INT8 profile and pass sourcee9ff9c... recorded; not phone/backend
+or packaging acceptance. Expanded/unfused float operators may explain its size,
+but actual placement not measured. Old application/model pins remain unchanged.
+
+After export process exit, quality-reference-strict-003 completed exit0 with
+all four loading counts0 and state312tensors/3006529792B/SHAe168c86e5bfb4cef1c4dbc2591fd192f4bfdc21b2832ed8c39ce0c0fe68bcb4c.
+Seed0 G01 reproduces7tokens/15B/SHA1edd25...; unexplained prior unseeded11token
+pilot drift stays open. Missing loading keys not observed in this new run.
+
+Common workflow profile quality-export-correction-001 passed exit0, source
+fingerprint stable; docs same run passed758checks and agent flow exit0.
+Optional pinned model-export numerical tests ran separately5PASS; host absence
+does not waive them. Windows symlink privileges limit relevant common checks.
+Receipt formatting check initially failed: preserved original read identities
+and narrowed changed-history machine bindings, owners repaired own journals;
+validator unchanged. One inline repair command failed PowerShell parsing before
+mutation, replaced by literal ignored repair.py. No invented peer read/approval.
+
+A72 public G01 candidate probe int8-phone-002 uploaded the new PTE, then caught
+TypeError because helper incorrectly supplied timeout to Adb.shell. No inference
+ran, app untouched, failure receipt preserved. New003 may reuse only after exact
+remote full hash verification, never silently treat the failed probe as passed.
+
+## Meeting after iteration 59
+
+Read successor16 actual export/strict-reference audit and Android owner's final
+administrative correction. Actual five responses received before continuation.
+Canonical read binding below; earlier limited historical receipts remain limited.
+
+- Read: work/agent-journals/quality-review-successor.md | bytes: 45935 | sha256: 9a536a944ee7ba10e687e98b77fd0044af8402970dce3457144e072f8195cb99
+
+| ID | WORK/change | Concrete question and next action | Respondent | Actual response/status |
+| --- | --- | --- | --- | --- |
+| M59-Q1 | WORK-0002 export | Does2.55GB export close mobile shipping or allow app replacement? | quality-review-successor | no; candidate only, app unchanged |
+| M59-Q2 | WORK-0002 reference | Do strict zero loading counts prove cached PTE or explain prior drift? | quality-review-successor | no; retain both gates |
+| M59-Q3 | WORK-0002 control | Next seed1 publicG01 control needs same config and separate state-hashed receipt? | quality-review-successor | yes; immutable controlled experiment |
+| M59-Q4 | WORK-0002 phone | CLI must verify staged model/runner/tokenizer hashes and persist only metrics? | quality-review-successor | yes; no unverified giant APK delivery |
+| M59-Q5 | WORK-0002 checks | Optional host export skips need explicit pinned numeric and Android evidence? | quality-review-successor | yes; no waiver or broad acceptance |
+
+No shared decision pending. Primary owns guarded phone003 and seed control;
+successor independent review. Next meeting by62 before63, no counter reset.
+Current changes uncommitted; exact-commit review/GitHub push remain pending.
+
+## Iteration 60 - Corrected standalone A72 candidate probe
+
+WORK-0002 int8-phone-003: new helper reuses already staged PTE only after full
+remote SHA verification, fixes timeout call to supported Adb.call. Original002
+failure immutable. Runtime launcher/runner/tokenizer and public G01 hashes verified.
+Actual A72 CLI completed:14B/SHAe1c3b43725a16971e7d95bbf7586bd0a7b8b2aaf34584eddbd794e46107bb828,
+no repetition/directive flags,92.172seconds total. EOS/token count not measured.
+Not equal to15B HF reference, human coherence not rated. No production app/model
+replaced. No useful latency or broad quality acceptance, no new APK delivery.
+
+## Iteration 61 - Controlled seed1/reference state comparison
+
+WORK-0002 seed-control-001: independent staticaudit17 execution no blocker,
+reviewed reference.run Job/timeout/DEVNULL reused with fixed local diagnostic
+entrypoint. Only explicit seed0 call remapped to1; no arbitrary prompts/network/
+pickle; same strict loader/state fingerprint. Actual exit0, four loadcounts0,
+same312tensor model+allbuffers fingerprint and same7generatedIDs/15Banswerdigest
+as seed0 strict003. Input fixture/token digests and reference source hash match.
+This controls seed0vs1 path, does not explain prior unseeded pilot or prove full
+checkpoint/state numerical parity. No old receipt overwritten.
+
+## Iteration 62 - Final verification failures and size investigation
+
+WORK-0002: full Android common profile failed during plugin initialization,
+C:/.android unavailable under sandbox; no Android pass claimed from it. Prior
+Kotlin/androidTest compiles remain separate observations. Recovery will set
+workspace-local ANDROID_USER_HOME, not waive permissions/checks or accept licenses.
+Metadata-only read of PTE sizes failed before payload inspection because pinned
+generated Program accessor resolves ExecutionPlan as module, not callable. No
+tensor payload extracted; firstprobe source retained. Next probe uses explicit
+FlatBuffers table fields from pinned schema, metadata only.
+
+User asked whether APK grew to3GB: clarified current DriveAPK509885353B unchanged;
+new candidate PTE2547248816B is not an APK and was not packaged. FP32 constant
+expansion is a hypothesis pending metadata audit, not yet measured placement.
+Meeting62 required before further diagnostic/recovery implementation.
+
+## Meeting after iteration 62
+
+Read successor meeting17 and actual five M62 scope replies, not an inferred
+review of newer measurements. Android remains frozen; no unavailable agent
+response invented. Own implementation continues after this durable meeting.
+
+- Read: work/agent-journals/quality-review-successor.md | bytes: 50255 | sha256: 7b576cb17a3b80bbc404795729b449e246850b1ff2cca38b3c591bfbca79217b
+- Read: work/agent-journals/inference-android.md | bytes: 50731 | sha256: 32e1fab1739c53376459866c7ca6e56a91104a6dfa6b81b76387fc0af6b176dc
+
+| ID | WORK/change | Concrete question and next action | Respondent | Actual response/status |
+| --- | --- | --- | --- | --- |
+| M62-Q1 | WORK-0002 phone | Does14B/no-repeat at92.172s establish shipping or quality acceptance? | quality-review-successor | no; HF15B differs, no acceptance |
+| M62-Q2 | WORK-0002 seed | Does seed0/1 state/output equality explain unseeded pilot drift? | quality-review-successor | no; retain separate unresolved gate |
+| M62-Q3 | WORK-0002 size | Separate2.55GBPTE from510MBAPK, inspect metadata without tensor values? | quality-review-successor | yes; keep artifacts and evidence distinct |
+| M62-Q4 | WORK-0002 checks | Recover Android home in workspace and rerun checks without waiver/license changes? | quality-review-successor | yes; actual successful check required |
+| M62-Q5 | WORK-0002 checkpoint | Exact review/devpush may close tooling checkpoint, not quality sprint? | quality-review-successor | yes; all quality/runtime gates stay open |
+
+No shared scope decision pending. Primary owns size metadata and environment
+recovery, successor independent latest review. Next meeting by65 before66.
+
+## Iteration 63 - Metadata-only PTE size census
+
+WORK-0002 pte-size-002 exit0, pinned FlatBuffers schema field offsets used
+without generated nested factories. Original001 failed probe preserved. Logical
+top-level FP32 constants: old5064196B, candidate2390985732B; signed8-bit constants
+155582464B in both. Old/candidate storage entries118/512, delegate counts340/256.
+Opaque delegate internals/padding excluded; no tensor payload extracted. Reviewer
+read-only audit18 independently checked actual storage aliases/zero offsets and
+global unique counts: these two files support the measured logical totals.
+This explains much of size growth, not precise transformation cause or runtime
+hardware placement. Candidate remains2547248816B model artifact, not3GBAPK.
+
+## Iteration 64 - Actual Android profile recovery
+
+WORK-0002 common Android profile002 progressed after workspace ANDROID_USER_HOME
+but failed signing keystore lock access; llvm-strip also reported permission
+denial. Both failed reports retained. Authorized escalation reran profile003
+with same workspace Android home: exit0/full profile passed, stable source,
+lint and APK assemble passed with verifyLocalInferencePayload observed. JVM
+unit-test task NO-SOURCE, explicitly not runtime coverage. Build kept old model
+manifest/profile/version; candidate was never packaged or installed in app.
+Source checkpoint only, no Drive replacement or quality-sprint closure.
+
+## Meeting after iteration 64
+
+Early meeting before final source checkpoint. Read successor18 scoped actual
+metadata/seed/phone/build audit and five M64 actual responses. Prior historical
+prefix limitations stay explicit; these are not full product approvals.
+
+- Read: work/agent-journals/quality-review-successor.md | bytes: 53478 | sha256: c6736e241160cf17158225a093de6b44d1e50f9a3d230adb1c338c11c81a3f59
+
+| ID | WORK/change | Concrete question and next action | Respondent | Actual response/status |
+| --- | --- | --- | --- | --- |
+| M64-Q1 | WORK-0002 census | Do2.391GB logical FP32 constants prove the precise rewrite cause or hardware placement? | quality-review-successor | no; size evidence only, excluded opaque internals/padding |
+| M64-Q2 | WORK-0002 phone | Does14B at92.172s supply human quality or cached HF equivalence? | quality-review-successor | no; both gates open |
+| M64-Q3 | WORK-0002 Android | Treat lint/build pass and JVM NO-SOURCE as build evidence, not invented runtime tests? | quality-review-successor | yes; scope explicit |
+| M64-Q4 | WORK-0002 packaging | Keep old8da4w/version3, no2.55GB candidate APK/Drive replacement? | quality-review-successor | yes; actual model manifest remains original |
+| M64-Q5 | WORK-0002 checkpoint | Require current checks, exact commit review/devpush and explicit next quality/reference gates? | quality-review-successor | yes; tooling checkpoint only |
+
+All five actual replies received. Primary owns source commit/development push
+and remote SHA verification; successor latest-commit independent review. Next
+meeting by67 before68. No shared decision pending. Review19 requested after
+concrete commit; no quality gate completion or review of nonexistent SHA inferred.

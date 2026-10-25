@@ -85,6 +85,7 @@ KNOWN_EXPORT_REASONS = frozenset({
     "upstream_git_check_failed", "upstream_modified_patch_target", "upstream_patch_context_mismatch",
     "upstream_revision_mismatch", "upstream_source_hash_mismatch", "upstream_unexpected_modification",
     "flatc_artifact_verification_failed", "flatc_worker_recheck_failed",
+    "unsupported_quantization_profile", "actual_export_config_mismatch",
 })
 
 
@@ -243,8 +244,10 @@ def prepare_sources(checkout):
     return records
 
 
-def export_arguments(checkout, checkpoint, output):
-    return ["--config", str(checkout / "examples/models/qwen3/config/qwen3_xnnpack_q8da4w.yaml"),
+def export_arguments(checkout, checkpoint, output, quantization="8da4w"):
+    if quantization not in ("8da4w", "int8"):
+        raise ExportError("unsupported_quantization_profile")
+    arguments = ["--config", str(checkout / "examples/models/qwen3/config/qwen3_xnnpack_q8da4w.yaml"),
             '+base.model_class="qwen3_0_6b"',
             f'+base.params="{(checkout / "examples/models/qwen3/config/0_6b_config.json").as_posix()}"',
             f'+base.checkpoint="{checkpoint.as_posix()}"',
@@ -252,6 +255,38 @@ def export_arguments(checkout, checkpoint, output):
             f'+export.output_name="{(output / "qwen3_0_6b.pte").as_posix()}"',
             "hydra/job_logging=disabled", "hydra/hydra_logging=disabled",
             "hydra.output_subdir=null", f'hydra.run.dir="{output.as_posix()}"']
+    if quantization == "int8":
+        arguments.append("quantization.qmode=int8")
+    return arguments
+
+
+def effective_export_config(config, quantization):
+    """Whitelist non-payload fields from the actual merged exporter configuration."""
+    def enum_value(value):
+        return getattr(value, "value", value)
+    result = {
+        "model_class": enum_value(config.base.model_class),
+        "qmode": config.quantization.qmode,
+        "embedding_quantize": config.quantization.embedding_quantize,
+        "group_size": config.quantization.group_size,
+        "use_hqq": config.quantization.use_hqq,
+        "dtype_override": enum_value(config.model.dtype_override),
+        "use_shared_embedding": config.model.use_shared_embedding,
+        "use_kv_cache": config.model.use_kv_cache,
+        "use_sdpa_with_kv_cache": config.model.use_sdpa_with_kv_cache,
+        "max_seq_length": config.export.max_seq_length,
+        "max_context_length": config.export.max_context_length,
+        "xnnpack_enabled": config.backend.xnnpack.enabled,
+        "xnnpack_extended_ops": config.backend.xnnpack.extended_ops,
+    }
+    expected = dict(model_class="qwen3_0_6b", qmode=quantization,
+        embedding_quantize="8,0", group_size=None, use_hqq=True,
+        dtype_override="fp32", use_shared_embedding=False, use_kv_cache=True,
+        use_sdpa_with_kv_cache=True, max_seq_length=2048, max_context_length=2048,
+        xnnpack_enabled=True, xnnpack_extended_ops=True)
+    if quantization not in ("8da4w", "int8") or result != expected:
+        raise ExportError("actual_export_config_mismatch")
+    return result
 
 
 def prepare_installed_sources(root, python, baseline, source_patches):
@@ -433,6 +468,19 @@ def worker_main(argv):
         expected = Path(next(r["installed_path"] for r in source_records if r["path"] == MODEL_SOURCE))
         if Path(inspect.getsourcefile(Llama2Model)).resolve() != expected.resolve():
             raise ExportError("export_imported_source_mismatch")
+        from executorch.examples.models.llama import export_llama_lib
+        original_export = export_llama_lib.export_llama
+        selected_quantization = "int8" if "quantization.qmode=int8" in args else "8da4w"
+        if selected_quantization == "int8":
+            from tools.int8_linear_pass import install_candidate_pass
+            result["linear_pass_adaptation"] = install_candidate_pass()
+
+        def checked_export(config):
+            result["actual_export_config"] = effective_export_config(config, selected_quantization)
+            result["params_sha256"] = sha256(Path(config.base.params))
+            return original_export(config)
+
+        export_llama_lib.export_llama = checked_export
         result["phase"] = "export_pipeline"
         sys.argv = ["export_llm"] + args
         runpy.run_module("executorch.extension.llm.export.export_llm", run_name="__main__")
@@ -455,14 +503,15 @@ def worker_main(argv):
             stream.write("\n")
 
 
-def execute_export(python, checkout, checkpoint, output, versions, source_records, flatc, timeout=1800):
+def execute_export(python, checkout, checkpoint, output, versions, source_records, flatc, timeout=1800,
+                   quantization="8da4w"):
     install_logging_guard()
     env = {k: v for k, v in os.environ.items() if k not in ("PYTHONPATH", "PYTHONHOME")}
     env.update(HF_HUB_OFFLINE="1", TRANSFORMERS_OFFLINE="1", HF_DATASETS_OFFLINE="1", HYDRA_FULL_ERROR="1",
                HF_HUB_DISABLE_TELEMETRY="1", PYTHONDONTWRITEBYTECODE="1",
                PYTHONNOUSERSITE="1", PYTHONSAFEPATH="1")
     argv = [str(python), "-c", WORKER, str(Path(__file__)), str(checkout), str(output), json.dumps(versions),
-            json.dumps(source_records), json.dumps(flatc), *export_arguments(checkout, checkpoint, output)]
+            json.dumps(source_records), json.dumps(flatc), *export_arguments(checkout, checkpoint, output, quantization)]
     process = job = None
     try:
         job = WindowsJob() if os.name == "nt" else None
@@ -492,6 +541,9 @@ def execute_export(python, checkout, checkpoint, output, versions, source_record
 
 def run(args, root=ROOT):
     install_logging_guard()
+    quantization = getattr(args, "quantization", "8da4w")
+    if quantization not in ("8da4w", "int8"):
+        raise ExportError("unsupported_quantization_profile")
     baseline = json.loads((root / "config/model-baselines.json").read_text(encoding="utf-8"))
     if baseline["runtime"]["revision"] != REVISION:
         raise ExportError("baseline_revision_mismatch")
@@ -526,7 +578,9 @@ def run(args, root=ROOT):
               "checkpoint_sha256": model["weight_artifacts"][0]["sha256"],
               "tokenizer_files": model["files"], "patches": patches,
               "export_recipe": {**baseline["runtime"]["export_recipe"],
+                                "qmode": quantization,
                                 "loader_status": "pinned_safetensors_adapter_prepared"},
+              "quantization_profile_status": "baseline" if quantization == "8da4w" else "candidate_not_quality_or_device_verified",
               "wrapper_sha256": sha256(Path(__file__)), "backend_placement": "unverified",
               "phone_measurement_performed": False}
     try:
@@ -554,7 +608,15 @@ def run(args, root=ROOT):
             except RuntimeArtifactError as error:
                 raise ExportError("flatc_artifact_verification_failed") from error
             report["flatc"] = flatc
-            execute_export(python, checkout, checkpoint, output, versions, source_records, flatc)
+            execute_export(python, checkout, checkpoint, output, versions, source_records, flatc,
+                           quantization=quantization)
+            worker_result = json.loads((output / "worker-result.json").read_text(encoding="utf-8"))
+            if worker_result.get("status") != "passed" or "actual_export_config" not in worker_result:
+                raise ExportError("actual_export_config_mismatch")
+            report["actual_export_config"] = worker_result["actual_export_config"]
+            report["params_sha256"] = worker_result["params_sha256"]
+            if quantization == "int8":
+                report["linear_pass_adaptation"] = worker_result["linear_pass_adaptation"]
             verify_artifact(checkpoint, model["weight_artifacts"][0])
             for entry in model["files"]:
                 verify_artifact(tokenizer_dir / entry["path"], entry)
@@ -572,7 +634,7 @@ def run(args, root=ROOT):
     except KeyboardInterrupt:
         report.update(status="interrupted", reason="export_cancelled")
         raise
-    except (ExportError, OSError, subprocess.SubprocessError) as error:
+    except (ExportError, OSError, ValueError, KeyError, subprocess.SubprocessError) as error:
         report["status"] = "failed"
         report["reason"] = bounded_reason(error, "export_process_or_io_failed")
         report["error_details"] = exception_details(error)
@@ -590,6 +652,8 @@ def main():
     for name in ("upstream-dir", "checkpoint", "tokenizer-dir", "output-dir"):
         parser.add_argument("--" + name, required=True)
     parser.add_argument("--execute", action="store_true")
+    parser.add_argument("--quantization", choices=("8da4w", "int8"), default="8da4w",
+                        help="Explicit candidate profile; default baseline remains8da4w")
     args = parser.parse_args()
     try:
         report = run(args)

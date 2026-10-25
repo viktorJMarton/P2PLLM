@@ -5,13 +5,24 @@ import android.app.Instrumentation
 import android.content.Intent
 import android.os.Bundle
 import android.os.SystemClock
+import android.util.JsonReader
+import android.util.JsonToken
 import android.view.accessibility.AccessibilityNodeInfo
 import android.view.inputmethod.InputMethodManager
 import java.security.MessageDigest
+import java.util.Locale
+import java.io.StringReader
+import java.math.BigDecimal
+import java.nio.ByteBuffer
+import java.nio.charset.CodingErrorAction
+import org.json.JSONArray
+import org.json.JSONObject
 
 /** Public synthetic fixtures only. Results never include prompts, answers or exception details. */
 class LocalInferenceSmokeInstrumentation : Instrumentation() {
     private var restartMode = false
+    private var greetingMode = false
+    private var pilotMode = false
     private var phaseDeadline = SystemClock.elapsedRealtime() + TIMEOUT_MS
     private var phase = "START"
         set(value) {
@@ -24,6 +35,8 @@ class LocalInferenceSmokeInstrumentation : Instrumentation() {
     override fun onCreate(arguments: Bundle?) {
         super.onCreate(arguments)
         restartMode = arguments?.getString("mode") == "restart"
+        greetingMode = arguments?.getString("mode") == "g01"
+        pilotMode = arguments?.getString("mode") == "pilot"
         start()
     }
 
@@ -31,7 +44,18 @@ class LocalInferenceSmokeInstrumentation : Instrumentation() {
         try {
             phase = "LAUNCH"
             var activity = launch()
-            if (restartMode) {
+            if (pilotMode) {
+                runPilot()
+            } else if (greetingMode) {
+                phase = "G01_PUBLIC_GREETING"
+                requireSmoke(!snapshot().busy, "G01_ALREADY_BUSY")
+                ask(GREETING)
+                val terminal = await { !it.busy }
+                requireSmoke(terminal.prompt == GREETING, "G01_INPUT_MISMATCH")
+                requireSmoke(terminal.phase == InferencePhase.COMPLETED, "G01_NOT_COMPLETED")
+                recordGreetingObservation(terminal.answer)
+                passed("g01_observation_completed")
+            } else if (restartMode) {
                 phase = "RESTART_EMPTY"
                 val initial = snapshot()
                 requireSmoke(initial.phase == InferencePhase.IDLE && initial.prompt.isEmpty() &&
@@ -185,6 +209,173 @@ class LocalInferenceSmokeInstrumentation : Instrumentation() {
             !terminal.stopping, "CANCEL_NOT_TERMINAL")
     }
 
+    private fun recordGreetingObservation(answer: String) {
+        val observation = answerObservation(answer)
+        observation.keys().forEach { key ->
+            when (val value = observation.get(key)) {
+                is Int -> results.putInt(key, value)
+                is String -> results.putString(key, value)
+                is Boolean -> results.putBoolean(key, value)
+                else -> throw SmokeFailure("OBSERVATION_TYPE_INVALID")
+            }
+        }
+    }
+
+    // Used only for the fixed G01 or the embedded frozen public pilot corpus.
+    private fun answerObservation(answer: String): JSONObject {
+        fun digest(bytes: ByteArray) = MessageDigest.getInstance("SHA-256")
+            .digest(bytes).joinToString("") { "%02x".format(it) }
+        val raw = answer.toByteArray(Charsets.UTF_8)
+        val trimmed = answer.trim()
+        val trimmedBytes = trimmed.toByteArray(Charsets.UTF_8)
+        val words = Regex("[\\p{L}\\p{N}_]+")
+            .findAll(trimmed.lowercase(Locale.ROOT)).map { it.value }.toList()
+        val maxRepeated = words.windowed(3).groupingBy { it }.eachCount().values.maxOrNull() ?: 0
+        return JSONObject()
+            .put("answer_bytes", raw.size)
+            .put("answer_digest", digest(raw))
+            .put("answer_trimmed_bytes", trimmedBytes.size)
+            .put("answer_trimmed_digest", digest(trimmedBytes))
+            .put("max_repeated_word_trigram", maxRepeated)
+            .put("pathological_repetition_flag", maxRepeated >= 3)
+            .put("directive_fragment_flag", Regex("/no(?:_think)?\\b", RegexOption.IGNORE_CASE)
+                .containsMatchIn(answer))
+            .put("contains_protocol", answer.contains("<|") || answer.contains("|>"))
+            .put("contains_thought", answer.contains("<think>") || answer.contains("</think>"))
+            .put("coherence_scored", false)
+    }
+
+    private fun runPilot() {
+        phase = "PILOT_CORPUS"
+        val cases = loadPilotCases()
+        val observations = JSONArray()
+        results.putString("pilot_results_json", observations.toString())
+        for (index in 0 until cases.length()) {
+            val case = cases.getJSONObject(index)
+            val id = case.getString("id")
+            phase = "PILOT_$id"
+            phaseDeadline = SystemClock.elapsedRealtime() + PILOT_TIMEOUT_MS
+            try {
+                requireSmoke(!snapshot().busy, "PILOT_ALREADY_BUSY")
+                val prompt = case.getString("prompt")
+                ask(prompt)
+                val terminal = await { !it.busy }
+                requireSmoke(terminal.prompt == prompt, "PILOT_INPUT_MISMATCH")
+                requireSmoke(terminal.phase == InferencePhase.COMPLETED, "PILOT_NOT_COMPLETED")
+                val observation = answerObservation(terminal.answer)
+                    .put("id", id).put("status", "observed")
+                    .put("terminal_phase", terminal.phase.name)
+                    .put("expected_kind", case.getString("expected_kind"))
+                when (case.getString("expected_kind")) {
+                    "exact" -> {
+                        val matches = terminal.answer.trim() == case.getString("expected")
+                        observation.put("deterministic_match", matches)
+                    }
+                    "json" -> {
+                        val matches = matchesPilotJson(terminal.answer)
+                        observation.put("deterministic_match", matches)
+                    }
+                    "review" -> observation.put("deterministic_match", JSONObject.NULL)
+                }
+                observation.put("correctness", "not_human_rated")
+                observations.put(observation)
+                completedChecks += 1
+                results.putString("pilot_results_json", observations.toString())
+            } catch (failure: SmokeFailure) {
+                observations.put(JSONObject().put("id", id).put("status", "error")
+                    .put("error_code", failure.code))
+                results.putString("pilot_results_json", observations.toString())
+                throw failure
+            } catch (_: Throwable) {
+                observations.put(JSONObject().put("id", id).put("status", "error")
+                    .put("error_code", "PILOT_CASE_FAILED"))
+                results.putString("pilot_results_json", observations.toString())
+                throw SmokeFailure("PILOT_CASE_FAILED")
+            }
+        }
+        results.putBoolean("pilot_observations_completed", true)
+        results.putBoolean("human_review_complete", false)
+    }
+
+    private fun loadPilotCases(): JSONArray {
+        val bytes = ByteArray(16385)
+        var size = 0
+        context.assets.open("local-inference-quality.json").use { input ->
+            while (true) {
+                val count = input.read(bytes, size, bytes.size - size)
+                if (count < 0) break
+                requireSmoke(count > 0, "PILOT_CORPUS_READ_FAILED")
+                size += count
+                requireSmoke(size <= 16384, "PILOT_CORPUS_SIZE_INVALID")
+            }
+        }
+        requireSmoke(size > 0, "PILOT_CORPUS_SIZE_INVALID")
+        val text = Charsets.UTF_8.newDecoder().onMalformedInput(CodingErrorAction.REPORT)
+            .onUnmappableCharacter(CodingErrorAction.REPORT).decode(ByteBuffer.wrap(bytes, 0, size)).toString()
+        val corpus = JSONObject(text)
+        requireSmoke(corpus.keys().asSequence().toSet() == setOf("schema_version", "scope", "cases") &&
+            corpus.get("schema_version") == 1 && corpus.get("scope") is String, "PILOT_SCHEMA_INVALID")
+        val cases = corpus.getJSONArray("cases")
+        val expectedIds = listOf("G01") + (1..12).map { "HU%02d".format(Locale.ROOT, it) }
+        val exactIds = setOf("HU01", "HU02", "HU04", "HU05", "HU09", "HU11")
+        requireSmoke(cases.length() == expectedIds.size, "PILOT_CASES_INVALID")
+        for (index in expectedIds.indices) {
+            val case = cases.getJSONObject(index)
+            val id = expectedIds[index]
+            requireSmoke(case.get("id") == id && case.get("prompt") is String, "PILOT_CASE_INVALID")
+            val prompt = case.getString("prompt")
+            requireSmoke(prompt.isNotBlank() && prompt.toByteArray(Charsets.UTF_8).size <= 1024 &&
+                !prompt.contains('\u0000') && !prompt.contains("<|") && !prompt.contains("|>") &&
+                !prompt.contains("<think>") && !prompt.contains("</think>"), "PILOT_INPUT_INVALID")
+            val expectedKind = when { id in exactIds -> "exact"; id == "HU06" -> "json"; else -> "review" }
+            val fields = when {
+                id == "G01" -> setOf("id", "prompt", "expected_kind", "blocking")
+                expectedKind != "review" -> setOf("id", "prompt", "expected_kind", "expected")
+                else -> setOf("id", "prompt", "expected_kind")
+            }
+            requireSmoke(case.keys().asSequence().toSet() == fields &&
+                case.get("expected_kind") == expectedKind, "PILOT_EXPECTATION_INVALID")
+            if (id == "G01") requireSmoke(prompt == GREETING && case.get("blocking") == true, "PILOT_G01_INVALID")
+            if (expectedKind == "exact") requireSmoke(case.get("expected") is String, "PILOT_EXACT_INVALID")
+            if (expectedKind == "json") {
+                val expected = case.getJSONObject("expected")
+                requireSmoke(expected.keys().asSequence().toSet() == setOf("nev", "kor") &&
+                    expected.get("nev") == "Éva" && expected.get("kor") is Number &&
+                    BigDecimal(expected.get("kor").toString()).compareTo(BigDecimal(31)) == 0,
+                    "PILOT_JSON_INVALID")
+            }
+        }
+        return cases
+    }
+
+    private fun matchesPilotJson(answer: String): Boolean {
+        return try {
+            JsonReader(StringReader(answer)).use { reader ->
+                reader.isLenient = false
+                reader.beginObject()
+                val seen = mutableSetOf<String>()
+                var matches = true
+                while (reader.hasNext()) {
+                    val key = reader.nextName()
+                    if (!seen.add(key)) return false
+                    when (key) {
+                        "nev" -> {
+                            if (reader.peek() != JsonToken.STRING) return false
+                            matches = reader.nextString() == "Éva" && matches
+                        }
+                        "kor" -> {
+                            if (reader.peek() != JsonToken.NUMBER) return false
+                            matches = BigDecimal(reader.nextString()).compareTo(BigDecimal(31)) == 0 && matches
+                        }
+                        else -> return false
+                    }
+                }
+                reader.endObject()
+                matches && seen == setOf("nev", "kor") && reader.peek() == JsonToken.END_DOCUMENT
+            }
+        } catch (_: Exception) { false }
+    }
+
     private fun await(predicate: (InferenceState) -> Boolean): InferenceState {
         while (SystemClock.elapsedRealtime() < phaseDeadline) {
             val current = snapshot()
@@ -322,7 +513,9 @@ class LocalInferenceSmokeInstrumentation : Instrumentation() {
 
     companion object {
         private const val TIMEOUT_MS = 120000L
+        private const val PILOT_TIMEOUT_MS = 300000L
         private const val QUESTION = "Write only the integer answer: 1+1."
+        private const val GREETING = "Hogy vagy?"
         private const val LONG_QUESTION = "Count from 1 to 1000, writing every integer in order."
     }
 }

@@ -1,5 +1,6 @@
 """Boundary checks for verified Android staging; sanitized tiny fixture only."""
 import hashlib
+import json
 import os
 from pathlib import Path
 import tempfile
@@ -10,6 +11,52 @@ from tools import prepare_android_inference as staging
 
 
 class VerifiedStagingTests(unittest.TestCase):
+    def model_manifest(self):
+        return {"schema_version": 1, "model_revision": "c1899de289a04d12100db370d81485cdf75e47ca",
+                "quantization": "8da4w", "source_path": ".artifacts/exports/public/model.pte",
+                "model_bytes": 12, "model_sha256": "1" * 64,
+                "tokenizer_source_path": ".artifacts/models/public/tokenizer.json",
+                "tokenizer_bytes": 14, "tokenizer_sha256": "2" * 64}
+
+    def test_manifest_fails_closed_on_profile_type_hash_and_path_drift(self):
+        path = self.root / "config/local-inference-model.json"
+        path.parent.mkdir()
+        mutations = [("quantization", "unapproved"), ("model_bytes", True),
+                     ("model_bytes", 2**63), ("model_sha256", "invalid"),
+                     ("schema_version", 1.0), ("source_path", ".artifacts/exports/../credentials/key"),
+                     ("source_path", ".artifacts/credentials/private.pte"), ("extra", "field")]
+        for key, value in mutations:
+            data = self.model_manifest()
+            data[key] = value
+            path.write_text(json.dumps(data), encoding="utf-8")
+            with self.subTest(field=key, value=value), self.assertRaises(staging.CheckError):
+                staging.load_model_manifest(self.root)
+        data = self.model_manifest()
+        path.write_text(json.dumps(data), encoding="utf-8")
+        self.assertEqual(staging.load_model_manifest(self.root), data)
+        path.write_text(json.dumps(data)[:-1] + ',"model_bytes":99}', encoding="utf-8")
+        with self.assertRaises(staging.CheckError):
+            staging.load_model_manifest(self.root)
+
+    def test_candidate_cannot_stage_a_different_profile_or_artifact(self):
+        manifest = self.model_manifest()
+        manifest["quantization"] = "int8"
+        model = self.root / manifest["source_path"]
+        model.parent.mkdir(parents=True)
+        path = model.parent / "export-provenance.json"
+        provenance = {"status": "exported_not_reference_or_device_verified",
+            "model_revision": manifest["model_revision"], "runtime_revision": staging.RUNTIME_REVISION,
+            "pte_sha256": manifest["model_sha256"], "pte_size_bytes": manifest["model_bytes"],
+            "actual_export_config": {"qmode": "int8"}}
+        path.write_text(json.dumps(provenance), encoding="utf-8")
+        staging.verify_candidate_provenance(self.root, model, manifest)
+        for field, value in (("status", "failed"), ("pte_sha256", "3" * 64),
+                             ("actual_export_config", {"qmode": "8da4w"})):
+            changed = {**provenance, field: value}
+            path.write_text(json.dumps(changed), encoding="utf-8")
+            with self.assertRaises(staging.CheckError):
+                staging.verify_candidate_provenance(self.root, model, manifest)
+
     def directory_link(self, link, target):
         try:
             link.symlink_to(target, target_is_directory=True)

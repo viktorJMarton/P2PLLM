@@ -10,6 +10,11 @@ Current sprint: [WORK-0002 capacity/measurement plan](WORK-0002-model-accelerato
 Immediate quality priority after owner feedback: [actual team review, G01
 reproduction and frozen comparison plan](WORK-0002-model-accelerator-baseline/quality-review-20261024.md).
 Operational smoke success is not answer-quality acceptance; no quality fix yet.
+2026-10-25: oldAPK pilot0/7 deterministic matches; corrected INT8 export2.55GB
+ran standalone on A72 at92.172s for G01, no repetition, not HF-identical.
+It is not an APK replacement. Strict loading/seed0-vs1 controls agree, while
+the earlier unseeded pilot drift stays open. Compact export and English/Hungarian
+quality are next gates. See [checkpoint](WORK-0002-model-accelerator-baseline/handoff-quality-checkpoint.md).
 Owner-selected target: Samsung Galaxy A72 (replaces Honor400Pro); exact hardware
 observed SM-A725F/Android14/API34/QTI SM7125/5625888KiB OS-visible RAM in WORK-0002.
 Model measurements retain priority; owner2026-10-23 also authorizes parallel

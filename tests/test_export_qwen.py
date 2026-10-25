@@ -148,6 +148,10 @@ print(json.dumps({"guard_canary_passed":True}))
 
     def test_worker_system_exit_writes_bounded_failure_not_payload(self):
         fake_torch = ModuleType("torch")
+        llama_package = ModuleType("executorch.examples.models.llama")
+        library = ModuleType("executorch.examples.models.llama.export_llama_lib")
+        library.export_llama = lambda config: None
+        llama_package.export_llama_lib = library
         model = ModuleType("executorch.examples.models.llama.model")
         model.Llama2Model = type("Llama2Model", (), {})
         with tempfile.TemporaryDirectory() as temporary:
@@ -160,7 +164,9 @@ print(json.dumps({"guard_canary_passed":True}))
                     patch.object(export, "verify_dependency_closure"), \
                     patch.object(export, "recheck_flatc", return_value="unused-verified-fixture"), \
                     patch.dict(export.os.environ), \
-                    patch.dict(sys.modules, {"torch": fake_torch, "executorch.examples.models.llama.model": model}), \
+                    patch.dict(sys.modules, {"torch": fake_torch, "executorch.examples.models.llama.model": model,
+                                            "executorch.examples.models.llama": llama_package,
+                                            "executorch.examples.models.llama.export_llama_lib": library}), \
                     patch("inspect.getsourcefile", return_value=str(installed)), \
                     patch("runpy.run_module", side_effect=SystemExit("SYNTHETIC_SECRET_EXIT")), \
                     patch.object(sys, "addaudithook"), patch.object(sys, "argv", ["fixture"]):
@@ -175,6 +181,21 @@ print(json.dumps({"guard_canary_passed":True}))
 
 
 class NativeCompilerTests(unittest.TestCase):
+    def test_candidate_helper_import_in_actual_worker_launch_context(self):
+        # The worker uses python -c/run_path with cwd outside the repository.
+        # run_path does not add the wrapper's tools directory to sys.path.
+        launcher = export.WORKER.replace(
+            'raise SystemExit(module["worker_main"](sys.argv[2:]))',
+            'from tools.int8_linear_pass import install_candidate_pass\n'
+            'assert callable(install_candidate_pass)',
+        )
+        with tempfile.TemporaryDirectory() as temporary:
+            result = subprocess.run(
+                [sys.executable, "-c", launcher, str(Path(export.__file__).resolve())],
+                cwd=temporary, capture_output=True, timeout=30,
+            )
+        self.assertEqual(result.returncode, 0, "Worker launch-context import failed")
+
     def fixture(self, root):
         venv = root / ".artifacts/venvs/qwen-export"
         python = venv / "Scripts/python.exe"
@@ -222,6 +243,33 @@ class NativeCompilerTests(unittest.TestCase):
 
 
 class SourceAndInputTests(unittest.TestCase):
+    def test_int8_is_explicit_opt_in_and_keeps_baseline_arguments(self):
+        root = Path("/synthetic")
+        baseline = export.export_arguments(root, root / "model.safetensors", root / "output")
+        candidate = export.export_arguments(root, root / "model.safetensors", root / "output", "int8")
+        self.assertNotIn("quantization.qmode=int8", baseline)
+        self.assertEqual(candidate[:-1], baseline)
+        self.assertEqual(candidate[-1], "quantization.qmode=int8")
+        with self.assertRaises(export.ExportError):
+            export.export_arguments(root, root / "model.safetensors", root / "output", "unapproved")
+
+    def test_effective_configuration_rejects_drift_before_export(self):
+        actual = SimpleNamespace(
+            base=SimpleNamespace(model_class=SimpleNamespace(value="qwen3_0_6b")),
+            quantization=SimpleNamespace(qmode="int8", embedding_quantize="8,0", group_size=None, use_hqq=True),
+            model=SimpleNamespace(dtype_override=SimpleNamespace(value="fp32"), use_shared_embedding=False,
+                                  use_kv_cache=True, use_sdpa_with_kv_cache=True),
+            export=SimpleNamespace(max_seq_length=2048, max_context_length=2048),
+            backend=SimpleNamespace(xnnpack=SimpleNamespace(enabled=True, extended_ops=True)))
+        report = export.effective_export_config(actual, "int8")
+        self.assertEqual(report["qmode"], "int8")
+        self.assertNotIn("checkpoint", report)
+        with self.assertRaises(export.ExportError):
+            export.effective_export_config(actual, "8da4w")
+        actual.quantization.group_size = 32
+        with self.assertRaises(export.ExportError):
+            export.effective_export_config(actual, "int8")
+
     def test_pte_output_name_is_absolute_because_upstream_uses_pte_path_verbatim(self):
         with tempfile.TemporaryDirectory(prefix="export output ") as temporary:
             output = Path(temporary).resolve()

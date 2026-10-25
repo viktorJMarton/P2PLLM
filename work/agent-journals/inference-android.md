@@ -439,3 +439,265 @@ bytes. Machine line now binds only surviving1025B introductory prefix included i
 that actual read, not integrity of later changed root history. Original identity
 preserved here, no new/backdated historical read, meeting, answer or counter reset.
 No product/source/API/APK changes; administrative metadata only.
+
+## Iteration 11 - WORK-0002 G01 app observation mode and JNI/CLI audit
+
+WORK-0002 / run g01-android-20261024-01; primary persona unchanged Pragmatic Android
+platform engineer. Source baseline9c4f0566dd1d5201f45316e7f6fd342e82cf31b2,
+current test/journal changes uncommitted. Root explicitly requested G01 diagnostic
+test-only instrumentation and prohibited concurrent Gradle/device execution.
+
+Added `-e mode g01` to existing LocalInferenceSmokeInstrumentation. Launches real
+Activity and asks fixed public G01 through current production controller; verifies
+prompt identity and COMPLETED, then reports raw and trimmed UTF8bytes/SHA256,
+maximum repeated word-trigram count, >=3repetition flag, directive/protocol/thought
+flags. No raw prompt/answer/error/node tree output. `coherence_scored=false` and
+`g01_observation_completed=true` mean completed observation, not quality acceptance.
+G01 does not call arithmetic requireAnswer or relax arithmetic/G01 criteria.
+Bounded120s phase, existing static errors; no arbitrary fixture argument/API.
+
+Metrics alignment: root CLI greeting001 uses stripped answer and Unicode regex
+word trigrams with Python casefold. App returns both raw and trim identities;
+trigrams use Unicode L/N/underscore words and Locale.ROOT lowercase. Hungarian
+case pairs align; exotic casefold expansions can differ and must not be assumed
+identical. Root CLI strips stdout CRLF and EOS/report while native AnswerBuffer
+consumes recognized EOS including split callbacks. App metric does not postfilter
+ordinary repetition/directive fragments. Source echo=false does not prevent
+model-generated lexical copying; no cause claimed from /No symptom alone.
+
+Targeted source comparison of upstream official checkout:
+
+| Setting/path | JNI current | Actual greeting001 CLI | Observation |
+| --- | --- | --- | --- |
+| Raw/template | public G01 via chat_prompt /no_think + same closed-think prefix | prompt_file generated with same explicit bytes | Source same; tokenID parity not measured |
+| Temperature/maxnew | constructor0/config0/max128 | flags0/max128 | Same source intent, context metadata may further cap |
+| BOS/EOS/ignoreEOS | defaults0/0/false | explicit0/0/defaultfalse | Same |
+| CPU threads/method |4/defaultforward |4/defaultforward | Same |
+| Runner/tokenizer | create_llama_runner fresh/VersionDefault | same factory fresh/VersionDefault | Same factory, not numerical proof |
+| Echo |false | defaulttrue | CLI host removes echoed framed input; JNI callback does not receive prompt echo |
+| Warming |true |false with warmupfalse | Inspected generate uses flag for logs/stdout/report; token callback still gets first-prefill and subsequent decoded pieces |
+| Output | callback AnswerBuffer -> strictUTF16 -> fullKotlinString | stdout -> framing/report/EOS parser -> strip | Compare trimmed digest first, raw separately |
+
+No sampling branch depending on warming found in inspected generate; this is a
+source observation, not executed JNI/CLI parity. Upstream max_new_tokens includes
+one prefill token then127decode iterations; neither current JNI String result nor
+G01 observation adds tokenIDs/stopreason. No production config/prompt/API/model/APK
+change. Native/owner reported CLI repetition outside app; not yet app-G01 measured.
+
+Verification: Windows PowerShell targeted source reads and scoped Git diff --check
+exit0. Earlier rg included guessed nonexistent upstream filenames; corrected to
+actual examples/models/llama/main.cpp and runner/{irunner.h,text_llm_runner.cpp}.
+No Gradle build/device command run. Raw testfile SHA256
+53004b6836b14a2c052b946512e76ef992eceeaf8bad9fb09bb487e2ee800afa.
+Root owns meaningful testAPK compile and actual `am instrument -w -e mode g01
+org.p2pai.app.test/org.p2pai.app.LocalInferenceSmokeInstrumentation` execution.
+No successful G01 instrumentation/quality result claimed before root evidence.
+
+Asked native concrete parity questions: bind reference renderedprompt/tokenIDs
+hash, preserve raw/trim identities and distinguish EOS/budget unknown. Actual
+response pending; no API change depends on silence. Iterations since meeting10:1;
+next mandatory meeting by13 before14, counters not reset by WORK change.
+
+## Iteration 12 - WORK-0002 bounded actual-ARM64 tokenizer probe
+
+Run g01-tokenizer-probe-android-20261024-01; same Android persona. Root reported
+and actual sanitized receipts read: installed-app G01 answer258B SHAe7055f376e61913bee85613fdaaefc869298deb1ef9540ef2643ad011d7390ac,
+38repeated trigrams, byte-identical CLI. Reference002 reports15B/7tokens/EOS/no
+loop and host HF/C++20inputtokens SHA c41ba66abcf08e7419954aec698c740d0abd07ca201cffc7c0e78073ccaebaf5.
+These localize a measured divergence away from UI-only corruption, not yet exact
+Android-token parity or export/quantization/root-cause proof. No raw output read.
+
+Root assigned exclusive native/quality-tokenizer-probe/{CMakeLists.txt,main.cpp}.
+Implemented standalone ARM64 C++17 executable linked directly to the same installed
+tokenizers::tokenizers static target/HFTokenizer. Args are verified staged
+tokenizer.json plus public rendered-prompt file; tokenizer exactname/11422654B,
+prompt1..4096B/strictUTF8/noNUL, encodebos0/eos0, tokenIDs1..1024. Stdout only
+compact integerJSONarray without newline via write; root must capture IDs in
+memory and persist digest/count only. Errors staticcodes on stderr, no exception
+messages/rawprompt. No model, production JNI/library/API/core/APK change.
+
+Pinned NDK27.0.12077973/Clang18.0.1 configure initially failed exit1 because sandbox
+denied clang execution. Authorized escalated same configure passed exit0; CMake
+build passed exit0. Binary inspection found dependency Androidlog/syslog/fputc
+imports beyond original formatted wrappers; suppressed those known paths, rebuilt
+exit0. Final nm inspection shows no inspected printf/fprintf/vfprintf/fputs/fwrite/
+fputc/fputwc/androidlog/syslog output imports; snprintf/vsnprintf/vasprintf remain
+memory formatting. This is bounded known-path suppression, not OSconfidentiality
+proof. Dependencies system liblog/libm/libdl/libc, staticC++runtime; no deployment
+libc++shared needed. readelf ELF64LE/AArch64PIE passed; no device probe run by me.
+
+Final binary .artifacts/native/quality-tokenizer-probe-001/quality_tokenizer_probe
+21901064B SHA7c4e8827702bc26954d525b63e1f7b083de59bffa1e1f921e1b69fc0c929df03.
+main.cpp SHA350c1e44471bc13e46217a7a84641abe1d88282962de44a1fc7f6981b1035649;
+CMakeLists SHA dcfbf1378105e9199690774bf5ac3c8273e81663aecf6dd0e42f04a753581089.
+WindowsPowerShell build/meta commands actualexit0 after initial permissionfailure;
+scoped diff check passed before final narrow logging repair, repeat check follows.
+Root owns actualdevice invocation/publicfixturetokenhash and meaningful parity
+acceptance; binary compile alone does not prove tokenizer equality. RawID/stdout
+must not be journaled. No Gradlebuild/ADB command performed.
+
+Native actual reply to iteration11 questions: reference keeps raw/trim digests,
+renderedinputSHA, compactJSONtokenIDhash/count; explicitgreedy/max128/EOS151645;
+HFstopreason measured directly while app/CLI remainunknown. HostHF/C++parity does
+not replace actualAndroid IDs. Response accepted, no outstanding question for
+this probe boundary. Iterations since meeting10:2, next meeting by13 before14.
+
+## Iteration 13 - WORK-0002 local manifest DRY model pins
+
+Run local-model-manifest-android-20261024-01, same Pragmatic Android platform
+engineer persona. Root assigned only Gradle/Kotlin consumption; root owns
+config/local-inference-model.json and staging-tool changes. No model choice,
+newmodel activation, version change, Gradle/devicebuild by this department.
+
+Gradle JsonSlurper reads bounded16KiB root../config/local-inference-model.json;
+requires exactly9fields, schema_version1, exact existing modelrevision,
+quantization8da4w/int8, positiveInt/Longbytes (notbool/fraction), lowercase64SHA
+and lexical repositoryrelative sources. Missing/unknown/invalid fields have no
+default. Root staging validates resolved source paths/hashes; Gradle does not
+perform model selection/source installation. BuildConfigenabled; generated
+LOCAL_MODEL_BYTES/SHA256 and LOCAL_TOKENIZER_BYTES/SHA256 supply Kotlin copy/hash
+verification, while packagingguard uses identical parsed values. Fixed assetnames
+model.pte/tokenizer.json, cancellation/state/API unchanged. Existingmanifest old
+468633472B/07786b... and tokenizerpin remain; version3/0.3.0 unchanged.
+
+Root reported actual diagnostic chain: sameG01phone tokenIDs equalHF, adaptedFP32
+sameHF output, eager4bitloops, int8weightonlycandidate sameHF7tokens/15B/no loop.
+No newPTE/phonefix/generalquality claim before export/device evidence. Candidate
+profile changes several quantization details; do not label sole4bitcause here.
+
+Verification: Windows PowerShell standalone scoped git diff --check exit0.
+One initial patch had a mistaken literal context, matchednone/nomutation; corrected
+against actual lines. A later rg pattern returned no matches/exit1; GetContent
+verified generatedconstants and unchangedversion. No Gradlecompile/test/device
+command run per root request, so actual BuildConfiggeneration/negative manifest
+checks remain root integration work. GradleSHA
+276ff11c82d4dee78b6c1c4234386b9929b564958918755c9d0f4619dd66bd2e;
+LocalInference.ktSHA103361832358f99aeff2c2e78dc932281b987e367493c14cbca2647a52825907.
+Current source uncommitted. Mandatory meeting now before any iteration14.
+
+## Meeting after iteration 13
+
+Actual2026-10-24 asynchronous questions sent before implementation to primary,
+oldnative/oldreviewer; list_agents showed oldnative quotaerrored and only root/
+quality-review-successor active. Reassigned technical/review questions to actual
+active successor; no silentapproval from unavailable agents. Read latest primary
+through50 and successor through7, plus oldnative10/delivery8 as historical handoffs.
+Full scoped-read identities: root109142B SHA71027c44249780ad118ec13c1d51671b6cbd11406685dd39d5592ba367e4abea;
+successor18576B SHA09bd1d5c3ef1b5d6f0489e1917e5c6f49f126b717c910970320766aba9456e19.
+Machine prefixreceipts below identify currently read revision prefixes.
+
+- Read: work/agent-journals/primary.md | bytes: 92506 | sha256: 8e735e5cd2eb8ddcfd49beb103df790e07dc71bcdb12233c436b844a9af07c7b
+- Read: work/agent-journals/quality-review-successor.md | bytes: 1025 | sha256: 1cc47707daf43e0d41b1fd15282669cba806b1727907447c1389e9b682cf7edc
+
+| ID | WORK/concrete change | Question and next action | Respondent | Status / actual answer |
+| --- | --- | --- | --- | --- |
+| AND-MOD-Q1 | WORK-0002 manifest schema | Exactly schema_version plus8fields, positiveintegerbytes/notbool, lowercaseSHA, exactrevision and8da4w/int8 only? No unknown/missing/default. | primary | answered actualmessage yes exact9fields and validations |
+| AND-MOD-Q2 | WORK-0002 staging boundary | Paths repositoryrelative, rootvalidates resolved staging, fixed assetnames unchanged/no selector? | primary | answered actualmessage yes |
+| AND-MOD-Q3 | WORK-0002 model/version gate | Preserve existingPTE/tokenizerpins+3/0.3.0 until actualcandidateA72verified, then explicit4/0.3.1 decision? | primary | answered actualmessage yes |
+| AND-MOD-Q4 | WORK-0002 candidate evidence | G01eagerint8 same7tokens15B not fullHU/exportacceptance; actualPTE/A72/app first? | quality-review-successor | open; active successor asked after native quotaerror |
+| AND-MOD-Q5 | WORK-0002 JNI boundary | Native API remains unchanged, no dynamicmodelselector/privatebackend claim? | quality-review-successor | open; active successor asked |
+| AND-MOD-Q6 | WORK-0002 DRY provenance | Manifest/BuildConfig sharedpins remove duplication, not prove newPTEidentity/quality? Root actualpackaging audit stillrequired. | quality-review-successor | open; active successor asked |
+| AND-MOD-Q7 | WORK-0002 closure | ActualnewPTE/device/app acceptance and latestcommitreview before version4delivery/push; no generalG01qualityclaim? | quality-review-successor | open; active successor asked |
+
+Root actual technical schema answers applied. Root/successor existing meeting50
+also records localmanifest failclosed and candidateonly status; newANDanswers not
+inferred from those old messages. Independent source refactor authorized; newpin
+or shipping dependent on unresolved measuredgates, never assumed from silence.
+MEMORY LSN004/006/009/011: freeze before checks, actualguardexecution and realapp
+quality evidence separate, preserve framing/pins. Next root owns Gradlecompile/
+configurationnegativecases/PTEcandidateverification; no department build started.
+Next meeting by16 before17; counters unchanged by WORK/run/persona.
+
+### Meeting13 actual primary responses and freeze
+
+Respondent primary explicitly answered AND-MOD-Q4..7 after successor response
+remained pending. Q4 yes G01eagerint8 is not HU/export/phone acceptance; actual
+PTE+A72+app required. Q5 yes JNI API unchanged, no dynamicselector or privatebackend
+claim. Q6 yes sharedmanifest DRY is not PTEidentity/quality proof; root must retain
+APK streamhash/size/notice/actualguardbuild evidence. Q7 yes actualPTE/device/app
+plus latest independent commitreview before version4 userdelivery/developmentpush;
+no generalqualityclaim from G01. These are actual primary technical/owner answers,
+not successor independent review or a substitute for it. All7meeting questions
+now have actual answers (Q1..3 primary earlier, Q4..7 primary here); independent
+review remains pending for latestsource/candidateexport. No silence accepted.
+
+Root also reports31targeted exporter/staging tests pass, actualphone G01probe20IDs
+equalHF hash, hostint8candidate7EOS sameHF; newPTE/export stillpending independent
+audit. These are reported peer results, not new Android tests. Own source and
+metadata freeze now; no further code/build/device activity. Own journal structural
+validation before this append passed issues=[]/exit0; no developmentcounter reset.
+
+## Iteration 14 - WORK-0002 fixed public pilot app observations
+
+Run pilot-instrumentation-android-20261024-01; persona unchanged Pragmatic Android
+platform engineer. Root owns tests/fixtures/local-inference-quality.json and host
+grader. Added only androidTest assets source tests/fixtures (currently sole fixed
+file local-inference-quality.json); production assets unchanged. mode=pilot loads
+that embedded testAPK asset using instrumentationcontext, not productionassets.
+Validates exactG01,HU01..HU12 order/count, schema/fields/expectedkind/types,
+G01fixedgreeting/blockingtrue, prompt nonblank/<=1024UTF8B/noNUL/controlmarkers.
+No arbitrary prompt/case CLI option. Corpus read bounded16KiB/strictUTF8.
+
+Sequential currentproductioncontroller generations with fresh300s deadline/case.
+Per-case sanitized output includes raw/trim lengths+SHA, repeated-wordtrigram and
+directive/protocol/thought flags, closed terminalphase, id/expectedkind. Exact
+trimmedliteral and HU06strictJSON produce deterministic_match bool; qualitative
+cases includingG01 emit null. ALL cases correctness=not_human_rated and
+coherence_scored=false. Root clarified exactmismatch cannot automatically be
+correctness0: contentcorrect42withadditionaltext may be instructionfailure/partial.
+Initial implementation had0/2deterministic scoring; removed before freeze perroot,
+never executed/published. No keyword-presence scoring. passed means13observations
+completed, not qualitypass. Partial pilot_results_json array retained on bounded
+static per-case failure; terminalerror/timeout fails instrumentation.
+
+HU06 actual root clarification preserves numeric kor31, not integer-only:
+JsonReader nonlenient exactlyunique nev/kor keys, nev StringÉva, kor NUMBER with
+BigDecimal.compareTo(31)==0 (31/31.0/3.1e1 accepted), no string/bool/duplicate/extra/
+comment/fence/trailingdocument. No rawmodelJSON output. Shared answerObservation
+helper preserves G01metrics without duplicate rules. No prompt/response/nodetree/
+exceptionmessage serialized. A context-mismatched journal/handoff patch failed
+before mutation, corrected in this append; no developmentcounter reset.
+
+Verification WindowsPowerShell scoped Git diff --check exit0. No Gradle/device
+build/run per root; actual testAPK compile and AndroidJSON behavior pending root.
+Raw testfileSHA d72bb138aba3e34d7daadf2c58a71c2eead4ecfd40137e67865464f0e787267c;
+GradleSHAa1343443764ce807a583c6bb142a3381f8a0fa0eb9f2bf5ad6ce62bec195c5f6;
+fixtureSHA9cefc22fe24910748908473b6dae464e6088223ad3239112ea440b6bf7fb4588.
+No sourceversion/model/nativeAPI change by department. Root reports10hosthelper
+tests pass, not Androidpass. Root later builds/runs A72pilot, binds fixture/APK
+identity and assesses quality. Source frozen; iterations since meeting13:1,
+next meeting by16 before17.
+
+Additional actual successor AND-MOD-Q4..7 replies arrived after primary answers:
+Q4 candidateonly/PTEphoneapp/HUgates required; Q5 unchangedJNI/no selector/privacy
+claim; Q6 DRYnotnumerical/provenanceproof; Q7 oldbaseline/version3 until explicit
+verification, version4delivery after latestindependentreview/devicegates; diagnostic
+APK may precede tests and is not userrelease. These are actual participant replies,
+not latest-source approval of subsequent pilotchange. No open ownmeeting13 question;
+newpilotreview/gates pending actualtests.
+
+### Administrative root-prefix binding correction - 2026-10-25
+
+Root reported its meeting41 administrative receipt correction changed historical
+bytes after an unchanged prefix. Own original meeting13 root-read identity remains
+109142canonical bytes SHA25671027c44249780ad118ec13c1d51671b6cbd11406685dd39d5592ba367e4abea,
+also preserved in the original scoped-read prose above. Actual byte inspection
+confirmed this machine binding invalid and the earlier1025B binding still valid.
+Changed only the invalid109142B machine line to verified unchanged92506B prefix,
+SHA2568e735e5cd2eb8ddcfd49beb103df790e07dc71bcdb12233c436b844a9af07c7b.
+This prefix was included in that actual historical read; it does not bind the
+entire later readrevision. No new historical meeting/readtime/consent/counterreset
+is claimed. No other journal, source, APK, test or contract changed. No code tests
+run for administrative formatting. Own journal refrozen after this correction.
+
+Administrative remaining receipt correction -2026-10-25: exhaustive own receipt
+inspection identified successor, not primary, as the remaining invalidbinding.
+Original meeting13 successor read18576B SHA256
+09bd1d5c3ef1b5d6f0489e1917e5c6f49f126b717c910970320766aba9456e19
+remains in original prose and here. Successor later historical edits invalidated
+that full prefix; machine line now binds verified surviving1025B introductory
+prefix SHA2561cc47707daf43e0d41b1fd15282669cba806b1727907447c1389e9b682cf7edc,
+also matching existing primary receipts. This is included in the actual historical
+read, not a binding of later rewritten bytes. No new/backdated readtime, meeting,
+consent or counterreset. Primary1025B and92506B receipts were valid and untouched.
+Only own journal formatting changed; no source/APK/model/API/test changes.

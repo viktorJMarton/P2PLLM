@@ -1,0 +1,190 @@
+{
+  "work_id": "WORK-0002",
+  "date": "2026-10-25",
+  "status": "tooling_checkpoint_quality_open",
+  "branch": "work/WORK-0015-offline-android-ai",
+  "source_uncommitted_when_observed": true,
+  "raw_payload_saved": false,
+  "candidate_packaged_in_apk": false,
+  "current_drive_apk_bytes": 509885353,
+  "local_verification_apk_bytes": 501436829,
+  "local_verification_apk_model_bytes": 468633472,
+  "open_gates": [
+    "compact_candidate_export",
+    "unseeded_pilot_reference_drift",
+    "English_and_Hungarian_answer_quality",
+    "cached_runtime_numerical_parity",
+    "memory_thermal_and_actual_backend_acceptance",
+    "privacy_and_product_release"
+  ],
+  "receipts": {
+    "export_candidate": {
+      "path": ".artifacts/exports/qwen-int8-candidate-20261025-002/export-provenance.json",
+      "sha256": "e1d88774bb2c67a1741017adb3e75829b051c0c68efac7fe8cd4ab46dcb1786e",
+      "result": {
+        "status": "exported_not_reference_or_device_verified",
+        "actual_export_config": {
+          "model_class": "qwen3_0_6b",
+          "qmode": "int8",
+          "embedding_quantize": "8,0",
+          "group_size": null,
+          "use_hqq": true,
+          "dtype_override": "fp32",
+          "use_shared_embedding": false,
+          "use_kv_cache": true,
+          "use_sdpa_with_kv_cache": true,
+          "max_seq_length": 2048,
+          "max_context_length": 2048,
+          "xnnpack_enabled": true,
+          "xnnpack_extended_ops": true
+        },
+        "linear_pass_adaptation": {
+          "adaptation": "explicit_2d_transpose_only_no_source_partition_reconstruction",
+          "source_sha256": "e9ff9ccceee9c91b6c8aa6b2ff15e82a7b36adb68f932732356a9f871cb6df0b",
+          "upstream_sources": [
+            {
+              "path": "backends/xnnpack/_passes/convert_to_linear.py",
+              "sha256": "475df30d1f044acea482f12d968a17a1dfc1701456819757135cbd28d89769f3"
+            },
+            {
+              "path": "backends/transforms/addmm_mm_to_linear.py",
+              "sha256": "a6dc5fc5349600b5dda5c41d5f6a464da56569c9dac5184a3f3ffed44349de07"
+            },
+            {
+              "path": "extension/llm/export/builder.py",
+              "sha256": "d7944d05e758e3d166055366cf157c56151514018c40c30653ea9a3a7a283343"
+            }
+          ],
+          "installed_sources_modified": false
+        },
+        "pte_sha256": "173928bd8c413ff34fbba592da5a7bab455cdbb24a894a985e588a63b3f7e10d",
+        "pte_size_bytes": 2547248816
+      }
+    },
+    "strict_reference": {
+      "path": ".artifacts/device/WORK-0002/quality-reference-strict-003/worker-result.json",
+      "sha256": "c8c2ff5376082a078bee150c80fedb3c47cd312b8d3cfb7d3e4c79f68e05acfe",
+      "result": {
+        "status": "observed",
+        "phase": "complete",
+        "fixture_sha256": "9c66202adeabb9f681c819d21ae1d0aec575090b40961daeaf6efd38495dca9d",
+        "input_token_ids_sha256": "c41ba66abcf08e7419954aec698c740d0abd07ca201cffc7c0e78073ccaebaf5",
+        "loading_counts": {
+          "missing_keys": 0,
+          "unexpected_keys": 0,
+          "mismatched_keys": 0,
+          "error_msgs": 0
+        },
+        "model_state": {
+          "format": "named-parameters-and-all-buffers-v1",
+          "sha256": "e168c86e5bfb4cef1c4dbc2591fd192f4bfdc21b2832ed8c39ce0c0fe68bcb4c",
+          "tensor_count": 312,
+          "tensor_bytes": 3006529792
+        },
+        "answer_bytes": 15,
+        "answer_sha256": "1edd25ab7dd50a78381e9ee24d3c3bc38a3dd74694e35429ec0b2a67fc160f66",
+        "generated_tokens": 7,
+        "generated_token_ids_sha256": "bdab200a5a03534f63b0c696182ee9795a94a7cd0e4d6f7331bd45506b7ea814",
+        "stop_reason": "eos",
+        "pathological_repetition_flag": false,
+        "directive_fragment_flag": false,
+        "coherence_score": "not_human_rated"
+      }
+    },
+    "seed_comparison": {
+      "path": ".artifacts/device/WORK-0002/seed-control-001/comparison.json",
+      "sha256": "e0b10f32459edcb0ac349d57b80def232773c0567d174e8af68676fc322d2ad9",
+      "result": {
+        "scope": "public G01 seed0-vs-seed1, not broad model quality",
+        "seed": 1,
+        "reference_source_sha256": "9ad7059424b3b1a73b7f8a957201e87a3da1d598c1b2cdd0e8525e0890013700",
+        "driver_source_sha256": "7ce3f9572825f3b21dbd2704eed2e697b864993c2f4ff47d9bcfb21d75dc529a",
+        "exit_code": 0,
+        "model_state_equal": true,
+        "generated_ids_equal": true,
+        "answer_digest_equal": true
+      }
+    },
+    "phone_candidate": {
+      "path": ".artifacts/device/WORK-0002/int8-phone-003/report.json",
+      "sha256": "32114cd7baa2af9789ef278694079caaadafd5eaac4ad0a0b5a6fc5eda934948",
+      "result": {
+        "run_id": "int8-phone-003",
+        "status": "observed",
+        "scope": "standalone public G01 CLI, not application or broad quality acceptance",
+        "production_app_replaced": false,
+        "device_model": "SM-A725F",
+        "probe_source_sha256": "e1efa0640766f9f89ad49a56aac43042c8f089254e20edb3c84fe4bf0ca60a39",
+        "model_sha256": "173928bd8c413ff34fbba592da5a7bab455cdbb24a894a985e588a63b3f7e10d",
+        "model_bytes": 2547248816,
+        "phase": "complete",
+        "fixture_sha256": "9c66202adeabb9f681c819d21ae1d0aec575090b40961daeaf6efd38495dca9d",
+        "answer_bytes": 14,
+        "answer_sha256": "e1c3b43725a16971e7d95bbf7586bd0a7b8b2aaf34584eddbd794e46107bb828",
+        "pathological_repetition_flag": false,
+        "directive_fragment_flag": false,
+        "coherence_score": "not_human_rated",
+        "elapsed_seconds": 92.172,
+        "stop_reason": "not_measured"
+      }
+    },
+    "size_census": {
+      "path": ".artifacts/device/WORK-0002/pte-size-002/report.json",
+      "sha256": "0132e672dbdfe99f20bf15b91e1968faafc9a269514041e65f2a926eb1167e65",
+      "result": [
+        {
+          "path": ".artifacts/exports/qwen-runtime-20261023-003/qwen3_0_6b.pte",
+          "file_bytes": 468633472,
+          "constant_tensor_logical_bytes_by_scalar_type": {
+            "6": 5064196,
+            "1": 155582464
+          },
+          "scalar_type_legend": {
+            "0": "uint8",
+            "1": "int8",
+            "6": "float32",
+            "4": "int64"
+          },
+          "constant_storage_entries": 118,
+          "delegate_count": 340,
+          "scope": "logical constant sizes, excludes opaque delegate internals/padding; not runtime placement",
+          "tensor_payload_extracted": false
+        },
+        {
+          "path": ".artifacts/exports/qwen-int8-candidate-20261025-002/qwen3_0_6b.pte",
+          "file_bytes": 2547248816,
+          "constant_tensor_logical_bytes_by_scalar_type": {
+            "6": 2390985732,
+            "1": 155582464
+          },
+          "scalar_type_legend": {
+            "0": "uint8",
+            "1": "int8",
+            "6": "float32",
+            "4": "int64"
+          },
+          "constant_storage_entries": 512,
+          "delegate_count": 256,
+          "scope": "logical constant sizes, excludes opaque delegate internals/padding; not runtime placement",
+          "tensor_payload_extracted": false
+        }
+      ]
+    },
+    "workflow": {
+      "path": ".artifacts/checks/WORK-0002/quality-export-correction-001/workflow/report.json",
+      "sha256": "c2d389742ca9f7f82d628a4a45280d094c55d623216bfe6b91e66e97e2d99e10",
+      "result": {
+        "run_id": "quality-export-correction-001",
+        "status": "passed"
+      }
+    },
+    "android": {
+      "path": ".artifacts/checks/WORK-0002/quality-export-correction-003/android/report.json",
+      "sha256": "3820dd8029cf27428e1e7044d2e366f4ca6b5cf310d853d767551e95ad76d794",
+      "result": {
+        "run_id": "quality-export-correction-003",
+        "status": "passed"
+      }
+    }
+  }
+}

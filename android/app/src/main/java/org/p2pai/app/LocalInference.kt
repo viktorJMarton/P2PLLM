@@ -73,10 +73,10 @@ internal object LocalInferenceController {
             try {
                 val directory = File(app.noBackupFilesDir, "local-inference")
                 if (!directory.isDirectory && !directory.mkdirs()) throw IOException()
-                val model = prepare(app, directory, "model.pte", 468633472L,
-                    "07786b553d9661d36431426d06c268f385d453314f6722ca79f66c7e79653b48", 0, 97)
-                val tokenizer = prepare(app, directory, "tokenizer.json", 11422654L,
-                    "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4", 97, 3)
+                val model = prepare(app, directory, "model.pte", BuildConfig.LOCAL_MODEL_BYTES,
+                    BuildConfig.LOCAL_MODEL_SHA256, 0, 97)
+                val tokenizer = prepare(app, directory, "tokenizer.json", BuildConfig.LOCAL_TOKENIZER_BYTES,
+                    BuildConfig.LOCAL_TOKENIZER_SHA256, 97, 3)
                 checkCancelled()
                 publish { it.copy(phase = InferencePhase.RUNNING, progress = 100) }
                 checkCancelled()

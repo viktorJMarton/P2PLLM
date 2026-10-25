@@ -5,7 +5,14 @@ Three A72 inference observations are available in [phone-observations.json](phon
 Owner-reported unusable greeting answers triggered an actual team review on
 2026-10-24. [Quality review and frozen pilot](quality-review-20261024.md): G01
 repetition reproduced on unchanged A72 CLI; [receipt](greeting-observation.json).
-Reference/app parity, the12-case pilot and a quality fix remain unimplemented.
+Reference/input-token checks and the13-case baseline pilot have now run;
+the existing APK matched0/7 deterministic cases. Quantized eager comparison
+shows a pre-export regression. The corrected INT8 export is2.55GB; its actual
+A72 standalone greeting probe took92.172s, without repetition but different
+from the HF reference. It is not packaged as a replacement APK. Strict seed0/1
+reference checks agree; the earlier unseeded pilot drift remains unresolved.
+No accepted answer-quality fix exists. See quality-checkpoint-20261025.json,
+the dated continuation in quality-review-20261024.md and the primary journal.
 Requirements: REQ-001, REQ-010
 Roles: qwen-research-deputy, research, android, learning, mathematical-modeling
 Dependencies: WORK-0001 host Rust/toolchain scaffold; full Android acceptance is not required for independent host-only work

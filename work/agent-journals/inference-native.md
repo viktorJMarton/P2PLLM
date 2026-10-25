@@ -391,4 +391,29 @@ actual meeting9 questions/answers remain unchanged. Root reports independently
 inspected G01 CLI looping evidence; this neither identifies cause nor establishes
 byte equality with the owner's unsaved personal response. Product code unchanged.
 
+## Start runquality-reference-001 - WORK-0002 FLOAT G01 reference
+
+Owner explicitly authorized pinned existing0.6B FLOAT reference execution and
+bounded offline harness/tests, no export/model upgrade. Persona remains android /
+Pragmatic Android platform engineer acting at the model/runtime boundary.
+Counter remains9/lastmeeting9; next bounded implementation is10, next meeting
+by12/before13. Re-read MEMORY LSN008/011, WORK-0002 brief/quality review and
+existing exporter logging/serialization/network/job guards. Local safetensors
+and tokenizer/config files present. Product JNI/Android code remains read-only.
+Only public G01; no raw prompt/answer/tensor logging, static diagnostics/hash/
+length/flags only. Inspect package pins before any model imports/loading.
+
+## Iteration 10 - Offline reference harness first attempt
+
+Implemented tools/quality_reference.py and targeted pure tests: fixed shared-public
+G01 only, exact native framing, safetensors/hash/lock preflight, existing logging/
+network/pickle guards, disposable console-suppressed child with job cleanup,
+HF FLOAT32 greedy128/explicitEOS151645 and hostHF/Cpp token-ID comparison.
+Distinct raw/trimmed answer hashes, repetition/directive flags and measured HF
+EOS-vs-budget metadata only.5targeted tests passed exit0. Actual
+quality-reference-001 parent failed before worker/model execution: NameError in
+source-provenance path (`__file____` typo), bounded report retains type/frame only.
+No model result claimed. Next bounded repair launcher path and add behavioral
+launcher regression, then retry new run. Counter10/lastmeeting9; no reset.
+
 Administrative receipt-format correction by primary,2026-10-24: 2 earlier prefix checks were invalidated by journal format edits. Original recorded read identities remain above as prose. Machine lines now bind only unchanged initial prefixes included in the actual historical reads, not the complete changed later revisions. No new read time, meeting, consent or counter reset is claimed; independent review must retain this limitation. No question/answer or development result was changed.

@@ -107,10 +107,103 @@ or unexplained deterministic divergence stops promotion and requires diagnosis.
 5. Change one variable per follow-up comparison. Conversation memory is a separate
    feature; current quality evaluation must supply all needed context explicitly.
 
-Not yet done: reference/app G01 comparison, this12-case experiment, a quality fix, new APK or demonstrated
+Initial checklist at meeting time (partly superseded by the continuation below):
+reference/app G01 comparison, this12-case experiment, a quality fix, new APK or demonstrated
 quality improvement. Runtime/thermal/privacy/release gates remain open. Device
 availability and reference/backend readiness must be checked before execution.
 Next action is G01 reference/tokenizer/config parity and a same-weight quantized
 reference if needed; then a single-variable suffix comparison, preserving other
 parameters. Budget128->256 is a separate experiment only after measured budget
 stopping. Do not strip fragments or repetition to disguise a generation failure.
+
+## Measured continuation: quality-isolation-001
+
+Actual guarded runs now separate the input/UI path from the numerical model path.
+See [portable receipts](quality-isolation-observations.json). Public G01 only;
+neither a general quality pass nor a human coherence score is asserted.
+
+| Path | Observed result |
+| --- | --- |
+| Installed unchanged0.3.0 app |258 bytes/SHAe7055f..., maximum word-trigram frequency38; identical parsed answer to the prior CLI observation |
+| Pinned HF FLOAT32 reference |15 bytes,7 generated tokens, EOS151645, no repetition or directive-fragment flag |
+| Actual ARM64 HFTokenizer probe |20 input tokens; canonical ID digestc41ba66a... equals host HF and host Cpp |
+| Adapted model FLOAT32, no KV cache |Strict state load, no missing/unexpected keys; same greedy tokens/answer as HF. All7 identical teacher-forced prefixes agree in argmax and declared allclose(.001,.0001); maximum absolute error about4.53e-5 |
+
+The first reference launcher failed before model execution (NameError); its
+receipt remains failed. Root takeover ran six passing host tests and then actual
+reference002. Two adapted diagnostic attempts failed on namespace-package and
+missing wheel-parameter-file assumptions, before any adapted-model comparison.
+The successful third attempt uses the same pinned upstream parameter file used
+by the export command; it does not change model parameters. These diagnostic
+failures are retained. A child process exit0 alone is never a model observation.
+
+These results rule out differing G01 input IDs and a frontend-only explanation
+for the measured defect. They do not distinguish quantization from cached
+attention, lowering/export or runtime. The adapted FLOAT comparison deliberately
+uses no KV cache; its agreement does not validate the cached PTE path.
+
+The next isolated run is same-checkpoint eager8da4w/group128/HQQ with embedding8,0
+before any new export, model switch or production prompt change. Outcomes remain
+pending until its receipt reports an observation. Full12-case scores, actual
+backend placement, general numerical equivalence and a quality fix remain open.
+No new application APK has been produced by this diagnostic continuation.
+
+## Continuation, 2026-10-25: export correction and reference gate
+
+Same-checkpoint eager8da4w produced128tokens and repetition before export;
+weight-onlyINT8 with the same embedding profile produced7tokens/EOS, matching
+the earlier seeded reference G01. INT8 also removes dynamic activation
+quantization, so this is not a weight-bit-only ablation. Neither result is a
+phone/PTE or general-language quality pass.
+
+The first actual INT8 export failed in the pinned builder's unsound
+ConvertToLinearPass/source-partition reconstruction after transpose folding.
+A rectangular synthetic graph reproduces its meta_mm failure. New
+tools/int8_linear_pass.py uses only the existing explicit2D-transpose fallback,
+retains ExportPass metadata retrace and lint, rejects unsupported permutation
+and addmm scaling, verifies three upstream source hashes and changes only the
+candidate worker's in-memory builder binding. No installed-source/default8da4w
+change. Five pinned-venv numerical tests passed, independently repeated. A
+separate worker import-route blocker found by review was corrected and its
+actual python-c/run_path/foreign-cwd regression independently passed.
+
+Old installed0.3.0 pilot completed13cases with0/7 deterministic matches. The
+HF FLOAT pilot completed13cases with2/7 matches and no repetition flags, but
+its G01 has11tokens/24B versus the earlier7tokens/15B despite identical rendered
+input/token digests. Therefore these counts are observations, not a reliable
+reference benchmark or proof of the base model's capacity. Missing/unexpected/
+mismatched weight and loading-error checks were absent from both HF loaders;
+upstream may initialize missing parameters, but occurrence here is unproven.
+The new shared loader fails closed on any such count and records a hash of
+parameters plus all buffers. No seed-only change disguises the drift. Original
+receipts remain unchanged. See [portable observations](quality-isolation-observations.json).
+
+Export002 is a separately reviewed candidate execution, not an accepted fix.
+Further HF loading controls must wait for its process exit on the16GiB host.
+Real A72 candidate testing, English/Hungarian qualitative scoring, thermal/
+memory/backend acceptance, latest-commit review and development push remain
+open. No replacement APK has been delivered from these changes.
+
+## Actual outcomes after export and controlled checks
+
+[Portable checkpoint](quality-checkpoint-20261025.json) supersedes the pending
+execution statuses above. Export002 completed with2547248816B PTE. Metadata-only
+census finds2390985732B logical top-level FP32 constants versus5064196B in the
+old export. This supports the size growth, not a proven transformation cause or
+hardware placement. Delegate internals/padding are excluded. The current
+DriveAPK remains509885353B; the local verification APK501436829B still packages
+the old468633472B model, not the2.55GB candidate.
+
+Standalone A72 candidateG01 completed in92.172s with14B/no repetition; the answer
+digest differs from15B HF reference. Human coherence remains unscored. No app
+replacement or useful-performance acceptance. First phone helper failed after
+push on an unsupported shell timeout parameter; fresh003 verified all staged
+hashes and used the supported call API, preserving failed002.
+
+Strict reference003 and controlled seed1 both report empty loading errors and
+identical312-tensor/all-buffer state fingerprints, seven generated IDs and
+15B answer digest. This does not explain the earlier unseeded pilot drift.
+Full Android profile003 and common workflow passed; JVM task had NO-SOURCE.
+Earlier sandbox/signing failures remain recorded. Next steps are compact export,
+strict repeatable reference/pilot, and actual English/Hungarian quality checks.
+No quality sprint, privacy/backend or product release gate is closed.
