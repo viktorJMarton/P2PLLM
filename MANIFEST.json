@@ -1013,8 +1013,8 @@
     },
     {
       "path": "work/WORK-0005-private-shared-compute/journal.md",
-      "bytes": 91,
-      "sha256": "141c235cbd75d0f46b89754dae845220bdcb9f7f23e1aa7b7ac95cd1f4b1f84f"
+      "bytes": 2043,
+      "sha256": "b767c37215c09291e77b31fb52c8ef2e4abd7e6c0de538d720651ba9f3fb4733"
     },
     {
       "path": "work/WORK-0006-private-shared-learning/brief.md",
@@ -1323,8 +1323,8 @@
     },
     {
       "path": "work/agent-journals/primary.md",
-      "bytes": 142448,
-      "sha256": "f9ad2730933cf3315af8b6e5fb9cdb6222a9fe8f400b0840e0fc51a3f2424f16"
+      "bytes": 143238,
+      "sha256": "76b6054d38ad46b36a4098f18d6fff2c8323eb8740b0402b3cde45e7cb7d1b52"
     },
     {
       "path": "work/agent-journals/product-review.md",
