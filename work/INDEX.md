@@ -25,9 +25,18 @@ WORK-0014 visible local diagnostic. Privacy preparation is not experimental feas
 - [WORK-0003: Privacy threat model and primitive feasibility](WORK-0003-privacy-primitive-selection/brief.md) — dependencies: WORK-0001
 - [WORK-0004: Authenticated session and independent peer](WORK-0004-session-conformance/brief.md) — dependencies: WORK-0001
 - [WORK-0005: Useful private cooperative AI operation](WORK-0005-private-shared-compute/brief.md) — dependencies: WORK-0002, WORK-0003, WORK-0004
+
 - [WORK-0006: Private adapter round and local activation](WORK-0006-private-shared-learning/brief.md) — dependencies: WORK-0002, WORK-0003, WORK-0004
 - [WORK-0007: Android operator UI and contribution lifecycle](WORK-0007-android-operator-mode/brief.md) — dependencies: WORK-0001, WORK-0004
 - [WORK-0008: MVP integration and release decision](WORK-0008-release-integration/brief.md) — dependencies: WORK-0005, WORK-0006, WORK-0007
+
+2026-10-25 cross-platform hive research (proposal, no executed P2P/privacy
+capability): [research](WORK-0003-privacy-primitive-selection/handoff-hive-research-20261025.md),
+[mathematical model](WORK-0003-privacy-primitive-selection/handoff-hive-math-20261025.md),
+and [bounded integration plan](WORK-0005-private-shared-compute/hive-feasibility-plan.md).
+WORK-0004 synthetic two-node transport can be developed in parallel with the
+primary WORK-0002 local-model quality work; personal-derived remote tasks remain
+blocked by the empty approved privacy registry.
 
 Use briefs for scope, journals/events for observed execution, evidence for reproducibility. WORK-0002–0004 can overlap once dependencies and safe worktrees permit; privacy gate cannot be skipped.
 

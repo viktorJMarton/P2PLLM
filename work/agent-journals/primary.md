@@ -1686,3 +1686,101 @@ and push verification use quality-metadata-push-001.json. Current open gates:
 compact export, unseeded reference pilot drift, English/Hungarian useful answers,
 cached numerical/resource/thermal/backend and full product/privacy acceptance.
 No new user APK/Drive delivery or running background model job claimed.
+
+## Iteration 66 - Hive scope and dependency audit
+
+WORK-0003/0005 run-20261025-hive-research-01; persona: Accountable delivery
+coordinator. Source baseline 05570092c3274c8cd59dbd6ee20fe6de5c9d5013,
+branch work/WORK-0015-offline-android-ai; this entry is uncommitted.
+Read PRODUCT.md, TECHNOLOGY.md, ADR-001/003/004/008, RFC-0001/0002/0003,
+architecture overview/scheduling/interfaces, threat model, WORK-0002/0003/0004/
+0005/0006 briefs and current quality handoff. The product contract explicitly
+requires Android and desktop reference nodes, authenticated peer sessions,
+private cooperative compute and learning. Actual source search found local
+node-core/storage/Android slices, with no implemented libp2p transport or
+distributed scheduler. WORK-0004 and WORK-0005 remain not_started; WORK-0003
+contains a proposed synthetic experiment only. The 2.55 GB candidate is a
+separate unreleased model artifact, not evidence for a P2P system.
+Verification: repository reads and `rg` source search, exit 0; no code build or
+private backend experiment. LSN-004/006/008 applied: separate source writer
+ownership, actual agent participation only, no sensitive payload logging.
+Research and mathematical agents were explicitly delegated by the owner, with
+disjoint handoff files and their own journals. Next: synthesize their sourced
+results into a bounded WORK-0005 feasibility plan, then peer meeting by
+iteration 67 before iteration 68. Privacy profile/release acceptance remain open.
+## Iteration 67 - Research and mathematical synthesis
+
+WORK-0003/0005 run-20261025-hive-research-01, baseline commit
+05570092c3274c8cd59dbd6ee20fe6de5c9d5013; uncommitted source.
+Read actual research and mathematical handoffs and their own iteration-1
+journals. Added WORK-0005/hive-feasibility-plan.md and a work/INDEX.md pointer.
+The proposal keeps common Android/desktop node contracts, first public/synthetic
+two-node lifecycle under WORK-0004, a separately executed WORK-0003 protected
+primitive, and later useful protected Qwen subgraph/adapter learning. It labels
+assumed RTT, transfer and reliability examples; observed old-model quality and
+candidate-size/latency remain local constraints, not hive measurements.
+Verification so far: targeted repository reads and source inspection exit 0;
+docs profile, exact reviewer and development push are pending writer freeze.
+Five primary integration questions ROOT-Q1..Q5 were sent to the actual research
+and math agents; replies must be read in their own journals before dependent
+shared decisions. Next: meeting after iteration 67, then check/review/commit/
+push the research checkpoint. No capability or privacy acceptance is claimed.
+
+## Meeting after iteration 67
+
+2026-10-25 Europe/Budapest. Research and math agents actually exchanged ten
+substantive questions and answers in their own journals; I read their latest
+ROOT-Q1..Q5 replies and the revised research handoff. Source hashes here use
+the repository's UTF-8/LF inventory form. Their recommendations do not approve
+a privacy profile, implementation, release or cryptographic parameters.
+
+- Read: work/agent-journals/research.md | bytes: 13013 | sha256: 06e0deb098d2819b93ce06e1799498c8dc0f213f5d35ecd7153b273311e51fd7
+- Read: work/agent-journals/math.md | bytes: 12381 | sha256: deaaab1ed001a52d2ac7a9c29d460608da9ba29f6838b948b263de3eec4a3391
+
+| ID | Logged change / WORK | Concrete question and next action | Respondent | Actual answer / status |
+| --- | --- | --- | --- | --- |
+| ROOT-Q1 | WORK-0004 research transport proposal | Does source review select libp2p transport behavior now, or only a pinned candidate and independent synthetic interoperability test? Keep unmeasured modes candidate-only. | research | Answered in research.md ROOT-Q1: library direction accepted, exact transport matrix/version and behavior need pins and measurements. |
+| ROOT-Q2 | WORK-0003/0005 research privacy boundary | Which synthetic/public experiments may proceed with an empty approved registry? Keep personal-derived peer inputs fail-closed. | research | Answered in research.md ROOT-Q2: public transport/lifecycle/routing and synthetic MPC/FHE lab may proceed; private peer work remains blocked. |
+| ROOT-Q3 | WORK-0002/0004 work priority | Can a bounded network sprint run without displacing the owner's phone model priority? Assign separate agent/worktree and coordinate host/phone use. | research | Answered in research.md ROOT-Q3: yes with separate capacity; model measurements remain primary, heavy jobs and A72 access coordinated. |
+| ROOT-Q4 | WORK-0005 mathematical RTT scenario | Is the 2-second example universal or conditional on sequential per-token cuts? Mark the exact graph and assumed RTT. | math | Answered in math.md ROOT-Q4: conditional only; request routing and other graph/dependency patterns differ. |
+| ROOT-Q5 | WORK-0003/0005 protected offload metric | What measured comparison supports usefulness and can the 92.172-second candidate serve as matched baseline? Require quality-matched protected and local paired trials. | math | Answered in math.md ROOT-Q5: both latency and owner CPU must improve with uncertainty excluding parity; candidate is not a validated comparator. |
+
+Shared research/math recommendation accepted as a **proposal** in the WORK-0005
+plan: public synthetic two-node task lifecycle first, protected arithmetic and
+learning as separate evidence gates. The existing PRODUCT/ADR privacy contract
+is unchanged. No open question remains among ROOT-Q1..Q5, but exact transport
+pins, qualified privacy review, Android availability and local model quality
+remain work gates. Next owner: primary coordinates docs validation/review and
+development-branch checkpoint push; protocol owner later implements WORK-0004.
+Next primary meeting is due by iteration 70 before iteration 71.
+
+## Iteration 68 - Restore journal validation for response tables
+
+WORK-0005 run-20261025-hive-research-01, still uncommitted. First combined
+docs profile hive-research-20261025-001 failed exit 1 because MANIFEST.json had
+not yet been regenerated for the new files; report retained. After inventory
+update (267 files), profile002's package component passed 807 checks, but
+agent flow failed exit 1: it parsed seven two-column reply rows under math's
+meeting as new incomplete five-column questions. The journal rows are actual
+response bookkeeping after a valid five-question table. Changed
+tools/validate_agent_flow.py to ignore only two-column reply rows and added a
+regression in tests/test_agent_flow.py that still rejects four real questions.
+Targeted 8 unit tests exit 0 and standalone agent validator exit 0. This fixes
+workflow parsing, not privacy or product behavior. Next: regenerate manifest,
+run final docs/workflow profiles on a stable source, then exact review/commit/
+push; early failed evidence remains visible. LSN-004 writer freeze applies.
+
+## Iteration 69 - Frozen research checkpoint validation
+
+WORK-0005 run-20261025-hive-research-01. Research/math writers finished, and
+independent hive-review iteration 1 gave NO BLOCKER for the uncommitted bounded
+snapshot; exact-commit review is still required. Regenerated MANIFEST.json for
+268 source files including its separate journal. Combined docs profile004
+passed exit 0: 808 package checks and agent-flow validation; source fingerprint
+stable. Workflow profile003 passed exit 0 with 99 host tests (two environment
+dependent skips) before reviewer journal addition; no workflow code changed
+since. Failed profiles001/002 remain as observed repair history. `git diff
+--check` exit 0. No protocol, backend, device or private data execution occurred.
+Next: refresh inventory for this entry, final docs check, inspect diff, commit
+source checkpoint, obtain exact-commit independent review, push and verify remote
+SHA. The model-quality and privacy/product gates remain open.

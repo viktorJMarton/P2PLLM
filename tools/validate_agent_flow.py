@@ -42,6 +42,11 @@ def journal_errors(path: Path, root: Path) -> list[str]:
         for line in block.splitlines():
             cells = [cell.strip() for cell in line.strip().strip("|").split("|")]
             if cells and re.fullmatch(r"(?:[A-Z][A-Z0-9-]*-)?Q\d+", cells[0]):
+                # Response bookkeeping may follow the five-column meeting table
+                # before the next iteration and uses an ID/answer table. It is
+                # not a new meeting question; the five-question gate remains.
+                if len(cells) == 2:
+                    continue
                 questions.append(cells)
         if len({q[0] for q in questions}) < 5:
             errors.append("meeting requires at least 5 distinct questions")

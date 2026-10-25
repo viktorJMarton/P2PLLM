@@ -668,8 +668,8 @@
     },
     {
       "path": "tests/test_agent_flow.py",
-      "bytes": 4088,
-      "sha256": "17cf3532c972b2f0fae64721acbec3b187eb84d6fcce36f0102a66cbb963de34"
+      "bytes": 4568,
+      "sha256": "f2200af533f441259c938739685f51c60235ed5a800b85bde74a79ee4f214cd5"
     },
     {
       "path": "tests/test_dev_env.py",
@@ -803,8 +803,8 @@
     },
     {
       "path": "tools/validate_agent_flow.py",
-      "bytes": 6701,
-      "sha256": "e64411221a1596281528ae95c405a95bff85bf9d67cbd90be8ec94e1ac10677d"
+      "bytes": 7003,
+      "sha256": "92b8257c6bb0676b7a4ef60b23bb0b30e4a7ec309f3c20586246b38fd0e8d0c7"
     },
     {
       "path": "tools/validate_package.py",
@@ -813,8 +813,8 @@
     },
     {
       "path": "work/INDEX.md",
-      "bytes": 4413,
-      "sha256": "5a66aa81556e28a2a32496c83ab3b2a7e01d1ba4da769b1bbc6003d040278018"
+      "bytes": 4976,
+      "sha256": "bf6057de2c3c660854f2239f41ccccf3351ec3577ea8dd4955172aeef2e3899a"
     },
     {
       "path": "work/PACKAGE-BUILD.md",
@@ -952,6 +952,16 @@
       "sha256": "1c4a62e81c9a41907dd168cadf7544774d6b924c42530da3a6d2846ad5c18e92"
     },
     {
+      "path": "work/WORK-0003-privacy-primitive-selection/handoff-hive-math-20261025.md",
+      "bytes": 9238,
+      "sha256": "53a59514f612b1896938779412b30b1528c53f8819d530e9845f4ff0dd5aac25"
+    },
+    {
+      "path": "work/WORK-0003-privacy-primitive-selection/handoff-hive-research-20261025.md",
+      "bytes": 12415,
+      "sha256": "c9e09738198deba57504904d3e2d57498ef1c0097dc95721f2618a6082da4a77"
+    },
+    {
       "path": "work/WORK-0003-privacy-primitive-selection/handoff-privacy.md",
       "bytes": 4029,
       "sha256": "526f14d66f83cb2e7370e1caea51f7d3b2d3b560cc679b756ce5849b5ff1b046"
@@ -995,6 +1005,11 @@
       "path": "work/WORK-0005-private-shared-compute/evidence.md",
       "bytes": 132,
       "sha256": "c9ad63cb77d09b7b2bf2ca57c68a61eaeaef4dbaa7d6176a9efb47d28cce31a2"
+    },
+    {
+      "path": "work/WORK-0005-private-shared-compute/hive-feasibility-plan.md",
+      "bytes": 7476,
+      "sha256": "0a6595a56f28dd7059f36f34b7ff7a77d5d1f257aa463e70d115853e319af34a"
     },
     {
       "path": "work/WORK-0005-private-shared-compute/journal.md",
@@ -1277,6 +1292,11 @@
       "sha256": "00b9d57e5168ea2a06d4bfb08741d3b2b0c26f0dc3858b1f6c2e8df8b95a1bb5"
     },
     {
+      "path": "work/agent-journals/hive-review.md",
+      "bytes": 2825,
+      "sha256": "c68a80e833bfbb9c2cbc66a80d197dff21fc4f06b53344187fe53670d730f615"
+    },
+    {
       "path": "work/agent-journals/independent-review.md",
       "bytes": 17925,
       "sha256": "48753f2bc3d8ae956bbb95144695ac9a3a7d7089c5a376bcf6ecd9b050700819"
@@ -1292,14 +1312,19 @@
       "sha256": "d2e7f33c08145ec5de79f76237fea3719d10fc9c61a900f2e7a7c391669527e1"
     },
     {
+      "path": "work/agent-journals/math.md",
+      "bytes": 13212,
+      "sha256": "1de005ac65f61b85288bb5b1df1b251d95c1e81373bee48db6fa9b408347205c"
+    },
+    {
       "path": "work/agent-journals/phone-staging.md",
       "bytes": 4642,
       "sha256": "d3d8224d0f6992bed33ada4ed72ecfad1afe96e72b1b970b2ba7e0235d1db437"
     },
     {
       "path": "work/agent-journals/primary.md",
-      "bytes": 134600,
-      "sha256": "a3ad6bbfd487115bbeaca17be3466b24f7f539e778bb959247a5de67d2d73fc9"
+      "bytes": 142448,
+      "sha256": "f9ad2730933cf3315af8b6e5fb9cdb6222a9fe8f400b0840e0fc51a3f2424f16"
     },
     {
       "path": "work/agent-journals/product-review.md",
@@ -1310,6 +1335,11 @@
       "path": "work/agent-journals/quality-review-successor.md",
       "bytes": 53478,
       "sha256": "c6736e241160cf17158225a093de6b44d1e50f9a3d230adb1c338c11c81a3f59"
+    },
+    {
+      "path": "work/agent-journals/research.md",
+      "bytes": 13013,
+      "sha256": "06e0deb098d2819b93ce06e1799498c8dc0f213f5d35ecd7153b273311e51fd7"
     },
     {
       "path": "work/agent-journals/sqlite-layer.md",

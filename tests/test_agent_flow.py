@@ -43,6 +43,13 @@ class MeetingTests(unittest.TestCase):
             stream.write("New answer appended.\n")
         self.assertEqual([], policy.journal_errors(self.own, self.root))
 
+    def test_two_column_response_bookkeeping_does_not_add_meeting_questions(self):
+        response = "\n## Responses to peer questions\n| ID | Answer |\n| --- | --- |\n| Q6 | Answered in peer journal. |\n"
+        self.write(self.meeting() + response)
+        self.assertEqual([], policy.journal_errors(self.own, self.root))
+        self.write(self.meeting(count=4) + response)
+        self.assertTrue(any("5 distinct" in e for e in policy.journal_errors(self.own, self.root)))
+
     def test_missing_questions_and_rewritten_peer_are_rejected(self):
         self.write(self.meeting(count=4))
         self.assertTrue(any("5 distinct" in e for e in policy.journal_errors(self.own, self.root)))
