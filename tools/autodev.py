@@ -123,7 +123,7 @@ def append_event(root: Path, event: dict):
     """Append minimal machine-readable metadata, never prompts or subprocess output."""
     path = root / ".git" / "autodev-runs.jsonl"
     with path.open("a", encoding="utf-8") as handle:
-        handle.write(json.dumps(event, ensure_ascii=False, sort_keys=True) + "\\n")
+        handle.write(json.dumps(event, ensure_ascii=False, sort_keys=True) + "\n")
         handle.flush()
         os.fsync(handle.fileno())
 
