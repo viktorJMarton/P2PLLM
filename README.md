@@ -13,7 +13,7 @@ Open-source, decentralized cooperative AI: shared inference AND shared learning,
 6. [Privacy requirements](docs/security/threat-model.md)
 7. [Validation and build status](BUILD.md)
 
-Run `python3 tools/validate_package.py` to validate this handoff package. This does not build or validate the future product. Agent development entry: `work/WORK-0001-project-bootstrap/brief.md`.
+Run `python3 tools/autodev.py plan` to inspect the next eligible bounded WORK item; the opt-in single-task runner and its limitations are documented in [autonomous development](docs/operations/autonomous-development.md). Run `python3 -m unittest discover -s tests -p 'test_autodev.py'` for its planner tests.\n\nRun `python3 tools/validate_package.py` to validate this handoff package. This does not build or validate the future product. Agent development entry: `work/WORK-0001-project-bootstrap/brief.md`.
 
 ## Deliverables
 Android app, desktop node CLI, protocol specification, backend interfaces, conformance suite, independent test peer, private cooperative computation and learning demonstrations, and reproducible evidence. Public release requires all privacy gates.

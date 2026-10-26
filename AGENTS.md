@@ -3,6 +3,9 @@
 ## Read routing
 Read PRODUCT.md and TECHNOLOGY.md for new components. Use docs/security/threat-model.md for any data flow/security work; schemas/ for contracts; docs/architecture/overview.md for boundaries. Work from work/INDEX.md and the selected brief. Load only the role under agents/ needed for the task, and relevant linked decisions. Do not reread the full repository for trivial edits.
 
+## Autonomous development control
+Read [autonomous development](docs/operations/autonomous-development.md) before unattended execution. Use `python3 tools/autodev.py plan` for deterministic, dependency-aware selection; `execute` runs one explicitly requested bounded Codex task, not a perpetual agent loop. Never treat task scores as proof of implementation or permit a missing security gate to be bypassed. Meeting outcomes use [meeting template](docs/operations/meeting-template.md); proposals are not recorded as multi-party meetings unless actual participants joined. Every accepted decision yields a scoped WORK action and acceptance evidence.
+
 ## Truth and scope
 This is a planning baseline. Never describe planned code, scheduled jobs, privacy guarantees or benchmarks as implemented. Work statuses and evidence must reflect observed results. Missing privacy proof is a blocker, not a documentation detail. Preserve accepted user decisions; technical research may recommend changes through ADRs.
 

@@ -1,0 +1,69 @@
+{
+  "version": 1,
+  "tasks": {
+    "WORK-0001": {
+      "impact": 5,
+      "unblocks": 5,
+      "confidence": 5,
+      "effort": 2,
+      "risk": 2,
+      "instruction": "Finish one reproducible Kotlin-to-Rust bridge smoke test or one missing pinned bootstrap check, based on observed repository state. Document any absent Android hardware as blocked evidence."
+    },
+    "WORK-0002": {
+      "impact": 5,
+      "unblocks": 4,
+      "confidence": 3,
+      "effort": 4,
+      "risk": 3,
+      "instruction": "Resolve one immutable Qwen model manifest entry and design one reproducible CPU benchmark; report device constraints."
+    },
+    "WORK-0003": {
+      "impact": 5,
+      "unblocks": 5,
+      "confidence": 2,
+      "effort": 5,
+      "risk": 5,
+      "instruction": "Compare one explicitly bounded MPC/FHE primitive hypothesis using synthetic fixtures and record assumptions; do not approve privacy profile."
+    },
+    "WORK-0004": {
+      "impact": 5,
+      "unblocks": 5,
+      "confidence": 4,
+      "effort": 3,
+      "risk": 3,
+      "instruction": "Implement or test one bounded protocol handshake/cancellation/replay case against an independent peer."
+    },
+    "WORK-0005": {
+      "impact": 5,
+      "unblocks": 4,
+      "confidence": 1,
+      "effort": 5,
+      "risk": 5,
+      "instruction": "Implement one approved, bounded protected-computation interface/test after prerequisites and security review are available."
+    },
+    "WORK-0006": {
+      "impact": 5,
+      "unblocks": 4,
+      "confidence": 1,
+      "effort": 5,
+      "risk": 5,
+      "instruction": "Build one synthetic-only protected adapter round test or model update rollback case without claiming personal-data privacy."
+    },
+    "WORK-0007": {
+      "impact": 4,
+      "unblocks": 3,
+      "confidence": 4,
+      "effort": 3,
+      "risk": 3,
+      "instruction": "Implement one Android role/status/resource UI behavior and validate its fail-closed network policy."
+    },
+    "WORK-0008": {
+      "impact": 5,
+      "unblocks": 1,
+      "confidence": 2,
+      "effort": 5,
+      "risk": 5,
+      "instruction": "Assess one release gate from reproducible evidence; never waive private compute or learning review."
+    }
+  }
+}
