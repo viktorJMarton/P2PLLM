@@ -102,12 +102,19 @@ def plan(root: Path) -> dict:
             "status": "ready" if candidates else "no_eligible_work"}
 
 
+def git_metadata_path(root: Path, name: str) -> Path:
+    result = subprocess.run(["git", "rev-parse", "--git-path", name],
+                            cwd=root, capture_output=True, text=True, check=True)
+    value = Path(result.stdout.strip())
+    return value if value.is_absolute() else root / value
+
+
 @contextlib.contextmanager
 def execution_lease(root: Path):
     """Exclusive OS-held lease; automatically released on process death."""
     if os.name != "posix":
         raise RuntimeError("v1 execution lease requires POSIX/Linux")
-    lock_path = root / ".git" / "autodev.lock"
+    lock_path = git_metadata_path(root, "autodev.lock")
     with lock_path.open("a+") as handle:
         try:
             fcntl.flock(handle.fileno(), fcntl.LOCK_EX | fcntl.LOCK_NB)
@@ -121,7 +128,7 @@ def execution_lease(root: Path):
 
 def append_event(root: Path, event: dict):
     """Append minimal machine-readable metadata, never prompts or subprocess output."""
-    path = root / ".git" / "autodev-runs.jsonl"
+    path = git_metadata_path(root, "autodev-runs.jsonl")
     with path.open("a", encoding="utf-8") as handle:
         handle.write(json.dumps(event, ensure_ascii=False, sort_keys=True) + "\n")
         handle.flush()
@@ -129,7 +136,9 @@ def append_event(root: Path, event: dict):
 
 
 def invoke(root: Path, selected: dict, timeout_seconds: int) -> int:
-    if not (root / ".git").is_dir():
+    check = subprocess.run(["git", "rev-parse", "--is-inside-work-tree"],
+                           cwd=root, capture_output=True, text=True, check=True)
+    if check.stdout.strip() != "true":
         raise RuntimeError("Execution requires a local non-bare Git worktree")
     with execution_lease(root):
         status = subprocess.run(["git", "status", "--porcelain", "--untracked-files=all"],
