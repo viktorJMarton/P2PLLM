@@ -7,6 +7,8 @@ explicit, single-task and bounded; no Git write/push/merge is performed here.
 from __future__ import annotations
 
 import argparse
+import contextlib
+import fcntl
 import datetime as dt
 import json
 import os
@@ -100,31 +102,70 @@ def plan(root: Path) -> dict:
             "status": "ready" if candidates else "no_eligible_work"}
 
 
+@contextlib.contextmanager
+def execution_lease(root: Path):
+    """Exclusive OS-held lease; automatically released on process death."""
+    if os.name != "posix":
+        raise RuntimeError("v1 execution lease requires POSIX/Linux")
+    lock_path = root / ".git" / "autodev.lock"
+    with lock_path.open("a+") as handle:
+        try:
+            fcntl.flock(handle.fileno(), fcntl.LOCK_EX | fcntl.LOCK_NB)
+        except BlockingIOError as err:
+            raise RuntimeError("An autonomous task already owns this worktree") from err
+        try:
+            yield
+        finally:
+            fcntl.flock(handle.fileno(), fcntl.LOCK_UN)
+
+
+def append_event(root: Path, event: dict):
+    """Append minimal machine-readable metadata, never prompts or subprocess output."""
+    path = root / ".git" / "autodev-runs.jsonl"
+    with path.open("a", encoding="utf-8") as handle:
+        handle.write(json.dumps(event, ensure_ascii=False, sort_keys=True) + "\\n")
+        handle.flush()
+        os.fsync(handle.fileno())
+
+
 def invoke(root: Path, selected: dict, timeout_seconds: int) -> int:
-    if not (root / ".git").exists():
-        raise RuntimeError("Execution requires a local Git worktree")
-    status = subprocess.run(["git", "status", "--porcelain", "--untracked-files=all"],
-                            cwd=root, capture_output=True, text=True, check=True)
-    if status.stdout.strip():
-        raise RuntimeError("Worktree is not clean; refuse unattended execution")
-    if not shutil_which("codex"):
-        raise RuntimeError("codex CLI unavailable")
-    run_id = str(uuid.uuid4())
-    instruction = (
-        f"Run ID {run_id}. Read AGENTS.md, docs/operations/autonomous-development.md, "
-        f"{selected['brief']} and required linked sources. "
-        f"Implement one bounded, verifiable next step under {selected['id']}. "
-        f"Task: {selected['instruction']} "
-        "No merge/push, no unsafe plaintext fallback, no external publication, "
-        "no declaring security approval. Run relevant checks, report exact command, "
-        "exit code, changed files, evidence and blockers. Stop after this single task."
-    )
-    cmd = ["codex", "exec", "--sandbox", "workspace-write",
-           "--ask-for-approval", "never", instruction]
-    try:
-        return subprocess.run(cmd, cwd=root, timeout=timeout_seconds, check=False).returncode
-    except subprocess.TimeoutExpired:
-        return 124
+    if not (root / ".git").is_dir():
+        raise RuntimeError("Execution requires a local non-bare Git worktree")
+    with execution_lease(root):
+        status = subprocess.run(["git", "status", "--porcelain", "--untracked-files=all"],
+                                cwd=root, capture_output=True, text=True, check=True)
+        if status.stdout.strip():
+            raise RuntimeError("Worktree is not clean; refuse unattended execution")
+        if not shutil_which("codex"):
+            raise RuntimeError("codex CLI unavailable")
+        run_id = str(uuid.uuid4())
+        instruction = (
+            f"Run ID {run_id}. Read AGENTS.md, docs/operations/autonomous-development.md, "
+            f"{selected['brief']} and required linked sources. "
+            f"Implement one bounded, verifiable next step under {selected['id']}. "
+            f"Task: {selected['instruction']} "
+            "No merge/push, no unsafe plaintext fallback, no external publication, "
+            "no declaring security approval. Run relevant checks, report exact command, "
+            "exit code, changed files, evidence and blockers. Stop after this single task."
+        )
+        cmd = ["codex", "exec", "--sandbox", "workspace-write",
+               "--ask-for-approval", "never", instruction]
+        now = lambda: dt.datetime.now(dt.timezone.utc).isoformat()
+        append_event(root, {"run_id": run_id, "work_id": selected["id"],
+                            "time": now(), "state": "started"})
+        exit_code = 3
+        try:
+            exit_code = subprocess.run(cmd, cwd=root, timeout=timeout_seconds,
+                                       check=False).returncode
+        except subprocess.TimeoutExpired:
+            exit_code = 124
+        except KeyboardInterrupt:
+            exit_code = 130
+        finally:
+            append_event(root, {"run_id": run_id, "work_id": selected["id"],
+                                "time": now(), "state": "ended",
+                                "exit_code": exit_code})
+        return exit_code
 
 
 def shutil_which(command: str) -> str | None:
