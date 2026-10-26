@@ -182,13 +182,46 @@ def shutil_which(command: str) -> str | None:
     return which(command)
 
 
+
+def run_status(root: Path) -> dict:
+    path = git_metadata_path(root, "autodev-runs.jsonl")
+    if not path.exists():
+        return {"runs": 0, "active_or_unreconciled": [], "last": None}
+    starts, ends, last = {}, set(), None
+    for line_no, line in enumerate(path.read_text(encoding="utf-8").splitlines(), 1):
+        if not line.strip():
+            continue
+        try:
+            event = json.loads(line)
+        except json.JSONDecodeError as err:
+            raise ValueError(f"Corrupt run ledger at line {line_no}") from err
+        rid, state = event.get("run_id"), event.get("state")
+        if not isinstance(rid, str) or state not in ("started", "ended"):
+            raise ValueError(f"Invalid run ledger event at line {line_no}")
+        if state == "started":
+            if rid in starts:
+                raise ValueError(f"Duplicate started run {rid}")
+            starts[rid] = event
+        else:
+            if rid not in starts or rid in ends:
+                raise ValueError(f"Orphan or duplicate ended run {rid}")
+            ends.add(rid)
+        last = event
+    return {"runs": len(starts),
+            "active_or_unreconciled": [starts[k] for k in starts if k not in ends],
+            "last": last}
+
+
 def main(argv=None):
     parser = argparse.ArgumentParser()
-    parser.add_argument("command", choices=("plan", "execute"))
+    parser.add_argument("command", choices=("plan", "status", "execute"))
     parser.add_argument("--root", type=Path, default=ROOT)
     parser.add_argument("--timeout-seconds", type=int, default=3600)
     args = parser.parse_args(argv)
     try:
+        if args.command == "status":
+            print(json.dumps(run_status(args.root.resolve()), indent=2))
+            return 0
         result = plan(args.root.resolve())
         if args.command == "plan":
             print(json.dumps(result, indent=2, ensure_ascii=False))
