@@ -14,7 +14,7 @@ python3 tools/autodev.py execute --timeout-seconds 3600
 
 `plan` is read-only and prints JSON containing the selected item, ranked eligible work and blocked reasons. Exit 0 means eligible work, 2 means none, 3 means invalid input.
 
-`execute` is **explicit**, never triggered by a documentation change. It launches exactly one bounded `codex exec` with workspace sandbox and no interactive approval requests. It does not schedule itself, create subagents, commit, push, merge, publish or approve any security profile. External policies and actual Codex CLI version may still block it; never bypass restrictions. Exit 124 denotes timeout. An unclean worktree fails closed. Review its output, diffs, tests and evidence before any follow-up.
+`execute` is **explicit**, never triggered by a documentation change. It launches exactly one bounded `codex exec` with workspace sandbox and no interactive approval requests. It records minimal started/ended JSONL events in `.git/autodev-runs.jsonl` and holds a non-blocking POSIX file lock at `.git/autodev.lock` for the duration of execution. An interrupted process releases the OS lock, while a started event without an ended event signals a run requiring manual reconciliation. It does not schedule itself, create subagents, commit, push, merge, publish or approve any security profile. External policies and actual Codex CLI version may still block it; never bypass restrictions. Exit 124 denotes timeout. An unclean worktree fails closed. Review its output, diffs, tests and evidence before any follow-up.
 
 Initial prioritization is a transparent heuristic from `config/autodev.tasks.json`:
 
@@ -53,12 +53,12 @@ Agent delegation is conditional on host/user authorization; this script launches
 
 After each real run, calculate only from observed evidence: elapsed work time, accepted WORK tasks, blocker age, failed-check rate, review rework rate, and linked verified REQ coverage. Missing data is `unknown`, never zero/passed.
 
-Before enabling scheduled unattended execution, add: atomic lease/lock to prevent concurrent runners, structured run output and durable journals, controlled retry budgets, a verified CI review gate, stop/resume control, executable microtask breakdown, worktree isolation, and integration tests on actual Linux/Android hosts. A cron job without these controls is not production-safe orchestration.
+Before enabling scheduled unattended execution, add: verified restart reconciliation for orphaned started events, controlled retry budgets, a verified CI review gate, stop/resume control, executable microtask breakdown, worktree isolation, full durable evidence journaling, and integration tests on actual Linux/Android hosts. The current file lock prevents overlapping runs in one checkout but does not coordinate distinct worktrees or hosts. A cron job without these controls is not production-safe orchestration.
 
 ## v1 acceptance
 
 - Dependency-correct deterministic selection, blocked state rejection, policy validation.
-- A read-only plan command and explicit bounded one-task execution.
+- A read-only plan command and explicit bounded one-task execution with per-worktree POSIX lease and minimal durable start/end events.
 - No autonomous Git push/merge or security approval.
 - Unit tests for selection, unknown dependencies, cycles and blocked work.
 - Truthful reporting of missing execution or hardware evidence.
