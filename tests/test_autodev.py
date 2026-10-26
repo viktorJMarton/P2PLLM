@@ -88,5 +88,19 @@ class PlannerTests(unittest.TestCase):
         self.assertEqual(json.loads(lines[1])["exit_code"], 0)
 
 
+    def test_status_detects_unreconciled_run(self):
+        subprocess.run(["git", "init", "-q"], cwd=self.root, check=True)
+        autodev.append_event(self.root, {"run_id": "x", "state": "started"})
+        self.assertEqual(len(autodev.run_status(self.root)["active_or_unreconciled"]), 1)
+        autodev.append_event(self.root, {"run_id": "x", "state": "ended", "exit_code": 124})
+        self.assertEqual(autodev.run_status(self.root)["active_or_unreconciled"], [])
+
+    def test_status_rejects_corrupt_journal(self):
+        subprocess.run(["git", "init", "-q"], cwd=self.root, check=True)
+        autodev.git_metadata_path(self.root, "autodev-runs.jsonl").write_text("not-json\\n")
+        with self.assertRaisesRegex(ValueError, "Corrupt"):
+            autodev.run_status(self.root)
+
+
 if __name__ == "__main__":
     unittest.main()
