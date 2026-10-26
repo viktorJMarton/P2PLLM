@@ -80,7 +80,7 @@ class PlannerTests(unittest.TestCase):
             pass
 
     def test_append_event_is_valid_jsonl(self):
-        (self.root / ".git").mkdir()
+        subprocess.run(["git", "init", "-q"], cwd=self.root, check=True)
         autodev.append_event(self.root, {"run_id": "a", "state": "started"})
         autodev.append_event(self.root, {"run_id": "a", "state": "ended", "exit_code": 0})
         lines = autodev.git_metadata_path(self.root, "autodev-runs.jsonl").read_text().splitlines()
