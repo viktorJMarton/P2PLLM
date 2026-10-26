@@ -68,5 +68,24 @@ class PlannerTests(unittest.TestCase):
         self.assertEqual(result["status"], "no_eligible_work")
 
 
+    @unittest.skipUnless(autodev.os.name == "posix", "POSIX-only lease")
+    def test_single_execution_lease(self):
+        (self.root / ".git").mkdir()
+        with autodev.execution_lease(self.root):
+            with self.assertRaisesRegex(RuntimeError, "already owns"):
+                with autodev.execution_lease(self.root):
+                    pass
+        with autodev.execution_lease(self.root):
+            pass
+
+    def test_append_event_is_valid_jsonl(self):
+        (self.root / ".git").mkdir()
+        autodev.append_event(self.root, {"run_id": "a", "state": "started"})
+        autodev.append_event(self.root, {"run_id": "a", "state": "ended", "exit_code": 0})
+        lines = (self.root / ".git" / "autodev-runs.jsonl").read_text().splitlines()
+        self.assertEqual(len(lines), 2)
+        self.assertEqual(json.loads(lines[1])["exit_code"], 0)
+
+
 if __name__ == "__main__":
     unittest.main()
