@@ -5,6 +5,7 @@ from pathlib import Path
 import tempfile
 import unittest
 import sys
+import subprocess
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "tools"))
 import autodev
@@ -70,7 +71,7 @@ class PlannerTests(unittest.TestCase):
 
     @unittest.skipUnless(autodev.os.name == "posix", "POSIX-only lease")
     def test_single_execution_lease(self):
-        (self.root / ".git").mkdir()
+        subprocess.run(["git", "init", "-q"], cwd=self.root, check=True)
         with autodev.execution_lease(self.root):
             with self.assertRaisesRegex(RuntimeError, "already owns"):
                 with autodev.execution_lease(self.root):
@@ -82,7 +83,7 @@ class PlannerTests(unittest.TestCase):
         (self.root / ".git").mkdir()
         autodev.append_event(self.root, {"run_id": "a", "state": "started"})
         autodev.append_event(self.root, {"run_id": "a", "state": "ended", "exit_code": 0})
-        lines = (self.root / ".git" / "autodev-runs.jsonl").read_text().splitlines()
+        lines = autodev.git_metadata_path(self.root, "autodev-runs.jsonl").read_text().splitlines()
         self.assertEqual(len(lines), 2)
         self.assertEqual(json.loads(lines[1])["exit_code"], 0)
 
